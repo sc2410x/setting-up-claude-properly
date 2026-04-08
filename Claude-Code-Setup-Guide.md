@@ -73,7 +73,7 @@ Replace `<github-url>` with the web address of the repo, and `<name>` with a sho
 | Repo | What It Does (In Plain English) | Install Command |
 |------|-------------------------------|-----------------|
 | **Superpowers** | Makes Claude much better at planning work, brainstorming ideas, reviewing quality, and working through tasks methodically — like upgrading from a junior assistant to a senior team member | `git clone https://github.com/obra/superpowers.git ~/.claude/skills/superpowers` |
-| **Everything Claude Code** | A pre-built starter kit with recommended settings, useful skills, and workflows already organised — saves you hours of setup | `git clone https://github.com/anthropics/everything-claude-code.git ~/.claude/skills/everything-claude-code` |
+| **Everything Claude Code** | A pre-built starter kit with recommended settings, useful skills, and workflows already organised — saves you hours of setup | `git clone https://github.com/affaan-m/everything-claude-code.git ~/.claude/skills/everything-claude-code` |
 | **UI UX Pro Max** | Makes Claude great at designing professional-looking websites and apps — good layouts, proper spacing, modern design | `git clone https://github.com/nicholasoxford/ui-ux-pro-max.git ~/.claude/skills/ui-ux-pro-max` |
 | **Browser Use** | Lets Claude actually open and use a web browser — navigate websites, click buttons, fill in forms, and take screenshots | `git clone https://github.com/browser-use/browser-use.git ~/.claude/skills/browser-use` |
 | **claude-mem** | An upgraded memory system that helps Claude remember more detail across longer, more complex projects | `git clone https://github.com/sdairs/claude-mem.git ~/.claude/skills/claude-mem` |
@@ -1250,7 +1250,7 @@ Use this to track what you've installed. Update it as you go. Copy the install c
 | Item | Type | Status | What It Does | Install Command |
 |------|------|--------|-------------|----------------|
 | Superpowers | Repo | INSTALLED | Better planning, brainstorming, and quality | `git clone https://github.com/obra/superpowers.git ~/.claude/skills/superpowers` |
-| Everything Claude Code | Repo | Not yet | Pre-built starter kit | `git clone https://github.com/anthropics/everything-claude-code.git ~/.claude/skills/everything-claude-code` |
+| Everything Claude Code | Repo | Not yet | Pre-built starter kit | `git clone https://github.com/affaan-m/everything-claude-code.git ~/.claude/skills/everything-claude-code` |
 | UI UX Pro Max | Repo | Not yet | Professional web design | `git clone https://github.com/nicholasoxford/ui-ux-pro-max.git ~/.claude/skills/ui-ux-pro-max` |
 | Browser Use | Repo | Not yet | Claude can use a web browser | `git clone https://github.com/browser-use/browser-use.git ~/.claude/skills/browser-use` |
 | claude-mem | Repo | Not yet | Enhanced memory | `git clone https://github.com/sdairs/claude-mem.git ~/.claude/skills/claude-mem` |
