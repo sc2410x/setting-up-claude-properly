@@ -763,12 +763,12 @@
       <h1><span class="prompt">&gt;</span> Claude Code Setup Guide<span class="cursor-block"></span></h1>
       <div class="subtitle"><span class="prompt">&gt;</span> for business decision makers, not developers</div>
       <div class="stats">
-        <span class="kw">const</span> <span class="var">sections</span> <span class="punc">=</span> <span class="val">20</span><span class="punc">;</span>
+        <span class="kw">const</span> <span class="var">sections</span> <span class="punc">=</span> <span class="val">18</span><span class="punc">;</span>
         <span class="kw">const</span> <span class="var">prompts</span> <span class="punc">=</span> <span class="val">15</span><span class="punc">;</span>
         <span class="kw">const</span> <span class="var">teams</span> <span class="punc">=</span> <span class="val">12</span><span class="punc">;</span>
       </div>
       <div class="comment">
-        Everything you need to set up Claude Code so it works smarter on your projects.<br>
+        Everything you need to set up Claude so it works smarter on your projects.<br>
         Written in plain language. No coding experience needed.<br>
         Copy-paste prompts, team-by-team tool recommendations, people to follow, and more.
       </div>
@@ -781,7 +781,7 @@
   <div class="terminal-bar">
     <div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
     <span class="filename">ls ./sections/</span>
-    <span class="status">20 items</span>
+    <span class="status">18 items</span>
   </div>
   <div class="terminal-body" style="padding:16px 20px;">
     <div class="card-grid card-grid-4" style="gap:8px;">
@@ -791,20 +791,18 @@
       <a href="#" onclick="showSection('structure');return false" class="nav-tile"><span style="color:var(--primary)">04</span> Project Structure</a>
       <a href="#" onclick="showSection('talking');return false" class="nav-tile"><span style="color:var(--primary)">05</span> Talking to Claude</a>
       <a href="#" onclick="showSection('prompts');return false" class="nav-tile"><span style="color:var(--primary)">06</span> Copy-Paste Prompts</a>
-      <a href="#" onclick="showSection('repos');return false" class="nav-tile"><span style="color:var(--primary)">07</span> Add-Ons (Repos)</a>
-      <a href="#" onclick="showSection('skills');return false" class="nav-tile"><span style="color:var(--primary)">08</span> Skills</a>
-      <a href="#" onclick="showSection('folder-map');return false" class="nav-tile"><span style="color:var(--primary)">09</span> Where Things Live</a>
-      <a href="#" onclick="showSection('mistakes');return false" class="nav-tile"><span style="color:var(--primary)">10</span> Common Mistakes</a>
-      <a href="#" onclick="showSection('review');return false" class="nav-tile"><span style="color:var(--primary)">11</span> Reviewing Work</a>
-      <a href="#" onclick="showSection('security');return false" class="nav-tile"><span style="color:var(--primary)">12</span> Security</a>
-      <a href="#" onclick="showSection('costs');return false" class="nav-tile"><span style="color:var(--primary)">13</span> Costs</a>
-      <a href="#" onclick="showSection('backups');return false" class="nav-tile"><span style="color:var(--primary)">14</span> Backups</a>
-      <a href="#" onclick="showSection('stuck');return false" class="nav-tile"><span style="color:var(--primary)">15</span> When Stuck</a>
-      <a href="#" onclick="showSection('faq');return false" class="nav-tile"><span style="color:var(--primary)">16</span> FAQ</a>
-      <a href="#" onclick="showSection('teams');return false" class="nav-tile"><span style="color:var(--primary)">17</span> Tools by Team</a>
-      <a href="#" onclick="showSection('find-more');return false" class="nav-tile"><span style="color:var(--primary)">18</span> Find More Stuff</a>
-      <a href="#" onclick="showSection('resources');return false" class="nav-tile"><span style="color:var(--primary)">19</span> Resources &amp; People</a>
-      <a href="#" onclick="showSection('status');return false" class="nav-tile"><span style="color:var(--primary)">20</span> Install Status</a>
+      <a href="#" onclick="showSection('repos');return false" class="nav-tile"><span style="color:var(--primary)">07</span> Repos, Skills &amp; MCPs</a>
+      <a href="#" onclick="showSection('folder-map');return false" class="nav-tile"><span style="color:var(--primary)">08</span> Where Things Live</a>
+      <a href="#" onclick="showSection('mistakes');return false" class="nav-tile"><span style="color:var(--primary)">09</span> Common Mistakes</a>
+      <a href="#" onclick="showSection('review');return false" class="nav-tile"><span style="color:var(--primary)">10</span> Reviewing Work</a>
+      <a href="#" onclick="showSection('security');return false" class="nav-tile"><span style="color:var(--primary)">11</span> Security</a>
+      <a href="#" onclick="showSection('costs');return false" class="nav-tile"><span style="color:var(--primary)">12</span> Costs</a>
+      <a href="#" onclick="showSection('backups');return false" class="nav-tile"><span style="color:var(--primary)">13</span> Backups</a>
+      <a href="#" onclick="showSection('stuck');return false" class="nav-tile"><span style="color:var(--primary)">14</span> When Stuck</a>
+      <a href="#" onclick="showSection('faq');return false" class="nav-tile"><span style="color:var(--primary)">15</span> FAQ</a>
+      <a href="#" onclick="showSection('teams');return false" class="nav-tile"><span style="color:var(--primary)">16</span> Tools by Team</a>
+      <a href="#" onclick="showSection('resources');return false" class="nav-tile"><span style="color:var(--primary)">17</span> Resources &amp; People</a>
+      <a href="#" onclick="showSection('status');return false" class="nav-tile"><span style="color:var(--primary)">18</span> Install Status</a>
     </div>
   </div>
 </div>
@@ -834,43 +832,152 @@
   </div>
 </div>
 
-<!-- Part 2: Repos -->
+<!-- Part 2+3: Combined Repos, Skills & MCPs -->
 <div class="section" id="repos">
   <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 07</div>
-  <h2><span class="prompt">&gt;</span> Add-Ons to Install</h2>
-  <p class="section-desc">A "repo" is a folder on GitHub. Installing it = downloading it to the right place on your computer.</p>
+  <h2><span class="prompt">&gt;</span> Repos, Skills &amp; MCP Servers</h2>
+  <p class="section-desc">Your one-stop shop. Click any item to see what it does. Copy the install command.</p>
+
+  <div class="callout callout-info"><strong>Three types of add-ons</strong>
+    <p><strong style="color:var(--text)">Repos</strong> = upgrade packs that make Claude smarter overall. Install in Terminal.<br>
+    <strong style="color:var(--text)">Skills</strong> = specialist playbooks for specific tasks (SEO, ads, security, etc.). Install in Terminal.<br>
+    <strong style="color:var(--text)">MCP Servers</strong> = connectors that plug Claude into apps you already use (Slack, Xero, etc.). Install in Claude Code.</p>
+  </div>
 
   <h3>The Universal Install Command</h3>
   <div class="code-block"><div class="code-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>terminal</div><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>git clone &lt;github-url&gt; ~/.claude/skills/&lt;name&gt;</pre></div>
-  <p style="color:var(--muted);font-size:14px;">Run this once per repo in Terminal. Works across every project on your computer.</p>
+  <p style="color:var(--muted);font-size:14px;margin-bottom:24px;">Run this once per repo/skill in Terminal. Works across every project on your computer.</p>
 
+  <h3>Repos (Upgrade Packs)</h3>
+  <div class="install-head"><span>Item</span><span>Type</span><span class="status-h">Status</span><span class="cmd-h">Install Command</span></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Superpowers</span><span class="type">Repo</span><span class="status-cell"><span class="badge-installed">INSTALLED</span></span><span class="cmd"><code>git clone https://github.com/obra/superpowers.git ~/.claude/skills/superpowers</code></span></div><div class="install-desc">Makes Claude much better at planning, brainstorming, reviewing quality, and working through tasks step by step. Like upgrading from a junior assistant to a senior team member who follows best practices automatically.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Everything Claude Code</span><span class="type">Repo</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd"><code>git clone https://github.com/affaan-m/everything-claude-code.git ~/.claude/skills/everything-claude-code</code></span></div><div class="install-desc">A power-user starter pack built from 10+ months of daily use. Includes pre-built agents, security scanning (AgentShield), memory optimisation, token-saving configs, and development workflow rules.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> UI UX Pro Max</span><span class="type">Repo</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd"><code>git clone https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git ~/.claude/skills/ui-ux-pro-max</code></span></div><div class="install-desc">A design reference library with 67 UI styles, 161 colour palettes, 57 font pairings, and 99 UX guidelines. When Claude builds a page, it makes informed design choices instead of guessing. 61K+ GitHub stars.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Browser Use</span><span class="type">Repo</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd"><code>git clone https://github.com/browser-use/browser-use.git ~/.claude/skills/browser-use</code></span></div><div class="install-desc">Lets Claude open and control a web browser — navigate to pages, click buttons, fill in forms, and take screenshots. Useful for testing your live site or researching competitors.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> claude-mem</span><span class="type">Repo</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd"><code>git clone https://github.com/thedotmack/claude-mem.git ~/.claude/skills/claude-mem</code></span></div><div class="install-desc">An upgraded memory system that helps Claude remember more context across longer, more complex projects.</div></div>
+
+  <h3>Skills (Specialist Playbooks)</h3>
+  <div class="install-head"><span>Item</span><span>Type</span><span class="status-h">Status</span><span class="cmd-h">Install Command</span></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Marketing Skills Library</span><span class="type">Skill</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd"><code>git clone https://github.com/coreyhaines31/marketingskills.git ~/.claude/skills/marketingskills</code></span></div><div class="install-desc">By Corey Haines. Turns Claude into a full marketing team — copywriting, content strategy, SEO, paid ads, social media, and CRO. Each skill follows proven marketing frameworks.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Deep Research</span><span class="type">Skill</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd"><code>git clone https://github.com/Weizhena/Deep-Research-skills.git ~/.claude/skills/deep-research</code></span></div><div class="install-desc">Makes Claude do thorough, multi-step research — checking multiple sources, cross-referencing facts, and delivering detailed findings with citations.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> claude-seo</span><span class="type">Skill</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd"><code>git clone https://github.com/AgriciDaniel/claude-seo.git ~/.claude/skills/claude-seo</code></span></div><div class="install-desc">19 SEO sub-skills covering technical audits, E-E-A-T optimisation, schema markup, backlinks, local SEO, and AI/answer engine optimisation.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> claude-ads</span><span class="type">Skill</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd"><code>git clone https://github.com/AgriciDaniel/claude-ads.git ~/.claude/skills/claude-ads</code></span></div><div class="install-desc">186 audit checks across Google Ads, Meta Ads, YouTube, LinkedIn, TikTok, and Microsoft Ads with weighted scoring and industry templates.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Claude Office Skills</span><span class="type">Skill</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd"><code>git clone https://github.com/tfriedel/claude-office-skills.git ~/.claude/skills/claude-office-skills</code></span></div><div class="install-desc">Create and edit PowerPoint presentations, Word documents, Excel spreadsheets, and PDFs. Perfect for client reports, proposals, and pitch decks.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Trail of Bits Security</span><span class="type">Skill</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd"><code>git clone https://github.com/trailofbits/skills.git ~/.claude/skills/trailofbits-security</code></span></div><div class="install-desc">Professional security audit workflows from Trail of Bits. Vulnerability detection, CodeQL analysis, and Semgrep scanning. For Technical Director and Web Dev.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> CEO Advisor + 220 skills</span><span class="type">Skill</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd"><code>git clone https://github.com/alirezarezvani/claude-skills.git ~/.claude/skills/alirezarezvani-skills</code></span></div><div class="install-desc">220+ skills including C-suite advisory (CEO, COO, CFO), finance, compliance, marketing, and operations. The CEO Advisor covers strategic decisions and board decks.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Jobs to Be Done</span><span class="type">Skill</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd">Search skillsmp.com for "jobs to be done"</span></div><div class="install-desc">Business strategy framework to understand what your customers actually want and why they buy. Great for product decisions, positioning, and market research.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Explain Code</span><span class="type">Skill</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd">Search claude.com/plugins for "explain code"</span></div><div class="install-desc">Official Anthropic skill that translates code into plain English. Your non-technical translator for understanding what Claude built.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Web Assets Generator</span><span class="type">Skill</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd">Search skillsmp.com for "web assets generator"</span></div><div class="install-desc">Creates banners, icons, social sharing images, and favicons — properly sized and formatted for each platform.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Business Strategy</span><span class="type">Skill</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd">Search mcpmarket.com for "business strategy"</span></div><div class="install-desc">Applies Porter's 5 Forces, SWOT, BCG Matrix, Blue Ocean, Ansoff to strategic planning. For Managing Director and leadership.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> SOP Creator</span><span class="type">Skill</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd">Search mcpmarket.com for "sop creator"</span></div><div class="install-desc">Turns rough brain dumps into clean, numbered Standard Operating Procedures. Perfect for your Operations Director.</div></div>
+
+  <h3>MCP Servers (App Connectors)</h3>
+  <p style="color:var(--muted);font-size:13px;margin-bottom:12px;">Paste these into <strong>Claude Code</strong> (not Terminal).</p>
+  <div class="install-head"><span>Item</span><span>Type</span><span class="status-h">Status</span><span class="cmd-h">Install Command</span></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> GitHub</span><span class="type">MCP</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd"><code>claude mcp add --transport http github https://api.githubcopilot.com/mcp/</code></span></div><div class="install-desc">Connects Claude to your GitHub repos. Manage pull requests, review code, create issues. Essential for Web Dev.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Notion</span><span class="type">MCP</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd"><code>claude mcp add --transport http notion https://mcp.notion.com/mcp</code></span></div><div class="install-desc">Read and create Notion pages, search your workspace, update databases. Useful for every team.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Linear</span><span class="type">MCP</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd"><code>claude mcp add --transport http linear https://mcp.linear.app/mcp</code></span></div><div class="install-desc">Issue tracking integrated with dev workflows. Create and update issues, manage sprints. For Web Dev and PM.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Asana</span><span class="type">MCP</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd"><code>claude mcp add --transport http asana https://mcp.asana.com/mcp</code></span></div><div class="install-desc">Tasks, projects, assignments, and progress tracking. For Project Management and Client Services.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> ClickUp</span><span class="type">MCP</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd"><code>claude mcp add --transport http clickup https://mcp.clickup.com/mcp</code></span></div><div class="install-desc">Task management, dependency tracking, time entries. Alternative to Asana/Linear for ClickUp users.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Ahrefs</span><span class="type">MCP</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd">See github.com/ahrefs/ahrefs-mcp-server</span></div><div class="install-desc">Official Ahrefs integration. Backlink data, keyword metrics, and brand monitoring. Essential for SEO.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Semrush</span><span class="type">MCP</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd">See github.com/mrkooblu/semrush-mcp</span></div><div class="install-desc">Official Semrush integration. SEO data, traffic analysis, market data. Key tool for SEO alongside Ahrefs.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Google Search Console</span><span class="type">MCP</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd">See github.com/AminForou/mcp-gsc</span></div><div class="install-desc">20 tools for search performance, indexing, and crawl stats. The SEO team's direct line into how Google sees your sites.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Google Analytics 4</span><span class="type">MCP</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd">See developers.google.com/analytics/devguides/MCP</span></div><div class="install-desc">Official Google integration. Traffic, user behaviour, and conversions. Useful for SEO, PPC, and reporting.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Cross-Platform Ads</span><span class="type">MCP</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd">See github.com/amekala/ads-mcp</span></div><div class="install-desc">One server for Google, Meta, LinkedIn, and TikTok Ads — 100+ tools. Campaign creation and budget optimisation. Built for PPC.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> HubSpot</span><span class="type">MCP</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd">See developers.hubspot.com/mcp</span></div><div class="install-desc">Official HubSpot. Contacts, companies, deals, tickets, pipeline data. For Sales and Managing Director.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Salesforce</span><span class="type">MCP</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd">See developer.salesforce.com (search MCP)</span></div><div class="install-desc">Official Salesforce with 60+ tools. CRM data, records, reports. Alternative to HubSpot depending on your CRM.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Xero</span><span class="type">MCP</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd">See github.com/XeroAPI/xero-mcp-server</span></div><div class="install-desc">Official Xero. Invoicing, bank reconciliation, bookkeeping, financial reporting. For Finance.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> QuickBooks</span><span class="type">MCP</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd">See github.com/intuit/quickbooks-online-mcp-server</span></div><div class="install-desc">Official Intuit. Customers, invoices, expenses, reports. Alternative to Xero.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Stripe</span><span class="type">MCP</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd">See docs.stripe.com/mcp</span></div><div class="install-desc">Official Stripe. 25 tools for customers, invoices, subscriptions, refunds. For Finance and Managing Director.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Sentry</span><span class="type">MCP</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd">See github.com/getsentry/sentry-mcp</span></div><div class="install-desc">Error tracking and performance monitoring. For Web Dev and Technical Director.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Databox</span><span class="type">MCP</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd">See smithery.ai/servers/Databox-MCP/databox</span></div><div class="install-desc">Cross-platform KPI dashboards from 100+ data sources. For Managing Director and Operations Director.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Google Workspace</span><span class="type">MCP</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd">See github.com/taylorwilsdon/google_workspace_mcp</span></div><div class="install-desc">All-in-one: Drive, Calendar, Gmail, Sheets, Docs, Slides, Forms, Tasks. Useful across every team.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Zapier</span><span class="type">MCP</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd">See zapier.com/mcp</span></div><div class="install-desc">Bridges to 8,000+ apps. The ultimate fallback if a dedicated MCP doesn't exist for your tool.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Granola</span><span class="type">MCP</span><span class="status-cell"><span class="badge-pending">not yet</span></span><span class="cmd">See smithery.ai/servers/granola</span></div><div class="install-desc">Meeting notes. Search past meetings, extract action items and decisions. For Client Services and PM.</div></div>
+
+  <h3>Where to Find More</h3>
   <div class="table-wrap"><table>
-    <tr><th>Repo</th><th>What It Does</th><th>Install Command</th></tr>
-    <tr><td><strong>Superpowers</strong></td><td>Better planning, brainstorming, quality review — like upgrading from junior to senior</td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/obra/superpowers.git ~/.claude/skills/superpowers</code></td></tr>
-    <tr><td><strong>Everything Claude Code</strong></td><td>Pre-built starter kit with settings, skills, and workflows</td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/affaan-m/everything-claude-code.git ~/.claude/skills/everything-claude-code</code></td></tr>
-    <tr><td><strong>UI UX Pro Max</strong></td><td>Professional web design — good layouts, spacing, modern design</td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git ~/.claude/skills/ui-ux-pro-max</code></td></tr>
-    <tr><td><strong>Browser Use</strong></td><td>Lets Claude open a browser — navigate, click, fill forms, screenshot</td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/browser-use/browser-use.git ~/.claude/skills/browser-use</code></td></tr>
-    <tr><td><strong>claude-mem</strong></td><td>Upgraded memory for longer, more complex projects</td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/thedotmack/claude-mem.git ~/.claude/skills/claude-mem</code></td></tr>
-    <tr><td><strong>n8n-mcp</strong></td><td>Connects Claude to n8n automation (like Zapier but more powerful)</td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/n8n-io/n8n-mcp.git ~/.claude/skills/n8n-mcp</code></td></tr>
+    <tr><th>What You Want</th><th>Where to Go</th><th>What You'll Find</th></tr>
+    <tr><td><strong>Official plugins</strong></td><td>claude.com/plugins</td><td>Anthropic's store — look for "Verified" badge</td></tr>
+    <tr><td><strong>Official MCP registry</strong></td><td>registry.modelcontextprotocol.io</td><td>Official directory by Anthropic, GitHub, Microsoft</td></tr>
+    <tr><td><strong>Biggest MCP collection</strong></td><td>mcp.so</td><td>19,500+ servers, searchable by category</td></tr>
+    <tr><td><strong>Biggest skills library</strong></td><td>skillsmp.com</td><td>700,000+ pre-built skills</td></tr>
+    <tr><td><strong>Everything in one place</strong></td><td>github.com/rohitg00/awesome-claude-code-toolkit</td><td>The best single bookmark — 135 agents, 400K+ skills, 150+ plugins</td></tr>
   </table></div>
 
-  <div class="callout callout-warning"><strong>Heads up</strong><p>GitHub repos can move or rename. If a command fails, search GitHub.com for the repo name to find the current address.</p></div>
+  <h4>More MCP Directories</h4>
+  <div class="table-wrap"><table>
+    <tr><th>Website</th><th>What's There</th></tr>
+    <tr><td>glama.ai/mcp/servers</td><td>Updated daily, can host servers for you</td></tr>
+    <tr><td>pulsemcp.com/servers</td><td>11,000+ servers</td></tr>
+    <tr><td>smithery.ai</td><td>The original MCP marketplace</td></tr>
+    <tr><td>composio.dev/toolkits</td><td>500+ ready-made app connections</td></tr>
+    <tr><td>mcpmarket.com</td><td>Organised by category — easy to browse</td></tr>
+  </table></div>
+
+  <h4>More Skills Directories</h4>
+  <div class="table-wrap"><table>
+    <tr><th>Website</th><th>What's There</th></tr>
+    <tr><td>skillsmp.com</td><td>700,000+ skills — the largest</td></tr>
+    <tr><td>skillhub.club</td><td>Claude-specific skills</td></tr>
+    <tr><td>lobehub.com/skills</td><td>Thousands of skills, easy to filter</td></tr>
+    <tr><td>mcpmarket.com/tools/skills</td><td>Skills section of MCP Market</td></tr>
+  </table></div>
+
+  <h4>Plugin Directories</h4>
+  <div class="table-wrap"><table>
+    <tr><th>Website</th><th>What's There</th></tr>
+    <tr><td>claude.com/plugins</td><td>Official Anthropic — most trusted</td></tr>
+    <tr><td>claudemarketplaces.com</td><td>Aggregates from multiple sources</td></tr>
+    <tr><td>claudepluginhub.com</td><td>Community plugin directory</td></tr>
+  </table></div>
+
+  <div class="callout callout-warning"><strong>Heads up</strong><p>GitHub repos can move or rename. If an install command fails, search GitHub.com for the repo name to find the current address.</p></div>
 </div>
 
-<!-- Part 3: Skills -->
+<!-- Skills section now redirects to repos -->
 <div class="section" id="skills">
   <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 08</div>
   <h2><span class="prompt">&gt;</span> Skills to Install</h2>
-  <p class="section-desc">Specialist playbooks. Each one is like hiring a consultant for that area.</p>
-
-  <div class="table-wrap"><table>
-    <tr><th>Skill</th><th>What It Does</th><th>When You'd Use It</th></tr>
-    <tr><td><strong>Marketing Skills Library</strong> (Corey Haines)</td><td>Full marketing team — copywriting, SEO, paid ads, social media</td><td>Any marketing task</td></tr>
-    <tr><td><strong>Web Assets Generator</strong></td><td>Creates banners, icons, social images — properly sized</td><td>When you need visuals</td></tr>
-    <tr><td><strong>Jobs to Be Done</strong></td><td>Business strategy framework to understand what customers want</td><td>Product decisions, positioning</td></tr>
-    <tr><td><strong>Explain Code</strong> (Official)</td><td>Translates code into plain English</td><td>When you see code and want to understand it</td></tr>
-    <tr><td><strong>Deep Research</strong></td><td>Multi-step research with sources cited</td><td>Market research, competitor analysis</td></tr>
-  </table></div>
+  <p class="section-desc">Skills are now part of the combined Repos, Skills &amp; MCP section.</p>
+  <div class="callout callout-info"><strong>Looking for skills?</strong><p>All repos, skills, and MCP servers are now in one place. <a href="#" onclick="showSection('repos');return false" style="color:var(--primary)">Go to Repos, Skills &amp; MCP Servers</a></p></div>
 </div>
 
 <!-- Part 4: Folder Map -->
@@ -1125,19 +1232,62 @@ Format it like a business report, not a technical changelog. I'm a decision make
 <!-- Part 14: Code vs Chat -->
 <div class="section" id="code-vs-chat">
   <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 01</div>
-  <h2><span class="prompt">&gt;</span> Claude Code vs Regular Chat</h2>
-  <p class="section-desc">Different tools for different jobs.</p>
+  <h2><span class="prompt">&gt;</span> Claude Chat vs Code vs Cowork</h2>
+  <p class="section-desc">Three tools, three different jobs. Using the right one saves time and money.</p>
 
+  <p style="color:var(--muted);font-size:14px;margin-bottom:24px;">Claude comes in three flavours. Think of them like this: <strong style="color:var(--text)">Chat</strong> is like texting a smart friend. <strong style="color:var(--text)">Code</strong> is like hiring a developer who sits at your computer. <strong style="color:var(--text)">Cowork</strong> is like hiring an assistant who works on your desktop while you watch.</p>
+
+  <div class="card-grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:24px;">
+    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>claude-chat</div><div class="card-body"><h4>Claude Chat</h4><p>The regular chat at claude.ai. You type, it responds. Good for questions, writing, brainstorming, and one-off tasks that don't need your files.</p><p><strong style="color:var(--text)">Where:</strong> claude.ai (browser) or Claude app</p><p><strong style="color:var(--text)">For:</strong> Everyone</p></div></div>
+    <div class="card" style="border-color:var(--primary);"><div class="card-bar" style="background:rgba(217,145,120,0.1);"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>claude-code</div><div class="card-body"><h4 style="color:var(--primary);">Claude Code</h4><p>Lives in your Terminal. Can read, edit, and create files on your computer. Runs commands, builds websites, fixes bugs, manages projects. This guide is about this one.</p><p><strong style="color:var(--text)">Where:</strong> Terminal, VS Code, Desktop app, or browser</p><p><strong style="color:var(--text)">For:</strong> Anyone working on projects with files</p></div></div>
+    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>claude-cowork</div><div class="card-body"><h4>Claude Cowork</h4><p>Lives inside the Claude Desktop app. Handles multi-step tasks on your desktop — organising files, creating spreadsheets, building presentations, running research. No coding needed.</p><p><strong style="color:var(--text)">Where:</strong> Claude Desktop app (Mac or Windows)</p><p><strong style="color:var(--text)">For:</strong> Non-technical teams who need desktop automation</p></div></div>
+  </div>
+
+  <h3>When to Use Which</h3>
   <div class="table-wrap"><table>
-    <tr><th>Use Claude Code When...</th><th>Use Regular Chat When...</th></tr>
-    <tr><td>Building or editing a website</td><td>Asking general questions</td></tr>
-    <tr><td>Setting up a project</td><td>Writing a one-off email</td></tr>
-    <tr><td>Fixing a bug in your project</td><td>Brainstorming (not tied to a project)</td></tr>
-    <tr><td>Working with files on your computer</td><td>Strategy conversations</td></tr>
-    <tr><td>Need ongoing project context</td><td>Learning about a topic</td></tr>
+    <tr><th>Task</th><th>Chat</th><th>Code</th><th>Cowork</th></tr>
+    <tr><td>Ask a general question</td><td style="color:var(--green)">Best</td><td></td><td></td></tr>
+    <tr><td>Write a one-off email or document</td><td style="color:var(--green)">Best</td><td></td><td></td></tr>
+    <tr><td>Brainstorm ideas (not project-specific)</td><td style="color:var(--green)">Best</td><td></td><td></td></tr>
+    <tr><td>Strategy conversation</td><td style="color:var(--green)">Best</td><td></td><td></td></tr>
+    <tr><td>Build or edit a website</td><td></td><td style="color:var(--green)">Best</td><td></td></tr>
+    <tr><td>Fix a bug in your code</td><td></td><td style="color:var(--green)">Best</td><td></td></tr>
+    <tr><td>Set up a project with config files</td><td></td><td style="color:var(--green)">Best</td><td></td></tr>
+    <tr><td>Run commands on your computer</td><td></td><td style="color:var(--green)">Best</td><td></td></tr>
+    <tr><td>Work on an ongoing project with memory</td><td></td><td style="color:var(--green)">Best</td><td></td></tr>
+    <tr><td>Organise files on your computer</td><td></td><td></td><td style="color:var(--green)">Best</td></tr>
+    <tr><td>Create a PowerPoint from notes</td><td></td><td></td><td style="color:var(--green)">Best</td></tr>
+    <tr><td>Build an Excel spreadsheet with formulas</td><td></td><td></td><td style="color:var(--green)">Best</td></tr>
+    <tr><td>Batch rename or sort files</td><td></td><td></td><td style="color:var(--green)">Best</td></tr>
+    <tr><td>Research and compile a report</td><td></td><td></td><td style="color:var(--green)">Best</td></tr>
+    <tr><td>Analyse data and create charts</td><td></td><td></td><td style="color:var(--green)">Best</td></tr>
   </table></div>
 
-  <div class="callout callout-info"><strong>The Simple Rule</strong><p>If it involves <strong>files on your computer</strong> or an <strong>ongoing project</strong> — use Claude Code.<br>If it's a <strong>one-off question</strong> — use regular Claude chat.</p></div>
+  <h3>Key Differences at a Glance</h3>
+  <div class="table-wrap"><table>
+    <tr><th></th><th>Chat</th><th>Code</th><th>Cowork</th></tr>
+    <tr><td><strong>Access</strong></td><td>Browser or app</td><td>Terminal, IDE, Desktop, or browser</td><td>Desktop app only</td></tr>
+    <tr><td><strong>Can edit your files?</strong></td><td>No</td><td>Yes — full access</td><td>Yes — sandboxed (safer)</td></tr>
+    <tr><td><strong>Needs technical skill?</strong></td><td>No</td><td>Some (this guide helps)</td><td>No</td></tr>
+    <tr><td><strong>Customisable?</strong></td><td>Minimal</td><td>Highly (CLAUDE.md, skills, MCP, hooks)</td><td>Somewhat (plugins, skills)</td></tr>
+    <tr><td><strong>Runs commands?</strong></td><td>No</td><td>Yes</td><td>Limited</td></tr>
+    <tr><td><strong>Safety</strong></td><td>Can't touch your files</td><td>Full access — you approve actions</td><td>Sandboxed virtual environment</td></tr>
+    <tr><td><strong>Best for</strong></td><td>Thinking, writing, questions</td><td>Building, coding, project work</td><td>Desktop tasks, file work, reports</td></tr>
+    <tr><td><strong>Plan needed</strong></td><td>Free or paid</td><td>Paid (Pro, Max, Team, Enterprise)</td><td>Paid (Pro, Max, Team, Enterprise)</td></tr>
+  </table></div>
+
+  <div class="callout callout-info"><strong>The Simple Rules</strong>
+    <p><strong style="color:var(--text)">Chat:</strong> One-off questions and writing that don't need your files.<br>
+    <strong style="color:var(--text)">Code:</strong> Ongoing projects where you need Claude to build, edit, and manage files. <em>(This guide covers this one.)</em><br>
+    <strong style="color:var(--text)">Cowork:</strong> Multi-step desktop tasks — especially for non-technical team members who need reports, spreadsheets, or file organisation.</p>
+  </div>
+
+  <div class="callout callout-tip"><strong>Which Should Your Teams Use?</strong>
+    <p><strong style="color:var(--text)">Web Dev, Technical Director:</strong> Claude Code<br>
+    <strong style="color:var(--text)">SEO, PPC, Web Design:</strong> Claude Code (with skills installed) + Cowork for report generation<br>
+    <strong style="color:var(--text)">Client Services, PM, Sales:</strong> Cowork for daily tasks + Chat for quick questions<br>
+    <strong style="color:var(--text)">Finance, Operations, Managing Director:</strong> Cowork for spreadsheets and reports + Chat for strategy</p>
+  </div>
 </div>
 
 <!-- Part 15: Project Structure -->
