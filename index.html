@@ -739,12 +739,12 @@
     <a href="#" onclick="showHome();return false" class="nav-logo"><span class="tilde">~/</span>claude-setup<span class="cursor"></span></a>
     <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"><span class="dollar" style="color:var(--green)">$</span> menu</button>
     <ul class="nav-links">
-      <li><a href="#" onclick="showSection('setup-files');return false"><span class="dollar">$</span> cat setup</a></li>
-      <li><a href="#" onclick="showSection('repos');return false"><span class="dollar">$</span> git clone</a></li>
+      <li><a href="#" onclick="showSection('code-vs-chat');return false"><span class="dollar">$</span> getting-started</a></li>
       <li><a href="#" onclick="showSection('prompts');return false"><span class="dollar">$</span> prompts</a></li>
-      <li><a href="#" onclick="showSection('talking');return false"><span class="dollar">$</span> best-practices</a></li>
+      <li><a href="#" onclick="showSection('repos');return false"><span class="dollar">$</span> install</a></li>
+      <li><a href="#" onclick="showSection('mistakes');return false"><span class="dollar">$</span> best-practices</a></li>
       <li><a href="#" onclick="showSection('teams');return false"><span class="dollar">$</span> teams</a></li>
-      <li><a href="#" onclick="showSection('resources');return false"><span class="dollar">$</span> resources</a></li>
+      <li><a href="#" onclick="showSection('status');return false"><span class="dollar">$</span> status</a></li>
     </ul>
   </div>
 </nav>
@@ -785,25 +785,25 @@
   </div>
   <div class="terminal-body" style="padding:16px 20px;">
     <div class="card-grid card-grid-4" style="gap:8px;">
-      <a href="#" onclick="showSection('setup-files');return false" class="nav-tile"><span style="color:var(--primary)">01</span> Setup Files</a>
-      <a href="#" onclick="showSection('repos');return false" class="nav-tile"><span style="color:var(--primary)">02</span> Add-Ons</a>
-      <a href="#" onclick="showSection('skills');return false" class="nav-tile"><span style="color:var(--primary)">03</span> Skills</a>
-      <a href="#" onclick="showSection('folder-map');return false" class="nav-tile"><span style="color:var(--primary)">04</span> Folder Map</a>
-      <a href="#" onclick="showSection('glossary');return false" class="nav-tile"><span style="color:var(--primary)">05</span> Jargon Buster</a>
-      <a href="#" onclick="showSection('find-more');return false" class="nav-tile"><span style="color:var(--primary)">06</span> Find More</a>
-      <a href="#" onclick="showSection('prompts');return false" class="nav-tile"><span style="color:var(--primary)">07</span> Prompts</a>
-      <a href="#" onclick="showSection('talking');return false" class="nav-tile"><span style="color:var(--primary)">08</span> Talking to Claude</a>
-      <a href="#" onclick="showSection('mistakes');return false" class="nav-tile"><span style="color:var(--primary)">09</span> Mistakes</a>
-      <a href="#" onclick="showSection('stuck');return false" class="nav-tile"><span style="color:var(--primary)">10</span> When Stuck</a>
+      <a href="#" onclick="showSection('code-vs-chat');return false" class="nav-tile"><span style="color:var(--primary)">01</span> Code vs Chat</a>
+      <a href="#" onclick="showSection('glossary');return false" class="nav-tile"><span style="color:var(--primary)">02</span> Jargon Buster</a>
+      <a href="#" onclick="showSection('setup-files');return false" class="nav-tile"><span style="color:var(--primary)">03</span> Setup Files</a>
+      <a href="#" onclick="showSection('structure');return false" class="nav-tile"><span style="color:var(--primary)">04</span> Project Structure</a>
+      <a href="#" onclick="showSection('talking');return false" class="nav-tile"><span style="color:var(--primary)">05</span> Talking to Claude</a>
+      <a href="#" onclick="showSection('prompts');return false" class="nav-tile"><span style="color:var(--primary)">06</span> Copy-Paste Prompts</a>
+      <a href="#" onclick="showSection('repos');return false" class="nav-tile"><span style="color:var(--primary)">07</span> Add-Ons (Repos)</a>
+      <a href="#" onclick="showSection('skills');return false" class="nav-tile"><span style="color:var(--primary)">08</span> Skills</a>
+      <a href="#" onclick="showSection('folder-map');return false" class="nav-tile"><span style="color:var(--primary)">09</span> Where Things Live</a>
+      <a href="#" onclick="showSection('mistakes');return false" class="nav-tile"><span style="color:var(--primary)">10</span> Common Mistakes</a>
       <a href="#" onclick="showSection('review');return false" class="nav-tile"><span style="color:var(--primary)">11</span> Reviewing Work</a>
       <a href="#" onclick="showSection('security');return false" class="nav-tile"><span style="color:var(--primary)">12</span> Security</a>
       <a href="#" onclick="showSection('costs');return false" class="nav-tile"><span style="color:var(--primary)">13</span> Costs</a>
-      <a href="#" onclick="showSection('code-vs-chat');return false" class="nav-tile"><span style="color:var(--primary)">14</span> Code vs Chat</a>
-      <a href="#" onclick="showSection('structure');return false" class="nav-tile"><span style="color:var(--primary)">15</span> Project Structure</a>
-      <a href="#" onclick="showSection('backups');return false" class="nav-tile"><span style="color:var(--primary)">16</span> Backups</a>
-      <a href="#" onclick="showSection('faq');return false" class="nav-tile"><span style="color:var(--primary)">17</span> FAQ</a>
-      <a href="#" onclick="showSection('teams');return false" class="nav-tile"><span style="color:var(--primary)">18</span> Tools by Team</a>
-      <a href="#" onclick="showSection('resources');return false" class="nav-tile"><span style="color:var(--primary)">19</span> Resources</a>
+      <a href="#" onclick="showSection('backups');return false" class="nav-tile"><span style="color:var(--primary)">14</span> Backups</a>
+      <a href="#" onclick="showSection('stuck');return false" class="nav-tile"><span style="color:var(--primary)">15</span> When Stuck</a>
+      <a href="#" onclick="showSection('faq');return false" class="nav-tile"><span style="color:var(--primary)">16</span> FAQ</a>
+      <a href="#" onclick="showSection('teams');return false" class="nav-tile"><span style="color:var(--primary)">17</span> Tools by Team</a>
+      <a href="#" onclick="showSection('find-more');return false" class="nav-tile"><span style="color:var(--primary)">18</span> Find More Stuff</a>
+      <a href="#" onclick="showSection('resources');return false" class="nav-tile"><span style="color:var(--primary)">19</span> Resources &amp; People</a>
       <a href="#" onclick="showSection('status');return false" class="nav-tile"><span style="color:var(--primary)">20</span> Install Status</a>
     </div>
   </div>
@@ -814,7 +814,7 @@
 
 <!-- Part 1: Setup Files -->
 <div class="section" id="setup-files">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 01</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 03</div>
   <h2><span class="prompt">&gt;</span> The 4 Setup Files</h2>
   <p class="section-desc">Set these up to make Claude work smarter. None are compulsory, but the more you do, the better it gets.</p>
 
@@ -836,7 +836,7 @@
 
 <!-- Part 2: Repos -->
 <div class="section" id="repos">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 02</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 07</div>
   <h2><span class="prompt">&gt;</span> Add-Ons to Install</h2>
   <p class="section-desc">A "repo" is a folder on GitHub. Installing it = downloading it to the right place on your computer.</p>
 
@@ -859,7 +859,7 @@
 
 <!-- Part 3: Skills -->
 <div class="section" id="skills">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 03</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 08</div>
   <h2><span class="prompt">&gt;</span> Skills to Install</h2>
   <p class="section-desc">Specialist playbooks. Each one is like hiring a consultant for that area.</p>
 
@@ -875,7 +875,7 @@
 
 <!-- Part 4: Folder Map -->
 <div class="section" id="folder-map">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 04</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 09</div>
   <h2><span class="prompt">&gt;</span> Where Everything Lives</h2>
   <p class="section-desc">The ~ symbol means your home folder (/Users/[yourname]/).</p>
 
@@ -888,7 +888,7 @@
 
 <!-- Part 5: Glossary -->
 <div class="section" id="glossary">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 05</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 02</div>
   <h2><span class="prompt">&gt;</span> Jargon Buster</h2>
   <p class="section-desc">Plain English translations of terms you'll see.</p>
 
@@ -907,7 +907,7 @@
 
 <!-- Part 6: Find More -->
 <div class="section" id="find-more">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 06</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 18</div>
   <h2><span class="prompt">&gt;</span> Where to Find More Stuff</h2>
   <p class="section-desc">The best places to browse for skills, MCP servers, and plugins.</p>
 
@@ -933,7 +933,7 @@
 
 <!-- Part 7: Prompts -->
 <div class="section" id="prompts">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 07</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 06</div>
   <h2><span class="prompt">&gt;</span> Copy-Paste Prompts</h2>
   <p class="section-desc">Ready-to-use messages. Copy, paste into Claude Code, press Enter.</p>
 
@@ -1025,7 +1025,7 @@ Format it like a business report, not a technical changelog. I'm a decision make
 
 <!-- Part 8: Talking to Claude -->
 <div class="section" id="talking">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 08</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 05</div>
   <h2><span class="prompt">&gt;</span> How to Talk to Claude</h2>
   <p class="section-desc">The quality of output depends on how you ask. Brief Claude like a freelancer.</p>
 
@@ -1048,7 +1048,7 @@ Format it like a business report, not a technical changelog. I'm a decision make
 
 <!-- Part 9: Mistakes -->
 <div class="section" id="mistakes">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 09</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 10</div>
   <h2><span class="prompt">&gt;</span> Common Mistakes</h2>
   <p class="section-desc">Learn from others so you don't make these yourself.</p>
 
@@ -1063,7 +1063,7 @@ Format it like a business report, not a technical changelog. I'm a decision make
 
 <!-- Part 10: When Stuck -->
 <div class="section" id="stuck">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 10</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 15</div>
   <h2><span class="prompt">&gt;</span> When Claude Gets Stuck</h2>
   <p class="section-desc">Signs: repeating itself, apologising without fixing, suggesting increasingly complex solutions.</p>
 
@@ -1124,7 +1124,7 @@ Format it like a business report, not a technical changelog. I'm a decision make
 
 <!-- Part 14: Code vs Chat -->
 <div class="section" id="code-vs-chat">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 14</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 01</div>
   <h2><span class="prompt">&gt;</span> Claude Code vs Regular Chat</h2>
   <p class="section-desc">Different tools for different jobs.</p>
 
@@ -1142,7 +1142,7 @@ Format it like a business report, not a technical changelog. I'm a decision make
 
 <!-- Part 15: Project Structure -->
 <div class="section" id="structure">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 15</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 04</div>
   <h2><span class="prompt">&gt;</span> How to Structure Projects</h2>
   <p class="section-desc">Good organisation helps both you and Claude.</p>
 
@@ -1161,7 +1161,7 @@ Format it like a business report, not a technical changelog. I'm a decision make
 
 <!-- Part 16: Backups -->
 <div class="section" id="backups">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 16</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 14</div>
   <h2><span class="prompt">&gt;</span> Backup Basics</h2>
   <p class="section-desc">Version control (git) = unlimited undo button for your entire project.</p>
 
@@ -1179,7 +1179,7 @@ Format it like a business report, not a technical changelog. I'm a decision make
 
 <!-- Part 17: FAQ -->
 <div class="section" id="faq">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 17</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 16</div>
   <h2><span class="prompt">&gt;</span> Troubleshooting FAQ</h2>
   <p class="section-desc">Common problems and how to fix them. Click to expand.</p>
 
@@ -1194,7 +1194,7 @@ Format it like a business report, not a technical changelog. I'm a decision make
 
 <!-- Part 18: Teams -->
 <div class="section" id="teams">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 18</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 17</div>
   <h2><span class="prompt">&gt;</span> Recommended Tools by Team</h2>
   <p class="section-desc">Click any team to see recommended skills and MCP servers. Each item links to its install details in Part 20.</p>
 
