@@ -824,9 +824,9 @@
     <tr><th>Repo</th><th>What It Does</th><th>Install Command</th></tr>
     <tr><td><strong>Superpowers</strong></td><td>Better planning, brainstorming, quality review — like upgrading from junior to senior</td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/obra/superpowers.git ~/.claude/skills/superpowers</code></td></tr>
     <tr><td><strong>Everything Claude Code</strong></td><td>Pre-built starter kit with settings, skills, and workflows</td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/affaan-m/everything-claude-code.git ~/.claude/skills/everything-claude-code</code></td></tr>
-    <tr><td><strong>UI UX Pro Max</strong></td><td>Professional web design — good layouts, spacing, modern design</td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/nicholasoxford/ui-ux-pro-max.git ~/.claude/skills/ui-ux-pro-max</code></td></tr>
+    <tr><td><strong>UI UX Pro Max</strong></td><td>Professional web design — good layouts, spacing, modern design</td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git ~/.claude/skills/ui-ux-pro-max</code></td></tr>
     <tr><td><strong>Browser Use</strong></td><td>Lets Claude open a browser — navigate, click, fill forms, screenshot</td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/browser-use/browser-use.git ~/.claude/skills/browser-use</code></td></tr>
-    <tr><td><strong>claude-mem</strong></td><td>Upgraded memory for longer, more complex projects</td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/sdairs/claude-mem.git ~/.claude/skills/claude-mem</code></td></tr>
+    <tr><td><strong>claude-mem</strong></td><td>Upgraded memory for longer, more complex projects</td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/thedotmack/claude-mem.git ~/.claude/skills/claude-mem</code></td></tr>
     <tr><td><strong>n8n-mcp</strong></td><td>Connects Claude to n8n automation (like Zapier but more powerful)</td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/n8n-io/n8n-mcp.git ~/.claude/skills/n8n-mcp</code></td></tr>
   </table></div>
 
@@ -1172,31 +1172,127 @@ Format it like a business report, not a technical changelog. I'm a decision make
 <div class="section" id="teams">
   <div class="section-head">Part 18</div>
   <h2><span class="prompt">&gt;</span> Recommended Tools by Team</h2>
-  <p class="section-desc">Tailored skills and MCP connections for each team. Click to expand.</p>
+  <p class="section-desc">Click any team to see recommended skills and MCP servers. Each item links to its install details in Part 20.</p>
 
-  <div class="faq-item"><div class="faq-question">SEO Team <span class="arrow">&#9660;</span></div><div class="faq-answer"><h4 style="margin-top:4px;">Skills</h4><div class="table-wrap"><table><tr><th>Skill</th><th>What It Does</th></tr><tr><td><strong>claude-seo</strong></td><td>19 SEO sub-skills — audits, E-E-A-T, schema, backlinks, local SEO</td></tr><tr><td><strong>Marketing Skills Library</strong></td><td>5 SEO skills plus content strategy and CRO</td></tr></table></div><p style="color:var(--muted);font-size:13px;"><strong>Already installed:</strong> seo-audit, programmatic-seo, ai-seo, content-strategy, audit-website</p><h4>MCP Servers</h4><div class="table-wrap"><table><tr><th>Server</th><th>Connects To</th></tr><tr><td><strong>Google Search Console</strong></td><td>Search performance, indexing, crawl stats</td></tr><tr><td><strong>Google Analytics 4</strong></td><td>Traffic, behaviour, conversions</td></tr><tr><td><strong>Ahrefs</strong> (Official)</td><td>Backlinks, keyword metrics</td></tr><tr><td><strong>Semrush</strong> (Official)</td><td>SEO data, traffic analysis</td></tr></table></div></div></div>
+  <style>
+    .team-item { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 8px; background: var(--card); overflow: hidden; transition: border-color 0.2s; }
+    .team-item:hover { border-color: var(--border-hover); }
+    .team-head { padding: 14px 20px; font-family: var(--mono); font-size: 15px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--text); }
+    .team-head:hover { background: rgba(38,38,38,0.3); }
+    .team-head .arrow { color: var(--muted); font-size: 10px; transition: transform 0.2s; }
+    .team-item.open .team-head .arrow { transform: rotate(90deg); }
+    .team-body { display: none; padding: 0 20px 16px; }
+    .team-item.open .team-body { display: block; }
+    .team-body h4 { margin-top: 12px; }
+    .team-tool { display: flex; align-items: baseline; gap: 8px; padding: 6px 0; font-family: var(--mono); font-size: 13px; border-bottom: 1px solid rgba(96,96,104,0.15); }
+    .team-tool:last-child { border-bottom: none; }
+    .team-tool .t-name a { color: var(--text); text-decoration: none; border-bottom: 1px dashed var(--border); transition: all 0.15s; }
+    .team-tool .t-name a:hover { color: var(--primary); border-color: var(--primary); }
+    .team-tool .t-type { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; min-width: 36px; }
+    .team-tool .t-desc { color: var(--muted); font-size: 12px; margin-left: auto; }
+    .team-installed { font-family: var(--mono); font-size: 12px; color: var(--muted); padding: 8px 0 4px; }
+    .team-installed strong { color: var(--green); }
+  </style>
 
-  <div class="faq-item"><div class="faq-question">PPC Team <span class="arrow">&#9660;</span></div><div class="faq-answer"><h4 style="margin-top:4px;">Skills</h4><div class="table-wrap"><table><tr><th>Skill</th><th>What It Does</th></tr><tr><td><strong>claude-ads</strong></td><td>186 audit checks across Google, Meta, YouTube, LinkedIn, TikTok</td></tr></table></div><p style="color:var(--muted);font-size:13px;"><strong>Already installed:</strong> paid-ads, ad-creative</p><h4>MCP Servers</h4><div class="table-wrap"><table><tr><th>Server</th><th>Connects To</th></tr><tr><td><strong>Cross-Platform Ads</strong></td><td>Google, Meta, LinkedIn, TikTok — 100+ tools</td></tr><tr><td><strong>Google Ads</strong> (Official)</td><td>Campaign metrics, budgets</td></tr><tr><td><strong>Meta Ads</strong></td><td>Facebook &amp; Instagram ads</td></tr></table></div></div></div>
+  <div class="team-item" onclick="this.classList.toggle('open')"><div class="team-head">SEO Team <span class="arrow">&#9654;</span></div><div class="team-body">
+    <h4>Skills to Install</h4>
+    <div class="team-tool"><span class="t-type">Skill</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">claude-seo</a></span><span class="t-desc">19 SEO sub-skills — audits, E-E-A-T, schema, backlinks</span></div>
+    <div class="team-tool"><span class="t-type">Skill</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Marketing Skills Library</a></span><span class="t-desc">5 SEO skills plus content strategy and CRO</span></div>
+    <h4>MCP Servers to Connect</h4>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Google Search Console</a></span><span class="t-desc">Search performance, indexing, crawl stats</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Google Analytics 4</a></span><span class="t-desc">Traffic, behaviour, conversions</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Ahrefs</a></span><span class="t-desc">Backlinks, keyword metrics</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Semrush</a></span><span class="t-desc">SEO data, traffic analysis</span></div>
+    <div class="team-installed"><strong>Already installed:</strong> seo-audit, programmatic-seo, ai-seo, content-strategy, audit-website</div>
+  </div></div>
 
-  <div class="faq-item"><div class="faq-question">Web Developer Team <span class="arrow">&#9660;</span></div><div class="faq-answer"><h4 style="margin-top:4px;">Key MCP Servers</h4><div class="table-wrap"><table><tr><th>Server</th><th>Connects To</th></tr><tr><td><strong>GitHub</strong> (Official)</td><td>Repos, PRs, issues, CI/CD</td></tr><tr><td><strong>Sentry</strong> (Official)</td><td>Error tracking, performance</td></tr><tr><td><strong>Playwright</strong></td><td>Browser testing</td></tr><tr><td><strong>PostgreSQL</strong></td><td>Database queries</td></tr></table></div><p style="color:var(--muted);font-size:13px;"><strong>Already connected:</strong> Vercel, PostHog</p></div></div>
+  <div class="team-item" onclick="this.classList.toggle('open')"><div class="team-head">PPC Team <span class="arrow">&#9654;</span></div><div class="team-body">
+    <h4>Skills to Install</h4>
+    <div class="team-tool"><span class="t-type">Skill</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">claude-ads</a></span><span class="t-desc">186 audit checks — Google, Meta, YouTube, LinkedIn, TikTok</span></div>
+    <h4>MCP Servers to Connect</h4>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Cross-Platform Ads</a></span><span class="t-desc">Google, Meta, LinkedIn, TikTok — 100+ tools</span></div>
+    <div class="team-installed"><strong>Already installed:</strong> paid-ads, ad-creative</div>
+  </div></div>
 
-  <div class="faq-item"><div class="faq-question">Web Design Team <span class="arrow">&#9660;</span></div><div class="faq-answer"><p style="color:var(--muted);font-size:13px;"><strong>Already installed:</strong> accessibility-review, design-system, design-critique, frontend-design, web-design-guidelines, ux-copy, design-handoff</p><p style="color:var(--muted);font-size:13px;"><strong>Already connected:</strong> Figma, Canva</p></div></div>
+  <div class="team-item" onclick="this.classList.toggle('open')"><div class="team-head">Web Developer Team <span class="arrow">&#9654;</span></div><div class="team-body">
+    <h4>Skills to Install</h4>
+    <div class="team-tool"><span class="t-type">Skill</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Trail of Bits Security</a></span><span class="t-desc">Security audits, vulnerability detection</span></div>
+    <h4>MCP Servers to Connect</h4>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">GitHub</a></span><span class="t-desc">Repos, PRs, issues, CI/CD</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Sentry</a></span><span class="t-desc">Error tracking, performance</span></div>
+    <div class="team-installed"><strong>Already connected:</strong> Vercel, PostHog</div>
+    <div class="team-installed"><strong>Already installed:</strong> test-driven-development, systematic-debugging, verification-before-completion</div>
+  </div></div>
 
-  <div class="faq-item"><div class="faq-question">Client Services <span class="arrow">&#9660;</span></div><div class="faq-answer"><h4 style="margin-top:4px;">MCP Servers</h4><div class="table-wrap"><table><tr><th>Server</th><th>Connects To</th></tr><tr><td><strong>Granola</strong></td><td>Meeting notes, action items</td></tr><tr><td><strong>Google Docs</strong></td><td>Client reports and documents</td></tr><tr><td><strong>Notion</strong></td><td>Client wikis, project pages</td></tr></table></div><p style="color:var(--muted);font-size:13px;"><strong>Already connected:</strong> Slack, Gmail, Calendar, Drive, Canva, Monday.com</p></div></div>
+  <div class="team-item" onclick="this.classList.toggle('open')"><div class="team-head">Web Design Team <span class="arrow">&#9654;</span></div><div class="team-body">
+    <div class="team-installed"><strong>Already installed:</strong> accessibility-review, design-system, design-critique, frontend-design, web-design-guidelines, ux-copy, design-handoff</div>
+    <div class="team-installed"><strong>Already connected:</strong> Figma, Canva</div>
+  </div></div>
 
-  <div class="faq-item"><div class="faq-question">Project Management <span class="arrow">&#9660;</span></div><div class="faq-answer"><h4 style="margin-top:4px;">MCP Servers</h4><div class="table-wrap"><table><tr><th>Server</th><th>Connects To</th></tr><tr><td><strong>Linear</strong></td><td>Issue tracking</td></tr><tr><td><strong>Jira/Confluence</strong></td><td>Tickets, sprints, docs</td></tr><tr><td><strong>Asana</strong></td><td>Tasks, projects, progress</td></tr><tr><td><strong>ClickUp</strong></td><td>Task management</td></tr><tr><td><strong>Notion</strong></td><td>Project docs, wikis</td></tr></table></div><p style="color:var(--muted);font-size:13px;"><strong>Already connected:</strong> Monday.com, Slack, Calendar</p></div></div>
+  <div class="team-item" onclick="this.classList.toggle('open')"><div class="team-head">Client Services <span class="arrow">&#9654;</span></div><div class="team-body">
+    <h4>MCP Servers to Connect</h4>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Granola</a></span><span class="t-desc">Meeting notes, action items</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Notion</a></span><span class="t-desc">Client wikis, project pages</span></div>
+    <div class="team-installed"><strong>Already connected:</strong> Slack, Gmail, Calendar, Drive, Canva, Monday.com</div>
+  </div></div>
 
-  <div class="faq-item"><div class="faq-question">Sales <span class="arrow">&#9660;</span></div><div class="faq-answer"><h4 style="margin-top:4px;">MCP Servers</h4><div class="table-wrap"><table><tr><th>Server</th><th>Connects To</th></tr><tr><td><strong>HubSpot</strong> (Official)</td><td>Contacts, deals, pipeline</td></tr><tr><td><strong>Salesforce</strong> (Official)</td><td>CRM data — 60+ tools</td></tr><tr><td><strong>Apollo.io</strong></td><td>Lead search, email sequences</td></tr><tr><td><strong>LinkedIn Sales Nav</strong></td><td>Prospect search</td></tr></table></div></div></div>
+  <div class="team-item" onclick="this.classList.toggle('open')"><div class="team-head">Project Management <span class="arrow">&#9654;</span></div><div class="team-body">
+    <h4>MCP Servers to Connect</h4>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Linear</a></span><span class="t-desc">Issue tracking</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Asana</a></span><span class="t-desc">Tasks, projects, progress</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">ClickUp</a></span><span class="t-desc">Task management</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Notion</a></span><span class="t-desc">Project docs, wikis</span></div>
+    <div class="team-installed"><strong>Already connected:</strong> Monday.com, Slack, Calendar</div>
+  </div></div>
 
-  <div class="faq-item"><div class="faq-question">Finance <span class="arrow">&#9660;</span></div><div class="faq-answer"><h4 style="margin-top:4px;">MCP Servers</h4><div class="table-wrap"><table><tr><th>Server</th><th>Connects To</th></tr><tr><td><strong>Xero</strong> (Official)</td><td>Invoicing, bookkeeping, reporting</td></tr><tr><td><strong>QuickBooks</strong> (Official)</td><td>Customers, invoices, expenses</td></tr><tr><td><strong>Stripe</strong> (Official)</td><td>Payments, subscriptions, refunds</td></tr><tr><td><strong>Google Sheets</strong></td><td>Financial dashboards</td></tr></table></div></div></div>
+  <div class="team-item" onclick="this.classList.toggle('open')"><div class="team-head">Sales <span class="arrow">&#9654;</span></div><div class="team-body">
+    <h4>MCP Servers to Connect</h4>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">HubSpot</a></span><span class="t-desc">Contacts, deals, pipeline</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Salesforce</a></span><span class="t-desc">CRM data — 60+ tools</span></div>
+    <div class="team-installed"><strong>Already connected:</strong> Monday.com, Gmail, Calendar, Slack</div>
+  </div></div>
 
-  <div class="faq-item"><div class="faq-question">Operations Director <span class="arrow">&#9660;</span></div><div class="faq-answer"><h4 style="margin-top:4px;">Skills</h4><div class="table-wrap"><table><tr><th>Skill</th><th>What It Does</th></tr><tr><td><strong>SOP Creator</strong></td><td>Turns brain dumps into clean SOPs</td></tr></table></div><h4>MCP Servers</h4><div class="table-wrap"><table><tr><th>Server</th><th>Connects To</th></tr><tr><td><strong>n8n</strong></td><td>Workflow automations</td></tr><tr><td><strong>Notion</strong></td><td>Process docs, wikis</td></tr><tr><td><strong>Databox</strong></td><td>KPI dashboards from 100+ sources</td></tr></table></div></div></div>
+  <div class="team-item" onclick="this.classList.toggle('open')"><div class="team-head">Finance <span class="arrow">&#9654;</span></div><div class="team-body">
+    <h4>MCP Servers to Connect</h4>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Xero</a></span><span class="t-desc">Invoicing, bookkeeping, reporting</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">QuickBooks</a></span><span class="t-desc">Customers, invoices, expenses</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Stripe</a></span><span class="t-desc">Payments, subscriptions, refunds</span></div>
+  </div></div>
 
-  <div class="faq-item"><div class="faq-question">Managing Director <span class="arrow">&#9660;</span></div><div class="faq-answer"><h4 style="margin-top:4px;">Skills</h4><div class="table-wrap"><table><tr><th>Skill</th><th>What It Does</th></tr><tr><td><strong>Business Strategy</strong></td><td>Porter's 5 Forces, SWOT, BCG, Blue Ocean</td></tr><tr><td><strong>CEO Advisor</strong></td><td>Strategic decisions, board decks, competitive intel</td></tr><tr><td><strong>Deep Research</strong></td><td>Multi-phase investigation with sources</td></tr></table></div><h4>MCP Servers</h4><div class="table-wrap"><table><tr><th>Server</th><th>Connects To</th></tr><tr><td><strong>HubSpot</strong></td><td>Pipeline, revenue reporting</td></tr><tr><td><strong>Databox</strong></td><td>Cross-platform KPIs</td></tr><tr><td><strong>Stripe</strong></td><td>Revenue, payment metrics</td></tr></table></div></div></div>
+  <div class="team-item" onclick="this.classList.toggle('open')"><div class="team-head">Operations Director <span class="arrow">&#9654;</span></div><div class="team-body">
+    <h4>Skills to Install</h4>
+    <div class="team-tool"><span class="t-type">Skill</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">SOP Creator</a></span><span class="t-desc">Turns brain dumps into clean SOPs</span></div>
+    <h4>MCP Servers to Connect</h4>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Notion</a></span><span class="t-desc">Process docs, wikis</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Databox</a></span><span class="t-desc">KPI dashboards from 100+ sources</span></div>
+    <div class="team-installed"><strong>Already connected:</strong> Monday.com, Slack, Calendar, Drive</div>
+  </div></div>
 
-  <div class="faq-item"><div class="faq-question">Technical Director <span class="arrow">&#9660;</span></div><div class="faq-answer"><h4 style="margin-top:4px;">Skills</h4><div class="table-wrap"><table><tr><th>Skill</th><th>What It Does</th></tr><tr><td><strong>Trail of Bits Security</strong></td><td>Vulnerability detection, audit workflows</td></tr><tr><td><strong>Architect Reviewer</strong></td><td>Architecture risk analysis</td></tr><tr><td><strong>Terraform</strong></td><td>Infrastructure as code</td></tr></table></div><h4>MCP Servers</h4><div class="table-wrap"><table><tr><th>Server</th><th>Connects To</th></tr><tr><td><strong>Sentry</strong></td><td>Error tracking</td></tr><tr><td><strong>GitHub</strong></td><td>Repos, PRs, code review</td></tr><tr><td><strong>PostgreSQL Pro</strong></td><td>DB health, query optimisation</td></tr><tr><td><strong>Code Sentinel</strong></td><td>Security vulnerabilities</td></tr></table></div></div></div>
+  <div class="team-item" onclick="this.classList.toggle('open')"><div class="team-head">Managing Director <span class="arrow">&#9654;</span></div><div class="team-body">
+    <h4>Skills to Install</h4>
+    <div class="team-tool"><span class="t-type">Skill</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Business Strategy</a></span><span class="t-desc">Porter's 5 Forces, SWOT, BCG, Blue Ocean</span></div>
+    <div class="team-tool"><span class="t-type">Skill</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">CEO Advisor + 220 skills</a></span><span class="t-desc">Strategic decisions, board decks, competitive intel</span></div>
+    <div class="team-tool"><span class="t-type">Skill</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Deep Research</a></span><span class="t-desc">Multi-phase investigation with sources</span></div>
+    <h4>MCP Servers to Connect</h4>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">HubSpot</a></span><span class="t-desc">Pipeline, revenue reporting</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Databox</a></span><span class="t-desc">Cross-platform KPIs</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Stripe</a></span><span class="t-desc">Revenue, payment metrics</span></div>
+  </div></div>
 
-  <div class="faq-item"><div class="faq-question">Internal Brand Marketing <span class="arrow">&#9660;</span></div><div class="faq-answer"><p style="color:var(--muted);font-size:13px;"><strong>Already installed:</strong> copywriting, copy-editing, social-content, content-strategy, marketing-ideas, x-twitter-growth, marketing-psychology, brainstorming, banner-creator</p><h4>MCP Servers</h4><div class="table-wrap"><table><tr><th>Server</th><th>Connects To</th></tr><tr><td><strong>Buffer</strong></td><td>Social media scheduling</td></tr><tr><td><strong>Ayrshare</strong></td><td>Post to 13+ platforms</td></tr></table></div><p style="color:var(--muted);font-size:13px;"><strong>Already connected:</strong> Canva, Figma, Slack, Gmail, Drive</p></div></div>
+  <div class="team-item" onclick="this.classList.toggle('open')"><div class="team-head">Technical Director <span class="arrow">&#9654;</span></div><div class="team-body">
+    <h4>Skills to Install</h4>
+    <div class="team-tool"><span class="t-type">Skill</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Trail of Bits Security</a></span><span class="t-desc">Vulnerability detection, audit workflows</span></div>
+    <h4>MCP Servers to Connect</h4>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Sentry</a></span><span class="t-desc">Error tracking</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">GitHub</a></span><span class="t-desc">Repos, PRs, code review</span></div>
+    <div class="team-installed"><strong>Already connected:</strong> Vercel, PostHog</div>
+    <div class="team-installed"><strong>Already installed:</strong> test-driven-development, systematic-debugging, verification-before-completion</div>
+  </div></div>
+
+  <div class="team-item" onclick="this.classList.toggle('open')"><div class="team-head">Internal Brand Marketing <span class="arrow">&#9654;</span></div><div class="team-body">
+    <div class="team-installed"><strong>Already installed:</strong> copywriting, copy-editing, social-content, content-strategy, marketing-ideas, x-twitter-growth, marketing-psychology, brainstorming, banner-creator</div>
+    <div class="team-installed"><strong>Already connected:</strong> Canva, Figma, Slack, Gmail, Drive</div>
+  </div></div>
 </div>
 
 <!-- Part 19: Resources -->
@@ -1262,77 +1358,137 @@ Format it like a business report, not a technical changelog. I'm a decision make
 <div class="section" id="status">
   <div class="section-head">Part 20</div>
   <h2><span class="prompt">&gt;</span> Installation Status</h2>
-  <p class="section-desc">Copy the install command and paste it into Terminal (repos/skills) or Claude Code (MCP servers).</p>
+  <p class="section-desc">Click any row to see what it does. Copy the install command into Terminal (repos/skills) or Claude Code (MCP servers).</p>
+
+  <style>
+    .install-item { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 6px; background: var(--card); overflow: hidden; transition: border-color 0.2s; }
+    .install-item:hover { border-color: var(--border-hover); }
+    .install-row { display: grid; grid-template-columns: 1fr 60px 70px 1fr; align-items: center; padding: 10px 16px; cursor: pointer; gap: 12px; font-size: 13px; }
+    .install-row .name { font-family: var(--mono); font-weight: 600; color: var(--text); display: flex; align-items: center; gap: 8px; }
+    .install-row .name .arrow { color: var(--muted); font-size: 10px; transition: transform 0.2s; }
+    .install-item.open .install-row .name .arrow { transform: rotate(90deg); }
+    .install-row .type { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+    .install-row .cmd { font-family: var(--mono); font-size: 11px; color: var(--muted); word-break: break-all; }
+    .install-row .cmd code { font-size: 11px; background: none; padding: 0; color: var(--muted); }
+    .install-desc { display: none; padding: 0 16px 14px; font-family: var(--mono); font-size: 12px; color: var(--muted); line-height: 1.6; border-top: 1px solid rgba(96,96,104,0.2); margin: 0 16px; padding-top: 10px; }
+    .install-item.open .install-desc { display: block; }
+    .install-head { display: grid; grid-template-columns: 1fr 60px 70px 1fr; padding: 8px 16px; font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); font-weight: 600; gap: 12px; }
+    @media (max-width: 768px) {
+      .install-row, .install-head { grid-template-columns: 1fr 50px 60px; }
+      .install-row .cmd, .install-head .cmd-h { display: none; }
+    }
+  </style>
 
   <h3>Repos (Add-Ons)</h3>
-  <div class="table-wrap"><table>
-    <tr><th>Item</th><th>Type</th><th>Status</th><th>Install Command</th></tr>
-    <tr><td><strong>Superpowers</strong></td><td>Repo</td><td><span class="badge-installed">INSTALLED</span></td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/obra/superpowers.git ~/.claude/skills/superpowers</code></td></tr>
-    <tr><td><strong>Everything Claude Code</strong></td><td>Repo</td><td><span class="badge-pending">not yet</span></td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/affaan-m/everything-claude-code.git ~/.claude/skills/everything-claude-code</code></td></tr>
-    <tr><td><strong>UI UX Pro Max</strong></td><td>Repo</td><td><span class="badge-pending">not yet</span></td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/nicholasoxford/ui-ux-pro-max.git ~/.claude/skills/ui-ux-pro-max</code></td></tr>
-    <tr><td><strong>Browser Use</strong></td><td>Repo</td><td><span class="badge-pending">not yet</span></td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/browser-use/browser-use.git ~/.claude/skills/browser-use</code></td></tr>
-    <tr><td><strong>claude-mem</strong></td><td>Repo</td><td><span class="badge-pending">not yet</span></td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/sdairs/claude-mem.git ~/.claude/skills/claude-mem</code></td></tr>
-  </table></div>
+  <div class="install-head"><span>Item</span><span>Type</span><span>Status</span><span class="cmd-h">Install Command</span></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Superpowers</span><span class="type">Repo</span><span><span class="badge-installed">INSTALLED</span></span><span class="cmd"><code>git clone https://github.com/obra/superpowers.git ~/.claude/skills/superpowers</code></span></div><div class="install-desc">Makes Claude much better at planning, brainstorming, reviewing quality, and working through tasks step by step. Like upgrading from a junior assistant to a senior team member who follows best practices automatically.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Everything Claude Code</span><span class="type">Repo</span><span><span class="badge-pending">not yet</span></span><span class="cmd"><code>git clone https://github.com/affaan-m/everything-claude-code.git ~/.claude/skills/everything-claude-code</code></span></div><div class="install-desc">A power-user starter pack built from 10+ months of daily use. Includes pre-built agents, security scanning (AgentShield), memory optimisation, token-saving configs, and development workflow rules. Saves you months of tweaking settings yourself.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> UI UX Pro Max</span><span class="type">Repo</span><span><span class="badge-pending">not yet</span></span><span class="cmd"><code>git clone https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git ~/.claude/skills/ui-ux-pro-max</code></span></div><div class="install-desc">A design reference library with 67 UI styles, 161 colour palettes, 57 font pairings, and 99 UX guidelines. When Claude builds a page, it makes informed design choices instead of guessing. 61K+ GitHub stars.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Browser Use</span><span class="type">Repo</span><span><span class="badge-pending">not yet</span></span><span class="cmd"><code>git clone https://github.com/browser-use/browser-use.git ~/.claude/skills/browser-use</code></span></div><div class="install-desc">Lets Claude open and control a web browser — navigate to pages, click buttons, fill in forms, and take screenshots. Useful for testing your live site, researching competitors, or verifying that changes actually work.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> claude-mem</span><span class="type">Repo</span><span><span class="badge-pending">not yet</span></span><span class="cmd"><code>git clone https://github.com/thedotmack/claude-mem.git ~/.claude/skills/claude-mem</code></span></div><div class="install-desc">An upgraded memory system that helps Claude remember more context across longer, more complex projects. Useful when you're working on something over weeks or months and need Claude to retain detailed history.</div></div>
 
   <h3>Skills</h3>
-  <div class="table-wrap"><table>
-    <tr><th>Item</th><th>Type</th><th>Status</th><th>Install Command</th></tr>
-    <tr><td><strong>Marketing Skills Library</strong></td><td>Skill</td><td><span class="badge-pending">not yet</span></td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/coreyhaines31/marketingskills.git ~/.claude/skills/marketingskills</code></td></tr>
-    <tr><td><strong>Deep Research</strong></td><td>Skill</td><td><span class="badge-pending">not yet</span></td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/Weizhena/Deep-Research-skills.git ~/.claude/skills/deep-research</code></td></tr>
-    <tr><td><strong>claude-seo</strong></td><td>Skill</td><td><span class="badge-pending">not yet</span></td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/AgriciDaniel/claude-seo.git ~/.claude/skills/claude-seo</code></td></tr>
-    <tr><td><strong>claude-ads</strong></td><td>Skill</td><td><span class="badge-pending">not yet</span></td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/AgriciDaniel/claude-ads.git ~/.claude/skills/claude-ads</code></td></tr>
-    <tr><td><strong>Claude Office Skills</strong></td><td>Skill</td><td><span class="badge-pending">not yet</span></td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/tfriedel/claude-office-skills.git ~/.claude/skills/claude-office-skills</code></td></tr>
-    <tr><td><strong>Trail of Bits Security</strong></td><td>Skill</td><td><span class="badge-pending">not yet</span></td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/trailofbits/skills.git ~/.claude/skills/trailofbits-security</code></td></tr>
-    <tr><td><strong>CEO Advisor + 220 skills</strong></td><td>Skill</td><td><span class="badge-pending">not yet</span></td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/alirezarezvani/claude-skills.git ~/.claude/skills/alirezarezvani-skills</code></td></tr>
-    <tr><td><strong>Jobs to Be Done</strong></td><td>Skill</td><td><span class="badge-pending">not yet</span></td><td>Search skillsmp.com for "jobs to be done"</td></tr>
-    <tr><td><strong>Explain Code</strong></td><td>Skill</td><td><span class="badge-pending">not yet</span></td><td>Search claude.com/plugins for "explain code"</td></tr>
-    <tr><td><strong>Web Assets Generator</strong></td><td>Skill</td><td><span class="badge-pending">not yet</span></td><td>Search skillsmp.com for "web assets generator"</td></tr>
-    <tr><td><strong>Business Strategy</strong></td><td>Skill</td><td><span class="badge-pending">not yet</span></td><td>Search mcpmarket.com for "business strategy"</td></tr>
-    <tr><td><strong>SOP Creator</strong></td><td>Skill</td><td><span class="badge-pending">not yet</span></td><td>Search mcpmarket.com for "sop creator"</td></tr>
-  </table></div>
+  <div class="install-head"><span>Item</span><span>Type</span><span>Status</span><span class="cmd-h">Install Command</span></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Marketing Skills Library</span><span class="type">Skill</span><span><span class="badge-pending">not yet</span></span><span class="cmd"><code>git clone https://github.com/coreyhaines31/marketingskills.git ~/.claude/skills/marketingskills</code></span></div><div class="install-desc">By Corey Haines. Turns Claude into a full marketing team — copywriting, content strategy, SEO, paid ads, social media, and CRO. Each skill follows proven marketing frameworks used by real marketers.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Deep Research</span><span class="type">Skill</span><span><span class="badge-pending">not yet</span></span><span class="cmd"><code>git clone https://github.com/Weizhena/Deep-Research-skills.git ~/.claude/skills/deep-research</code></span></div><div class="install-desc">Makes Claude do thorough, multi-step research — checking multiple sources, cross-referencing facts, and delivering detailed findings with citations. Great for market research, competitor analysis, and due diligence.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> claude-seo</span><span class="type">Skill</span><span><span class="badge-pending">not yet</span></span><span class="cmd"><code>git clone https://github.com/AgriciDaniel/claude-seo.git ~/.claude/skills/claude-seo</code></span></div><div class="install-desc">19 SEO sub-skills covering technical audits, E-E-A-T optimisation, schema markup, backlinks, local SEO, and AI/answer engine optimisation. Built specifically for SEO professionals and agencies.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> claude-ads</span><span class="type">Skill</span><span><span class="badge-pending">not yet</span></span><span class="cmd"><code>git clone https://github.com/AgriciDaniel/claude-ads.git ~/.claude/skills/claude-ads</code></span></div><div class="install-desc">186 audit checks across Google Ads, Meta Ads, YouTube, LinkedIn, TikTok, and Microsoft Ads. Analyses campaigns with weighted scoring, parallel agents, and industry-specific templates.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Claude Office Skills</span><span class="type">Skill</span><span><span class="badge-pending">not yet</span></span><span class="cmd"><code>git clone https://github.com/tfriedel/claude-office-skills.git ~/.claude/skills/claude-office-skills</code></span></div><div class="install-desc">Create and edit PowerPoint presentations, Word documents, Excel spreadsheets, and PDFs with automation workflows. Perfect for client reports, proposals, and pitch decks.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Trail of Bits Security</span><span class="type">Skill</span><span><span class="badge-pending">not yet</span></span><span class="cmd"><code>git clone https://github.com/trailofbits/skills.git ~/.claude/skills/trailofbits-security</code></span></div><div class="install-desc">Professional security audit workflows from Trail of Bits (a respected security firm). Includes vulnerability detection, CodeQL analysis, and Semgrep scanning. For your Technical Director and Web Dev team.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> CEO Advisor + 220 skills</span><span class="type">Skill</span><span><span class="badge-pending">not yet</span></span><span class="cmd"><code>git clone https://github.com/alirezarezvani/claude-skills.git ~/.claude/skills/alirezarezvani-skills</code></span></div><div class="install-desc">220+ skills organised into categories including C-suite advisory (CEO, COO, CFO), finance, compliance, marketing, and operations. The CEO Advisor skill covers strategic decisions, board decks, and competitive intelligence.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Jobs to Be Done</span><span class="type">Skill</span><span><span class="badge-pending">not yet</span></span><span class="cmd">Search skillsmp.com for "jobs to be done"</span></div><div class="install-desc">Uses the "Jobs to Be Done" business strategy framework to help you understand what your customers actually want and why they buy. Great for product decisions, positioning, and market research.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Explain Code</span><span class="type">Skill</span><span><span class="badge-pending">not yet</span></span><span class="cmd">Search claude.com/plugins for "explain code"</span></div><div class="install-desc">Official Anthropic skill that translates code into plain English. When you see code you don't understand, this explains what each part does, why it's there, and what would happen if you changed it.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Web Assets Generator</span><span class="type">Skill</span><span><span class="badge-pending">not yet</span></span><span class="cmd">Search skillsmp.com for "web assets generator"</span></div><div class="install-desc">Creates the images you need for websites and social media — banners, icons, social sharing images, and favicons — properly sized and formatted for each platform.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Business Strategy</span><span class="type">Skill</span><span><span class="badge-pending">not yet</span></span><span class="cmd">Search mcpmarket.com for "business strategy"</span></div><div class="install-desc">Applies proven business frameworks — Porter's 5 Forces, SWOT, BCG Matrix, Blue Ocean, Ansoff — to help with strategic planning. Useful for your Managing Director and leadership team.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> SOP Creator</span><span class="type">Skill</span><span><span class="badge-pending">not yet</span></span><span class="cmd">Search mcpmarket.com for "sop creator"</span></div><div class="install-desc">Turns rough brain dumps into clean, numbered Standard Operating Procedures with decision points and edge cases. Perfect for your Operations Director to document processes across the agency.</div></div>
 
   <h3>MCP Servers (App Connectors)</h3>
-  <p style="color:var(--muted);font-size:13px;margin-bottom:16px;">Paste these into <strong>Claude Code</strong> (not Terminal).</p>
-  <div class="table-wrap"><table>
-    <tr><th>Item</th><th>Type</th><th>Status</th><th>Install Command</th></tr>
-    <tr><td><strong>GitHub</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td><code style="font-size:11px;word-break:break-all">claude mcp add --transport http github https://api.githubcopilot.com/mcp/</code></td></tr>
-    <tr><td><strong>Notion</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td><code style="font-size:11px;word-break:break-all">claude mcp add --transport http notion https://mcp.notion.com/mcp</code></td></tr>
-    <tr><td><strong>Linear</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td><code style="font-size:11px;word-break:break-all">claude mcp add --transport http linear https://mcp.linear.app/mcp</code></td></tr>
-    <tr><td><strong>Asana</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td><code style="font-size:11px;word-break:break-all">claude mcp add --transport http asana https://mcp.asana.com/mcp</code></td></tr>
-    <tr><td><strong>ClickUp</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td><code style="font-size:11px;word-break:break-all">claude mcp add --transport http clickup https://mcp.clickup.com/mcp</code></td></tr>
-    <tr><td><strong>Ahrefs</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td>See github.com/ahrefs/ahrefs-mcp-server</td></tr>
-    <tr><td><strong>Semrush</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td>See github.com/mrkooblu/semrush-mcp</td></tr>
-    <tr><td><strong>Google Search Console</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td>See github.com/AminForou/mcp-gsc</td></tr>
-    <tr><td><strong>Google Analytics 4</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td>See developers.google.com/analytics/devguides/MCP</td></tr>
-    <tr><td><strong>Cross-Platform Ads</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td>See github.com/amekala/ads-mcp</td></tr>
-    <tr><td><strong>HubSpot</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td>See developers.hubspot.com/mcp</td></tr>
-    <tr><td><strong>Salesforce</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td>See developer.salesforce.com (search MCP)</td></tr>
-    <tr><td><strong>Xero</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td>See github.com/XeroAPI/xero-mcp-server</td></tr>
-    <tr><td><strong>QuickBooks</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td>See github.com/intuit/quickbooks-online-mcp-server</td></tr>
-    <tr><td><strong>Stripe</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td>See docs.stripe.com/mcp</td></tr>
-    <tr><td><strong>Sentry</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td>See github.com/getsentry/sentry-mcp</td></tr>
-    <tr><td><strong>Databox</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td>See smithery.ai/servers/Databox-MCP/databox</td></tr>
-    <tr><td><strong>Google Workspace</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td>See github.com/taylorwilsdon/google_workspace_mcp</td></tr>
-    <tr><td><strong>Zapier</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td>See zapier.com/mcp</td></tr>
-    <tr><td><strong>Granola</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td>See smithery.ai/servers/granola</td></tr>
-  </table></div>
+  <p style="color:var(--muted);font-size:13px;margin-bottom:12px;">Paste these into <strong>Claude Code</strong> (not Terminal).</p>
+  <div class="install-head"><span>Item</span><span>Type</span><span>Status</span><span class="cmd-h">Install Command</span></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> GitHub</span><span class="type">MCP</span><span><span class="badge-pending">not yet</span></span><span class="cmd"><code>claude mcp add --transport http github https://api.githubcopilot.com/mcp/</code></span></div><div class="install-desc">Connects Claude to your GitHub repos. Manage pull requests, review code, create issues, and run CI/CD workflows — all through conversation. Essential for your Web Dev team.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Notion</span><span class="type">MCP</span><span><span class="badge-pending">not yet</span></span><span class="cmd"><code>claude mcp add --transport http notion https://mcp.notion.com/mcp</code></span></div><div class="install-desc">Read and create Notion pages, search your workspace, and update databases. Useful for every team — project docs, wikis, client pages, and company knowledge bases.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Linear</span><span class="type">MCP</span><span><span class="badge-pending">not yet</span></span><span class="cmd"><code>claude mcp add --transport http linear https://mcp.linear.app/mcp</code></span></div><div class="install-desc">Issue tracking tightly integrated with dev workflows. Create and update issues, manage projects, and track sprints. Best for Web Dev and Project Management teams.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Asana</span><span class="type">MCP</span><span><span class="badge-pending">not yet</span></span><span class="cmd"><code>claude mcp add --transport http asana https://mcp.asana.com/mcp</code></span></div><div class="install-desc">Read tasks, update fields, assign owners, and track progress across your Asana projects. Useful for Project Management and Client Services teams.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> ClickUp</span><span class="type">MCP</span><span><span class="badge-pending">not yet</span></span><span class="cmd"><code>claude mcp add --transport http clickup https://mcp.clickup.com/mcp</code></span></div><div class="install-desc">Task management, dependency tracking, time entries, and guest access management. An alternative to Asana/Linear for teams already using ClickUp.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Ahrefs</span><span class="type">MCP</span><span><span class="badge-pending">not yet</span></span><span class="cmd">See github.com/ahrefs/ahrefs-mcp-server</span></div><div class="install-desc">Official Ahrefs integration. Pull backlink data, keyword metrics, and brand monitoring directly into Claude. Essential for your SEO team's daily workflow.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Semrush</span><span class="type">MCP</span><span><span class="badge-pending">not yet</span></span><span class="cmd">See github.com/mrkooblu/semrush-mcp</span></div><div class="install-desc">Official Semrush integration. Access SEO data, traffic analysis, and market data through Claude. Another key tool for your SEO team alongside Ahrefs.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Google Search Console</span><span class="type">MCP</span><span><span class="badge-pending">not yet</span></span><span class="cmd">See github.com/AminForou/mcp-gsc</span></div><div class="install-desc">20 built-in tools for analysing search performance, monitoring indexing, and managing crawl stats. The SEO team's direct line into how Google sees your sites.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Google Analytics 4</span><span class="type">MCP</span><span><span class="badge-pending">not yet</span></span><span class="cmd">See developers.google.com/analytics/devguides/MCP</span></div><div class="install-desc">Official Google integration. Pull traffic data, user behaviour, and conversion metrics directly into Claude. Useful for SEO, PPC, and Client Services reporting.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Cross-Platform Ads</span><span class="type">MCP</span><span><span class="badge-pending">not yet</span></span><span class="cmd">See github.com/amekala/ads-mcp</span></div><div class="install-desc">One server that covers Google Ads, Meta Ads, LinkedIn Ads, and TikTok Ads with 100+ tools. Campaign creation, performance analysis, and budget optimisation. Built for your PPC team.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> HubSpot</span><span class="type">MCP</span><span><span class="badge-pending">not yet</span></span><span class="cmd">See developers.hubspot.com/mcp</span></div><div class="install-desc">Official HubSpot integration. Access contacts, companies, deals, tickets, and pipeline data. Useful for Sales (CRM data) and Managing Director (revenue reporting).</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Salesforce</span><span class="type">MCP</span><span><span class="badge-pending">not yet</span></span><span class="cmd">See developer.salesforce.com (search MCP)</span></div><div class="install-desc">Official Salesforce integration with 60+ tools. Access CRM data, manage records, and run reports — no code required. Alternative to HubSpot depending on which CRM you use.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Xero</span><span class="type">MCP</span><span><span class="badge-pending">not yet</span></span><span class="cmd">See github.com/XeroAPI/xero-mcp-server</span></div><div class="install-desc">Official Xero integration. Invoicing, bank reconciliation, bookkeeping, and financial reporting — all through Claude. Built for your Finance team.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> QuickBooks</span><span class="type">MCP</span><span><span class="badge-pending">not yet</span></span><span class="cmd">See github.com/intuit/quickbooks-online-mcp-server</span></div><div class="install-desc">Official Intuit integration. Manage customers, invoices, expenses, and reports. Alternative to Xero depending on which accounting software you use.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Stripe</span><span class="type">MCP</span><span><span class="badge-pending">not yet</span></span><span class="cmd">See docs.stripe.com/mcp</span></div><div class="install-desc">Official Stripe integration. 25 tools covering customers, invoices, subscriptions, refunds, and disputes. Useful for Finance (payment tracking) and Managing Director (revenue metrics).</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Sentry</span><span class="type">MCP</span><span><span class="badge-pending">not yet</span></span><span class="cmd">See github.com/getsentry/sentry-mcp</span></div><div class="install-desc">Official error tracking integration. Claude can read issues, traces, and performance data to help your Web Dev and Technical Director teams debug problems faster.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Databox</span><span class="type">MCP</span><span><span class="badge-pending">not yet</span></span><span class="cmd">See smithery.ai/servers/Databox-MCP/databox</span></div><div class="install-desc">Cross-platform KPI dashboards pulling data from 100+ sources (GA, HubSpot, Stripe, etc.). Gives your Managing Director and Operations Director a single view of business performance.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Google Workspace</span><span class="type">MCP</span><span><span class="badge-pending">not yet</span></span><span class="cmd">See github.com/taylorwilsdon/google_workspace_mcp</span></div><div class="install-desc">All-in-one Google integration: Drive, Calendar, Gmail, Sheets, Docs, Slides, Forms, and Tasks in a single server. Useful across every team in the agency.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Zapier</span><span class="type">MCP</span><span><span class="badge-pending">not yet</span></span><span class="cmd">See zapier.com/mcp</span></div><div class="install-desc">Bridges Claude to 8,000+ apps. If a dedicated MCP server doesn't exist for a tool you use, Zapier can probably connect it. The ultimate fallback connector.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row"><span class="name"><span class="arrow">&#9654;</span> Granola</span><span class="type">MCP</span><span><span class="badge-pending">not yet</span></span><span class="cmd">See smithery.ai/servers/granola</span></div><div class="install-desc">Meeting notes integration. Search past meetings, find topics discussed, and extract action items and decisions. Great for Client Services and Project Management teams.</div></div>
 
   <h3>Already Connected (No Action Needed)</h3>
-  <div class="table-wrap"><table>
-    <tr><th>Item</th><th>Type</th><th>What It Connects To</th></tr>
-    <tr><td><strong>Monday.com</strong></td><td>MCP</td><td>Project management boards</td></tr>
-    <tr><td><strong>Canva</strong></td><td>MCP</td><td>Design generation and editing</td></tr>
-    <tr><td><strong>Figma</strong></td><td>MCP</td><td>Design files, tokens, screenshots</td></tr>
-    <tr><td><strong>Slack</strong></td><td>MCP</td><td>Messages, channels, search</td></tr>
-    <tr><td><strong>Gmail</strong></td><td>MCP</td><td>Email, drafts, search</td></tr>
-    <tr><td><strong>Google Calendar</strong></td><td>MCP</td><td>Events, scheduling, free time</td></tr>
-    <tr><td><strong>Google Drive</strong></td><td>MCP</td><td>Files and shared drives</td></tr>
-    <tr><td><strong>Vercel</strong></td><td>MCP</td><td>Deployments, build logs</td></tr>
-    <tr><td><strong>PostHog</strong></td><td>MCP</td><td>Analytics, feature flags</td></tr>
-    <tr><td><strong>PDF Tools</strong></td><td>MCP</td><td>Read, create, merge PDFs</td></tr>
-    <tr><td><strong>Chrome Control</strong></td><td>MCP</td><td>Browser automation</td></tr>
-    <tr><td><strong>Desktop Commander</strong></td><td>MCP</td><td>File system, processes</td></tr>
-  </table></div>
+  <div class="install-head"><span>Item</span><span>Type</span><span colspan="2">Connects To</span></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row" style="grid-template-columns:1fr 60px 1fr;"><span class="name"><span class="arrow">&#9654;</span> Monday.com</span><span class="type">MCP</span><span class="cmd">Project management boards</span></div><div class="install-desc">Create items, manage boards, generate sprint summaries, and convert meeting notes into tasks. Already connected and working across your project management workflows.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row" style="grid-template-columns:1fr 60px 1fr;"><span class="name"><span class="arrow">&#9654;</span> Canva</span><span class="type">MCP</span><span class="cmd">Design generation and editing</span></div><div class="install-desc">Create on-brand designs, social graphics, and presentations directly from Claude. Automatically applies your Brand Kit for consistent visuals.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row" style="grid-template-columns:1fr 60px 1fr;"><span class="name"><span class="arrow">&#9654;</span> Figma</span><span class="type">MCP</span><span class="cmd">Design files, tokens, screenshots</span></div><div class="install-desc">Read design data from Figma, get design tokens and screenshots, and push code-built UIs back as editable layers. The bridge between your Design and Dev teams.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row" style="grid-template-columns:1fr 60px 1fr;"><span class="name"><span class="arrow">&#9654;</span> Slack</span><span class="type">MCP</span><span class="cmd">Messages, channels, search</span></div><div class="install-desc">Read and send messages, search channels, create canvases, and schedule messages. Claude can pull context from Slack conversations to inform its work.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row" style="grid-template-columns:1fr 60px 1fr;"><span class="name"><span class="arrow">&#9654;</span> Gmail</span><span class="type">MCP</span><span class="cmd">Email, drafts, search</span></div><div class="install-desc">Search emails, read threads, and create drafts. Useful for Client Services to pull context from client conversations.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row" style="grid-template-columns:1fr 60px 1fr;"><span class="name"><span class="arrow">&#9654;</span> Google Calendar</span><span class="type">MCP</span><span class="cmd">Events, scheduling, free time</span></div><div class="install-desc">Create events, find meeting times, check availability, and manage RSVPs. Works across every team for scheduling.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row" style="grid-template-columns:1fr 60px 1fr;"><span class="name"><span class="arrow">&#9654;</span> Google Drive</span><span class="type">MCP</span><span class="cmd">Files and shared drives</span></div><div class="install-desc">Search and access files from your Google Drive. Claude can pull documents, spreadsheets, and presentations to inform its work.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row" style="grid-template-columns:1fr 60px 1fr;"><span class="name"><span class="arrow">&#9654;</span> Vercel</span><span class="type">MCP</span><span class="cmd">Deployments, build logs</span></div><div class="install-desc">Monitor deployments, view build and runtime logs, and manage projects. Your Web Dev team's deployment pipeline connected to Claude.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row" style="grid-template-columns:1fr 60px 1fr;"><span class="name"><span class="arrow">&#9654;</span> PostHog</span><span class="type">MCP</span><span class="cmd">Analytics, feature flags</span></div><div class="install-desc">Product analytics, user behaviour tracking, feature flags, and A/B testing. Helps your Dev and Product teams make data-driven decisions.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row" style="grid-template-columns:1fr 60px 1fr;"><span class="name"><span class="arrow">&#9654;</span> PDF Tools</span><span class="type">MCP</span><span class="cmd">Read, create, merge PDFs</span></div><div class="install-desc">Read PDF content, merge multiple PDFs, split pages, add watermarks, and create new PDFs. Useful for contracts, proposals, and reports across every team.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row" style="grid-template-columns:1fr 60px 1fr;"><span class="name"><span class="arrow">&#9654;</span> Chrome Control</span><span class="type">MCP</span><span class="cmd">Browser automation</span></div><div class="install-desc">Claude can control Chrome — open URLs, click elements, read page content, and execute JavaScript. Useful for testing, scraping, and automating browser-based workflows.</div></div>
+
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="install-row" style="grid-template-columns:1fr 60px 1fr;"><span class="name"><span class="arrow">&#9654;</span> Desktop Commander</span><span class="type">MCP</span><span class="cmd">File system, processes</span></div><div class="install-desc">Extended file system access, process management, and system commands. Gives Claude more control over your local environment for complex automation tasks.</div></div>
 </div>
 
 <a href="#top" class="back-to-top"><span style="color:var(--green)">$</span> cd top</a>
