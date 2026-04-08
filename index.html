@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Claude Code Setup Guide</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230a0a0a'/><text x='6' y='24' font-family='monospace' font-size='24' font-weight='bold' fill='%23d99178'>></text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
@@ -137,19 +138,20 @@
 
     .dots {
       display: flex;
-      gap: 6px;
-      margin-right: 8px;
+      gap: 7px;
+      margin-right: 10px;
+      align-items: center;
     }
 
     .dot {
-      width: 12px;
-      height: 12px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
     }
 
-    .dot-red { background: var(--red); }
-    .dot-yellow { background: var(--yellow); }
-    .dot-green { background: var(--green); }
+    .dot-red { background: #ff5f57; }
+    .dot-yellow { background: #febc2e; }
+    .dot-green { background: #28c840; }
 
     .terminal-bar .filename { flex: 1; }
     .terminal-bar .status { color: var(--green); font-size: 11px; }
