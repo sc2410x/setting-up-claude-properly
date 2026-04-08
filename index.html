@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Code Setup Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --card: #111111;
+      --card-hover: #161616;
+      --border: #606068;
+      --border-hover: rgba(217,145,120,0.4);
+      --text: #ededed;
+      --muted: #a3a3a3;
+      --primary: #d99178;
+      --primary-dim: rgba(217,145,120,0.5);
+      --amber: #f59e0b;
+      --green: #22c55e;
+      --red: #ef4444;
+      --yellow: #eab308;
+      --blue: #60a5fa;
+      --purple: #c084fc;
+      --muted-bg: #262626;
+      --secondary-bg: #1a1a1a;
+      --radius: 12px;
+      --radius-sm: 8px;
+      --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Monaco, Consolas, monospace;
+      --sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 16px;
+    }
+
+    /* Nav */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+    }
+
+    .nav-inner {
+      max-width: 1216px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-logo .tilde { color: var(--muted); }
+    .nav-logo .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 18px;
+      background: var(--primary);
+      margin-left: 2px;
+      vertical-align: text-bottom;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 5px 12px;
+      transition: all 0.2s;
+    }
+
+    .nav-links a .dollar { color: var(--green); margin-right: 4px; }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--text);
+      border-color: var(--primary-dim);
+      background: rgba(217,145,120,0.06);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1216px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Terminal Window */
+    .terminal {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 24px;
+      background: var(--card);
+    }
+
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background: rgba(38,38,38,0.5);
+      border-bottom: 1px solid var(--border);
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .dots {
+      display: flex;
+      gap: 6px;
+      margin-right: 8px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .dot-red { background: var(--red); }
+    .dot-yellow { background: var(--yellow); }
+    .dot-green { background: var(--green); }
+
+    .terminal-bar .filename { flex: 1; }
+    .terminal-bar .status { color: var(--green); font-size: 11px; }
+
+    .terminal-body {
+      padding: 24px;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 80px 0 60px;
+    }
+
+    .hero-terminal {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--card);
+    }
+
+    .hero-body {
+      padding: 48px 40px;
+    }
+
+    .hero h1 {
+      font-family: var(--mono);
+      font-size: 48px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+      line-height: 1.15;
+    }
+
+    .hero h1 .prompt { color: var(--primary); }
+    .hero h1 .cursor-block {
+      display: inline-block;
+      width: 24px;
+      height: 48px;
+      background: var(--primary);
+      vertical-align: text-bottom;
+      animation: blink 1s step-end infinite;
+      margin-left: 4px;
+    }
+
+    .hero .subtitle {
+      font-family: var(--mono);
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .hero .subtitle .prompt { color: var(--primary); }
+
+    .hero .stats {
+      font-family: var(--mono);
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .hero .stats .kw { color: var(--purple); }
+    .hero .stats .var { color: var(--text); }
+    .hero .stats .val { color: var(--primary); }
+    .hero .stats .punc { color: var(--muted); }
+
+    .hero .comment {
+      font-family: var(--mono);
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+      border-left: 2px solid var(--primary-dim);
+      padding-left: 16px;
+    }
+
+    /* Section headers */
+    .section {
+      padding: 60px 0 0;
+      scroll-margin-top: 80px;
+    }
+
+    .section-head {
+      font-family: var(--mono);
+      font-size: 14px;
+      color: var(--primary);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 4px;
+    }
+
+    .section h2 {
+      font-family: var(--mono);
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .section h2 .prompt { color: var(--primary); }
+
+    .section-desc {
+      font-family: var(--mono);
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    .section-desc::before {
+      content: '// ';
+      color: #555;
+    }
+
+    h3 {
+      font-family: var(--mono);
+      font-size: 18px;
+      font-weight: 600;
+      margin: 32px 0 12px;
+      color: var(--text);
+    }
+
+    h4 {
+      font-family: var(--mono);
+      font-size: 15px;
+      font-weight: 600;
+      margin: 20px 0 8px;
+      color: var(--text);
+    }
+
+    p { margin-bottom: 12px; }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th {
+      background: rgba(38,38,38,0.5);
+      padding: 10px 16px;
+      text-align: left;
+      font-family: var(--mono);
+      font-weight: 600;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+    }
+
+    td {
+      padding: 10px 16px;
+      border-bottom: 1px solid rgba(96,96,104,0.3);
+      vertical-align: top;
+      color: var(--muted);
+    }
+
+    tr:last-child td { border-bottom: none; }
+    td strong { color: var(--text); }
+
+    /* Card grid */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .card-grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .card-grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+    @media (max-width: 900px) {
+      .card-grid, .card-grid-3, .card-grid-4 { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--card);
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    .card:hover {
+      border-color: var(--border-hover);
+      box-shadow: 0 20px 40px rgba(217,145,120,0.06);
+      transform: translateY(-2px);
+    }
+
+    .card .card-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      background: rgba(38,38,38,0.3);
+      border-bottom: 1px solid rgba(96,96,104,0.3);
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .card .card-bar .dots { margin-right: 4px; }
+    .card .card-bar .dot { width: 8px; height: 8px; }
+
+    .card-body {
+      padding: 16px;
+    }
+
+    .card-body h4 { margin-top: 0; }
+
+    .card-body p {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .card-body p:last-child { margin-bottom: 0; }
+
+    /* Code blocks */
+    .code-block {
+      position: relative;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--secondary-bg);
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+
+    .code-block .code-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      background: rgba(38,38,38,0.5);
+      border-bottom: 1px solid rgba(96,96,104,0.3);
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .code-block .code-bar .dots { margin-right: 4px; }
+    .code-block .code-bar .dot { width: 8px; height: 8px; }
+
+    .code-block pre {
+      padding: 16px 20px;
+      overflow-x: auto;
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-family: var(--mono);
+      font-size: 11px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .copy-btn:hover { color: var(--text); border-color: var(--primary-dim); }
+    .copy-btn.copied { background: var(--green); color: #000; border-color: var(--green); }
+
+    /* Inline code */
+    code {
+      font-family: var(--mono);
+      font-size: 13px;
+      background: var(--muted-bg);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--primary);
+    }
+
+    /* Prompt cards */
+    .prompt-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 20px;
+      background: var(--card);
+      transition: all 0.3s;
+    }
+
+    .prompt-card:hover {
+      border-color: var(--border-hover);
+    }
+
+    .prompt-card-header {
+      padding: 14px 20px;
+      border-bottom: 1px solid rgba(96,96,104,0.3);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(38,38,38,0.3);
+    }
+
+    .prompt-card-header h4 { margin: 0; font-size: 14px; }
+
+    .prompt-card-header .when {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      margin-left: auto;
+    }
+
+    .prompt-card .code-block { margin: 0; border: none; border-radius: 0; }
+
+    /* Callouts */
+    .callout {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      background: var(--card);
+    }
+
+    .callout-tip { border-left: 3px solid var(--green); }
+    .callout-warning { border-left: 3px solid var(--yellow); }
+    .callout-info { border-left: 3px solid var(--primary); }
+
+    .callout strong {
+      display: block;
+      font-family: var(--mono);
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+
+    .callout-tip strong { color: var(--green); }
+    .callout-warning strong { color: var(--yellow); }
+    .callout-info strong { color: var(--primary); }
+
+    .callout p, .callout li { color: var(--muted); font-size: 14px; }
+
+    /* Blockquote */
+    blockquote {
+      border-left: 2px solid var(--primary-dim);
+      padding: 12px 20px;
+      margin: 12px 0;
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* Lists */
+    ul, ol { margin: 8px 0 16px 20px; color: var(--muted); }
+    li { margin-bottom: 6px; font-size: 14px; }
+
+    /* Folder tree */
+    .tree {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--secondary-bg);
+      padding: 20px 24px;
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--text);
+      margin-bottom: 16px;
+      overflow-x: auto;
+    }
+
+    .tree .cm { color: #555; }
+
+    /* FAQ Accordion */
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 8px;
+      overflow: hidden;
+      background: var(--card);
+      transition: all 0.3s;
+    }
+
+    .faq-item:hover { border-color: var(--border-hover); }
+
+    .faq-question {
+      padding: 14px 20px;
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+      color: var(--text);
+    }
+
+    .faq-question:hover { background: rgba(38,38,38,0.3); }
+
+    .faq-question .arrow {
+      transition: transform 0.2s;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .faq-item.open .faq-question .arrow { transform: rotate(180deg); }
+    .faq-item.open .faq-question { border-bottom: 1px solid rgba(96,96,104,0.3); }
+
+    .faq-answer {
+      display: none;
+      padding: 16px 20px;
+    }
+
+    .faq-item.open .faq-answer { display: block; }
+
+    /* Mistake cards */
+    .mistake-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 12px;
+      background: var(--card);
+    }
+
+    .mistake-card .card-bar { background: rgba(38,38,38,0.3); }
+
+    .mistake-body { padding: 16px 20px; }
+
+    .mistake-body .lbl {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 2px;
+    }
+
+    .lbl-bad { color: var(--red); }
+    .lbl-result { color: var(--yellow); }
+    .lbl-fix { color: var(--green); }
+
+    .mistake-body p { font-size: 14px; color: var(--muted); }
+
+    /* Status badges */
+    .badge-installed {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      background: rgba(34,197,94,0.15);
+      color: var(--green);
+      padding: 2px 10px;
+      border-radius: 20px;
+      border: 1px solid rgba(34,197,94,0.3);
+    }
+
+    .badge-pending {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      background: rgba(163,163,163,0.1);
+      color: var(--muted);
+      padding: 2px 10px;
+      border-radius: 20px;
+      border: 1px solid rgba(96,96,104,0.3);
+    }
+
+    /* Separator */
+    hr {
+      border: none;
+      height: 1px;
+      background: var(--border);
+      margin: 48px 0;
+    }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      margin-top: 80px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .footer-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    /* Mobile nav */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: var(--radius-sm);
+      padding: 6px 12px;
+      font-family: var(--mono);
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .menu-toggle { display: block; }
+      .nav-links.open { display: flex; flex-wrap: wrap; position: absolute; top: 56px; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--border); padding: 12px 24px; }
+      .hero h1 { font-size: 28px; }
+      .hero h1 .cursor-block { width: 14px; height: 28px; }
+      .hero-body { padding: 32px 20px; }
+      .section h2 { font-size: 22px; }
+    }
+
+    /* Smooth scroll */
+    html { scroll-behavior: smooth; }
+
+    /* Back to top */
+    .back-to-top {
+      display: block;
+      text-align: center;
+      padding: 12px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      margin: 40px auto 0;
+      width: fit-content;
+      transition: all 0.2s;
+    }
+
+    .back-to-top:hover { color: var(--primary); border-color: var(--primary-dim); }
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="nav" id="top">
+  <div class="nav-inner">
+    <a href="#top" class="nav-logo"><span class="tilde">~/</span>claude-setup<span class="cursor"></span></a>
+    <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"><span class="dollar" style="color:var(--green)">$</span> menu</button>
+    <ul class="nav-links">
+      <li><a href="#setup-files"><span class="dollar">$</span> cat setup</a></li>
+      <li><a href="#repos"><span class="dollar">$</span> git clone</a></li>
+      <li><a href="#prompts"><span class="dollar">$</span> prompts</a></li>
+      <li><a href="#talking"><span class="dollar">$</span> best-practices</a></li>
+      <li><a href="#teams"><span class="dollar">$</span> teams</a></li>
+      <li><a href="#resources"><span class="dollar">$</span> resources</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+
+<!-- Hero -->
+<div class="hero" id="hero">
+  <div class="hero-terminal">
+    <div class="terminal-bar">
+      <div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+      <span class="filename">setup.guide</span>
+      <span class="status">ready</span>
+    </div>
+    <div class="hero-body">
+      <h1><span class="prompt">&gt;</span> Claude Code Setup Guide<span class="cursor-block"></span></h1>
+      <div class="subtitle"><span class="prompt">&gt;</span> for business decision makers, not developers</div>
+      <div class="stats">
+        <span class="kw">const</span> <span class="var">sections</span> <span class="punc">=</span> <span class="val">20</span><span class="punc">;</span>
+        <span class="kw">const</span> <span class="var">prompts</span> <span class="punc">=</span> <span class="val">15</span><span class="punc">;</span>
+        <span class="kw">const</span> <span class="var">teams</span> <span class="punc">=</span> <span class="val">12</span><span class="punc">;</span>
+      </div>
+      <div class="comment">
+        Everything you need to set up Claude Code so it works smarter on your projects.<br>
+        Written in plain language. No coding experience needed.<br>
+        Copy-paste prompts, team-by-team tool recommendations, people to follow, and more.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Quick Nav -->
+<div class="terminal" style="margin-bottom:60px;">
+  <div class="terminal-bar">
+    <div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+    <span class="filename">ls ./sections/</span>
+    <span class="status">20 items</span>
+  </div>
+  <div class="terminal-body" style="padding:16px 20px;">
+    <div class="card-grid card-grid-4" style="gap:8px;">
+      <a href="#setup-files" style="text-decoration:none;font-family:var(--mono);font-size:12px;color:var(--muted);padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);transition:all 0.2s;display:block;" onmouseover="this.style.borderColor='rgba(217,145,120,0.4)';this.style.color='#ededed'" onmouseout="this.style.borderColor='#606068';this.style.color='#a3a3a3'"><span style="color:var(--primary)">01</span> Setup Files</a>
+      <a href="#repos" style="text-decoration:none;font-family:var(--mono);font-size:12px;color:var(--muted);padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);transition:all 0.2s;display:block;" onmouseover="this.style.borderColor='rgba(217,145,120,0.4)';this.style.color='#ededed'" onmouseout="this.style.borderColor='#606068';this.style.color='#a3a3a3'"><span style="color:var(--primary)">02</span> Add-Ons</a>
+      <a href="#skills" style="text-decoration:none;font-family:var(--mono);font-size:12px;color:var(--muted);padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);transition:all 0.2s;display:block;" onmouseover="this.style.borderColor='rgba(217,145,120,0.4)';this.style.color='#ededed'" onmouseout="this.style.borderColor='#606068';this.style.color='#a3a3a3'"><span style="color:var(--primary)">03</span> Skills</a>
+      <a href="#folder-map" style="text-decoration:none;font-family:var(--mono);font-size:12px;color:var(--muted);padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);transition:all 0.2s;display:block;" onmouseover="this.style.borderColor='rgba(217,145,120,0.4)';this.style.color='#ededed'" onmouseout="this.style.borderColor='#606068';this.style.color='#a3a3a3'"><span style="color:var(--primary)">04</span> Folder Map</a>
+      <a href="#glossary" style="text-decoration:none;font-family:var(--mono);font-size:12px;color:var(--muted);padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);transition:all 0.2s;display:block;" onmouseover="this.style.borderColor='rgba(217,145,120,0.4)';this.style.color='#ededed'" onmouseout="this.style.borderColor='#606068';this.style.color='#a3a3a3'"><span style="color:var(--primary)">05</span> Jargon Buster</a>
+      <a href="#find-more" style="text-decoration:none;font-family:var(--mono);font-size:12px;color:var(--muted);padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);transition:all 0.2s;display:block;" onmouseover="this.style.borderColor='rgba(217,145,120,0.4)';this.style.color='#ededed'" onmouseout="this.style.borderColor='#606068';this.style.color='#a3a3a3'"><span style="color:var(--primary)">06</span> Find More</a>
+      <a href="#prompts" style="text-decoration:none;font-family:var(--mono);font-size:12px;color:var(--muted);padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);transition:all 0.2s;display:block;" onmouseover="this.style.borderColor='rgba(217,145,120,0.4)';this.style.color='#ededed'" onmouseout="this.style.borderColor='#606068';this.style.color='#a3a3a3'"><span style="color:var(--primary)">07</span> Prompts</a>
+      <a href="#talking" style="text-decoration:none;font-family:var(--mono);font-size:12px;color:var(--muted);padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);transition:all 0.2s;display:block;" onmouseover="this.style.borderColor='rgba(217,145,120,0.4)';this.style.color='#ededed'" onmouseout="this.style.borderColor='#606068';this.style.color='#a3a3a3'"><span style="color:var(--primary)">08</span> Talking to Claude</a>
+      <a href="#mistakes" style="text-decoration:none;font-family:var(--mono);font-size:12px;color:var(--muted);padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);transition:all 0.2s;display:block;" onmouseover="this.style.borderColor='rgba(217,145,120,0.4)';this.style.color='#ededed'" onmouseout="this.style.borderColor='#606068';this.style.color='#a3a3a3'"><span style="color:var(--primary)">09</span> Mistakes</a>
+      <a href="#stuck" style="text-decoration:none;font-family:var(--mono);font-size:12px;color:var(--muted);padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);transition:all 0.2s;display:block;" onmouseover="this.style.borderColor='rgba(217,145,120,0.4)';this.style.color='#ededed'" onmouseout="this.style.borderColor='#606068';this.style.color='#a3a3a3'"><span style="color:var(--primary)">10</span> When Stuck</a>
+      <a href="#review" style="text-decoration:none;font-family:var(--mono);font-size:12px;color:var(--muted);padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);transition:all 0.2s;display:block;" onmouseover="this.style.borderColor='rgba(217,145,120,0.4)';this.style.color='#ededed'" onmouseout="this.style.borderColor='#606068';this.style.color='#a3a3a3'"><span style="color:var(--primary)">11</span> Reviewing Work</a>
+      <a href="#security" style="text-decoration:none;font-family:var(--mono);font-size:12px;color:var(--muted);padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);transition:all 0.2s;display:block;" onmouseover="this.style.borderColor='rgba(217,145,120,0.4)';this.style.color='#ededed'" onmouseout="this.style.borderColor='#606068';this.style.color='#a3a3a3'"><span style="color:var(--primary)">12</span> Security</a>
+      <a href="#costs" style="text-decoration:none;font-family:var(--mono);font-size:12px;color:var(--muted);padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);transition:all 0.2s;display:block;" onmouseover="this.style.borderColor='rgba(217,145,120,0.4)';this.style.color='#ededed'" onmouseout="this.style.borderColor='#606068';this.style.color='#a3a3a3'"><span style="color:var(--primary)">13</span> Costs</a>
+      <a href="#code-vs-chat" style="text-decoration:none;font-family:var(--mono);font-size:12px;color:var(--muted);padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);transition:all 0.2s;display:block;" onmouseover="this.style.borderColor='rgba(217,145,120,0.4)';this.style.color='#ededed'" onmouseout="this.style.borderColor='#606068';this.style.color='#a3a3a3'"><span style="color:var(--primary)">14</span> Code vs Chat</a>
+      <a href="#structure" style="text-decoration:none;font-family:var(--mono);font-size:12px;color:var(--muted);padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);transition:all 0.2s;display:block;" onmouseover="this.style.borderColor='rgba(217,145,120,0.4)';this.style.color='#ededed'" onmouseout="this.style.borderColor='#606068';this.style.color='#a3a3a3'"><span style="color:var(--primary)">15</span> Project Structure</a>
+      <a href="#backups" style="text-decoration:none;font-family:var(--mono);font-size:12px;color:var(--muted);padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);transition:all 0.2s;display:block;" onmouseover="this.style.borderColor='rgba(217,145,120,0.4)';this.style.color='#ededed'" onmouseout="this.style.borderColor='#606068';this.style.color='#a3a3a3'"><span style="color:var(--primary)">16</span> Backups</a>
+      <a href="#faq" style="text-decoration:none;font-family:var(--mono);font-size:12px;color:var(--muted);padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);transition:all 0.2s;display:block;" onmouseover="this.style.borderColor='rgba(217,145,120,0.4)';this.style.color='#ededed'" onmouseout="this.style.borderColor='#606068';this.style.color='#a3a3a3'"><span style="color:var(--primary)">17</span> FAQ</a>
+      <a href="#teams" style="text-decoration:none;font-family:var(--mono);font-size:12px;color:var(--muted);padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);transition:all 0.2s;display:block;" onmouseover="this.style.borderColor='rgba(217,145,120,0.4)';this.style.color='#ededed'" onmouseout="this.style.borderColor='#606068';this.style.color='#a3a3a3'"><span style="color:var(--primary)">18</span> Tools by Team</a>
+      <a href="#resources" style="text-decoration:none;font-family:var(--mono);font-size:12px;color:var(--muted);padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);transition:all 0.2s;display:block;" onmouseover="this.style.borderColor='rgba(217,145,120,0.4)';this.style.color='#ededed'" onmouseout="this.style.borderColor='#606068';this.style.color='#a3a3a3'"><span style="color:var(--primary)">19</span> Resources</a>
+      <a href="#status" style="text-decoration:none;font-family:var(--mono);font-size:12px;color:var(--muted);padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);transition:all 0.2s;display:block;" onmouseover="this.style.borderColor='rgba(217,145,120,0.4)';this.style.color='#ededed'" onmouseout="this.style.borderColor='#606068';this.style.color='#a3a3a3'"><span style="color:var(--primary)">20</span> Install Status</a>
+    </div>
+  </div>
+</div>
+
+<!-- This is a shell page with the new design system. The full content will be loaded from the markdown guide. -->
+<!-- For now, showing a "content loading" message to confirm the design works. -->
+
+<!-- Part 1: Setup Files -->
+<div class="section" id="setup-files">
+  <div class="section-head">Part 01</div>
+  <h2><span class="prompt">&gt;</span> The 4 Setup Files</h2>
+  <p class="section-desc">Set these up to make Claude work smarter. None are compulsory, but the more you do, the better it gets.</p>
+
+  <div class="table-wrap"><table>
+    <tr><th>File</th><th>What It Does</th><th>Think of It Like...</th></tr>
+    <tr><td><strong>CLAUDE.md</strong></td><td>Your "house rules" — tells Claude how to behave</td><td>An employee handbook</td></tr>
+    <tr><td><strong>Context.md</strong></td><td>Background about your business, goals, audience</td><td>A consultant briefing doc</td></tr>
+    <tr><td><strong>Memory</strong></td><td>Lets Claude remember things across conversations</td><td>A CRM / relationship history</td></tr>
+    <tr><td><strong>Skills</strong></td><td>Step-by-step playbooks for specific tasks</td><td>Standard Operating Procedures</td></tr>
+  </table></div>
+
+  <div class="card-grid">
+    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>CLAUDE.md</div><div class="card-body"><h4>CLAUDE.md</h4><p>The most important file. Put it in your project's main folder. Write your preferences, do's and don'ts, what the project is about.</p><blockquote>"This is a marketing website for [company]. Always write in a friendly, professional tone. Never delete existing content without asking first."</blockquote></div></div>
+    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>Context.md</div><div class="card-body"><h4>Context.md</h4><p>Gives Claude the "big picture" — what your business does, who your customers are, what stage you're at, key decisions already made and why.</p></div></div>
+    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>memory/</div><div class="card-body"><h4>Memory</h4><p>Claude's notebook. Just say "remember that I prefer X" and it saves it. Builds up naturally — you don't manage the files yourself.</p></div></div>
+    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>~/.claude/skills/</div><div class="card-body"><h4>Skills</h4><p>Instruction manuals that make Claude expert at specific tasks. Install once, works across all projects automatically.</p></div></div>
+  </div>
+</div>
+
+<!-- Part 2: Repos -->
+<div class="section" id="repos">
+  <div class="section-head">Part 02</div>
+  <h2><span class="prompt">&gt;</span> Add-Ons to Install</h2>
+  <p class="section-desc">A "repo" is a folder on GitHub. Installing it = downloading it to the right place on your computer.</p>
+
+  <h3>The Universal Install Command</h3>
+  <div class="code-block"><div class="code-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>terminal</div><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>git clone &lt;github-url&gt; ~/.claude/skills/&lt;name&gt;</pre></div>
+  <p style="color:var(--muted);font-size:14px;">Run this once per repo in Terminal. Works across every project on your computer.</p>
+
+  <div class="table-wrap"><table>
+    <tr><th>Repo</th><th>What It Does</th><th>Install Command</th></tr>
+    <tr><td><strong>Superpowers</strong></td><td>Better planning, brainstorming, quality review — like upgrading from junior to senior</td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/obra/superpowers.git ~/.claude/skills/superpowers</code></td></tr>
+    <tr><td><strong>Everything Claude Code</strong></td><td>Pre-built starter kit with settings, skills, and workflows</td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/anthropics/everything-claude-code.git ~/.claude/skills/everything-claude-code</code></td></tr>
+    <tr><td><strong>UI UX Pro Max</strong></td><td>Professional web design — good layouts, spacing, modern design</td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/nicholasoxford/ui-ux-pro-max.git ~/.claude/skills/ui-ux-pro-max</code></td></tr>
+    <tr><td><strong>Browser Use</strong></td><td>Lets Claude open a browser — navigate, click, fill forms, screenshot</td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/browser-use/browser-use.git ~/.claude/skills/browser-use</code></td></tr>
+    <tr><td><strong>claude-mem</strong></td><td>Upgraded memory for longer, more complex projects</td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/sdairs/claude-mem.git ~/.claude/skills/claude-mem</code></td></tr>
+    <tr><td><strong>n8n-mcp</strong></td><td>Connects Claude to n8n automation (like Zapier but more powerful)</td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/n8n-io/n8n-mcp.git ~/.claude/skills/n8n-mcp</code></td></tr>
+  </table></div>
+
+  <div class="callout callout-warning"><strong>Heads up</strong><p>GitHub repos can move or rename. If a command fails, search GitHub.com for the repo name to find the current address.</p></div>
+</div>
+
+<!-- Part 3: Skills -->
+<div class="section" id="skills">
+  <div class="section-head">Part 03</div>
+  <h2><span class="prompt">&gt;</span> Skills to Install</h2>
+  <p class="section-desc">Specialist playbooks. Each one is like hiring a consultant for that area.</p>
+
+  <div class="table-wrap"><table>
+    <tr><th>Skill</th><th>What It Does</th><th>When You'd Use It</th></tr>
+    <tr><td><strong>Marketing Skills Library</strong> (Corey Haines)</td><td>Full marketing team — copywriting, SEO, paid ads, social media</td><td>Any marketing task</td></tr>
+    <tr><td><strong>Web Assets Generator</strong></td><td>Creates banners, icons, social images — properly sized</td><td>When you need visuals</td></tr>
+    <tr><td><strong>Jobs to Be Done</strong></td><td>Business strategy framework to understand what customers want</td><td>Product decisions, positioning</td></tr>
+    <tr><td><strong>Explain Code</strong> (Official)</td><td>Translates code into plain English</td><td>When you see code and want to understand it</td></tr>
+    <tr><td><strong>Deep Research</strong></td><td>Multi-step research with sources cited</td><td>Market research, competitor analysis</td></tr>
+  </table></div>
+</div>
+
+<!-- Part 4: Folder Map -->
+<div class="section" id="folder-map">
+  <div class="section-head">Part 04</div>
+  <h2><span class="prompt">&gt;</span> Where Everything Lives</h2>
+  <p class="section-desc">The ~ symbol means your home folder (/Users/[yourname]/).</p>
+
+  <h4>Global settings and skills (shared across all projects):</h4>
+  <div class="tree">~/.claude/<br>&nbsp;&nbsp;├── skills/<span class="cm">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;-- All installed add-ons</span><br>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── superpowers/<span class="cm">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;-- Example add-on</span><br>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── ...<br>&nbsp;&nbsp;└── projects/<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [project-name]/<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── memory/<span class="cm">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;-- Claude's memory for this project</span></div>
+
+  <h4>Your project folder (one per project):</h4>
+  <div class="tree">~/Sites/my-project/<span class="cm">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;-- Your project folder</span><br>&nbsp;&nbsp;├── CLAUDE.md<span class="cm">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;-- House rules for THIS project</span><br>&nbsp;&nbsp;├── Context.md<span class="cm">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;-- Background info</span><br>&nbsp;&nbsp;└── [your files...]</div>
+</div>
+
+<!-- Part 5: Glossary -->
+<div class="section" id="glossary">
+  <div class="section-head">Part 05</div>
+  <h2><span class="prompt">&gt;</span> Jargon Buster</h2>
+  <p class="section-desc">Plain English translations of terms you'll see.</p>
+
+  <div class="table-wrap"><table>
+    <tr><th>Term</th><th>What It Actually Means</th></tr>
+    <tr><td><strong>Repo</strong></td><td>A folder of files on GitHub — like a shared Google Drive folder</td></tr>
+    <tr><td><strong>git clone</strong></td><td>Download a repo from GitHub to your computer</td></tr>
+    <tr><td><strong>Terminal</strong></td><td>The app on Mac for typing commands. Find via Spotlight (Cmd + Space)</td></tr>
+    <tr><td><strong>~ (tilde)</strong></td><td>Shortcut for your home folder: /Users/[yourname]/</td></tr>
+    <tr><td><strong>MCP</strong></td><td>Model Context Protocol — plugs Claude into other apps (Slack, Drive, etc.)</td></tr>
+    <tr><td><strong>Slash command</strong></td><td>Typing /something to trigger a skill (e.g., /commit)</td></tr>
+    <tr><td><strong>Plugin</strong></td><td>An add-on for Claude — like browser extensions for Chrome</td></tr>
+    <tr><td><strong>Hook</strong></td><td>An "if this, then that" rule for Claude</td></tr>
+  </table></div>
+</div>
+
+<!-- Part 6: Find More -->
+<div class="section" id="find-more">
+  <div class="section-head">Part 06</div>
+  <h2><span class="prompt">&gt;</span> Where to Find More Stuff</h2>
+  <p class="section-desc">The best places to browse for skills, MCP servers, and plugins.</p>
+
+  <h3>Start Here (Top 5)</h3>
+  <div class="table-wrap"><table>
+    <tr><th>What You Want</th><th>Where to Go</th><th>What You'll Find</th></tr>
+    <tr><td><strong>Official plugins</strong></td><td>claude.com/plugins</td><td>Anthropic's store — look for "Verified" badge</td></tr>
+    <tr><td><strong>MCP servers</strong></td><td>registry.modelcontextprotocol.io</td><td>Official directory by Anthropic, GitHub, Microsoft</td></tr>
+    <tr><td><strong>Biggest MCP collection</strong></td><td>mcp.so</td><td>19,500+ adapters, searchable by category</td></tr>
+    <tr><td><strong>Biggest skills library</strong></td><td>skillsmp.com</td><td>700,000+ pre-built skills</td></tr>
+    <tr><td><strong>Everything in one place</strong></td><td>github.com/rohitg00/awesome-claude-code-toolkit</td><td>The best single bookmark</td></tr>
+  </table></div>
+
+  <h3>Communities</h3>
+  <div class="table-wrap"><table>
+    <tr><th>Where</th><th>What Happens There</th></tr>
+    <tr><td>reddit.com/r/ClaudeCode</td><td>Main community — setups, questions, troubleshooting</td></tr>
+    <tr><td>reddit.com/r/ClaudeAI</td><td>Broader Claude community</td></tr>
+    <tr><td>awesomeclaude.ai</td><td>Visual, browsable directory of tools</td></tr>
+    <tr><td>claudelog.com</td><td>Guides, tutorials, best practices</td></tr>
+  </table></div>
+</div>
+
+<!-- Part 7: Prompts -->
+<div class="section" id="prompts">
+  <div class="section-head">Part 07</div>
+  <h2><span class="prompt">&gt;</span> Copy-Paste Prompts</h2>
+  <p class="section-desc">Ready-to-use messages. Copy, paste into Claude Code, press Enter.</p>
+
+  <div class="callout callout-info" style="margin-bottom:24px;"><strong>Start Every New Project With This</strong><p>The single most important prompt in this guide. Paste it as the very first thing you say in a new project.</p></div>
+
+  <div class="prompt-card" style="border-color:var(--primary);">
+    <div class="prompt-card-header"><h4>The Recommended First Message</h4><span class="when">new project</span></div>
+    <div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>Hi Claude. I've just created this project folder and I need your help setting it up properly and building it out.
+
+Before we do anything, here's what you need to know about me:
+- I'm a business decision maker, not a developer
+- Always talk to me in plain, non-technical language
+- When you make changes, explain what you did and why in terms I can understand
+- Don't build anything until we've talked through what I need first
+- Ask me questions before making assumptions
+
+Let's start by getting this project set up:
+
+1. Ask me about the project — what it is, who it's for, what I want it to achieve, and any preferences I have. Use these answers to create the CLAUDE.md and Context.md files.
+
+2. Set up your memory system for this project so you remember our conversations.
+
+3. Check that global skills (like Superpowers) are installed and available.
+
+4. Once setup is done, give me a status report and then ask me what I'd like to work on first.
+
+Let's go.</pre></div>
+  </div>
+
+  <div class="prompt-card"><div class="prompt-card-header"><h4>Health Check</h4><span class="when">any project</span></div><div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>Check if this project has the following configuration files set up properly. For each one, tell me: does it exist, where is it, and is it empty or does it have content? Give me a simple status report.
+
+1. CLAUDE.md (or AGENTS.md) — the "house rules" file in the project root
+2. Context.md — background info file in the project root
+3. Memory system — look for ~/.claude/projects/ folder that matches this project, and check for MEMORY.md inside it
+4. Skills — check if ~/.claude/skills/ exists and what's installed there
+
+For anything that's missing or empty, tell me what it should contain in plain, non-technical language. I'm not a developer — I'm a business decision maker.
+
+Format your answer as a simple table:
+| File | Status | What to Do |</pre></div></div>
+
+  <div class="prompt-card"><div class="prompt-card-header"><h4>Get Up to Speed</h4><span class="when">start of session</span></div><div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>Read the CLAUDE.md, Context.md, and your memory for this project. Then give me a brief summary of:
+1. What this project is
+2. Where we left off
+3. What's pending or next
+
+Keep it to a few sentences. I'll tell you what I want to work on today.</pre></div></div>
+
+  <div class="prompt-card"><div class="prompt-card-header"><h4>End of Session</h4><span class="when">wrapping up</span></div><div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>Before we wrap up, please do the following:
+
+1. Update CLAUDE.md — Add any new rules, preferences, or decisions we made during this session that should apply going forward. Don't remove existing content, just add what's new.
+
+2. Update Context.md — Add any new context about the project, business, audience, or strategy that came up during this session.
+
+3. Update Memory — Save anything important about me, my preferences, or project status that you should remember for next time.
+
+4. Give me a short summary of what was added to each file so I know what changed.
+
+Talk to me in plain language — I'm not a developer.</pre></div></div>
+
+  <div class="prompt-card"><div class="prompt-card-header"><h4>End of Day Debrief</h4><span class="when">full day wrap-up</span></div><div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>End of day debrief. Please do the following:
+
+1. Review everything we worked on today and summarise the key decisions, changes, and progress made.
+2. Update CLAUDE.md with any new project rules or preferences discovered today.
+3. Update Context.md with any new business context, goals, or strategic decisions from today.
+4. Update Memory with anything you should remember about me, the project, or our working style for future sessions.
+5. Create a brief "session log" summary I can refer back to — what we did, what's done, and what's still pending.
+
+Keep everything in plain language. I'm a business decision maker, not a developer.</pre></div></div>
+
+  <div class="prompt-card"><div class="prompt-card-header"><h4>Remember This</h4><span class="when">any time</span></div><div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>Remember this for all future sessions: [write what you want remembered here]</pre></div></div>
+
+  <div class="prompt-card"><div class="prompt-card-header"><h4>Explain What Just Happened</h4><span class="when">when confused</span></div><div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>Explain what you just did in plain, non-technical language. I'm not a developer. Tell me:
+1. What changed?
+2. Why did you do it?
+3. What does it mean for the project?
+4. Is there anything I need to decide or approve?</pre></div></div>
+
+  <div class="prompt-card"><div class="prompt-card-header"><h4>Weekly Status Report</h4><span class="when">once a week</span></div><div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>Give me a weekly project status report in plain language:
+
+1. What has been built or changed this week?
+2. What's working well?
+3. What still needs to be done?
+4. Are there any decisions I need to make?
+5. Update the Context.md and CLAUDE.md if anything is outdated.
+
+Format it like a business report, not a technical changelog. I'm a decision maker, not a developer.</pre></div></div>
+</div>
+
+<!-- Part 8: Talking to Claude -->
+<div class="section" id="talking">
+  <div class="section-head">Part 08</div>
+  <h2><span class="prompt">&gt;</span> How to Talk to Claude</h2>
+  <p class="section-desc">The quality of output depends on how you ask. Brief Claude like a freelancer.</p>
+
+  <h3>Be Specific, Not Vague</h3>
+  <div class="table-wrap"><table>
+    <tr><th>Instead of this...</th><th>Say this...</th></tr>
+    <tr><td>"Fix the website"</td><td>"The contact form on the homepage isn't sending emails. Find out why and fix it."</td></tr>
+    <tr><td>"Write some copy"</td><td>"Write a homepage headline for [company]. Audience: small business owners. Tone: friendly, confident."</td></tr>
+    <tr><td>"Make it look better"</td><td>"The pricing page is cluttered. Simplify layout, add white space, make 'Pro' plan stand out."</td></tr>
+  </table></div>
+
+  <h3>Key Principles</h3>
+  <ul>
+    <li><strong>Tell Claude your role</strong> — "I'm a business owner, not a developer. Explain in plain language."</li>
+    <li><strong>Break big tasks into steps</strong> — Plan first, build in stages, review at checkpoints.</li>
+    <li><strong>Give examples</strong> — "Make it look like [website]" or "Tone like [brand]"</li>
+    <li><strong>Say what you DON'T want</strong> — "Don't use jargon", "Don't over-engineer this"</li>
+  </ul>
+</div>
+
+<!-- Part 9: Mistakes -->
+<div class="section" id="mistakes">
+  <div class="section-head">Part 09</div>
+  <h2><span class="prompt">&gt;</span> Common Mistakes</h2>
+  <p class="section-desc">Learn from others so you don't make these yourself.</p>
+
+  <div class="mistake-card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>mistake_01.log</div><div class="mistake-body"><h4 style="color:var(--text);margin-top:0;">Letting Claude Run Wild Without a Plan</h4><p class="lbl lbl-bad">THE MISTAKE</p><p>Asking Claude to "build me a website" without reviewing along the way.</p><p class="lbl lbl-fix">THE FIX</p><p>Say: "Before you build anything, let's talk through what I need. Ask me questions first."</p></div></div>
+
+  <div class="mistake-card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>mistake_02.log</div><div class="mistake-body"><h4 style="color:var(--text);margin-top:0;">Not Reviewing Before Approving</h4><p class="lbl lbl-bad">THE MISTAKE</p><p>Clicking "approve" without reading what Claude is about to do.</p><p class="lbl lbl-fix">THE FIX</p><p>Ask: "Explain what this will do before I approve it."</p></div></div>
+
+  <div class="mistake-card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>mistake_03.log</div><div class="mistake-body"><h4 style="color:var(--text);margin-top:0;">Not Setting Up Config Files</h4><p class="lbl lbl-bad">THE MISTAKE</p><p>Jumping into work without CLAUDE.md or Context.md.</p><p class="lbl lbl-fix">THE FIX</p><p>Spend 10 minutes using the "First Message" prompt from Part 7.</p></div></div>
+
+  <div class="mistake-card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>mistake_04.log</div><div class="mistake-body"><h4 style="color:var(--text);margin-top:0;">Asking for Too Much at Once</h4><p class="lbl lbl-bad">THE MISTAKE</p><p>"Build me a complete e-commerce site with accounts, payments, blog, and admin dashboard."</p><p class="lbl lbl-fix">THE FIX</p><p>Break it into phases. Start with the most important thing. Get that right, then move on.</p></div></div>
+</div>
+
+<!-- Part 10: When Stuck -->
+<div class="section" id="stuck">
+  <div class="section-head">Part 10</div>
+  <h2><span class="prompt">&gt;</span> When Claude Gets Stuck</h2>
+  <p class="section-desc">Signs: repeating itself, apologising without fixing, suggesting increasingly complex solutions.</p>
+
+  <div class="prompt-card"><div class="prompt-card-header"><h4>Option 1: Reset</h4></div><div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>Stop. Let's reset. Here's what I need in simple terms: [restate your goal]. What's the simplest way to do this?</pre></div></div>
+
+  <div class="prompt-card"><div class="prompt-card-header"><h4>Option 2: Break It Down</h4></div><div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>This isn't working. Let's break this into smaller pieces. What's the first thing we need to figure out?</pre></div></div>
+
+  <div class="prompt-card"><div class="prompt-card-header"><h4>Option 3: Different Approach</h4></div><div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>You seem stuck on one approach. Can you think of a completely different way to solve this?</pre></div></div>
+
+  <div class="callout callout-tip"><strong>Option 4: Start Fresh</strong><p>Open a new conversation. Your CLAUDE.md, Context.md, and Memory carry over automatically.</p></div>
+</div>
+
+<!-- Part 11: Reviewing Work -->
+<div class="section" id="review">
+  <div class="section-head">Part 11</div>
+  <h2><span class="prompt">&gt;</span> How to Review Claude's Work</h2>
+  <p class="section-desc">You don't need to understand code to be a good reviewer.</p>
+
+  <div class="prompt-card"><div class="prompt-card-header"><h4>"Does It Work?" Check</h4></div><div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>Show me how to test what you just built. Walk me through it step by step.</pre></div></div>
+  <div class="prompt-card"><div class="prompt-card-header"><h4>"Did It Do What I Asked?" Check</h4></div><div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>Compare what you just built against my original request. Did you miss anything? Did you add anything I didn't ask for?</pre></div></div>
+  <div class="prompt-card"><div class="prompt-card-header"><h4>"Is It Safe?" Check</h4></div><div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>Before we go live with this, are there any security concerns? Did you accidentally include any passwords, API keys, or sensitive information in the code?</pre></div></div>
+  <div class="prompt-card"><div class="prompt-card-header"><h4>"Second Opinion" Check</h4></div><div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>Now pretend you're a senior quality reviewer. Look at everything you just built with fresh eyes. What would you flag as a concern, and what would you improve?</pre></div></div>
+
+  <div class="callout callout-tip"><strong>Trust But Verify</strong><p><strong style="display:inline;font-weight:400;color:var(--green)">Trust Claude for:</strong> Routine tasks, first drafts, research, generating ideas.<br><strong style="display:inline;font-weight:400;color:var(--yellow)">Verify before approving:</strong> Anything going live, involving money, deleting work, or security-related.</p></div>
+</div>
+
+<!-- Part 12: Security -->
+<div class="section" id="security">
+  <div class="section-head">Part 12</div>
+  <h2><span class="prompt">&gt;</span> Security Basics</h2>
+  <p class="section-desc">Claude has access to your files. Be smart about what you share.</p>
+
+  <div class="table-wrap"><table>
+    <tr><th>Never Share...</th><th>Why Not</th></tr>
+    <tr><td><strong>Passwords</strong></td><td>End up stored in files or conversation history</td></tr>
+    <tr><td><strong>API keys</strong></td><td>Others could use your accounts and run up charges</td></tr>
+    <tr><td><strong>Credit card / bank details</strong></td><td>Obvious reasons</td></tr>
+    <tr><td><strong>Customer personal data</strong></td><td>Privacy regulations (GDPR) and ethics</td></tr>
+  </table></div>
+
+  <div class="callout callout-warning"><strong>Keep Secrets in a .env File</strong><p>A special file that stores passwords/keys locally. Never uploaded or shared. Ask Claude: "Help me set up a .env file for this project."</p></div>
+</div>
+
+<!-- Part 13: Costs -->
+<div class="section" id="costs">
+  <div class="section-head">Part 13</div>
+  <h2><span class="prompt">&gt;</span> Cost &amp; Usage Awareness</h2>
+  <p class="section-desc">Claude uses credits every interaction. Here's how to avoid waste.</p>
+
+  <div class="table-wrap"><table>
+    <tr><th>Uses MORE Credits</th><th>Uses FEWER Credits</th></tr>
+    <tr><td>Long, rambling requests</td><td>Short, specific requests</td></tr>
+    <tr><td>Letting Claude over-build</td><td>Telling Claude to keep it simple</td></tr>
+    <tr><td>20 back-and-forth messages (unclear brief)</td><td>Clear brief upfront</td></tr>
+    <tr><td>Rewriting the same thing repeatedly</td><td>Getting it right with a good first brief</td></tr>
+  </table></div>
+</div>
+
+<!-- Part 14: Code vs Chat -->
+<div class="section" id="code-vs-chat">
+  <div class="section-head">Part 14</div>
+  <h2><span class="prompt">&gt;</span> Claude Code vs Regular Chat</h2>
+  <p class="section-desc">Different tools for different jobs.</p>
+
+  <div class="table-wrap"><table>
+    <tr><th>Use Claude Code When...</th><th>Use Regular Chat When...</th></tr>
+    <tr><td>Building or editing a website</td><td>Asking general questions</td></tr>
+    <tr><td>Setting up a project</td><td>Writing a one-off email</td></tr>
+    <tr><td>Fixing a bug in your project</td><td>Brainstorming (not tied to a project)</td></tr>
+    <tr><td>Working with files on your computer</td><td>Strategy conversations</td></tr>
+    <tr><td>Need ongoing project context</td><td>Learning about a topic</td></tr>
+  </table></div>
+
+  <div class="callout callout-info"><strong>The Simple Rule</strong><p>If it involves <strong>files on your computer</strong> or an <strong>ongoing project</strong> — use Claude Code.<br>If it's a <strong>one-off question</strong> — use regular Claude chat.</p></div>
+</div>
+
+<!-- Part 15: Project Structure -->
+<div class="section" id="structure">
+  <div class="section-head">Part 15</div>
+  <h2><span class="prompt">&gt;</span> How to Structure Projects</h2>
+  <p class="section-desc">Good organisation helps both you and Claude.</p>
+
+  <h3>One Project = One Folder</h3>
+  <div class="tree">~/Sites/<br>&nbsp;&nbsp;├── company-website/<span class="cm">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;-- One project</span><br>&nbsp;&nbsp;├── marketing-landing-page/<span class="cm">&nbsp;&lt;-- Another project</span><br>&nbsp;&nbsp;├── client-project-name/<span class="cm">&nbsp;&nbsp;&nbsp;&nbsp;&lt;-- Another project</span><br>&nbsp;&nbsp;└── personal-blog/<span class="cm">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;-- Another project</span></div>
+
+  <h3>Naming Conventions</h3>
+  <div class="table-wrap"><table>
+    <tr><th>Bad Name</th><th>Good Name</th></tr>
+    <tr><td>new folder</td><td>company-website</td></tr>
+    <tr><td>project2</td><td>client-smith-landing-page</td></tr>
+    <tr><td>stuff</td><td>marketing-assets</td></tr>
+    <tr><td>final final v2</td><td>product-launch-campaign</td></tr>
+  </table></div>
+</div>
+
+<!-- Part 16: Backups -->
+<div class="section" id="backups">
+  <div class="section-head">Part 16</div>
+  <h2><span class="prompt">&gt;</span> Backup Basics</h2>
+  <p class="section-desc">Version control (git) = unlimited undo button for your entire project.</p>
+
+  <ul>
+    <li><strong>Undo anything.</strong> Roll back to any previous version.</li>
+    <li><strong>See what changed.</strong> Every save has a description.</li>
+    <li><strong>Never lose work.</strong> Deleted files are in version history.</li>
+    <li><strong>Try things safely.</strong> Experiment knowing you can always undo.</li>
+  </ul>
+
+  <div class="prompt-card"><div class="prompt-card-header"><h4>Save a Snapshot</h4></div><div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>Save the current state of this project as a git commit. Describe what changed.</pre></div></div>
+  <div class="prompt-card"><div class="prompt-card-header"><h4>See What's Changed</h4></div><div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>Show me what files have changed since the last commit, and summarise the changes in plain language.</pre></div></div>
+  <div class="prompt-card"><div class="prompt-card-header"><h4>Undo / Go Back</h4></div><div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>Show me the last 5 commits (saved versions) for this project, with a plain language description of each. I might want to go back to an earlier one.</pre></div></div>
+</div>
+
+<!-- Part 17: FAQ -->
+<div class="section" id="faq">
+  <div class="section-head">Part 17</div>
+  <h2><span class="prompt">&gt;</span> Troubleshooting FAQ</h2>
+  <p class="section-desc">Common problems and how to fix them. Click to expand.</p>
+
+  <div class="faq-item"><div class="faq-question">"Claude forgot everything about my project" <span class="arrow">&#9660;</span></div><div class="faq-answer"><p style="color:var(--muted)">Happens when you start a new conversation. <strong>Fix:</strong> Use the "Get Up to Speed" prompt from Part 7. Keep CLAUDE.md and Context.md up to date.</p></div></div>
+  <div class="faq-item"><div class="faq-question">"Claude won't read my files" <span class="arrow">&#9660;</span></div><div class="faq-answer"><p style="color:var(--muted)">Claude Code needs to be opened from your project folder. <strong>Fix:</strong> In Terminal: <code>cd ~/Sites/my-project-name</code> then launch Claude Code.</p></div></div>
+  <div class="faq-item"><div class="faq-question">"Skills aren't loading" <span class="arrow">&#9660;</span></div><div class="faq-answer"><p style="color:var(--muted)"><strong>Fix:</strong> Ask Claude "List everything in ~/.claude/skills/". If there but not working, start a new conversation. If not there, re-run the install command.</p></div></div>
+  <div class="faq-item"><div class="faq-question">"Claude keeps doing things I didn't ask for" <span class="arrow">&#9660;</span></div><div class="faq-answer"><p style="color:var(--muted)"><strong>Fix:</strong> Add to CLAUDE.md: "Only do exactly what I ask. Don't add extra features or make 'improvements' beyond the task. If you think something else should change, tell me and let me decide."</p></div></div>
+  <div class="faq-item"><div class="faq-question">"The install command failed" <span class="arrow">&#9660;</span></div><div class="faq-answer"><div class="table-wrap"><table><tr><th>Error</th><th>Fix</th></tr><tr><td>"repository not found"</td><td>Search GitHub for the repo name</td></tr><tr><td>"destination path already exists"</td><td>Already installed — no action needed</td></tr><tr><td>"command not found: git"</td><td>Ask Claude: "Help me install git on my Mac"</td></tr></table></div></div></div>
+  <div class="faq-item"><div class="faq-question">"I accidentally approved something I shouldn't have" <span class="arrow">&#9660;</span></div><div class="faq-answer"><p style="color:var(--muted)"><strong>Fix:</strong> If using git: "Undo the last change and go back to the previous version." If not using git — this is why Part 16 (backups) matters.</p></div></div>
+  <div class="faq-item"><div class="faq-question">"I don't understand what Claude just did" <span class="arrow">&#9660;</span></div><div class="faq-answer"><p style="color:var(--muted)"><strong>Fix:</strong> Paste: "Explain what you just did in plain, non-technical language. I'm not a developer."</p></div></div>
+</div>
+
+<!-- Part 18: Teams -->
+<div class="section" id="teams">
+  <div class="section-head">Part 18</div>
+  <h2><span class="prompt">&gt;</span> Recommended Tools by Team</h2>
+  <p class="section-desc">Tailored skills and MCP connections for each team. Click to expand.</p>
+
+  <div class="faq-item"><div class="faq-question">SEO Team <span class="arrow">&#9660;</span></div><div class="faq-answer"><h4 style="margin-top:4px;">Skills</h4><div class="table-wrap"><table><tr><th>Skill</th><th>What It Does</th></tr><tr><td><strong>claude-seo</strong></td><td>19 SEO sub-skills — audits, E-E-A-T, schema, backlinks, local SEO</td></tr><tr><td><strong>Marketing Skills Library</strong></td><td>5 SEO skills plus content strategy and CRO</td></tr></table></div><p style="color:var(--muted);font-size:13px;"><strong>Already installed:</strong> seo-audit, programmatic-seo, ai-seo, content-strategy, audit-website</p><h4>MCP Servers</h4><div class="table-wrap"><table><tr><th>Server</th><th>Connects To</th></tr><tr><td><strong>Google Search Console</strong></td><td>Search performance, indexing, crawl stats</td></tr><tr><td><strong>Google Analytics 4</strong></td><td>Traffic, behaviour, conversions</td></tr><tr><td><strong>Ahrefs</strong> (Official)</td><td>Backlinks, keyword metrics</td></tr><tr><td><strong>Semrush</strong> (Official)</td><td>SEO data, traffic analysis</td></tr></table></div></div></div>
+
+  <div class="faq-item"><div class="faq-question">PPC Team <span class="arrow">&#9660;</span></div><div class="faq-answer"><h4 style="margin-top:4px;">Skills</h4><div class="table-wrap"><table><tr><th>Skill</th><th>What It Does</th></tr><tr><td><strong>claude-ads</strong></td><td>186 audit checks across Google, Meta, YouTube, LinkedIn, TikTok</td></tr></table></div><p style="color:var(--muted);font-size:13px;"><strong>Already installed:</strong> paid-ads, ad-creative</p><h4>MCP Servers</h4><div class="table-wrap"><table><tr><th>Server</th><th>Connects To</th></tr><tr><td><strong>Cross-Platform Ads</strong></td><td>Google, Meta, LinkedIn, TikTok — 100+ tools</td></tr><tr><td><strong>Google Ads</strong> (Official)</td><td>Campaign metrics, budgets</td></tr><tr><td><strong>Meta Ads</strong></td><td>Facebook &amp; Instagram ads</td></tr></table></div></div></div>
+
+  <div class="faq-item"><div class="faq-question">Web Developer Team <span class="arrow">&#9660;</span></div><div class="faq-answer"><h4 style="margin-top:4px;">Key MCP Servers</h4><div class="table-wrap"><table><tr><th>Server</th><th>Connects To</th></tr><tr><td><strong>GitHub</strong> (Official)</td><td>Repos, PRs, issues, CI/CD</td></tr><tr><td><strong>Sentry</strong> (Official)</td><td>Error tracking, performance</td></tr><tr><td><strong>Playwright</strong></td><td>Browser testing</td></tr><tr><td><strong>PostgreSQL</strong></td><td>Database queries</td></tr></table></div><p style="color:var(--muted);font-size:13px;"><strong>Already connected:</strong> Vercel, PostHog</p></div></div>
+
+  <div class="faq-item"><div class="faq-question">Web Design Team <span class="arrow">&#9660;</span></div><div class="faq-answer"><p style="color:var(--muted);font-size:13px;"><strong>Already installed:</strong> accessibility-review, design-system, design-critique, frontend-design, web-design-guidelines, ux-copy, design-handoff</p><p style="color:var(--muted);font-size:13px;"><strong>Already connected:</strong> Figma, Canva</p></div></div>
+
+  <div class="faq-item"><div class="faq-question">Client Services <span class="arrow">&#9660;</span></div><div class="faq-answer"><h4 style="margin-top:4px;">MCP Servers</h4><div class="table-wrap"><table><tr><th>Server</th><th>Connects To</th></tr><tr><td><strong>Granola</strong></td><td>Meeting notes, action items</td></tr><tr><td><strong>Google Docs</strong></td><td>Client reports and documents</td></tr><tr><td><strong>Notion</strong></td><td>Client wikis, project pages</td></tr></table></div><p style="color:var(--muted);font-size:13px;"><strong>Already connected:</strong> Slack, Gmail, Calendar, Drive, Canva, Monday.com</p></div></div>
+
+  <div class="faq-item"><div class="faq-question">Project Management <span class="arrow">&#9660;</span></div><div class="faq-answer"><h4 style="margin-top:4px;">MCP Servers</h4><div class="table-wrap"><table><tr><th>Server</th><th>Connects To</th></tr><tr><td><strong>Linear</strong></td><td>Issue tracking</td></tr><tr><td><strong>Jira/Confluence</strong></td><td>Tickets, sprints, docs</td></tr><tr><td><strong>Asana</strong></td><td>Tasks, projects, progress</td></tr><tr><td><strong>ClickUp</strong></td><td>Task management</td></tr><tr><td><strong>Notion</strong></td><td>Project docs, wikis</td></tr></table></div><p style="color:var(--muted);font-size:13px;"><strong>Already connected:</strong> Monday.com, Slack, Calendar</p></div></div>
+
+  <div class="faq-item"><div class="faq-question">Sales <span class="arrow">&#9660;</span></div><div class="faq-answer"><h4 style="margin-top:4px;">MCP Servers</h4><div class="table-wrap"><table><tr><th>Server</th><th>Connects To</th></tr><tr><td><strong>HubSpot</strong> (Official)</td><td>Contacts, deals, pipeline</td></tr><tr><td><strong>Salesforce</strong> (Official)</td><td>CRM data — 60+ tools</td></tr><tr><td><strong>Apollo.io</strong></td><td>Lead search, email sequences</td></tr><tr><td><strong>LinkedIn Sales Nav</strong></td><td>Prospect search</td></tr></table></div></div></div>
+
+  <div class="faq-item"><div class="faq-question">Finance <span class="arrow">&#9660;</span></div><div class="faq-answer"><h4 style="margin-top:4px;">MCP Servers</h4><div class="table-wrap"><table><tr><th>Server</th><th>Connects To</th></tr><tr><td><strong>Xero</strong> (Official)</td><td>Invoicing, bookkeeping, reporting</td></tr><tr><td><strong>QuickBooks</strong> (Official)</td><td>Customers, invoices, expenses</td></tr><tr><td><strong>Stripe</strong> (Official)</td><td>Payments, subscriptions, refunds</td></tr><tr><td><strong>Google Sheets</strong></td><td>Financial dashboards</td></tr></table></div></div></div>
+
+  <div class="faq-item"><div class="faq-question">Operations Director <span class="arrow">&#9660;</span></div><div class="faq-answer"><h4 style="margin-top:4px;">Skills</h4><div class="table-wrap"><table><tr><th>Skill</th><th>What It Does</th></tr><tr><td><strong>SOP Creator</strong></td><td>Turns brain dumps into clean SOPs</td></tr></table></div><h4>MCP Servers</h4><div class="table-wrap"><table><tr><th>Server</th><th>Connects To</th></tr><tr><td><strong>n8n</strong></td><td>Workflow automations</td></tr><tr><td><strong>Notion</strong></td><td>Process docs, wikis</td></tr><tr><td><strong>Databox</strong></td><td>KPI dashboards from 100+ sources</td></tr></table></div></div></div>
+
+  <div class="faq-item"><div class="faq-question">Managing Director <span class="arrow">&#9660;</span></div><div class="faq-answer"><h4 style="margin-top:4px;">Skills</h4><div class="table-wrap"><table><tr><th>Skill</th><th>What It Does</th></tr><tr><td><strong>Business Strategy</strong></td><td>Porter's 5 Forces, SWOT, BCG, Blue Ocean</td></tr><tr><td><strong>CEO Advisor</strong></td><td>Strategic decisions, board decks, competitive intel</td></tr><tr><td><strong>Deep Research</strong></td><td>Multi-phase investigation with sources</td></tr></table></div><h4>MCP Servers</h4><div class="table-wrap"><table><tr><th>Server</th><th>Connects To</th></tr><tr><td><strong>HubSpot</strong></td><td>Pipeline, revenue reporting</td></tr><tr><td><strong>Databox</strong></td><td>Cross-platform KPIs</td></tr><tr><td><strong>Stripe</strong></td><td>Revenue, payment metrics</td></tr></table></div></div></div>
+
+  <div class="faq-item"><div class="faq-question">Technical Director <span class="arrow">&#9660;</span></div><div class="faq-answer"><h4 style="margin-top:4px;">Skills</h4><div class="table-wrap"><table><tr><th>Skill</th><th>What It Does</th></tr><tr><td><strong>Trail of Bits Security</strong></td><td>Vulnerability detection, audit workflows</td></tr><tr><td><strong>Architect Reviewer</strong></td><td>Architecture risk analysis</td></tr><tr><td><strong>Terraform</strong></td><td>Infrastructure as code</td></tr></table></div><h4>MCP Servers</h4><div class="table-wrap"><table><tr><th>Server</th><th>Connects To</th></tr><tr><td><strong>Sentry</strong></td><td>Error tracking</td></tr><tr><td><strong>GitHub</strong></td><td>Repos, PRs, code review</td></tr><tr><td><strong>PostgreSQL Pro</strong></td><td>DB health, query optimisation</td></tr><tr><td><strong>Code Sentinel</strong></td><td>Security vulnerabilities</td></tr></table></div></div></div>
+
+  <div class="faq-item"><div class="faq-question">Internal Brand Marketing <span class="arrow">&#9660;</span></div><div class="faq-answer"><p style="color:var(--muted);font-size:13px;"><strong>Already installed:</strong> copywriting, copy-editing, social-content, content-strategy, marketing-ideas, x-twitter-growth, marketing-psychology, brainstorming, banner-creator</p><h4>MCP Servers</h4><div class="table-wrap"><table><tr><th>Server</th><th>Connects To</th></tr><tr><td><strong>Buffer</strong></td><td>Social media scheduling</td></tr><tr><td><strong>Ayrshare</strong></td><td>Post to 13+ platforms</td></tr></table></div><p style="color:var(--muted);font-size:13px;"><strong>Already connected:</strong> Canva, Figma, Slack, Gmail, Drive</p></div></div>
+</div>
+
+<!-- Part 19: Resources -->
+<div class="section" id="resources">
+  <div class="section-head">Part 19</div>
+  <h2><span class="prompt">&gt;</span> Resources &amp; People to Follow</h2>
+  <p class="section-desc">The best places to learn and the people sharing the most useful content.</p>
+
+  <h3>Official Resources</h3>
+  <div class="table-wrap"><table>
+    <tr><th>Resource</th><th>Who It's For</th><th>What It Is</th></tr>
+    <tr><td><strong>Claude Code Docs</strong> (code.claude.com)</td><td>Everyone</td><td>Official docs — the best starting point</td></tr>
+    <tr><td><strong>Claude Blog</strong> (claude.com/blog)</td><td>Everyone</td><td>Official announcements and how-tos</td></tr>
+    <tr><td><strong>"Claude Code in Action"</strong></td><td>Everyone</td><td>Free official course</td></tr>
+  </table></div>
+
+  <h3>People to Follow on X</h3>
+  <h4>Inside Anthropic</h4>
+  <div class="table-wrap"><table>
+    <tr><th>Who</th><th>Handle</th><th>Why Follow</th></tr>
+    <tr><td><strong>Boris Cherny</strong></td><td>@bcherny</td><td>Creator of Claude Code. Shares setup, workflows, team tips.</td></tr>
+    <tr><td><strong>Alex Albert</strong></td><td>@alexalbert__</td><td>Prompt engineering lead. How to talk to Claude better.</td></tr>
+    <tr><td><strong>Thorsten Ball</strong></td><td>@thorstenball</td><td>Anthropic engineer. Practical insider insights.</td></tr>
+  </table></div>
+
+  <h4>Educators &amp; Power Users</h4>
+  <div class="table-wrap"><table>
+    <tr><th>Who</th><th>Handle</th><th>Why Follow</th></tr>
+    <tr><td><strong>Jesse Vincent</strong></td><td>@obra</td><td>Created Superpowers. Advanced configs and workflows.</td></tr>
+    <tr><td><strong>Corey Haines</strong></td><td>@coreyhainesco</td><td>Marketing &amp; business angle. Great for non-developers.</td></tr>
+    <tr><td><strong>Peter Steinberger</strong></td><td>@steipete</td><td>Blog (steipete.me) is must-read for agentic engineering.</td></tr>
+    <tr><td><strong>Nick Dobos</strong></td><td>@NickADobos</td><td>Curates the best repos, skills, and tools.</td></tr>
+    <tr><td><strong>Matt Shumer</strong></td><td>@mattshumer_</td><td>Pushes boundaries of AI agent workflows.</td></tr>
+    <tr><td><strong>Simon Willison</strong></td><td>@simonw</td><td>Deeply technical, fair-minded analysis.</td></tr>
+    <tr><td><strong>Greg Isenberg</strong></td><td>@gregisenberg</td><td>Business angle — build products quickly with Claude.</td></tr>
+  </table></div>
+
+  <h3>YouTube Channels</h3>
+  <div class="table-wrap"><table>
+    <tr><th>Channel</th><th>What They Cover</th><th>Best For</th></tr>
+    <tr><td><strong>Fireship</strong></td><td>Fast explainers. 3M+ subs.</td><td>Quick overviews</td></tr>
+    <tr><td><strong>Theo (t3.gg)</strong></td><td>Honest AI tool takes. ~500K subs.</td><td>What Claude Code feels like</td></tr>
+    <tr><td><strong>IndyDevDan</strong></td><td>Building AI agents with MCP.</td><td>Step-by-step tutorials</td></tr>
+    <tr><td><strong>McKay Wrigley</strong></td><td>"Deep Mastery" playlist.</td><td>Beginner to advanced</td></tr>
+    <tr><td><strong>Chris Raroque</strong></td><td>Memory, tokens, agent behaviour.</td><td>How Claude thinks</td></tr>
+    <tr><td><strong>Nataly Merezhuk</strong></td><td>Practical tips, avoiding mistakes.</td><td>Daily usage tips</td></tr>
+  </table></div>
+
+  <h3>Newsletters &amp; Blogs</h3>
+  <div class="table-wrap"><table>
+    <tr><th>Resource</th><th>What It Is</th></tr>
+    <tr><td><strong>Claude Developer Newsletter</strong></td><td>Official updates from Anthropic</td></tr>
+    <tr><td><strong>ClaudeWorld Weekly</strong></td><td>Community news, tips, new tools</td></tr>
+    <tr><td><strong>The Code Newsletter</strong></td><td>Read by 200K+ devs — Claude Code guides</td></tr>
+    <tr><td><strong>ClaudeLog</strong> (claudelog.com)</td><td>One-stop reference for guides and tutorials</td></tr>
+    <tr><td><strong>MKT1 Newsletter</strong></td><td>Marketing-focused — real Claude Code builds</td></tr>
+  </table></div>
+
+  <div class="callout callout-tip"><strong>Pro Tip from the Creator of Claude Code</strong><p>Boris Cherny's #1 tip: run multiple Claude sessions at once, each in its own git worktree. His biggest warning: don't let Claude jump straight into coding — always start with a plan.</p></div>
+</div>
+
+<!-- Part 20: Install Status -->
+<div class="section" id="status">
+  <div class="section-head">Part 20</div>
+  <h2><span class="prompt">&gt;</span> Installation Status</h2>
+  <p class="section-desc">Copy the install command and paste it into Terminal (repos/skills) or Claude Code (MCP servers).</p>
+
+  <h3>Repos (Add-Ons)</h3>
+  <div class="table-wrap"><table>
+    <tr><th>Item</th><th>Type</th><th>Status</th><th>Install Command</th></tr>
+    <tr><td><strong>Superpowers</strong></td><td>Repo</td><td><span class="badge-installed">INSTALLED</span></td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/obra/superpowers.git ~/.claude/skills/superpowers</code></td></tr>
+    <tr><td><strong>Everything Claude Code</strong></td><td>Repo</td><td><span class="badge-pending">not yet</span></td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/anthropics/everything-claude-code.git ~/.claude/skills/everything-claude-code</code></td></tr>
+    <tr><td><strong>UI UX Pro Max</strong></td><td>Repo</td><td><span class="badge-pending">not yet</span></td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/nicholasoxford/ui-ux-pro-max.git ~/.claude/skills/ui-ux-pro-max</code></td></tr>
+    <tr><td><strong>Browser Use</strong></td><td>Repo</td><td><span class="badge-pending">not yet</span></td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/browser-use/browser-use.git ~/.claude/skills/browser-use</code></td></tr>
+    <tr><td><strong>claude-mem</strong></td><td>Repo</td><td><span class="badge-pending">not yet</span></td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/sdairs/claude-mem.git ~/.claude/skills/claude-mem</code></td></tr>
+  </table></div>
+
+  <h3>Skills</h3>
+  <div class="table-wrap"><table>
+    <tr><th>Item</th><th>Type</th><th>Status</th><th>Install Command</th></tr>
+    <tr><td><strong>Marketing Skills Library</strong></td><td>Skill</td><td><span class="badge-pending">not yet</span></td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/coreyhaines31/marketingskills.git ~/.claude/skills/marketingskills</code></td></tr>
+    <tr><td><strong>Deep Research</strong></td><td>Skill</td><td><span class="badge-pending">not yet</span></td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/Weizhena/Deep-Research-skills.git ~/.claude/skills/deep-research</code></td></tr>
+    <tr><td><strong>claude-seo</strong></td><td>Skill</td><td><span class="badge-pending">not yet</span></td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/AgriciDaniel/claude-seo.git ~/.claude/skills/claude-seo</code></td></tr>
+    <tr><td><strong>claude-ads</strong></td><td>Skill</td><td><span class="badge-pending">not yet</span></td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/AgriciDaniel/claude-ads.git ~/.claude/skills/claude-ads</code></td></tr>
+    <tr><td><strong>Claude Office Skills</strong></td><td>Skill</td><td><span class="badge-pending">not yet</span></td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/tfriedel/claude-office-skills.git ~/.claude/skills/claude-office-skills</code></td></tr>
+    <tr><td><strong>Trail of Bits Security</strong></td><td>Skill</td><td><span class="badge-pending">not yet</span></td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/trailofbits/skills.git ~/.claude/skills/trailofbits-security</code></td></tr>
+    <tr><td><strong>CEO Advisor + 220 skills</strong></td><td>Skill</td><td><span class="badge-pending">not yet</span></td><td><code style="font-size:11px;word-break:break-all">git clone https://github.com/alirezarezvani/claude-skills.git ~/.claude/skills/alirezarezvani-skills</code></td></tr>
+    <tr><td><strong>Jobs to Be Done</strong></td><td>Skill</td><td><span class="badge-pending">not yet</span></td><td>Search skillsmp.com for "jobs to be done"</td></tr>
+    <tr><td><strong>Explain Code</strong></td><td>Skill</td><td><span class="badge-pending">not yet</span></td><td>Search claude.com/plugins for "explain code"</td></tr>
+    <tr><td><strong>Web Assets Generator</strong></td><td>Skill</td><td><span class="badge-pending">not yet</span></td><td>Search skillsmp.com for "web assets generator"</td></tr>
+    <tr><td><strong>Business Strategy</strong></td><td>Skill</td><td><span class="badge-pending">not yet</span></td><td>Search mcpmarket.com for "business strategy"</td></tr>
+    <tr><td><strong>SOP Creator</strong></td><td>Skill</td><td><span class="badge-pending">not yet</span></td><td>Search mcpmarket.com for "sop creator"</td></tr>
+  </table></div>
+
+  <h3>MCP Servers (App Connectors)</h3>
+  <p style="color:var(--muted);font-size:13px;margin-bottom:16px;">Paste these into <strong>Claude Code</strong> (not Terminal).</p>
+  <div class="table-wrap"><table>
+    <tr><th>Item</th><th>Type</th><th>Status</th><th>Install Command</th></tr>
+    <tr><td><strong>GitHub</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td><code style="font-size:11px;word-break:break-all">claude mcp add --transport http github https://api.githubcopilot.com/mcp/</code></td></tr>
+    <tr><td><strong>Notion</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td><code style="font-size:11px;word-break:break-all">claude mcp add --transport http notion https://mcp.notion.com/mcp</code></td></tr>
+    <tr><td><strong>Linear</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td><code style="font-size:11px;word-break:break-all">claude mcp add --transport http linear https://mcp.linear.app/mcp</code></td></tr>
+    <tr><td><strong>Asana</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td><code style="font-size:11px;word-break:break-all">claude mcp add --transport http asana https://mcp.asana.com/mcp</code></td></tr>
+    <tr><td><strong>ClickUp</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td><code style="font-size:11px;word-break:break-all">claude mcp add --transport http clickup https://mcp.clickup.com/mcp</code></td></tr>
+    <tr><td><strong>Ahrefs</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td>See github.com/ahrefs/ahrefs-mcp-server</td></tr>
+    <tr><td><strong>Semrush</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td>See github.com/mrkooblu/semrush-mcp</td></tr>
+    <tr><td><strong>Google Search Console</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td>See github.com/AminForou/mcp-gsc</td></tr>
+    <tr><td><strong>Google Analytics 4</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td>See developers.google.com/analytics/devguides/MCP</td></tr>
+    <tr><td><strong>Cross-Platform Ads</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td>See github.com/amekala/ads-mcp</td></tr>
+    <tr><td><strong>HubSpot</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td>See developers.hubspot.com/mcp</td></tr>
+    <tr><td><strong>Salesforce</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td>See developer.salesforce.com (search MCP)</td></tr>
+    <tr><td><strong>Xero</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td>See github.com/XeroAPI/xero-mcp-server</td></tr>
+    <tr><td><strong>QuickBooks</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td>See github.com/intuit/quickbooks-online-mcp-server</td></tr>
+    <tr><td><strong>Stripe</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td>See docs.stripe.com/mcp</td></tr>
+    <tr><td><strong>Sentry</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td>See github.com/getsentry/sentry-mcp</td></tr>
+    <tr><td><strong>Databox</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td>See smithery.ai/servers/Databox-MCP/databox</td></tr>
+    <tr><td><strong>Google Workspace</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td>See github.com/taylorwilsdon/google_workspace_mcp</td></tr>
+    <tr><td><strong>Zapier</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td>See zapier.com/mcp</td></tr>
+    <tr><td><strong>Granola</strong></td><td>MCP</td><td><span class="badge-pending">not yet</span></td><td>See smithery.ai/servers/granola</td></tr>
+  </table></div>
+
+  <h3>Already Connected (No Action Needed)</h3>
+  <div class="table-wrap"><table>
+    <tr><th>Item</th><th>Type</th><th>What It Connects To</th></tr>
+    <tr><td><strong>Monday.com</strong></td><td>MCP</td><td>Project management boards</td></tr>
+    <tr><td><strong>Canva</strong></td><td>MCP</td><td>Design generation and editing</td></tr>
+    <tr><td><strong>Figma</strong></td><td>MCP</td><td>Design files, tokens, screenshots</td></tr>
+    <tr><td><strong>Slack</strong></td><td>MCP</td><td>Messages, channels, search</td></tr>
+    <tr><td><strong>Gmail</strong></td><td>MCP</td><td>Email, drafts, search</td></tr>
+    <tr><td><strong>Google Calendar</strong></td><td>MCP</td><td>Events, scheduling, free time</td></tr>
+    <tr><td><strong>Google Drive</strong></td><td>MCP</td><td>Files and shared drives</td></tr>
+    <tr><td><strong>Vercel</strong></td><td>MCP</td><td>Deployments, build logs</td></tr>
+    <tr><td><strong>PostHog</strong></td><td>MCP</td><td>Analytics, feature flags</td></tr>
+    <tr><td><strong>PDF Tools</strong></td><td>MCP</td><td>Read, create, merge PDFs</td></tr>
+    <tr><td><strong>Chrome Control</strong></td><td>MCP</td><td>Browser automation</td></tr>
+    <tr><td><strong>Desktop Commander</strong></td><td>MCP</td><td>File system, processes</td></tr>
+  </table></div>
+</div>
+
+<a href="#top" class="back-to-top"><span style="color:var(--green)">$</span> cd top</a>
+
+</div><!-- /container -->
+
+<!-- Footer -->
+<div class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-status">
+        <span class="footer-dot"></span>
+        <span>online&nbsp;&nbsp;v1.0.0&nbsp;&nbsp;Claude Code Setup Guide</span>
+      </div>
+      <span>Built with Claude Code &middot; Updated April 2026</span>
+    </div>
+  </div>
+</div>
+
+<script>
+// Load all content sections
+const md = `CONTENT_MARKER`;
+
+// Copy to clipboard
+function copyCode(btn) {
+  const pre = btn.closest('.code-block').querySelector('pre');
+  navigator.clipboard.writeText(pre.textContent).then(() => {
+    btn.textContent = 'copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '$ copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// FAQ toggle
+document.addEventListener('click', e => {
+  const q = e.target.closest('.faq-question');
+  if (q) q.parentElement.classList.toggle('open');
+});
+
+// Active nav on scroll
+const sects = document.querySelectorAll('.section');
+const navAs = document.querySelectorAll('.nav-links a');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navAs.forEach(a => a.classList.remove('active'));
+      const id = e.target.id;
+      navAs.forEach(a => { if (a.href.includes('#' + id)) a.classList.add('active'); });
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sects.forEach(s => obs.observe(s));
+</script>
+
+</body>
+</html>
