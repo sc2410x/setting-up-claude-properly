@@ -763,7 +763,7 @@
       <h1><span class="prompt">&gt;</span> Claude Code Setup Guide<span class="cursor-block"></span></h1>
       <div class="subtitle"><span class="prompt">&gt;</span> for business decision makers, not developers</div>
       <div class="stats">
-        <span class="kw">const</span> <span class="var">sections</span> <span class="punc">=</span> <span class="val">18</span><span class="punc">;</span>
+        <span class="kw">const</span> <span class="var">sections</span> <span class="punc">=</span> <span class="val">19</span><span class="punc">;</span>
         <span class="kw">const</span> <span class="var">prompts</span> <span class="punc">=</span> <span class="val">15</span><span class="punc">;</span>
         <span class="kw">const</span> <span class="var">teams</span> <span class="punc">=</span> <span class="val">12</span><span class="punc">;</span>
       </div>
@@ -781,7 +781,7 @@
   <div class="terminal-bar">
     <div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
     <span class="filename">ls ./sections/</span>
-    <span class="status">18 items</span>
+    <span class="status">19 items</span>
   </div>
   <div class="terminal-body" style="padding:16px 20px;">
     <div class="card-grid card-grid-4" style="gap:8px;">
@@ -793,16 +793,17 @@
       <a href="#" onclick="showSection('prompts');return false" class="nav-tile"><span style="color:var(--primary)">06</span> Copy-Paste Prompts</a>
       <a href="#" onclick="showSection('repos');return false" class="nav-tile"><span style="color:var(--primary)">07</span> Repos, Skills &amp; MCPs</a>
       <a href="#" onclick="showSection('folder-map');return false" class="nav-tile"><span style="color:var(--primary)">08</span> Where Things Live</a>
-      <a href="#" onclick="showSection('mistakes');return false" class="nav-tile"><span style="color:var(--primary)">09</span> Common Mistakes</a>
-      <a href="#" onclick="showSection('review');return false" class="nav-tile"><span style="color:var(--primary)">10</span> Reviewing Work</a>
-      <a href="#" onclick="showSection('security');return false" class="nav-tile"><span style="color:var(--primary)">11</span> Security</a>
-      <a href="#" onclick="showSection('costs');return false" class="nav-tile"><span style="color:var(--primary)">12</span> Costs</a>
-      <a href="#" onclick="showSection('backups');return false" class="nav-tile"><span style="color:var(--primary)">13</span> Backups</a>
-      <a href="#" onclick="showSection('stuck');return false" class="nav-tile"><span style="color:var(--primary)">14</span> When Stuck</a>
-      <a href="#" onclick="showSection('faq');return false" class="nav-tile"><span style="color:var(--primary)">15</span> FAQ</a>
-      <a href="#" onclick="showSection('teams');return false" class="nav-tile"><span style="color:var(--primary)">16</span> Tools by Team</a>
-      <a href="#" onclick="showSection('resources');return false" class="nav-tile"><span style="color:var(--primary)">17</span> Resources &amp; People</a>
-      <a href="#" onclick="showSection('status');return false" class="nav-tile"><span style="color:var(--primary)">18</span> Install Status</a>
+      <a href="#" onclick="showSection('agents');return false" class="nav-tile"><span style="color:var(--primary)">09</span> Agents &amp; Teams</a>
+      <a href="#" onclick="showSection('mistakes');return false" class="nav-tile"><span style="color:var(--primary)">10</span> Common Mistakes</a>
+      <a href="#" onclick="showSection('review');return false" class="nav-tile"><span style="color:var(--primary)">11</span> Reviewing Work</a>
+      <a href="#" onclick="showSection('security');return false" class="nav-tile"><span style="color:var(--primary)">12</span> Security</a>
+      <a href="#" onclick="showSection('costs');return false" class="nav-tile"><span style="color:var(--primary)">13</span> Costs</a>
+      <a href="#" onclick="showSection('backups');return false" class="nav-tile"><span style="color:var(--primary)">14</span> Backups</a>
+      <a href="#" onclick="showSection('stuck');return false" class="nav-tile"><span style="color:var(--primary)">15</span> When Stuck</a>
+      <a href="#" onclick="showSection('faq');return false" class="nav-tile"><span style="color:var(--primary)">16</span> FAQ</a>
+      <a href="#" onclick="showSection('teams');return false" class="nav-tile"><span style="color:var(--primary)">17</span> Tools by Team</a>
+      <a href="#" onclick="showSection('resources');return false" class="nav-tile"><span style="color:var(--primary)">18</span> Resources &amp; People</a>
+      <a href="#" onclick="showSection('status');return false" class="nav-tile"><span style="color:var(--primary)">19</span> Install Status</a>
     </div>
   </div>
 </div>
@@ -1153,9 +1154,91 @@ Format it like a business report, not a technical changelog. I'm a decision make
   </ul>
 </div>
 
-<!-- Part 9: Mistakes -->
-<div class="section" id="mistakes">
+<!-- Part 9: Agents & Agent Teams -->
+<div class="section" id="agents">
   <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 09</div>
+  <h2><span class="prompt">&gt;</span> Agents &amp; Agent Teams</h2>
+  <p class="section-desc">How Claude works autonomously, and how to run multiple Claudes in parallel.</p>
+
+  <h3>What Is an Agent?</h3>
+  <p style="color:var(--muted);font-size:14px;margin-bottom:20px;">An agent is Claude working independently on a task. Instead of you going back and forth message by message, you assign a job and Claude plans the steps, executes them, checks the results, and comes back when it's done or needs a decision.</p>
+
+  <div class="table-wrap"><table>
+    <tr><th></th><th>Regular Chat</th><th>Agent</th></tr>
+    <tr><td><strong>How it works</strong></td><td>You ask, it answers, you ask again</td><td>You assign a task, it goes away and does it</td></tr>
+    <tr><td><strong>Analogy</strong></td><td>Texting someone for directions step by step</td><td>Telling a taxi driver the destination and letting them drive</td></tr>
+    <tr><td><strong>Supervision</strong></td><td>You guide every step</td><td>Works independently, checks in when needed</td></tr>
+  </table></div>
+
+  <div class="callout callout-info"><strong>You've already been using an agent</strong><p>This entire session has been agentic. Every time Claude read your files, edited the HTML, ran git commands, and deployed to Vercel — that was an agent at work. You gave the goal, Claude figured out the steps.</p></div>
+
+  <h3>Sub-Agents (Workers Within a Session)</h3>
+  <p style="color:var(--muted);font-size:14px;margin-bottom:12px;">Sub-agents are separate Claude instances that the main agent creates for specific jobs. Think of them as temporary workers — they go off, do one thing, and report back with a summary.</p>
+
+  <div class="card-grid" style="margin-bottom:24px;">
+    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>how-subagents-work</div><div class="card-body"><h4>How They Work</h4><p>The main agent breaks a task into pieces, assigns each piece to a sub-agent, and they work in parallel. Each one operates independently and sends results back when done. Up to 10 sub-agents can run at once.</p></div></div>
+    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>when-to-use</div><div class="card-body"><h4>When to Use Them</h4><p>Best for focused tasks where you just need the result — researching multiple topics at once, running tests on different files, or reviewing code from different angles. They can't talk to each other, only back to the main agent.</p></div></div>
+  </div>
+
+  <h3>Agent Teams (The New Feature)</h3>
+  <p style="color:var(--muted);font-size:14px;margin-bottom:12px;">Agent Teams take it further. Instead of workers that just report back, you get a team of Claudes that can talk to each other, share a task list, and coordinate their own work — like a real team.</p>
+
+  <div class="table-wrap"><table>
+    <tr><th></th><th>Sub-Agents</th><th>Agent Teams</th></tr>
+    <tr><td><strong>Communication</strong></td><td>Report results back to main agent only</td><td>Teammates message each other directly</td></tr>
+    <tr><td><strong>Coordination</strong></td><td>Main agent manages everything</td><td>Shared task list, self-organising</td></tr>
+    <tr><td><strong>Best for</strong></td><td>Quick focused tasks</td><td>Complex work needing discussion</td></tr>
+    <tr><td><strong>Cost</strong></td><td>Lower — results summarised back</td><td>Higher — each teammate is a full session</td></tr>
+    <tr><td><strong>Analogy</strong></td><td>Sending out runners to fetch things</td><td>A project team in a room working together</td></tr>
+  </table></div>
+
+  <h3>How to Set Up Agent Teams</h3>
+
+  <h4>Step 1: Check Your Version</h4>
+  <p style="color:var(--muted);font-size:14px;">Agent Teams need Claude Code v2.1.32 or later. Check with:</p>
+  <div class="code-block"><div class="code-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>terminal</div><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>claude --version</pre></div>
+
+  <h4>Step 2: Enable Agent Teams</h4>
+  <p style="color:var(--muted);font-size:14px;">Agent Teams are turned off by default. You need to enable them. Paste this into Claude Code:</p>
+  <div class="code-block"><div class="code-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>claude-code</div><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>Add this to my settings.json: { "env": { "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1" } }</pre></div>
+
+  <h4>Step 3: Tell Claude to Create a Team</h4>
+  <p style="color:var(--muted);font-size:14px;">Just describe the task and the team you want in plain language. Claude handles the rest.</p>
+  <div class="code-block"><div class="code-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>example prompt</div><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>Create an agent team to work on this project:
+- One teammate focused on the homepage design
+- One teammate working on the contact form functionality
+- One teammate writing the copy for all pages
+Have them coordinate and share progress with each other.</pre></div>
+
+  <h3>Best Use Cases</h3>
+  <div class="table-wrap"><table>
+    <tr><th>Use Case</th><th>Team Setup</th><th>Why It Works</th></tr>
+    <tr><td><strong>Code review</strong></td><td>3 reviewers — security, performance, test coverage</td><td>Each applies a different lens so nothing gets missed</td></tr>
+    <tr><td><strong>Debugging</strong></td><td>3-5 investigators testing different theories</td><td>Competing hypotheses prevent anchoring on the wrong cause</td></tr>
+    <tr><td><strong>New feature</strong></td><td>Teammates each own a separate piece</td><td>Parallel work without stepping on each other</td></tr>
+    <tr><td><strong>Cross-layer work</strong></td><td>Frontend, backend, and test teammates</td><td>Each layer gets full attention simultaneously</td></tr>
+    <tr><td><strong>Research</strong></td><td>Multiple researchers investigating different angles</td><td>Broader coverage than one agent going sequentially</td></tr>
+  </table></div>
+
+  <h3>Tips for Getting the Best Results</h3>
+  <ul>
+    <li><strong>Start with 3-5 teammates</strong> — more than that and coordination overhead eats the benefit</li>
+    <li><strong>Give each teammate a clear, independent job</strong> — avoid two teammates editing the same file</li>
+    <li><strong>5-6 tasks per teammate</strong> keeps everyone productive without them sitting idle</li>
+    <li><strong>Start with research/review tasks</strong> if you're new to teams — they have clear boundaries</li>
+    <li><strong>Require plan approval for risky work</strong> — say "require plan approval before they make changes"</li>
+    <li><strong>Check in periodically</strong> — don't let the team run unattended for too long</li>
+    <li><strong>Use Shift+Down</strong> to cycle through teammates and see what they're doing</li>
+  </ul>
+
+  <div class="callout callout-warning"><strong>Cost Warning</strong><p>Agent Teams use significantly more credits than a single session — each teammate is a full Claude instance with its own context. Use them for complex work where parallel exploration genuinely helps. For routine tasks, a single session is more cost-effective.</p></div>
+
+  <div class="callout callout-tip"><strong>The Superpowers Advantage</strong><p>The Superpowers repo you installed in Part 07 includes a "Subagent-Driven Development" skill that makes agent coordination much more structured — with two-stage review (spec compliance, then code quality) and human checkpoints. It's a great complement to Agent Teams.</p></div>
+</div>
+
+<!-- Part 10: Mistakes -->
+<div class="section" id="mistakes">
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 10</div>
   <h2><span class="prompt">&gt;</span> Common Mistakes</h2>
   <p class="section-desc">Learn from others so you don't make these yourself.</p>
 
@@ -1170,7 +1253,7 @@ Format it like a business report, not a technical changelog. I'm a decision make
 
 <!-- Part 10: When Stuck -->
 <div class="section" id="stuck">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 14</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 15</div>
   <h2><span class="prompt">&gt;</span> When Claude Gets Stuck</h2>
   <p class="section-desc">Signs: repeating itself, apologising without fixing, suggesting increasingly complex solutions.</p>
 
@@ -1185,7 +1268,7 @@ Format it like a business report, not a technical changelog. I'm a decision make
 
 <!-- Part 11: Reviewing Work -->
 <div class="section" id="review">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 10</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 11</div>
   <h2><span class="prompt">&gt;</span> How to Review Claude's Work</h2>
   <p class="section-desc">You don't need to understand code to be a good reviewer.</p>
 
@@ -1199,7 +1282,7 @@ Format it like a business report, not a technical changelog. I'm a decision make
 
 <!-- Part 12: Security -->
 <div class="section" id="security">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 11</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 12</div>
   <h2><span class="prompt">&gt;</span> Security Basics</h2>
   <p class="section-desc">Claude has access to your files. Be smart about what you share.</p>
 
@@ -1216,7 +1299,7 @@ Format it like a business report, not a technical changelog. I'm a decision make
 
 <!-- Part 13: Costs -->
 <div class="section" id="costs">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 12</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 13</div>
   <h2><span class="prompt">&gt;</span> Cost &amp; Usage Awareness</h2>
   <p class="section-desc">Claude uses credits every interaction. Here's how to avoid waste.</p>
 
@@ -1311,7 +1394,7 @@ Format it like a business report, not a technical changelog. I'm a decision make
 
 <!-- Part 16: Backups -->
 <div class="section" id="backups">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 13</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 14</div>
   <h2><span class="prompt">&gt;</span> Backup Basics</h2>
   <p class="section-desc">Version control (git) = unlimited undo button for your entire project.</p>
 
@@ -1329,7 +1412,7 @@ Format it like a business report, not a technical changelog. I'm a decision make
 
 <!-- Part 17: FAQ -->
 <div class="section" id="faq">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 15</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 16</div>
   <h2><span class="prompt">&gt;</span> Troubleshooting FAQ</h2>
   <p class="section-desc">Common problems and how to fix them. Click to expand.</p>
 
@@ -1344,7 +1427,7 @@ Format it like a business report, not a technical changelog. I'm a decision make
 
 <!-- Part 18: Teams -->
 <div class="section" id="teams">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 16</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 17</div>
   <h2><span class="prompt">&gt;</span> Recommended Tools by Team</h2>
   <p class="section-desc">Click any team to see recommended skills and MCP servers. Each item links to its install details in Part 20.</p>
 
@@ -1471,7 +1554,7 @@ Format it like a business report, not a technical changelog. I'm a decision make
 
 <!-- Part 19: Resources -->
 <div class="section" id="resources">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 17</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 18</div>
   <h2><span class="prompt">&gt;</span> Resources &amp; People to Follow</h2>
   <p class="section-desc">The best places to learn and the people sharing the most useful content.</p>
 
@@ -1530,7 +1613,7 @@ Format it like a business report, not a technical changelog. I'm a decision make
 
 <!-- Part 20: Install Status -->
 <div class="section" id="status">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 18</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 19</div>
   <h2><span class="prompt">&gt;</span> Installation Status</h2>
   <p class="section-desc">Click any row to see what it does. Copy the install command into Terminal (repos/skills) or Claude Code (MCP servers).</p>
 
