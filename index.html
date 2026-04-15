@@ -1111,6 +1111,8 @@
     <tr><td><strong>API Key</strong></td><td>—</td><td>A secret password that lets one app access another. Treat like a password — never share publicly</td></tr>
     <tr><td><strong>SDK</strong></td><td>Software Development Kit</td><td>A toolkit developers use to build apps that work with a service. The Claude Agent SDK lets people build their own Claude-powered tools</td></tr>
     <tr><td><strong>MCP</strong></td><td>Model Context Protocol</td><td>The "USB-C port" for AI — a standard way to plug Claude into other apps (Slack, Drive, Notion, etc.)</td></tr>
+    <tr><td><strong>MCP Server</strong></td><td>—</td><td>A specific connector built using the MCP standard. Each service (Semrush, Ahrefs, GitHub) has its own MCP server. Same thing as "Connector" — just the technical name</td></tr>
+    <tr><td><strong>Connector</strong></td><td>—</td><td>What Claude Desktop calls MCP servers in its UI. If you're in Settings &gt; Connectors, you're looking at MCP servers. Same thing, different name</td></tr>
     <tr><td><strong>IDE</strong></td><td>Integrated Development Environment</td><td>A code editor with extra features. VS Code and Cursor are popular IDEs that work with Claude Code</td></tr>
     <tr><td><strong>CI/CD</strong></td><td>Continuous Integration / Continuous Deployment</td><td>Automated testing and deployment of code changes. Vercel does this for your guide site automatically</td></tr>
     <tr><td><strong>PR</strong></td><td>Pull Request</td><td>A proposed change to a codebase that needs review before being added. Used in GitHub workflows</td></tr>
@@ -1839,6 +1841,18 @@ Have them coordinate and share progress with each other.</pre></div>
       <li>For Desktop MCPs, use Settings → Connectors → Add custom connector</li>
       <li>CLI tools are NOT skills and don't belong in <code>~/.claude/skills/</code></li>
     </ul>
+  </div>
+
+  <div class="callout callout-info" style="margin-bottom:24px;"><strong>Who installs what?</strong>
+    <p>There are two routes for installing things, and they work differently:</p>
+    <table style="margin-top:12px;width:100%;">
+      <tr><th style="text-align:left;padding:6px 12px;">Task</th><th style="text-align:left;padding:6px 12px;">Who Does It</th><th style="text-align:left;padding:6px 12px;">Why</th></tr>
+      <tr><td style="padding:6px 12px;">Clone a repo or skill</td><td style="padding:6px 12px;color:var(--green);">Claude can do it</td><td style="padding:6px 12px;">Just downloading files</td></tr>
+      <tr><td style="padding:6px 12px;">Edit config files (CLAUDE.md, mcp.json)</td><td style="padding:6px 12px;color:var(--green);">Claude can do it</td><td style="padding:6px 12px;">Just editing text</td></tr>
+      <tr><td style="padding:6px 12px;">Add a Claude Desktop Connector</td><td style="padding:6px 12px;color:var(--amber);">You must do it</td><td style="padding:6px 12px;">Needs browser sign-in + account approval (security)</td></tr>
+      <tr><td style="padding:6px 12px;">Sign in to a service (Semrush, Otter)</td><td style="padding:6px 12px;color:var(--amber);">You must do it</td><td style="padding:6px 12px;">OAuth flow happens in your browser — Claude can't click through it</td></tr>
+    </table>
+    <p style="margin-top:12px;">Anthropic deliberately designed Desktop Connectors this way so AI can't grant itself access to your external accounts. It's a security feature, not a limitation to work around.</p>
   </div>
 
   <style>
