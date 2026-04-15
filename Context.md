@@ -102,5 +102,34 @@ For Google marketing stack (GA4, GSC, Google Ads, GTM):
 - Current recommendation: skip Google marketing MCPs; use Semrush/Ahrefs subscriptions already in place
 - When needed, install Claude Code CLI + free official Google MCPs
 
+## Connectors Added In This Session (April 2026)
+**Via Claude Desktop custom connector (Smithery hosted):**
+- Trello — connected and tested, working in Claude Code sessions
+- Default routing: Tasks board (id: 5d8248dbc8400359e9059063)
+
+**MCP config cleaned up:**
+- `~/.claude/mcp.json` emptied (had 7 entries for CLI that I don't use)
+
+## Scott's Role and Accounts
+- **Role:** Operations Director at The Digital Maze (TDM), 20-25 person UK digital agency
+- **TDM accounts:** GitHub (thedigitalmaze org), Vercel (TDM team), Supabase (TDM), Neon (TDM)
+- **Personal accounts:** GitHub (sc2410x), Vercel (scott-clarkes-projects-a84ccb32), Supabase (personal, pending), Neon (personal, pending)
+- **Lootloop migration:** Moving from TDM accounts to personal, scheduled for separate session
+
+## Key Project Artefacts
+- `index.html` — Main guide with SkillsMP-style design
+- `Claude-Code-Setup-Guide.md` — Markdown version
+- `claude-code-setup-guide.html` — Shareable version (Part 19 removed)
+- `scott-clarke-claude-code-setup-for-liam.md` — Handover for Liam (Technical Director)
+- `installed-skills-reference.md` — Full skill inventory
+- `pre-install-checklist.md` — Canonical pre-install rules
+- `mcp-install-instructions.md` — MCP/Connector URL reference
+
+## Rob's Work (For Inspiration)
+Rob Twells at TDM has built:
+- **Claude Vault** — personal dashboard for managing Claude skills, prompts, projects, sessions, usage analytics
+- **Pulse** — internal ops dashboard with KPI scorecard, deliverables, initiatives, CEO review, weekly submissions, roadmap
+- Both could inform a similar internal tool for Scott as Ops Director
+
 ## Scott's Business Structure
 Scott runs a digital agency with 12 teams: SEO, PPC, Web Dev, Web Design, Client Services, Project Management, Finance, Operations Director, Managing Director, Technical Director, Internal Brand Marketing, Sales.
