@@ -77,5 +77,30 @@ A comprehensive reference guide that helps non-technical business people set up 
 - CLI tools should not be installed to ~/.claude/skills/
 - Always verify before claiming installed (see pre-install-checklist.md)
 
+## Key Terminology Clarification (added April 2026)
+- **MCP** = Model Context Protocol (the standard)
+- **MCP Server** = The actual connector to a specific service (technical name)
+- **Connector** = What Claude Desktop UI calls MCP servers (user-facing name)
+- All three refer to the same thing — different layers of naming
+
+## Who Can Install What (added April 2026)
+**Claude can do directly:**
+- Clone repos and skills (just downloading files)
+- Edit config files like CLAUDE.md, Context.md, mcp.json (just editing text)
+
+**User must do themselves:**
+- Add Claude Desktop Connectors (Settings > Connectors > Add custom connector)
+- Sign in to each service (OAuth flows happen in browser)
+- Approve access to external accounts (Semrush, Otter, GitHub, etc.)
+
+This is by design — Anthropic prevents AI from granting itself access to external services.
+
+## Free vs Paid MCPs (added April 2026)
+For Google marketing stack (GA4, GSC, Google Ads, GTM):
+- All Desktop-compatible options have free tiers but with usage limits
+- Truly free forever options require Claude Code CLI (not Desktop)
+- Current recommendation: skip Google marketing MCPs; use Semrush/Ahrefs subscriptions already in place
+- When needed, install Claude Code CLI + free official Google MCPs
+
 ## Scott's Business Structure
 Scott runs a digital agency with 12 teams: SEO, PPC, Web Dev, Web Design, Client Services, Project Management, Finance, Operations Director, Managing Director, Technical Director, Internal Brand Marketing, Sales.
