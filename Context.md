@@ -41,9 +41,41 @@ A comprehensive reference guide that helps non-technical business people set up 
 - Superpowers repo has been installed globally at ~/.claude/skills/superpowers
 - The "Recommended First Message" prompt was identified as the single most important prompt
 
-## What's Installed So Far
-- Superpowers repo (globally at ~/.claude/skills/superpowers)
-- All other repos from the original list are documented but not yet installed
+## Deployment
+- **GitHub repo:** https://github.com/sc2410x/setting-up-claude-properly
+- **Live site:** https://setting-up-claude-properly.vercel.app
+- Vercel is connected to GitHub — pushing to main auto-deploys
+
+## What's Installed So Far (Verified April 2026)
+**Working as Claude Code skills (verified):**
+- Superpowers (14 skills)
+- UI UX Pro Max (6 skills extracted to top-level)
+- Marketingskills by Corey Haines (36 skills)
+- Product Manager Skills (47 skills, including Jobs to Be Done)
+- Alirezarezvani Skills (301 skills via symlink fix)
+- Claude Office Skills (4 skills via symlink fix)
+- claude-seo (19 skills)
+- claude-ads (20 skills)
+- Browser Use (4 skills)
+- Web Asset Generator (1 skill)
+- Everything Claude Code (183 skills)
+- 20+ standalone individual skills (copywriting, seo-audit, etc.)
+
+**MCPs added to ~/.claude/mcp.json (Claude Code CLI only, NOT Desktop):**
+- GitHub, Google Search Console, Google Analytics 4, Ahrefs, Semrush, Cross-Platform Ads, Google Workspace
+- These DON'T work in Claude Desktop app — Desktop needs them added via Settings > Connectors
+
+**Removed because incompatible:**
+- deep-research (no SKILL.md files)
+- claude-mem (CLI tool, not a skill)
+- trailofbits-security (plugin format, not a skill — but files still on disk)
+
+## Lessons Learned
+- "Cloned successfully" ≠ "Installed and working"
+- A repo's structure determines if it works as a skill
+- Claude Desktop and Claude Code CLI use different MCP systems
+- CLI tools should not be installed to ~/.claude/skills/
+- Always verify before claiming installed (see pre-install-checklist.md)
 
 ## Scott's Business Structure
 Scott runs a digital agency with 12 teams: SEO, PPC, Web Dev, Web Design, Client Services, Project Management, Finance, Operations Director, Managing Director, Technical Director, Internal Brand Marketing, Sales.
