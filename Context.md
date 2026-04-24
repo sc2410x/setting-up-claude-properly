@@ -131,5 +131,25 @@ Rob Twells at TDM has built:
 - **Pulse** — internal ops dashboard with KPI scorecard, deliverables, initiatives, CEO review, weekly submissions, roadmap
 - Both could inform a similar internal tool for Scott as Ops Director
 
+## Session Additions (late April 2026)
+
+### Session Wrap-Up Artefacts
+- `tdm-onboarding.md` — New starter guide for TDM team members
+- `decisions.md` — Decision log with 4 captured decisions
+- Backup: `github.com/sc2410x/claude-global-backup` (private)
+- 6 macOS Text Replacement shortcuts set up (`;;setup`, `;;check`, `;;catchup`, `;;wrap`, `;;explain`, `;;endofday`)
+
+### Key Realisations This Session
+- **Slash commands don't work reliably in Claude Desktop** — despite multiple attempts to register them via `~/.claude/commands/` and skill packages. Fell back to macOS Text Replacement which works everywhere.
+- **Custom connectors = Desktop connectors** when added via Settings > Customize > Connectors. The URL source (Smithery, Composio, etc.) doesn't change that.
+- **Agent verification is critical** — claiming things are installed based on cloning/file creation repeatedly caused problems. Must verify Claude actually uses a feature before marking INSTALLED.
+- **AgentShield F grade is mostly noise** — third-party skills installed (alirezarezvani, everything-claude-code) flag as risky, but Scott's own config is clean.
+
+### Tools Decision
+- **Staying with Claude Desktop only** — no Claude Code CLI install. Scope of work doesn't need it.
+- **Free Google marketing MCPs deferred** — can revisit if SEO team needs them; using Semrush + Ahrefs for now.
+- **1Password CLI deferred** — will revisit when building TDM apps with real secrets.
+- **GSC MCP (Suganthan's)** considered but parked — Semrush/Ahrefs cover the gap for now.
+
 ## Scott's Business Structure
 Scott runs a digital agency with 12 teams: SEO, PPC, Web Dev, Web Design, Client Services, Project Management, Finance, Operations Director, Managing Director, Technical Director, Internal Brand Marketing, Sales.
