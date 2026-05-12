@@ -905,7 +905,7 @@
       <li><a href="/setup-files" onclick="showSection('setup-files');return false"><span class="dollar">$</span> setup</a></li>
       <li><a href="/repos" onclick="showSection('repos');return false"><span class="dollar">$</span> add power</a></li>
       <li><a href="/mistakes" onclick="showSection('mistakes');return false"><span class="dollar">$</span> use well</a></li>
-      <li><a href="/faq" onclick="showSection('faq');return false"><span class="dollar">$</span> troubleshoot</a></li>
+      <li><a href="/troubleshooting" onclick="showSection('troubleshooting');return false"><span class="dollar">$</span> troubleshoot</a></li>
       <li><a href="/resources" onclick="showSection('resources');return false"><span class="dollar">$</span> reference</a></li>
     </ul>
   </div>
@@ -970,7 +970,7 @@
       </div>
       <div class="card-grid card-grid-4" style="gap:8px;">
         <a href="/setup-files" onclick="showSection('setup-files');return false" class="nav-tile"><span style="color:var(--primary)">04</span> Setup Files</a>
-        <a href="/structure" onclick="showSection('structure');return false" class="nav-tile"><span style="color:var(--primary)">05</span> Project Structure</a>
+        <a href="/structure" onclick="showSection('structure');return false" class="nav-tile"><span style="color:var(--primary)">05</span> How to Use Projects</a>
         <a href="/talking" onclick="showSection('talking');return false" class="nav-tile"><span style="color:var(--primary)">06</span> Talking to Claude</a>
         <a href="/prompts" onclick="showSection('prompts');return false" class="nav-tile"><span style="color:var(--primary)">07</span> Copy-Paste Prompts</a>
       </div>
@@ -982,10 +982,11 @@
         <span class="nav-cluster-label"><span class="dollar">$</span> add power</span>
         <span class="nav-cluster-desc">extend what Claude can do</span>
       </div>
-      <div class="card-grid card-grid-3" style="gap:8px;">
+      <div class="card-grid card-grid-4" style="gap:8px;">
         <a href="/repos" onclick="showSection('repos');return false" class="nav-tile"><span style="color:var(--primary)">08</span> Repos, Skills &amp; MCPs</a>
         <a href="/folder-map" onclick="showSection('folder-map');return false" class="nav-tile"><span style="color:var(--primary)">09</span> Where Things Live</a>
-        <a href="/agents" onclick="showSection('agents');return false" class="nav-tile"><span style="color:var(--primary)">10</span> Agents &amp; Teams</a>
+        <a href="/connectors" onclick="showSection('connectors');return false" class="nav-tile"><span style="color:var(--primary)">10</span> Connectors</a>
+        <a href="/agents" onclick="showSection('agents');return false" class="nav-tile"><span style="color:var(--primary)">11</span> Agents &amp; Teams</a>
       </div>
     </div>
 
@@ -996,25 +997,24 @@
         <span class="nav-cluster-desc">habits and safeguards</span>
       </div>
       <div class="card-grid card-grid-4" style="gap:8px;">
-        <a href="/mistakes" onclick="showSection('mistakes');return false" class="nav-tile"><span style="color:var(--primary)">11</span> Common Mistakes</a>
-        <a href="/review" onclick="showSection('review');return false" class="nav-tile"><span style="color:var(--primary)">12</span> Reviewing Work</a>
-        <a href="/security" onclick="showSection('security');return false" class="nav-tile"><span style="color:var(--primary)">13</span> Security</a>
-        <a href="/costs" onclick="showSection('costs');return false" class="nav-tile"><span style="color:var(--primary)">14</span> Costs</a>
+        <a href="/mistakes" onclick="showSection('mistakes');return false" class="nav-tile"><span style="color:var(--primary)">12</span> Common Mistakes</a>
+        <a href="/review" onclick="showSection('review');return false" class="nav-tile"><span style="color:var(--primary)">13</span> Reviewing Work</a>
+        <a href="/security" onclick="showSection('security');return false" class="nav-tile"><span style="color:var(--primary)">14</span> Security</a>
+        <a href="/costs" onclick="showSection('costs');return false" class="nav-tile"><span style="color:var(--primary)">15</span> Costs</a>
       </div>
       <div class="card-grid card-grid-4" style="gap:8px;margin-top:8px;">
-        <a href="/backups" onclick="showSection('backups');return false" class="nav-tile"><span style="color:var(--primary)">15</span> Backups</a>
+        <a href="/backups" onclick="showSection('backups');return false" class="nav-tile"><span style="color:var(--primary)">16</span> Backups</a>
       </div>
     </div>
 
-    <!-- Cluster 5: When things go wrong -->
+    <!-- Cluster 5: Troubleshoot -->
     <div class="nav-cluster">
       <div class="nav-cluster-header">
         <span class="nav-cluster-label"><span class="dollar">$</span> troubleshoot</span>
-        <span class="nav-cluster-desc">help when Claude goes sideways</span>
+        <span class="nav-cluster-desc">when Claude goes sideways</span>
       </div>
       <div class="card-grid card-grid-3" style="gap:8px;">
-        <a href="/stuck" onclick="showSection('stuck');return false" class="nav-tile"><span style="color:var(--primary)">16</span> When Claude Gets Stuck</a>
-        <a href="/faq" onclick="showSection('faq');return false" class="nav-tile"><span style="color:var(--primary)">17</span> FAQ</a>
+        <a href="/troubleshooting" onclick="showSection('troubleshooting');return false" class="nav-tile"><span style="color:var(--primary)">17</span> Troubleshooting &amp; FAQ</a>
       </div>
     </div>
 
@@ -1326,10 +1326,57 @@ Output both as separate markdown code blocks so I can save them as two separate 
   </table></div>
 
   <div class="card-grid">
-    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>CLAUDE.md</div><div class="card-body"><h4>CLAUDE.md</h4><p>The most important file. Put it in your project's main folder. Write your preferences, do's and don'ts, what the project is about.</p><blockquote>"This is a marketing website for [company]. Always write in a friendly, professional tone. Never delete existing content without asking first."</blockquote></div></div>
-    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>Context.md</div><div class="card-body"><h4>Context.md</h4><p>Gives Claude the "big picture" — what your business does, who your customers are, what stage you're at, key decisions already made and why.</p></div></div>
-    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>memory/</div><div class="card-body"><h4>Memory</h4><p>Claude's notebook. Just say "remember that I prefer X" and it saves it. Builds up naturally — you don't manage the files yourself.</p></div></div>
-    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>~/.claude/skills/</div><div class="card-body"><h4>Skills</h4><p>Instruction manuals that make Claude expert at specific tasks. Install once, works across all projects automatically.</p></div></div>
+    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>CLAUDE.md</div><div class="card-body"><h4>CLAUDE.md</h4><p>The most important file. Tells Claude how to behave. Lives in Settings &rarr; Profile &rarr; Personal preferences (or in a project folder if you&apos;re using Code).</p><blockquote>&ldquo;This is a marketing website for [company]. Always write in a friendly, professional tone. Never delete existing content without asking first.&rdquo;</blockquote><p style="margin-top:8px;"><a href="/bootstrap" onclick="showSection('bootstrap');return false" style="color:var(--primary);">How to generate your CLAUDE.md &rarr;</a></p></div></div>
+    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>Context.md</div><div class="card-body"><h4>Context.md</h4><p>The &ldquo;big picture&rdquo; for things that change &mdash; current targets, this quarter&apos;s focus, active accounts. Goes in <strong>Project Knowledge</strong> inside a Project. Keep CLAUDE.md for stable info, Context.md for changing info.</p></div></div>
+    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>Memory</div><div class="card-body"><h4>Memory</h4><p>Claude&apos;s notebook. Toggle on in Settings &rarr; Profile. Just say &ldquo;remember that I prefer X&rdquo; in any chat and it saves it for next time. Different from CLAUDE.md &mdash; see the deep dive below.</p></div></div>
+    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>Skills</div><div class="card-body"><h4>Skills</h4><p>Specialist playbooks that make Claude expert at specific tasks (paid ads, copywriting, etc.). Install in Settings &rarr; Customize &rarr; Skills. Personal to your account unless your admin pushes them at org level.</p></div></div>
+  </div>
+
+  <hr style="margin: 48px 0 32px;">
+
+  <h3>Memory deep dive</h3>
+  <p>Memory is the bit most people are confused or nervous about. Here&apos;s what you need to know.</p>
+
+  <h4 style="margin-top:24px;">What it actually does</h4>
+  <p>When you turn Memory on, Claude saves bits of information about you across chats. So if you say &ldquo;I prefer short bullet-point answers&rdquo; in one chat, the next chat already knows. It builds up over time, naturally, from things you tell it.</p>
+
+  <h4 style="margin-top:20px;">How it&apos;s different from your CLAUDE.md</h4>
+  <div class="table-wrap"><table>
+    <tr><th></th><th>CLAUDE.md</th><th>Memory</th></tr>
+    <tr><td><strong>Who writes it</strong></td><td>You do (or your AI does, via Part 01)</td><td>Claude does, based on chat</td></tr>
+    <tr><td><strong>How it&apos;s edited</strong></td><td>You paste it into Settings</td><td>You can view, edit, or delete entries in Settings</td></tr>
+    <tr><td><strong>How big it should be</strong></td><td>A few hundred lines, structured</td><td>Short individual entries that build up</td></tr>
+    <tr><td><strong>Best for</strong></td><td>Permanent, structured profile</td><td>Bits Claude picks up incidentally</td></tr>
+  </table></div>
+  <p style="margin-top:12px;color:var(--muted);font-size:13px;">Most people have CLAUDE.md doing 80% of the work and Memory filling in 20% &mdash; the casual things you mention in passing.</p>
+
+  <h4 style="margin-top:24px;">How to view and manage what Claude remembers</h4>
+  <ol>
+    <li>Open Claude Desktop.</li>
+    <li>Click your name (bottom-left) &rarr; <strong>Settings</strong>.</li>
+    <li>Click <strong>Profile</strong>.</li>
+    <li>Find the <strong>Memory</strong> section. You&apos;ll see a list of everything Claude has saved.</li>
+    <li>Click the bin icon next to any entry to delete it.</li>
+    <li>To wipe everything, click <strong>Clear all memories</strong>.</li>
+  </ol>
+
+  <h4 style="margin-top:24px;">How to add or update a memory mid-chat</h4>
+  <p>Just say it. Examples:</p>
+  <ul>
+    <li><em>&ldquo;Remember that I always sign off emails with Cheers.&rdquo;</em></li>
+    <li><em>&ldquo;Forget what I said earlier about preferring long answers &mdash; I want short ones from now on.&rdquo;</em></li>
+    <li><em>&ldquo;Don&apos;t remember this conversation.&rdquo;</em> (tells Claude not to save anything from this chat)</li>
+  </ul>
+
+  <h4 style="margin-top:24px;">Common questions</h4>
+  <div class="faq-item"><div class="faq-question">Does Memory share between chats and Projects? <span class="arrow">&#9660;</span></div><div class="faq-answer"><p style="color:var(--muted)">Yes. Memory is account-wide. Anything Claude remembers applies to every chat, in every Project, on every device you&apos;re signed in on.</p></div></div>
+  <div class="faq-item"><div class="faq-question">Can a colleague see my memories? <span class="arrow">&#9660;</span></div><div class="faq-answer"><p style="color:var(--muted)">No. Memory is personal to your account. Even on a Team plan, your colleagues have their own Memory.</p></div></div>
+  <div class="faq-item"><div class="faq-question">Will Memory remember confidential info I&apos;ve shared? <span class="arrow">&#9660;</span></div><div class="faq-answer"><p style="color:var(--muted)">Potentially. If you paste in a client&apos;s revenue figures and Claude decides that&apos;s memorable, it might save a note. Check your Memory list every now and then. If you see something sensitive, delete it.</p></div></div>
+  <div class="faq-item"><div class="faq-question">Should I turn it off then? <span class="arrow">&#9660;</span></div><div class="faq-answer"><p style="color:var(--muted)">For most people, no &mdash; the benefit (Claude knowing you) outweighs the risk. But if you regularly handle highly sensitive material, you can either disable Memory or remember to say &ldquo;don&apos;t remember this conversation&rdquo; at the start of sensitive chats.</p></div></div>
+  <div class="faq-item"><div class="faq-question">Why does Claude sometimes &ldquo;forget&rdquo; what I told it? <span class="arrow">&#9660;</span></div><div class="faq-answer"><p style="color:var(--muted)">A few reasons: (1) you didn&apos;t say &ldquo;remember this&rdquo; and Claude judged it not memorable, (2) Memory has a soft limit and older entries can roll off, (3) the entry is there but it didn&apos;t surface in this chat. Worth checking your Memory list to see what&apos;s actually saved.</p></div></div>
+
+  <div class="callout callout-tip" style="margin-top:24px;"><strong>Rule of thumb for Memory</strong>
+    <p style="margin-top:8px;">Anything you&apos;d want to put in writing in your CLAUDE.md, put it there. Memory is best for the small incidental things Claude notices about you over time. Don&apos;t rely on Memory for anything important &mdash; if you&apos;d be annoyed when it forgot, that thing belongs in CLAUDE.md.</p>
   </div>
 </div>
 
@@ -1353,11 +1400,11 @@ Output both as separate markdown code blocks so I can save them as two separate 
   <p style="color:var(--muted);font-size:13px;margin-bottom:12px;">Click any row to see what's inside, the purpose, and who it's for.</p>
   <div class="browse-head"><span>Item</span><span>Type</span><span class="sum-h">Summary</span></div>
 
-  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> Superpowers</span><span class="type">Repo</span><span class="summary">Planning, brainstorming, quality review methodology</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>An agentic skills framework and software development methodology. Makes Claude plan before coding, follow structured workflows, and use proven best practices — like upgrading from a junior to a senior team member.</p><h5>What's Included</h5><ul><li>Brainstorming — explore ideas before building</li><li>Writing Plans — break designs into bite-sized tasks</li><li>Using Git Worktrees — isolated workspaces for parallel work</li><li>Test-Driven Development — tests first, implementation after</li><li>Systematic Debugging — methodical bug diagnosis</li><li>Subagent-Driven Development — two-stage review workflow</li><li>Code Review (requesting &amp; receiving)</li><li>Verification Before Completion — no false "done" claims</li><li>Skill Authoring — write your own skills</li></ul><h5>Best For</h5><p>Everyone using Claude Code for project work — especially Web Dev, Technical Director</p><h5>Install Command</h5><div class="install-cmd-box"><span>git clone https://github.com/obra/superpowers.git ~/.claude/skills/superpowers</span><button class="mini-copy" onclick="copyInstallCmd(this, event)">$ copy</button></div></div></div>
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> Superpowers</span><span class="type">Repo</span><span class="summary">Planning, brainstorming, quality review methodology</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>An agentic skills framework and software development methodology. Makes Claude plan before coding, follow structured workflows, and use proven best practices — like upgrading from a junior to a senior team member.</p><h5>What's Included</h5><ul><li>Brainstorming — explore ideas before building</li><li>Writing Plans — break designs into bite-sized tasks</li><li>Using Git Worktrees — isolated workspaces for parallel work</li><li>Test-Driven Development — tests first, implementation after</li><li>Systematic Debugging — methodical bug diagnosis</li><li>Subagent-Driven Development — two-stage review workflow</li><li>Code Review (requesting &amp; receiving)</li><li>Verification Before Completion — no false "done" claims</li><li>Skill Authoring — write your own skills</li></ul><h5>Best For</h5><p>Everyone using Claude Code for project work — especially Developers, Tech leadership</p><h5>Install Command</h5><div class="install-cmd-box"><span>git clone https://github.com/obra/superpowers.git ~/.claude/skills/superpowers</span><button class="mini-copy" onclick="copyInstallCmd(this, event)">$ copy</button></div></div></div>
 
-  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> Everything Claude Code</span><span class="type">Repo</span><span class="summary">Power-user starter pack from 10+ months of daily use</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>A production-ready Claude Code setup evolved over 10+ months of intensive daily use building real products. Works across Claude Code, Codex, Cursor, OpenCode, Gemini, and other agent harnesses.</p><h5>What's Included</h5><ul><li>Pre-built agents for common tasks</li><li>AgentShield — security scanner that checks CLAUDE.md, settings.json, MCP configs, hooks, agent definitions, and skills for vulnerabilities</li><li>Memory optimisation configs</li><li>Token optimisation (reduce credit usage)</li><li>Hooks for auto-formatting, linting, testing</li><li>Development workflow rules</li><li>Legacy command shims for compatibility</li></ul><h5>Best For</h5><p>Web Dev, Technical Director, anyone wanting a polished starter setup without months of tweaking</p><h5>Install Command</h5><div class="install-cmd-box"><span>git clone https://github.com/affaan-m/everything-claude-code.git ~/.claude/skills/everything-claude-code</span><button class="mini-copy" onclick="copyInstallCmd(this, event)">$ copy</button></div></div></div>
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> Everything Claude Code</span><span class="type">Repo</span><span class="summary">Power-user starter pack from 10+ months of daily use</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>A production-ready Claude Code setup evolved over 10+ months of intensive daily use building real products. Works across Claude Code, Codex, Cursor, OpenCode, Gemini, and other agent harnesses.</p><h5>What's Included</h5><ul><li>Pre-built agents for common tasks</li><li>AgentShield — security scanner that checks CLAUDE.md, settings.json, MCP configs, hooks, agent definitions, and skills for vulnerabilities</li><li>Memory optimisation configs</li><li>Token optimisation (reduce credit usage)</li><li>Hooks for auto-formatting, linting, testing</li><li>Development workflow rules</li><li>Legacy command shims for compatibility</li></ul><h5>Best For</h5><p>Developers, Tech leadership, anyone wanting a polished starter setup without months of tweaking</p><h5>Install Command</h5><div class="install-cmd-box"><span>git clone https://github.com/affaan-m/everything-claude-code.git ~/.claude/skills/everything-claude-code</span><button class="mini-copy" onclick="copyInstallCmd(this, event)">$ copy</button></div></div></div>
 
-  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> UI UX Pro Max</span><span class="type">Repo</span><span class="summary">Design intelligence toolkit — 61K+ stars</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>AI-powered design intelligence with searchable databases for professional UI/UX across multiple platforms. When Claude builds a page, it makes informed design choices instead of guessing.</p><h5>What's Included</h5><ul><li>67 UI styles (Glassmorphism, Neumorphism, Brutalism, etc.)</li><li>161 colour palettes aligned with industry types</li><li>57 typography pairings</li><li>99 UX guidelines</li><li>25 chart types across 10 tech stacks</li><li>Support for React, Next.js, Vue, SwiftUI, Flutter</li><li>161 industry-specific reasoning rules</li><li>CLI tool (uipro-cli) for multi-assistant installation</li></ul><h5>Best For</h5><p>Web Design team, anyone building websites or apps that need to look professional</p><h5>Install Command</h5><div class="install-cmd-box"><span>git clone https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git ~/.claude/skills/ui-ux-pro-max</span><button class="mini-copy" onclick="copyInstallCmd(this, event)">$ copy</button></div></div></div>
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> UI UX Pro Max</span><span class="type">Repo</span><span class="summary">Design intelligence toolkit — 61K+ stars</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>AI-powered design intelligence with searchable databases for professional UI/UX across multiple platforms. When Claude builds a page, it makes informed design choices instead of guessing.</p><h5>What's Included</h5><ul><li>67 UI styles (Glassmorphism, Neumorphism, Brutalism, etc.)</li><li>161 colour palettes aligned with industry types</li><li>57 typography pairings</li><li>99 UX guidelines</li><li>25 chart types across 10 tech stacks</li><li>Support for React, Next.js, Vue, SwiftUI, Flutter</li><li>161 industry-specific reasoning rules</li><li>CLI tool (uipro-cli) for multi-assistant installation</li></ul><h5>Best For</h5><p>Designers team, anyone building websites or apps that need to look professional</p><h5>Install Command</h5><div class="install-cmd-box"><span>git clone https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git ~/.claude/skills/ui-ux-pro-max</span><button class="mini-copy" onclick="copyInstallCmd(this, event)">$ copy</button></div></div></div>
 
   <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> Browser Use</span><span class="type">Repo</span><span class="summary">Lets Claude control a real web browser</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Gives Claude the ability to open, navigate, and interact with real websites in a browser — not just read files on your computer.</p><h5>What's Included</h5><ul><li>Navigate to URLs</li><li>Click elements on pages</li><li>Fill in forms</li><li>Take screenshots</li><li>Read page content and HTML</li><li>Execute JavaScript</li><li>Multi-tab management</li></ul><h5>Best For</h5><p>Testing your live sites, researching competitors, QA, pulling data from websites without APIs</p><h5>Install Command</h5><div class="install-cmd-box"><span>git clone https://github.com/browser-use/browser-use.git ~/.claude/skills/browser-use</span><button class="mini-copy" onclick="copyInstallCmd(this, event)">$ copy</button></div></div></div>
 
@@ -1367,9 +1414,9 @@ Output both as separate markdown code blocks so I can save them as two separate 
   <p style="color:var(--muted);font-size:13px;margin-bottom:12px;">Click any row for the full breakdown of sub-skills included.</p>
   <div class="browse-head"><span>Item</span><span>Type</span><span class="sum-h">Summary</span></div>
 
-  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> Marketing Skills Library</span><span class="type">Skill</span><span class="summary">Full marketing team by Corey Haines — 35+ skills</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Turns Claude into a full marketing team. Each skill follows proven marketing frameworks used by real practitioners.</p><h5>What's Included (organised into "pods")</h5><ul><li><strong>Content pod (8 skills)</strong> — blog posts, content strategy, editorial calendars</li><li><strong>SEO pod (5 skills)</strong> — keyword research, on-page, technical SEO</li><li><strong>Channels pod (6 skills)</strong> — paid acquisition across platforms</li><li><strong>CRO pod (6 skills)</strong> — conversion rate optimisation</li><li><strong>Growth pod (4 skills)</strong> — growth experiments and scaling</li><li><strong>Intelligence pod (4 skills)</strong> — competitive and market research</li><li><strong>Sales pod (2 skills)</strong> — sales copy and positioning</li></ul><h5>Best For</h5><p>Internal Brand Marketing, SEO, PPC, Sales teams</p><h5>Install Command</h5><div class="install-cmd-box"><span>git clone https://github.com/coreyhaines31/marketingskills.git ~/.claude/skills/marketingskills</span><button class="mini-copy" onclick="copyInstallCmd(this, event)">$ copy</button></div></div></div>
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> Marketing Skills Library</span><span class="type">Skill</span><span class="summary">Full marketing team by Corey Haines — 35+ skills</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Turns Claude into a full marketing team. Each skill follows proven marketing frameworks used by real practitioners.</p><h5>What's Included (organised into "pods")</h5><ul><li><strong>Content pod (8 skills)</strong> — blog posts, content strategy, editorial calendars</li><li><strong>SEO pod (5 skills)</strong> — keyword research, on-page, technical SEO</li><li><strong>Channels pod (6 skills)</strong> — paid acquisition across platforms</li><li><strong>CRO pod (6 skills)</strong> — conversion rate optimisation</li><li><strong>Growth pod (4 skills)</strong> — growth experiments and scaling</li><li><strong>Intelligence pod (4 skills)</strong> — competitive and market research</li><li><strong>Sales pod (2 skills)</strong> — sales copy and positioning</li></ul><h5>Best For</h5><p>Brand &amp; Marketing, SEO, PPC, Sales teams</p><h5>Install Command</h5><div class="install-cmd-box"><span>git clone https://github.com/coreyhaines31/marketingskills.git ~/.claude/skills/marketingskills</span><button class="mini-copy" onclick="copyInstallCmd(this, event)">$ copy</button></div></div></div>
 
-  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> Deep Research</span><span class="type">Skill</span><span class="summary">Multi-phase research with source attribution</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Makes Claude do thorough, multi-step investigation instead of quick surface-level answers. Delivers professional research reports with citations.</p><h5>What's Included</h5><ul><li>Multi-phase investigation workflow</li><li>Cross-referencing multiple sources</li><li>Fact verification</li><li>Source attribution with links</li><li>Structured report output</li><li>Contradiction detection</li></ul><h5>Best For</h5><p>Managing Director (strategic decisions), market research, competitor analysis, due diligence</p><h5>Install Command</h5><div class="install-cmd-box"><span>git clone https://github.com/Weizhena/Deep-Research-skills.git ~/.claude/skills/deep-research</span><button class="mini-copy" onclick="copyInstallCmd(this, event)">$ copy</button></div></div></div>
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> Deep Research</span><span class="type">Skill</span><span class="summary">Multi-phase research with source attribution</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Makes Claude do thorough, multi-step investigation instead of quick surface-level answers. Delivers professional research reports with citations.</p><h5>What's Included</h5><ul><li>Multi-phase investigation workflow</li><li>Cross-referencing multiple sources</li><li>Fact verification</li><li>Source attribution with links</li><li>Structured report output</li><li>Contradiction detection</li></ul><h5>Best For</h5><p>Senior leadership (strategic decisions), market research, competitor analysis, due diligence</p><h5>Install Command</h5><div class="install-cmd-box"><span>git clone https://github.com/Weizhena/Deep-Research-skills.git ~/.claude/skills/deep-research</span><button class="mini-copy" onclick="copyInstallCmd(this, event)">$ copy</button></div></div></div>
 
   <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> claude-seo</span><span class="type">Skill</span><span class="summary">19 SEO sub-skills, 12 subagents, 3 data extensions</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Complete SEO automation toolkit built specifically for SEO professionals and agencies.</p><h5>What's Included</h5><ul><li>19 SEO sub-skills covering technical audits, E-E-A-T, schema markup</li><li>12 specialist subagents for parallel SEO work</li><li>3 data extensions: DataForSEO, Firecrawl, Banana</li><li>Backlink analysis</li><li>Local SEO &amp; Maps intelligence</li><li>GEO/AEO — optimisation for AI search (ChatGPT, Perplexity, Google AIO)</li><li>Google Search Console &amp; Analytics API integration</li><li>PDF/Excel reporting</li></ul><h5>Best For</h5><p>SEO Team — daily workflow tool</p><h5>Install Command</h5><div class="install-cmd-box"><span>git clone https://github.com/AgriciDaniel/claude-seo.git ~/.claude/skills/claude-seo</span><button class="mini-copy" onclick="copyInstallCmd(this, event)">$ copy</button></div></div></div>
 
@@ -1377,29 +1424,29 @@ Output both as separate markdown code blocks so I can save them as two separate 
 
   <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> Claude Office Skills</span><span class="type">Skill</span><span class="summary">PPTX, DOCX, XLSX, PDF automation</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Create and edit professional office documents directly from Claude — no manual formatting needed.</p><h5>What's Included</h5><ul><li>PowerPoint creation &amp; editing (pitch decks, client reports)</li><li>Word documents with formatting (proposals, contracts)</li><li>Excel with formulas and charts (financial models, trackers)</li><li>PDF creation, merging, splitting, watermarking</li><li>Automation workflows for repeat tasks</li></ul><h5>Best For</h5><p>Client Services (client reports), Finance (financial models), Sales (pitch decks), all teams creating documents</p><h5>Install Command</h5><div class="install-cmd-box"><span>git clone https://github.com/tfriedel/claude-office-skills.git ~/.claude/skills/claude-office-skills</span><button class="mini-copy" onclick="copyInstallCmd(this, event)">$ copy</button></div></div></div>
 
-  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> Trail of Bits Security</span><span class="type">Skill</span><span class="summary">Professional security audits from a respected firm</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Professional security audit workflows from Trail of Bits — one of the most respected security research firms in the industry.</p><h5>What's Included</h5><ul><li>Vulnerability detection</li><li>CodeQL analysis</li><li>Semgrep scanning</li><li>Variant analysis (finding similar bugs)</li><li>Structured audit workflows</li><li>Remediation planning</li></ul><h5>Best For</h5><p>Technical Director (oversight), Web Dev (before launch)</p><h5>Install Command</h5><div class="install-cmd-box"><span>git clone https://github.com/trailofbits/skills.git ~/.claude/skills/trailofbits-security</span><button class="mini-copy" onclick="copyInstallCmd(this, event)">$ copy</button></div></div></div>
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> Trail of Bits Security</span><span class="type">Skill</span><span class="summary">Professional security audits from a respected firm</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Professional security audit workflows from Trail of Bits — one of the most respected security research firms in the industry.</p><h5>What's Included</h5><ul><li>Vulnerability detection</li><li>CodeQL analysis</li><li>Semgrep scanning</li><li>Variant analysis (finding similar bugs)</li><li>Structured audit workflows</li><li>Remediation planning</li></ul><h5>Best For</h5><p>Tech leadership (oversight), Developers (before launch)</p><h5>Install Command</h5><div class="install-cmd-box"><span>git clone https://github.com/trailofbits/skills.git ~/.claude/skills/trailofbits-security</span><button class="mini-copy" onclick="copyInstallCmd(this, event)">$ copy</button></div></div></div>
 
-  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> CEO Advisor + 220 skills</span><span class="type">Skill</span><span class="summary">C-suite advisors, finance, compliance — alirezarezvani</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>220+ skills organised into categories, with a focus on executive advisory, finance, and compliance.</p><h5>What's Included</h5><ul><li><strong>C-Level Advisors (28 skills)</strong> — CEO, COO, CFO, CTO, CMO, CISO advisors</li><li><strong>Finance</strong> — Financial Analyst, SaaS Metrics, DCF valuation, budget variance, rolling forecasts</li><li><strong>Compliance</strong> — GDPR, SOC 2, HIPAA readiness</li><li><strong>Content pod</strong> — blog strategy, editorial planning</li><li><strong>Channels pod</strong> — marketing channel management</li><li><strong>Growth pod</strong> — scaling strategies</li><li><strong>Intelligence pod</strong> — competitive analysis</li><li><strong>Invoice Organizer</strong> — bulk invoice processing</li></ul><h5>Best For</h5><p>Managing Director (CEO Advisor), Operations Director (COO), Finance (CFO + Financial Analyst), Technical Director (CTO)</p><h5>Install Command</h5><div class="install-cmd-box"><span>git clone https://github.com/alirezarezvani/claude-skills.git ~/.claude/skills/alirezarezvani-skills</span><button class="mini-copy" onclick="copyInstallCmd(this, event)">$ copy</button></div></div></div>
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> CEO Advisor + 220 skills</span><span class="type">Skill</span><span class="summary">C-suite advisors, finance, compliance — alirezarezvani</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>220+ skills organised into categories, with a focus on executive advisory, finance, and compliance.</p><h5>What's Included</h5><ul><li><strong>C-Level Advisors (28 skills)</strong> — CEO, COO, CFO, CTO, CMO, CISO advisors</li><li><strong>Finance</strong> — Financial Analyst, SaaS Metrics, DCF valuation, budget variance, rolling forecasts</li><li><strong>Compliance</strong> — GDPR, SOC 2, HIPAA readiness</li><li><strong>Content pod</strong> — blog strategy, editorial planning</li><li><strong>Channels pod</strong> — marketing channel management</li><li><strong>Growth pod</strong> — scaling strategies</li><li><strong>Intelligence pod</strong> — competitive analysis</li><li><strong>Invoice Organizer</strong> — bulk invoice processing</li></ul><h5>Best For</h5><p>Senior leadership (CEO Advisor), Operations leadership (COO), Finance (CFO + Financial Analyst), Tech leadership (CTO)</p><h5>Install Command</h5><div class="install-cmd-box"><span>git clone https://github.com/alirezarezvani/claude-skills.git ~/.claude/skills/alirezarezvani-skills</span><button class="mini-copy" onclick="copyInstallCmd(this, event)">$ copy</button></div></div></div>
 
-  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> Jobs to Be Done</span><span class="type">Skill</span><span class="summary">JTBD framework for customer research</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Applies the "Jobs to Be Done" framework — one of the most respected product strategy methodologies — to help you understand what customers really want.</p><h5>What's Included</h5><ul><li>Structured customer interviews</li><li>Job statement creation</li><li>Force-of-Progress analysis</li><li>Buyer's journey mapping</li><li>Positioning refinement</li></ul><h5>Best For</h5><p>Managing Director (strategy), Internal Brand Marketing (positioning), Sales (customer insights)</p><h5>Where to Install</h5><p>Search skillsmp.com for "jobs to be done"</p></div></div>
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> Jobs to Be Done</span><span class="type">Skill</span><span class="summary">JTBD framework for customer research</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Applies the "Jobs to Be Done" framework — one of the most respected product strategy methodologies — to help you understand what customers really want.</p><h5>What's Included</h5><ul><li>Structured customer interviews</li><li>Job statement creation</li><li>Force-of-Progress analysis</li><li>Buyer's journey mapping</li><li>Positioning refinement</li></ul><h5>Best For</h5><p>Senior leadership (strategy), Brand &amp; Marketing (positioning), Sales (customer insights)</p><h5>Where to Install</h5><p>Search skillsmp.com for "jobs to be done"</p></div></div>
 
   <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> Explain Code</span><span class="type">Skill</span><span class="summary">Translates code into plain English (Official)</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Official Anthropic skill that translates code into plain, non-technical language.</p><h5>What's Included</h5><ul><li>Line-by-line explanation</li><li>Purpose of each function/file</li><li>What-if analysis (what happens if you change X)</li><li>Visual flow diagrams</li><li>Dependency mapping</li></ul><h5>Best For</h5><p>Anyone non-technical who wants to understand what Claude built</p><h5>Where to Install</h5><p>Search claude.com/plugins for "explain code"</p></div></div>
 
-  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> Web Assets Generator</span><span class="type">Skill</span><span class="summary">Creates banners, icons, social images</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Generates the images you need for websites and social media — properly sized and formatted for each platform.</p><h5>What's Included</h5><ul><li>Website banners &amp; hero images</li><li>Favicons (all required sizes)</li><li>Social sharing images (Twitter/X, LinkedIn, Facebook, Instagram)</li><li>Open Graph images</li><li>Platform-specific dimensions</li><li>Brand consistency tools</li></ul><h5>Best For</h5><p>Web Design, Internal Brand Marketing, Client Services</p><h5>Where to Install</h5><p>Search skillsmp.com for "web assets generator"</p></div></div>
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> Web Assets Generator</span><span class="type">Skill</span><span class="summary">Creates banners, icons, social images</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Generates the images you need for websites and social media — properly sized and formatted for each platform.</p><h5>What's Included</h5><ul><li>Website banners &amp; hero images</li><li>Favicons (all required sizes)</li><li>Social sharing images (Twitter/X, LinkedIn, Facebook, Instagram)</li><li>Open Graph images</li><li>Platform-specific dimensions</li><li>Brand consistency tools</li></ul><h5>Best For</h5><p>Designers, Brand &amp; Marketing, Client Services</p><h5>Where to Install</h5><p>Search skillsmp.com for "web assets generator"</p></div></div>
 
-  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> Business Strategy</span><span class="type">Skill</span><span class="summary">Porter's 5 Forces, SWOT, BCG, Blue Ocean</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Applies proven business strategy frameworks in agent-ready format.</p><h5>What's Included</h5><ul><li>Porter's 5 Forces analysis</li><li>SWOT analysis</li><li>BCG Matrix</li><li>Blue Ocean Strategy</li><li>Ansoff Matrix</li><li>Value Chain analysis</li><li>Strategic planning workflows</li></ul><h5>Best For</h5><p>Managing Director, Operations Director, Technical Director — strategic planning</p><h5>Where to Install</h5><p>Search mcpmarket.com for "business strategy"</p></div></div>
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> Business Strategy</span><span class="type">Skill</span><span class="summary">Porter's 5 Forces, SWOT, BCG, Blue Ocean</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Applies proven business strategy frameworks in agent-ready format.</p><h5>What's Included</h5><ul><li>Porter's 5 Forces analysis</li><li>SWOT analysis</li><li>BCG Matrix</li><li>Blue Ocean Strategy</li><li>Ansoff Matrix</li><li>Value Chain analysis</li><li>Strategic planning workflows</li></ul><h5>Best For</h5><p>Senior leadership, Operations leadership, Tech leadership — strategic planning</p><h5>Where to Install</h5><p>Search mcpmarket.com for "business strategy"</p></div></div>
 
-  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> SOP Creator</span><span class="type">Skill</span><span class="summary">Brain dumps → clean Standard Operating Procedures</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Turns rough brain dumps and ad-hoc process notes into clean, structured SOPs ready for teams to follow.</p><h5>What's Included</h5><ul><li>Numbered step-by-step procedures</li><li>Decision points clearly marked</li><li>Edge case handling</li><li>Input/output specifications</li><li>Role assignments</li><li>Quality checks</li></ul><h5>Best For</h5><p>Operations Director, team leads, anyone documenting processes</p><h5>Where to Install</h5><p>Search mcpmarket.com for "sop creator"</p></div></div>
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> SOP Creator</span><span class="type">Skill</span><span class="summary">Brain dumps → clean Standard Operating Procedures</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Turns rough brain dumps and ad-hoc process notes into clean, structured SOPs ready for teams to follow.</p><h5>What's Included</h5><ul><li>Numbered step-by-step procedures</li><li>Decision points clearly marked</li><li>Edge case handling</li><li>Input/output specifications</li><li>Role assignments</li><li>Quality checks</li></ul><h5>Best For</h5><p>Operations leadership, team leads, anyone documenting processes</p><h5>Where to Install</h5><p>Search mcpmarket.com for "sop creator"</p></div></div>
 
   <h3>Popular MCP Servers (App Connectors)</h3>
   <p style="color:var(--muted);font-size:13px;margin-bottom:12px;">Paste commands into <strong>Claude Code</strong>, not Terminal.</p>
   <div class="browse-head"><span>Item</span><span>Type</span><span class="sum-h">Summary</span></div>
 
-  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> GitHub</span><span class="type">MCP</span><span class="summary">Repos, PRs, issues, CI/CD</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Connects Claude to your GitHub repos so it can manage code collaboration through conversation.</p><h5>Capabilities</h5><ul><li>Create &amp; review pull requests</li><li>Read code across branches</li><li>Create, update, close issues</li><li>Run GitHub Actions / CI workflows</li><li>Manage repo settings</li><li>Code search across repos</li></ul><h5>Best For</h5><p>Web Dev, Technical Director — essential tool</p><h5>Install Command</h5><div class="install-cmd-box"><span>claude mcp add --transport http github https://api.githubcopilot.com/mcp/</span><button class="mini-copy" onclick="copyInstallCmd(this, event)">$ copy</button></div></div></div>
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> GitHub</span><span class="type">MCP</span><span class="summary">Repos, PRs, issues, CI/CD</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Connects Claude to your GitHub repos so it can manage code collaboration through conversation.</p><h5>Capabilities</h5><ul><li>Create &amp; review pull requests</li><li>Read code across branches</li><li>Create, update, close issues</li><li>Run GitHub Actions / CI workflows</li><li>Manage repo settings</li><li>Code search across repos</li></ul><h5>Best For</h5><p>Developers, Tech leadership — essential tool</p><h5>Install Command</h5><div class="install-cmd-box"><span>claude mcp add --transport http github https://api.githubcopilot.com/mcp/</span><button class="mini-copy" onclick="copyInstallCmd(this, event)">$ copy</button></div></div></div>
 
   <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> Notion</span><span class="type">MCP</span><span class="summary">Pages, databases, wikis</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Read and write to Notion — useful for every team that uses Notion for docs, wikis, or project tracking.</p><h5>Capabilities</h5><ul><li>Create &amp; edit pages</li><li>Search workspace</li><li>Update databases &amp; properties</li><li>Add comments</li><li>Markdown conversion</li></ul><h5>Best For</h5><p>Every team — client docs, internal wikis, project pages</p><h5>Install Command</h5><div class="install-cmd-box"><span>claude mcp add --transport http notion https://mcp.notion.com/mcp</span><button class="mini-copy" onclick="copyInstallCmd(this, event)">$ copy</button></div></div></div>
 
-  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> Linear</span><span class="type">MCP</span><span class="summary">Issue tracking for dev teams</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Official Linear integration for issue tracking tightly integrated with dev workflows.</p><h5>Capabilities</h5><ul><li>Create, update, close issues</li><li>Manage projects &amp; milestones</li><li>Sprint planning</li><li>Assign to teammates</li><li>Add comments &amp; reactions</li><li>OAuth-based secure access</li></ul><h5>Best For</h5><p>Web Dev, Technical Director, Project Management</p><h5>Install Command</h5><div class="install-cmd-box"><span>claude mcp add --transport http linear https://mcp.linear.app/mcp</span><button class="mini-copy" onclick="copyInstallCmd(this, event)">$ copy</button></div></div></div>
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> Linear</span><span class="type">MCP</span><span class="summary">Issue tracking for dev teams</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Official Linear integration for issue tracking tightly integrated with dev workflows.</p><h5>Capabilities</h5><ul><li>Create, update, close issues</li><li>Manage projects &amp; milestones</li><li>Sprint planning</li><li>Assign to teammates</li><li>Add comments &amp; reactions</li><li>OAuth-based secure access</li></ul><h5>Best For</h5><p>Developers, Tech leadership, Project Management</p><h5>Install Command</h5><div class="install-cmd-box"><span>claude mcp add --transport http linear https://mcp.linear.app/mcp</span><button class="mini-copy" onclick="copyInstallCmd(this, event)">$ copy</button></div></div></div>
 
   <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> Asana</span><span class="type">MCP</span><span class="summary">Tasks, projects, progress</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Official Asana integration for task and project management.</p><h5>Capabilities</h5><ul><li>Read &amp; update tasks</li><li>Assign owners &amp; due dates</li><li>Track progress</li><li>Manage projects &amp; portfolios</li><li>Add comments</li></ul><h5>Best For</h5><p>Project Management, Client Services</p><h5>Install Command</h5><div class="install-cmd-box"><span>claude mcp add --transport http asana https://mcp.asana.com/mcp</span><button class="mini-copy" onclick="copyInstallCmd(this, event)">$ copy</button></div></div></div>
 
@@ -1411,11 +1458,11 @@ Output both as separate markdown code blocks so I can save them as two separate 
 
   <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> Google Search Console</span><span class="type">MCP</span><span class="summary">Search performance, indexing, crawl stats</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>20 built-in tools for analysing search performance, monitoring indexing, and managing crawl stats.</p><h5>Capabilities</h5><ul><li>Search performance queries</li><li>Index coverage reports</li><li>Crawl stats</li><li>Sitemap management</li><li>URL inspection</li><li>Core Web Vitals data</li></ul><h5>Best For</h5><p>SEO Team — Google's view of your site</p><h5>Install Link</h5><p>github.com/AminForou/mcp-gsc</p></div></div>
 
-  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> Google Analytics 4</span><span class="type">MCP</span><span class="summary">Traffic, behaviour, conversions</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Official Google integration. Pull traffic data, user behaviour, and conversion metrics directly into Claude.</p><h5>Capabilities</h5><ul><li>Traffic reports</li><li>User behaviour analysis</li><li>Conversion tracking</li><li>Funnel exploration</li><li>Event &amp; audience data</li><li>Custom dimension queries</li></ul><h5>Best For</h5><p>SEO, PPC, Client Services (reporting), Managing Director (performance)</p><h5>Install Link</h5><p>developers.google.com/analytics/devguides/MCP</p></div></div>
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> Google Analytics 4</span><span class="type">MCP</span><span class="summary">Traffic, behaviour, conversions</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Official Google integration. Pull traffic data, user behaviour, and conversion metrics directly into Claude.</p><h5>Capabilities</h5><ul><li>Traffic reports</li><li>User behaviour analysis</li><li>Conversion tracking</li><li>Funnel exploration</li><li>Event &amp; audience data</li><li>Custom dimension queries</li></ul><h5>Best For</h5><p>SEO, PPC, Client Services (reporting), Senior leadership (performance)</p><h5>Install Link</h5><p>developers.google.com/analytics/devguides/MCP</p></div></div>
 
   <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> Cross-Platform Ads</span><span class="type">MCP</span><span class="summary">Google, Meta, LinkedIn, TikTok — 100+ tools</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>One server that covers every major ad platform with 100+ tools.</p><h5>Capabilities</h5><ul><li>Google Ads management</li><li>Meta Ads (Facebook &amp; Instagram)</li><li>LinkedIn Ads</li><li>TikTok Ads</li><li>Campaign creation &amp; editing</li><li>Performance analysis &amp; reporting</li><li>Budget optimisation</li><li>Keyword research</li></ul><h5>Best For</h5><p>PPC Team — one install for all platforms</p><h5>Install Link</h5><p>github.com/amekala/ads-mcp</p></div></div>
 
-  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> HubSpot</span><span class="type">MCP</span><span class="summary">CRM — contacts, deals, pipeline</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Official HubSpot integration for CRM data.</p><h5>Capabilities</h5><ul><li>Contacts &amp; companies</li><li>Deals &amp; pipeline data</li><li>Tickets &amp; support</li><li>Products &amp; quotes</li><li>Invoices</li><li>Pipeline attribution</li></ul><h5>Best For</h5><p>Sales (CRM data), Managing Director (revenue reporting)</p><h5>Install Link</h5><p>developers.hubspot.com/mcp</p></div></div>
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> HubSpot</span><span class="type">MCP</span><span class="summary">CRM — contacts, deals, pipeline</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Official HubSpot integration for CRM data.</p><h5>Capabilities</h5><ul><li>Contacts &amp; companies</li><li>Deals &amp; pipeline data</li><li>Tickets &amp; support</li><li>Products &amp; quotes</li><li>Invoices</li><li>Pipeline attribution</li></ul><h5>Best For</h5><p>Sales (CRM data), Senior leadership (revenue reporting)</p><h5>Install Link</h5><p>developers.hubspot.com/mcp</p></div></div>
 
   <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> Salesforce</span><span class="type">MCP</span><span class="summary">CRM — 60+ tools, no code required</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Official Salesforce hosted MCP servers with 60+ tools. Expose CRM APIs and data as tools with no code.</p><h5>Capabilities</h5><ul><li>Leads, contacts, accounts</li><li>Opportunities &amp; pipeline</li><li>Custom objects</li><li>Reports &amp; dashboards</li><li>Activities &amp; tasks</li><li>Workflow automation</li></ul><h5>Best For</h5><p>Sales (alternative to HubSpot), enterprise CRM users</p><h5>Install Link</h5><p>developer.salesforce.com (search MCP)</p></div></div>
 
@@ -1423,11 +1470,11 @@ Output both as separate markdown code blocks so I can save them as two separate 
 
   <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> QuickBooks</span><span class="type">MCP</span><span class="summary">Customers, invoices, expenses, reports</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Official Intuit integration for QuickBooks Online.</p><h5>Capabilities</h5><ul><li>Customers &amp; vendors</li><li>Invoices &amp; bills</li><li>Expenses &amp; receipts</li><li>Financial reports</li><li>Sales tax tracking</li></ul><h5>Best For</h5><p>Finance team — alternative to Xero</p><h5>Install Link</h5><p>github.com/intuit/quickbooks-online-mcp-server</p></div></div>
 
-  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> Stripe</span><span class="type">MCP</span><span class="summary">Payments, subscriptions, refunds — 25 tools</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Official Stripe integration with 25 tools.</p><h5>Capabilities</h5><ul><li>Customers &amp; payment methods</li><li>Products &amp; prices</li><li>Invoices &amp; subscriptions</li><li>Refunds &amp; disputes</li><li>Payout data</li><li>Revenue metrics</li></ul><h5>Best For</h5><p>Finance (payment tracking), Managing Director (revenue metrics)</p><h5>Install Link</h5><p>docs.stripe.com/mcp</p></div></div>
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> Stripe</span><span class="type">MCP</span><span class="summary">Payments, subscriptions, refunds — 25 tools</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Official Stripe integration with 25 tools.</p><h5>Capabilities</h5><ul><li>Customers &amp; payment methods</li><li>Products &amp; prices</li><li>Invoices &amp; subscriptions</li><li>Refunds &amp; disputes</li><li>Payout data</li><li>Revenue metrics</li></ul><h5>Best For</h5><p>Finance (payment tracking), Senior leadership (revenue metrics)</p><h5>Install Link</h5><p>docs.stripe.com/mcp</p></div></div>
 
-  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> Sentry</span><span class="type">MCP</span><span class="summary">Error tracking, performance monitoring</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Official Sentry integration for error tracking and performance monitoring.</p><h5>Capabilities</h5><ul><li>Issue reports &amp; stack traces</li><li>Performance traces</li><li>Release tracking</li><li>User impact analysis</li><li>Read-only access (safe)</li></ul><h5>Best For</h5><p>Web Dev, Technical Director — faster debugging</p><h5>Install Link</h5><p>github.com/getsentry/sentry-mcp</p></div></div>
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> Sentry</span><span class="type">MCP</span><span class="summary">Error tracking, performance monitoring</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Official Sentry integration for error tracking and performance monitoring.</p><h5>Capabilities</h5><ul><li>Issue reports &amp; stack traces</li><li>Performance traces</li><li>Release tracking</li><li>User impact analysis</li><li>Read-only access (safe)</li></ul><h5>Best For</h5><p>Developers, Tech leadership — faster debugging</p><h5>Install Link</h5><p>github.com/getsentry/sentry-mcp</p></div></div>
 
-  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> Databox</span><span class="type">MCP</span><span class="summary">KPI dashboards from 100+ sources</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Cross-platform KPI dashboards pulling data from 100+ sources into one view.</p><h5>Capabilities</h5><ul><li>Unified metrics across GA, HubSpot, Stripe, etc.</li><li>Goal tracking</li><li>Custom dashboards</li><li>Automated reports</li><li>Alerts &amp; benchmarks</li></ul><h5>Best For</h5><p>Managing Director, Operations Director — single business view</p><h5>Install Link</h5><p>smithery.ai/servers/Databox-MCP/databox</p></div></div>
+  <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> Databox</span><span class="type">MCP</span><span class="summary">KPI dashboards from 100+ sources</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>Cross-platform KPI dashboards pulling data from 100+ sources into one view.</p><h5>Capabilities</h5><ul><li>Unified metrics across GA, HubSpot, Stripe, etc.</li><li>Goal tracking</li><li>Custom dashboards</li><li>Automated reports</li><li>Alerts &amp; benchmarks</li></ul><h5>Best For</h5><p>Senior leadership, Operations leadership — single business view</p><h5>Install Link</h5><p>smithery.ai/servers/Databox-MCP/databox</p></div></div>
 
   <div class="install-item" onclick="this.classList.toggle('open')"><div class="browse-row"><span class="name"><span class="arrow">&#9654;</span> Google Workspace</span><span class="type">MCP</span><span class="summary">All-in-one: Drive, Gmail, Calendar, Sheets, Docs, Slides</span></div><div class="install-desc rich-desc"><h5>Purpose</h5><p>One integration that covers all of Google Workspace in a single server.</p><h5>Capabilities</h5><ul><li>Google Drive — files &amp; folders</li><li>Gmail — email &amp; drafts</li><li>Calendar — events &amp; scheduling</li><li>Sheets — spreadsheets</li><li>Docs — document editing</li><li>Slides — presentations</li><li>Forms — form creation</li><li>Tasks — to-do lists</li></ul><h5>Best For</h5><p>Every team — one install covers most Google needs</p><h5>Install Link</h5><p>github.com/taylorwilsdon/google_workspace_mcp</p></div></div>
 
@@ -1819,9 +1866,80 @@ Format it like a business report, not a technical changelog. I'm a decision make
   </ul>
 </div>
 
-<!-- Part 9: Agents & Agent Teams -->
-<div class="section" id="agents">
+<!-- Part 10: Connectors -->
+<div class="section" id="connectors">
   <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 10</div>
+  <h2><span class="prompt">&gt;</span> Connectors</h2>
+  <p class="section-desc">Connectors are how Claude reaches into your other tools &mdash; Calendar, Gmail, Drive, Trello, Slack and so on. With a connector enabled you can ask Claude &ldquo;what&apos;s on my calendar tomorrow?&rdquo; or &ldquo;draft a reply to that email from Sam&rdquo; and it can actually do it.</p>
+
+  <h3 style="margin-top:24px;">Where connectors live (recap from Part 09)</h3>
+  <div class="table-wrap"><table>
+    <tr><th>Level</th><th>What That Means</th><th>Who Manages It</th></tr>
+    <tr><td><strong>Personal</strong></td><td>Only on your account</td><td>You, in Settings &rarr; Connectors</td></tr>
+    <tr><td><strong>Organisation</strong></td><td>Pushed to everyone in your business</td><td>Your admin via the Anthropic admin console</td></tr>
+  </table></div>
+  <p style="color:var(--muted);font-size:13px;margin-top:8px;">If a colleague has a connector you don&apos;t, it&apos;s almost certainly because they added it personally. Same the other way around. Connectors don&apos;t auto-share unless your admin pushes them.</p>
+
+  <h3 style="margin-top:32px;">Built-in connectors (sign in once, it just works)</h3>
+  <p>Anthropic ships direct integrations for the most common tools. To turn one on: <strong>Settings &rarr; Connectors</strong> &rarr; click the connector &rarr; sign in.</p>
+  <div class="table-wrap"><table>
+    <tr><th>Connector</th><th>What Claude Can Do With It</th></tr>
+    <tr><td><strong>Google Drive</strong></td><td>Read your docs, sheets, slides. Search across folders. Pull files into chats.</td></tr>
+    <tr><td><strong>Gmail</strong></td><td>Read, search, draft and send emails on your behalf.</td></tr>
+    <tr><td><strong>Google Calendar</strong></td><td>See your schedule, find free time, suggest meetings, summarise upcoming events.</td></tr>
+    <tr><td><strong>GitHub</strong></td><td>Read code, browse pull requests, view issues, summarise repository activity.</td></tr>
+    <tr><td><strong>Notion</strong></td><td>Read pages and databases. Search across your workspace.</td></tr>
+    <tr><td><strong>Slack</strong></td><td>Read channels you&apos;re in, summarise threads, draft messages, search history.</td></tr>
+    <tr><td><strong>Linear</strong></td><td>View and update issues, manage sprints, see what&apos;s assigned to you.</td></tr>
+    <tr><td><strong>Asana</strong></td><td>View and update tasks, manage projects, track due dates.</td></tr>
+    <tr><td><strong>Microsoft 365</strong></td><td>Read Outlook, OneDrive, Teams (where available).</td></tr>
+  </table></div>
+
+  <h3 style="margin-top:32px;">Custom connectors (for tools without a built-in option)</h3>
+  <p>Plenty of tools don&apos;t have a built-in Claude connector yet (Trello, Monday, your in-house systems, etc.). For those, you can add a <strong>custom connector</strong> using a URL.</p>
+  <ol>
+    <li>In Claude Desktop, go to <strong>Settings</strong> &rarr; <strong>Connectors</strong>.</li>
+    <li>Click <strong>Add custom connector</strong>.</li>
+    <li>Paste in the connector&apos;s URL (these are called &ldquo;MCP URLs&rdquo; &mdash; the tool&apos;s documentation will tell you what to use).</li>
+    <li>Sign in / authorise access.</li>
+    <li>Test it in a new chat &mdash; e.g. <em>&ldquo;list my Trello boards&rdquo;</em>.</li>
+  </ol>
+  <p style="color:var(--muted);font-size:13px;margin-top:8px;">For a catalogue of popular custom connectors, see Part 08 (Repos, Skills &amp; MCPs) and Part 20 (Where to Find More).</p>
+
+  <h3 style="margin-top:32px;">Which connectors are worth enabling for your role?</h3>
+  <div class="table-wrap"><table>
+    <tr><th>Role</th><th>Worth Having</th></tr>
+    <tr><td><strong>Everyone</strong></td><td>Google Calendar, Gmail (or Outlook), Google Drive (or OneDrive)</td></tr>
+    <tr><td><strong>Marketing / Brand</strong></td><td>+ Slack, Notion, GA4, social platforms via custom connectors</td></tr>
+    <tr><td><strong>SEO</strong></td><td>+ Google Search Console, Ahrefs/Semrush, GA4</td></tr>
+    <tr><td><strong>PPC</strong></td><td>+ Google Ads, Meta Business, Microsoft Ads (often via custom connectors)</td></tr>
+    <tr><td><strong>Account / project managers</strong></td><td>+ Trello, Monday, Asana, Linear (whichever you use), Slack</td></tr>
+    <tr><td><strong>Designers</strong></td><td>+ Figma, Slack, Notion</td></tr>
+    <tr><td><strong>Developers</strong></td><td>+ GitHub, Linear, Vercel, database connectors</td></tr>
+    <tr><td><strong>Finance / Ops</strong></td><td>+ Google Sheets / Excel, Xero/QuickBooks, HR systems</td></tr>
+    <tr><td><strong>Senior leadership</strong></td><td>+ whatever your team uses for reporting, Slack, Calendar</td></tr>
+  </table></div>
+
+  <h3 style="margin-top:32px;">The cost angle (worth knowing)</h3>
+  <div class="callout callout-info"><strong>Every enabled connector adds context</strong>
+    <p style="margin-top:8px;">When Claude starts a chat, it loads a description of every connector you have enabled &mdash; even ones you don&apos;t use that day. More connectors = bigger context = more tokens used per message = higher cost on your plan.</p>
+    <p style="margin-top:8px;"><strong>Practical advice:</strong> enable connectors as you need them, not &ldquo;just in case&rdquo;. If you haven&apos;t used one in a month, disable it. You can always turn it back on later.</p>
+  </div>
+
+  <h3 style="margin-top:32px;">Common pitfalls</h3>
+  <div class="faq-item"><div class="faq-question">I enabled the connector but Claude can&apos;t see my data <span class="arrow">&#9660;</span></div><div class="faq-answer"><p style="color:var(--muted)">Usually an auth issue. Go to Settings &rarr; Connectors &rarr; click the connector &rarr; disconnect &rarr; reconnect. Sign back in and approve all permissions.</p></div></div>
+  <div class="faq-item"><div class="faq-question">A colleague has a connector enabled but I don&apos;t <span class="arrow">&#9660;</span></div><div class="faq-answer"><p style="color:var(--muted)">It&apos;s their personal connector. Connectors don&apos;t share between accounts unless your admin has pushed them at organisation level. You&apos;ll need to add it yourself.</p></div></div>
+  <div class="faq-item"><div class="faq-question">Claude is &ldquo;using&rdquo; the connector but the answers are wrong <span class="arrow">&#9660;</span></div><div class="faq-answer"><p style="color:var(--muted)">Two likely causes: (1) the data source is wrong &mdash; e.g. wrong Drive folder, wrong calendar &mdash; check what Claude is actually looking at. (2) Claude hasn&apos;t pulled fresh data &mdash; ask it explicitly to refresh, or start a new chat.</p></div></div>
+  <div class="faq-item"><div class="faq-question">I can&apos;t find the connector I want <span class="arrow">&#9660;</span></div><div class="faq-answer"><p style="color:var(--muted)">If it&apos;s not in the built-in list, look for a custom connector URL (an MCP URL). Check the tool&apos;s documentation, or browse the registries listed in Part 20 (Where to Find More). If there&apos;s genuinely no MCP available, you might be early to that integration.</p></div></div>
+
+  <div class="callout callout-tip" style="margin-top:24px;"><strong>Security note</strong>
+    <p style="margin-top:8px;">Treat connectors like any other tool with access to your accounts. Only connect tools you trust, only grant the permissions you actually need, and review your connected apps every few months &mdash; in both Claude and the source tool (e.g. Google Account &rarr; Security &rarr; Third-party access).</p>
+  </div>
+</div>
+
+<!-- Part 11: Agents & Agent Teams -->
+<div class="section" id="agents">
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 11</div>
   <h2><span class="prompt">&gt;</span> Agents &amp; Agent Teams</h2>
   <p class="section-desc">How Claude works autonomously, and how to run multiple Claudes in parallel.</p>
 
@@ -1903,7 +2021,7 @@ Have them coordinate and share progress with each other.</pre></div>
 
 <!-- Part 10: Mistakes -->
 <div class="section" id="mistakes">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 11</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 12</div>
   <h2><span class="prompt">&gt;</span> Common Mistakes</h2>
   <p class="section-desc">Learn from others so you don't make these yourself.</p>
 
@@ -1916,24 +2034,72 @@ Have them coordinate and share progress with each other.</pre></div>
   <div class="card" style="margin-bottom:12px;"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>Mistake 4</div><div class="card-body"><h4>Asking for Too Much at Once</h4><p class="lbl lbl-bad">THE MISTAKE</p><p>"Build me a complete e-commerce site with accounts, payments, blog, and admin dashboard."</p><p class="lbl lbl-fix">THE FIX</p><p>Break it into phases. Start with the most important thing. Get that right, then move on.</p></div></div>
 </div>
 
-<!-- Part 10: When Stuck -->
-<div class="section" id="stuck">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 16</div>
-  <h2><span class="prompt">&gt;</span> When Claude Gets Stuck</h2>
-  <p class="section-desc">Signs: repeating itself, apologising without fixing, suggesting increasingly complex solutions.</p>
+<!-- Part 17: Troubleshooting -->
+<div class="section" id="troubleshooting">
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 17</div>
+  <h2><span class="prompt">&gt;</span> Troubleshooting</h2>
+  <p class="section-desc">When Claude is stuck, slow, or giving you nonsense &mdash; this is the page. Three parts: tactical prompts when Claude&apos;s gone in circles, an FAQ of common gotchas, and a quick reset checklist.</p>
+
+  <h3>When Claude gets stuck (use one of these)</h3>
+  <p style="color:var(--muted);font-size:13px;margin-bottom:12px;">Signs it&apos;s stuck: repeating itself, apologising without fixing, suggesting increasingly complex solutions, contradicting itself.</p>
 
   <div class="prompt-card"><div class="prompt-card-header"><h4>Option 1: Reset</h4></div><div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>Stop. Let's reset. Here's what I need in simple terms: [restate your goal]. What's the simplest way to do this?</pre></div></div>
 
-  <div class="prompt-card"><div class="prompt-card-header"><h4>Option 2: Break It Down</h4></div><div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>This isn't working. Let's break this into smaller pieces. What's the first thing we need to figure out?</pre></div></div>
+  <div class="prompt-card"><div class="prompt-card-header"><h4>Option 2: Break it down</h4></div><div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>This isn't working. Let's break this into smaller pieces. What's the first thing we need to figure out?</pre></div></div>
 
-  <div class="prompt-card"><div class="prompt-card-header"><h4>Option 3: Different Approach</h4></div><div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>You seem stuck on one approach. Can you think of a completely different way to solve this?</pre></div></div>
+  <div class="prompt-card"><div class="prompt-card-header"><h4>Option 3: Different approach</h4></div><div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>You seem stuck on one approach. Can you think of a completely different way to solve this?</pre></div></div>
 
-  <div class="callout callout-tip"><strong>Option 4: Start Fresh</strong><p>Open a new conversation. Your CLAUDE.md, Context.md, and Memory carry over automatically.</p></div>
+  <div class="prompt-card"><div class="prompt-card-header"><h4>Option 4: Explain it back</h4></div><div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>Before you do anything else, explain in plain English what you think I'm asking for and how you plan to solve it. If you've misunderstood, I'll correct you.</pre></div></div>
+
+  <div class="callout callout-tip" style="margin-top:16px;"><strong>Last resort: start fresh</strong>
+    <p style="margin-top:8px;">Open a brand new chat. Your CLAUDE.md, any Memory, and your Project Knowledge carry over automatically &mdash; you don&apos;t lose context, you just lose the dead-end conversation.</p>
+  </div>
+
+  <hr style="margin: 48px 0 32px;">
+
+  <h3>FAQ &mdash; common problems and fixes</h3>
+  <p style="color:var(--muted);font-size:13px;margin-bottom:12px;">Click any question to expand.</p>
+
+  <div class="faq-item"><div class="faq-question">Claude seems to have forgotten everything about my project <span class="arrow">&#9660;</span></div><div class="faq-answer"><p style="color:var(--muted)">Usually because you&apos;re in a brand new chat <em>outside</em> the Project. Check the left sidebar &mdash; if you&apos;re not inside a Project, Claude only sees your CLAUDE.md and Memory, not the Project Knowledge. Open the right Project and try again.</p></div></div>
+
+  <div class="faq-item"><div class="faq-question">Claude is being weird, vague, or generic <span class="arrow">&#9660;</span></div><div class="faq-answer"><p style="color:var(--muted)">Almost always means it doesn&apos;t have enough context. Two fixes: (1) check your CLAUDE.md has real, specific content (vague file = vague answers), (2) you might be in the wrong Project or no Project at all. Ask Claude &ldquo;what do you know about me?&rdquo; &mdash; if the answer is thin, that&apos;s your problem.</p></div></div>
+
+  <div class="faq-item"><div class="faq-question">Claude keeps doing things I didn&apos;t ask for <span class="arrow">&#9660;</span></div><div class="faq-answer"><p style="color:var(--muted)">Add this to your CLAUDE.md: <em>&ldquo;Only do exactly what I ask. Don&apos;t add extra features or make &apos;improvements&apos; beyond the task. If you think something else should change, tell me and let me decide.&rdquo;</em></p></div></div>
+
+  <div class="faq-item"><div class="faq-question">A connector I just enabled doesn&apos;t work <span class="arrow">&#9660;</span></div><div class="faq-answer"><p style="color:var(--muted)">Disconnect and reconnect. Settings &rarr; Connectors &rarr; click the connector &rarr; disconnect &rarr; reconnect &rarr; approve all permissions on the sign-in screen. If it still doesn&apos;t work, check the other end (Google account, GitHub, etc.) for the app&apos;s permissions.</p></div></div>
+
+  <div class="faq-item"><div class="faq-question">A skill I installed isn&apos;t loading <span class="arrow">&#9660;</span></div><div class="faq-answer"><p style="color:var(--muted)">Two checks: (1) Settings &rarr; Customize &rarr; Skills &mdash; is the skill toggled on? (2) start a new chat &mdash; skills don&apos;t hot-reload mid-conversation. If it&apos;s a Claude Code project skill, check the project&apos;s <code>~/.claude/skills/</code> folder.</p></div></div>
+
+  <div class="faq-item"><div class="faq-question">My colleague can see something I can&apos;t (or vice versa) <span class="arrow">&#9660;</span></div><div class="faq-answer"><p style="color:var(--muted)">It&apos;s set at <strong>Personal</strong> level, not organisation level. Personal connectors / skills / instructions don&apos;t cross between accounts. They&apos;ll need to add it on your account, or your admin needs to push it organisation-wide. See Part 09 for the levels explained.</p></div></div>
+
+  <div class="faq-item"><div class="faq-question">I accidentally approved something I shouldn&apos;t have <span class="arrow">&#9660;</span></div><div class="faq-answer"><p style="color:var(--muted)"><strong>If you&apos;re in Code with Git:</strong> ask Claude &ldquo;undo the last change and go back to the previous version.&rdquo; <strong>If not using Git:</strong> this is why Part 16 (backups) matters &mdash; restore from backup. Going forward, set up Git or Time Machine before letting Code make changes.</p></div></div>
+
+  <div class="faq-item"><div class="faq-question">I don&apos;t understand what Claude just did <span class="arrow">&#9660;</span></div><div class="faq-answer"><p style="color:var(--muted)">Paste this: <em>&ldquo;Explain what you just did in plain, non-technical language. Pretend I&apos;m not a developer. Tell me what changed and why.&rdquo;</em></p></div></div>
+
+  <div class="faq-item"><div class="faq-question">Claude keeps suggesting things that don&apos;t actually work <span class="arrow">&#9660;</span></div><div class="faq-answer"><p style="color:var(--muted)">Could be hallucinating &mdash; common with niche topics, brand-new APIs, or made-up function names. Two responses: (1) ask &ldquo;are you sure that&apos;s real? cite a source,&rdquo; (2) verify it yourself before relying on it. Don&apos;t treat AI output as fact without checking. See Part 12 (Reviewing Work).</p></div></div>
+
+  <div class="faq-item"><div class="faq-question">An install command failed <span class="arrow">&#9660;</span></div><div class="faq-answer"><div class="table-wrap"><table><tr><th>Error</th><th>What it means / fix</th></tr><tr><td>&ldquo;repository not found&rdquo;</td><td>URL wrong or you don&apos;t have access. Search GitHub for the repo name.</td></tr><tr><td>&ldquo;destination path already exists&rdquo;</td><td>Already installed. No action needed.</td></tr><tr><td>&ldquo;command not found: git&rdquo;</td><td>Git not installed. Ask Claude: &ldquo;help me install git on my Mac.&rdquo;</td></tr><tr><td>&ldquo;permission denied&rdquo;</td><td>Folder ownership issue. Run the command with <code>sudo</code> only if you&apos;re sure of the source, or ask Claude for help.</td></tr></table></div></div></div>
+
+  <div class="faq-item"><div class="faq-question">Memory is remembering things that are wrong <span class="arrow">&#9660;</span></div><div class="faq-answer"><p style="color:var(--muted)">Settings &rarr; Profile &rarr; Memory. View what&apos;s saved. Delete anything wrong with the bin icon. To stop Claude from saving anything in a particular chat: say &ldquo;don&apos;t remember anything from this conversation&rdquo; at the start.</p></div></div>
+
+  <hr style="margin: 48px 0 32px;">
+
+  <h3>The 60-second reset checklist</h3>
+  <p>When something&apos;s wrong and you don&apos;t know where to start, run through these in order:</p>
+  <ol>
+    <li><strong>Are you in the right Project?</strong> Wrong Project = wrong context = bad answers.</li>
+    <li><strong>Is your CLAUDE.md actually loaded?</strong> Settings &rarr; Profile. Does the box have content?</li>
+    <li><strong>Start a new chat.</strong> Long chats drift. New chat with the same Project gets clean slate + same context.</li>
+    <li><strong>Ask Claude what it knows.</strong> &ldquo;What do you know about this Project and how I like to work?&rdquo; If the answer&apos;s thin, that&apos;s the problem.</li>
+    <li><strong>Check connectors.</strong> If it&apos;s connector-related, disconnect/reconnect.</li>
+    <li><strong>Restart Claude Desktop.</strong> Old fix, still works sometimes.</li>
+    <li><strong>Still stuck?</strong> Use the prompts at the top of this section.</li>
+  </ol>
 </div>
 
 <!-- Part 11: Reviewing Work -->
 <div class="section" id="review">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 12</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 13</div>
   <h2><span class="prompt">&gt;</span> How to Review Claude's Work</h2>
   <p class="section-desc">You don't need to understand code to be a good reviewer.</p>
 
@@ -1945,26 +2111,62 @@ Have them coordinate and share progress with each other.</pre></div>
   <div class="callout callout-tip"><strong>Trust But Verify</strong><p><strong style="display:inline;font-weight:400;color:var(--green)">Trust Claude for:</strong> Routine tasks, first drafts, research, generating ideas.<br><strong style="display:inline;font-weight:400;color:var(--yellow)">Verify before approving:</strong> Anything going live, involving money, deleting work, or security-related.</p></div>
 </div>
 
-<!-- Part 12: Security -->
+<!-- Part 13: Security -->
 <div class="section" id="security">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 13</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 14</div>
   <h2><span class="prompt">&gt;</span> Security Basics</h2>
-  <p class="section-desc">Claude has access to your files. Be smart about what you share.</p>
+  <p class="section-desc">Claude is a useful tool but it&apos;s still software running on servers somewhere else. Be smart about what you share. The good news: most of what you do at work is perfectly safe to put in front of Claude. The bad news: some things really aren&apos;t.</p>
 
+  <h3>What&apos;s safe to share &mdash; and what isn&apos;t</h3>
   <div class="table-wrap"><table>
-    <tr><th>Never Share...</th><th>Why Not</th></tr>
-    <tr><td><strong>Passwords</strong></td><td>End up stored in files or conversation history</td></tr>
-    <tr><td><strong>API keys</strong></td><td>Others could use your accounts and run up charges</td></tr>
-    <tr><td><strong>Credit card / bank details</strong></td><td>Obvious reasons</td></tr>
-    <tr><td><strong>Customer personal data</strong></td><td>Privacy regulations (GDPR) and ethics</td></tr>
+    <tr><th>Safe to share with Claude</th><th>Be careful with</th><th>Never share</th></tr>
+    <tr><td>Marketing copy, drafts, ideas</td><td>Internal strategy docs</td><td>Passwords or login details</td></tr>
+    <tr><td>Public reports and presentations</td><td>Financial figures (revenue, margins)</td><td>API keys, access tokens</td></tr>
+    <tr><td>Your own work and notes</td><td>Client data (names, contacts)</td><td>Credit card or bank details</td></tr>
+    <tr><td>Meeting transcripts (with consent)</td><td>Salary or HR information</td><td>Customer personal data (full GDPR records)</td></tr>
+    <tr><td>Brand guidelines, style docs</td><td>Contracts or legal documents</td><td>Anything under NDA you haven&apos;t cleared</td></tr>
+    <tr><td>Code from public repos</td><td>Source code from private repos</td><td>Health or medical records</td></tr>
+    <tr><td>Industry research, public data</td><td>Pre-launch product info</td><td>Children&apos;s personal data</td></tr>
   </table></div>
 
-  <div class="callout callout-warning"><strong>Keep Secrets in a .env File</strong><p>A special file that stores passwords/keys locally. Never uploaded or shared. Ask Claude: "Help me set up a .env file for this project."</p></div>
+  <div class="callout callout-tip" style="margin-top:16px;"><strong>The two-question test</strong>
+    <p style="margin-top:8px;">Before pasting anything sensitive into Claude, ask yourself:</p>
+    <ol style="margin-top:8px;">
+      <li>If a colleague found this in a public Slack channel, would I be in trouble?</li>
+      <li>If this leaked tomorrow, what&apos;s the worst case?</li>
+    </ol>
+    <p style="margin-top:8px;">If the answers are &ldquo;yes&rdquo; and &ldquo;serious&rdquo;, either redact it first or don&apos;t share it at all.</p>
+  </div>
+
+  <h3 style="margin-top:32px;">How to share sensitive info more safely (when you have to)</h3>
+  <ul>
+    <li><strong>Redact identifiers.</strong> Replace real names, account numbers, emails with <code>[Client A]</code>, <code>[Account 1]</code>, etc. Claude can still help you draft / analyse without seeing the originals.</li>
+    <li><strong>Use Projects.</strong> If a client&apos;s context lives in a dedicated Project, you&apos;re less likely to accidentally bleed it into chats about other clients.</li>
+    <li><strong>Tell Claude not to remember.</strong> At the start of a sensitive chat, say <em>&ldquo;don&apos;t remember anything from this conversation.&rdquo;</em></li>
+    <li><strong>Check your Memory.</strong> Periodically review Settings &rarr; Profile &rarr; Memory. Delete anything sensitive you spot.</li>
+    <li><strong>Use Team or Enterprise plans for client data.</strong> They have stronger data retention controls and contractual protections than Free or Pro.</li>
+  </ul>
+
+  <h3 style="margin-top:32px;">For developers &mdash; passwords, keys and tokens</h3>
+  <div class="callout callout-warning"><strong>Keep secrets out of files Claude can read</strong><p style="margin-top:8px;">Store passwords, API keys and tokens in a <code>.env</code> file (kept locally, never uploaded). Tell Claude what the variable names are (e.g. <code>STRIPE_API_KEY</code>) but never paste the actual values. If a key gets shared by accident, treat it as compromised &mdash; rotate it immediately.</p></div>
+
+  <h3 style="margin-top:32px;">Account and connector hygiene</h3>
+  <ul>
+    <li><strong>Strong passwords + 2FA</strong> on your Claude account.</li>
+    <li><strong>Review your connectors</strong> every few months. Revoke any you no longer use.</li>
+    <li><strong>Check the other side</strong> too &mdash; in Google, GitHub, etc., review which apps have access. If Claude shouldn&apos;t have access to a folder/repo anymore, remove it there as well.</li>
+    <li><strong>Don&apos;t share your account</strong>. Get colleagues their own Team-plan seats.</li>
+  </ul>
+
+  <div class="callout callout-info" style="margin-top:24px;"><strong>What Anthropic does and doesn&apos;t do with your data</strong>
+    <p style="margin-top:8px;">On consumer plans (Free, Pro, Max), Anthropic may use your conversations to improve models unless you opt out. On Team and Enterprise plans, this is off by default and there are contractual data-handling protections. If you&apos;re putting client work through Claude, Team or Enterprise is the right plan.</p>
+    <p style="margin-top:8px;">Always check the latest privacy policy at <strong>anthropic.com/privacy</strong> &mdash; this stuff evolves.</p>
+  </div>
 </div>
 
 <!-- Part 13: Costs -->
 <div class="section" id="costs">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 14</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 15</div>
   <h2><span class="prompt">&gt;</span> Cost &amp; Usage Awareness</h2>
   <p class="section-desc">Claude uses credits every interaction. Here's how to avoid waste.</p>
 
@@ -2050,8 +2252,8 @@ Have them coordinate and share progress with each other.</pre></div>
   <div class="callout callout-tip" style="margin-top:24px;"><strong>Which should your team use?</strong>
     <p style="margin-top:8px;">&bull; <strong>Anyone non-technical:</strong> Chat for thinking/writing, Cowork for actual workflows.<br>
     &bull; <strong>Marketing, ops, finance, sales, project managers:</strong> mostly Chat + Cowork.<br>
-    &bull; <strong>Web Dev, Technical Director:</strong> Code is the main tool. Chat for one-off questions.<br>
-    &bull; <strong>SEO, PPC, Web Design:</strong> Chat day-to-day, Cowork for reports, occasionally Code for technical SEO or page builds.</p>
+    &bull; <strong>Developers, Tech leadership:</strong> Code is the main tool. Chat for one-off questions.<br>
+    &bull; <strong>SEO, PPC, Designers:</strong> Chat day-to-day, Cowork for reports, occasionally Code for technical SEO or page builds.</p>
   </div>
 
   <hr style="margin: 48px 0 32px;">
@@ -2116,28 +2318,94 @@ Have them coordinate and share progress with each other.</pre></div>
   </div>
 </div>
 
-<!-- Part 15: Project Structure -->
+<!-- Part 05: How to Use Projects -->
 <div class="section" id="structure">
   <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 05</div>
-  <h2><span class="prompt">&gt;</span> How to Structure Projects</h2>
-  <p class="section-desc">Good organisation helps both you and Claude.</p>
+  <h2><span class="prompt">&gt;</span> How to Use Projects</h2>
+  <p class="section-desc">Projects in Claude Desktop are like folders for related chats. Each one has its own knowledge base and rules on top of your global CLAUDE.md. Used well, they&apos;re the difference between Claude being &ldquo;a smart assistant&rdquo; and Claude being &ldquo;your assistant who actually knows your work.&rdquo;</p>
 
-  <h3>One Project = One Folder</h3>
-  <div class="tree">~/Sites/<br>&nbsp;&nbsp;├── company-website/<span class="cm">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;-- One project</span><br>&nbsp;&nbsp;├── marketing-landing-page/<span class="cm">&nbsp;&lt;-- Another project</span><br>&nbsp;&nbsp;├── client-project-name/<span class="cm">&nbsp;&nbsp;&nbsp;&nbsp;&lt;-- Another project</span><br>&nbsp;&nbsp;└── personal-blog/<span class="cm">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;-- Another project</span></div>
-
-  <h3>Naming Conventions</h3>
+  <h3>When to use a Project vs the main chat</h3>
   <div class="table-wrap"><table>
-    <tr><th>Bad Name</th><th>Good Name</th></tr>
-    <tr><td>new folder</td><td>company-website</td></tr>
-    <tr><td>project2</td><td>client-smith-landing-page</td></tr>
-    <tr><td>stuff</td><td>marketing-assets</td></tr>
-    <tr><td>final final v2</td><td>product-launch-campaign</td></tr>
+    <tr><th>Use the main chat for...</th><th>Use a Project for...</th></tr>
+    <tr><td>One-off questions</td><td>Anything you&apos;ll come back to more than twice</td></tr>
+    <tr><td>Quick drafts and brainstorms</td><td>Work tied to a specific client, account or campaign</td></tr>
+    <tr><td>General how-do-I queries</td><td>Recurring work where context matters (e.g. monthly reports)</td></tr>
+    <tr><td>Help that doesn&apos;t need your business context</td><td>Anything where you don&apos;t want context bleeding into other chats</td></tr>
   </table></div>
+
+  <div class="callout callout-tip" style="margin-top:16px;"><strong>Rule of thumb</strong>
+    <p style="margin-top:8px;">If you&apos;d label the chat with a specific name afterwards (&ldquo;Acme Q3 strategy&rdquo;, &ldquo;Smith landing page&rdquo;, &ldquo;weekly board prep&rdquo;), it belongs in a Project. If you&apos;d label it &ldquo;asking Claude a thing&rdquo;, main chat is fine.</p>
+  </div>
+
+  <h3 style="margin-top:32px;">Three layers of rules in Claude</h3>
+  <p>When Claude reads a chat, it stacks three layers of context. Understanding the stack helps you decide where to put things.</p>
+
+  <div class="card-grid" style="grid-template-columns:repeat(3,1fr);margin-top:16px;margin-bottom:24px;">
+    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>Account level</div><div class="card-body">
+      <h4>1. Account level</h4>
+      <p><strong>Your CLAUDE.md</strong> in Settings &rarr; Profile. Reads on every single chat across the app.</p>
+      <p>This is the permanent you &mdash; who you are, how you communicate, your standards.</p>
+    </div></div>
+
+    <div class="card" style="border-color:var(--primary);"><div class="card-bar" style="background:rgba(217,145,120,0.1);"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>Project level</div><div class="card-body">
+      <h4 style="color:var(--primary);">2. Project level</h4>
+      <p><strong>Custom instructions</strong> + <strong>Project Knowledge</strong>. Only applied when you&apos;re chatting inside that Project.</p>
+      <p>Context specific to that piece of work &mdash; the client&apos;s brand voice, this account&apos;s priorities, reference docs.</p>
+    </div></div>
+
+    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>Chat level</div><div class="card-body">
+      <h4>3. Chat level</h4>
+      <p>Anything you say or upload in the chat itself. Resets when you start a new chat.</p>
+      <p>One-off instructions, the specific task, files attached to this conversation.</p>
+    </div></div>
+  </div>
+
+  <h3>Setting up a Project (step by step)</h3>
+  <div class="table-wrap"><table>
+    <tr><th>#</th><th>What To Do</th></tr>
+    <tr><td><strong>1</strong></td><td>In Claude Desktop, click <strong>Projects</strong> in the left sidebar.</td></tr>
+    <tr><td><strong>2</strong></td><td>Click <strong>New Project</strong>. Give it a clear name (e.g. <em>&ldquo;Acme &mdash; PPC&rdquo;</em>, <em>&ldquo;Monthly Board Prep&rdquo;</em>).</td></tr>
+    <tr><td><strong>3</strong></td><td>Add a short description if useful &mdash; this helps you remember its purpose later.</td></tr>
+    <tr><td><strong>4</strong></td><td>Find <strong>Custom Instructions</strong>. Write Project-specific rules here: tone of voice, what this Project is for, what to avoid. These stack on top of your CLAUDE.md.</td></tr>
+    <tr><td><strong>5</strong></td><td>Find <strong>Project Knowledge</strong>. Paste in your <code>Context.md</code> and any reference docs (style guides, past reports, brand assets).</td></tr>
+    <tr><td><strong>6</strong></td><td>Start a chat inside the Project. Claude now reads your CLAUDE.md + your Project rules + your Project Knowledge before answering.</td></tr>
+  </table></div>
+
+  <h3 style="margin-top:32px;">Project naming &mdash; a good convention</h3>
+  <p>You&apos;ll end up with a lot of Projects. A consistent naming pattern saves you scrolling.</p>
+  <div class="table-wrap"><table>
+    <tr><th>Pattern</th><th>Example</th></tr>
+    <tr><td><strong>[Client] &mdash; [Discipline]</strong></td><td>Acme &mdash; PPC</td></tr>
+    <tr><td><strong>[Type] &mdash; [Frequency]</strong></td><td>Board Prep &mdash; Monthly</td></tr>
+    <tr><td><strong>[Project name]</strong> (when there&apos;s no client)</td><td>Website Redesign</td></tr>
+    <tr><td>Avoid generic ones</td><td>&ldquo;Project 2&rdquo;, &ldquo;Marketing stuff&rdquo;, &ldquo;Untitled&rdquo;</td></tr>
+  </table></div>
+
+  <h3 style="margin-top:32px;">When to create a new Project vs reuse</h3>
+  <ul>
+    <li><strong>New Project:</strong> new client, new campaign, new recurring workflow, anything that has its own context that shouldn&apos;t leak into other work.</li>
+    <li><strong>Reuse existing:</strong> ongoing work on the same client/campaign. Same context = same Project. Don&apos;t create &ldquo;Acme Q3&rdquo; and &ldquo;Acme Q4&rdquo; &mdash; just update the Project Knowledge when the quarter ticks over.</li>
+    <li><strong>Archive (or delete):</strong> when a piece of work is finished and won&apos;t come back. Keeps your Project list manageable.</li>
+  </ul>
+
+  <h3 style="margin-top:32px;">Sharing Projects with colleagues</h3>
+  <p>If you&apos;re on a <strong>Team plan</strong>, you can share Projects with people in your organisation. Useful for any Project where the context (client docs, brand voice, reference materials) shouldn&apos;t live on just one person&apos;s account.</p>
+  <ol>
+    <li>Open the Project.</li>
+    <li>Click the <strong>Share</strong> button (top right of the Project view).</li>
+    <li>Add teammates by email or invite them. Choose whether they can view or edit.</li>
+    <li>They can now access the Project and contribute to its knowledge base.</li>
+  </ol>
+  <p style="color:var(--muted);font-size:13px;margin-top:8px;">Free and Pro plans don&apos;t support shared Projects &mdash; everyone gets their own.</p>
+
+  <div class="callout callout-info" style="margin-top:24px;"><strong>Common pitfall</strong>
+    <p style="margin-top:8px;">People often stuff everything into one giant Project. Resist that. The more focused a Project is (one client, one workflow, one campaign), the better Claude&apos;s answers get &mdash; because it&apos;s reading exactly the right context, not a mash-up of everything.</p>
+  </div>
 </div>
 
 <!-- Part 16: Backups -->
 <div class="section" id="backups">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 15</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 16</div>
   <h2><span class="prompt">&gt;</span> Backup Basics</h2>
   <p class="section-desc">Version control (git) = unlimited undo button for your entire project.</p>
 
@@ -2151,21 +2419,6 @@ Have them coordinate and share progress with each other.</pre></div>
   <div class="prompt-card"><div class="prompt-card-header"><h4>Save a Snapshot</h4></div><div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>Save the current state of this project as a git commit. Describe what changed.</pre></div></div>
   <div class="prompt-card"><div class="prompt-card-header"><h4>See What's Changed</h4></div><div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>Show me what files have changed since the last commit, and summarise the changes in plain language.</pre></div></div>
   <div class="prompt-card"><div class="prompt-card-header"><h4>Undo / Go Back</h4></div><div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>Show me the last 5 commits (saved versions) for this project, with a plain language description of each. I might want to go back to an earlier one.</pre></div></div>
-</div>
-
-<!-- Part 17: FAQ -->
-<div class="section" id="faq">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 17</div>
-  <h2><span class="prompt">&gt;</span> Troubleshooting FAQ</h2>
-  <p class="section-desc">Common problems and how to fix them. Click to expand.</p>
-
-  <div class="faq-item"><div class="faq-question">"Claude forgot everything about my project" <span class="arrow">&#9660;</span></div><div class="faq-answer"><p style="color:var(--muted)">Happens when you start a new conversation. <strong>Fix:</strong> Use the "Get Up to Speed" prompt from Part 7. Keep CLAUDE.md and Context.md up to date.</p></div></div>
-  <div class="faq-item"><div class="faq-question">"Claude won't read my files" <span class="arrow">&#9660;</span></div><div class="faq-answer"><p style="color:var(--muted)">Claude Code needs to be opened from your project folder. <strong>Fix:</strong> In Terminal: <code>cd ~/Sites/my-project-name</code> then launch Claude Code.</p></div></div>
-  <div class="faq-item"><div class="faq-question">"Skills aren't loading" <span class="arrow">&#9660;</span></div><div class="faq-answer"><p style="color:var(--muted)"><strong>Fix:</strong> Ask Claude "List everything in ~/.claude/skills/". If there but not working, start a new conversation. If not there, re-run the install command.</p></div></div>
-  <div class="faq-item"><div class="faq-question">"Claude keeps doing things I didn't ask for" <span class="arrow">&#9660;</span></div><div class="faq-answer"><p style="color:var(--muted)"><strong>Fix:</strong> Add to CLAUDE.md: "Only do exactly what I ask. Don't add extra features or make 'improvements' beyond the task. If you think something else should change, tell me and let me decide."</p></div></div>
-  <div class="faq-item"><div class="faq-question">"The install command failed" <span class="arrow">&#9660;</span></div><div class="faq-answer"><div class="table-wrap"><table><tr><th>Error</th><th>Fix</th></tr><tr><td>"repository not found"</td><td>Search GitHub for the repo name</td></tr><tr><td>"destination path already exists"</td><td>Already installed — no action needed</td></tr><tr><td>"command not found: git"</td><td>Ask Claude: "Help me install git on my Mac"</td></tr></table></div></div></div>
-  <div class="faq-item"><div class="faq-question">"I accidentally approved something I shouldn't have" <span class="arrow">&#9660;</span></div><div class="faq-answer"><p style="color:var(--muted)"><strong>Fix:</strong> If using git: "Undo the last change and go back to the previous version." If not using git — this is why Part 16 (backups) matters.</p></div></div>
-  <div class="faq-item"><div class="faq-question">"I don't understand what Claude just did" <span class="arrow">&#9660;</span></div><div class="faq-answer"><p style="color:var(--muted)"><strong>Fix:</strong> Paste: "Explain what you just did in plain, non-technical language. I'm not a developer."</p></div></div>
 </div>
 
 <!-- Part 18: Teams -->
@@ -2214,7 +2467,7 @@ Have them coordinate and share progress with each other.</pre></div>
     <div class="team-installed"><strong>Already installed:</strong> paid-ads, ad-creative</div>
   </div></div>
 
-  <div class="team-item" onclick="this.classList.toggle('open')"><div class="team-head">Web Developer Team <span class="arrow">&#9654;</span></div><div class="team-body">
+  <div class="team-item" onclick="this.classList.toggle('open')"><div class="team-head">Developers <span class="arrow">&#9654;</span></div><div class="team-body">
     <h4>Skills to Install</h4>
     <div class="team-tool"><span class="t-type">Skill</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Trail of Bits Security</a></span><span class="t-desc">Security audits, vulnerability detection</span></div>
     <h4>MCP Servers to Connect</h4>
@@ -2224,7 +2477,7 @@ Have them coordinate and share progress with each other.</pre></div>
     <div class="team-installed"><strong>Already installed:</strong> test-driven-development, systematic-debugging, verification-before-completion</div>
   </div></div>
 
-  <div class="team-item" onclick="this.classList.toggle('open')"><div class="team-head">Web Design Team <span class="arrow">&#9654;</span></div><div class="team-body">
+  <div class="team-item" onclick="this.classList.toggle('open')"><div class="team-head">Designers <span class="arrow">&#9654;</span></div><div class="team-body">
     <div class="team-installed"><strong>Already installed:</strong> accessibility-review, design-system, design-critique, frontend-design, web-design-guidelines, ux-copy, design-handoff</div>
     <div class="team-installed"><strong>Already connected:</strong> Figma, Canva</div>
   </div></div>
@@ -2259,7 +2512,7 @@ Have them coordinate and share progress with each other.</pre></div>
     <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Stripe</a></span><span class="t-desc">Payments, subscriptions, refunds</span></div>
   </div></div>
 
-  <div class="team-item" onclick="this.classList.toggle('open')"><div class="team-head">Operations Director <span class="arrow">&#9654;</span></div><div class="team-body">
+  <div class="team-item" onclick="this.classList.toggle('open')"><div class="team-head">Operations leadership <span class="arrow">&#9654;</span></div><div class="team-body">
     <h4>Skills to Install</h4>
     <div class="team-tool"><span class="t-type">Skill</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">SOP Creator</a></span><span class="t-desc">Turns brain dumps into clean SOPs</span></div>
     <h4>MCP Servers to Connect</h4>
@@ -2268,7 +2521,7 @@ Have them coordinate and share progress with each other.</pre></div>
     <div class="team-installed"><strong>Already connected:</strong> Monday.com, Slack, Calendar, Drive</div>
   </div></div>
 
-  <div class="team-item" onclick="this.classList.toggle('open')"><div class="team-head">Managing Director <span class="arrow">&#9654;</span></div><div class="team-body">
+  <div class="team-item" onclick="this.classList.toggle('open')"><div class="team-head">Senior leadership <span class="arrow">&#9654;</span></div><div class="team-body">
     <h4>Skills to Install</h4>
     <div class="team-tool"><span class="t-type">Skill</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Business Strategy</a></span><span class="t-desc">Porter's 5 Forces, SWOT, BCG, Blue Ocean</span></div>
     <div class="team-tool"><span class="t-type">Skill</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">CEO Advisor + 220 skills</a></span><span class="t-desc">Strategic decisions, board decks, competitive intel</span></div>
@@ -2279,7 +2532,7 @@ Have them coordinate and share progress with each other.</pre></div>
     <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Stripe</a></span><span class="t-desc">Revenue, payment metrics</span></div>
   </div></div>
 
-  <div class="team-item" onclick="this.classList.toggle('open')"><div class="team-head">Technical Director <span class="arrow">&#9654;</span></div><div class="team-body">
+  <div class="team-item" onclick="this.classList.toggle('open')"><div class="team-head">Tech leadership <span class="arrow">&#9654;</span></div><div class="team-body">
     <h4>Skills to Install</h4>
     <div class="team-tool"><span class="t-type">Skill</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Trail of Bits Security</a></span><span class="t-desc">Vulnerability detection, audit workflows</span></div>
     <h4>MCP Servers to Connect</h4>
@@ -2289,7 +2542,7 @@ Have them coordinate and share progress with each other.</pre></div>
     <div class="team-installed"><strong>Already installed:</strong> test-driven-development, systematic-debugging, verification-before-completion</div>
   </div></div>
 
-  <div class="team-item" onclick="this.classList.toggle('open')"><div class="team-head">Internal Brand Marketing <span class="arrow">&#9654;</span></div><div class="team-body">
+  <div class="team-item" onclick="this.classList.toggle('open')"><div class="team-head">Brand &amp; Marketing <span class="arrow">&#9654;</span></div><div class="team-body">
     <div class="team-installed"><strong>Already installed:</strong> copywriting, copy-editing, social-content, content-strategy, marketing-ideas, x-twitter-growth, marketing-psychology, brainstorming, banner-creator</div>
     <div class="team-installed"><strong>Already connected:</strong> Canva, Figma, Slack, Gmail, Drive</div>
   </div></div>
