@@ -932,13 +932,25 @@
   </div>
 </div>
 
-<!-- Part 01: Generate your CLAUDE.md with ChatGPT -->
+<!-- Part 01: Generate your CLAUDE.md from your existing AI -->
 <div class="section" id="bootstrap">
   <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 01</div>
-  <h2><span class="prompt">&gt;</span> Start Here &mdash; Generate Your CLAUDE.md with ChatGPT</h2>
-  <p class="section-desc">Before you do anything else, get yourself a CLAUDE.md file. It&apos;s the single biggest upgrade you can make to how Claude works with you &mdash; and ChatGPT will write most of it for you.</p>
+  <h2><span class="prompt">&gt;</span> Start Here &mdash; Generate Your CLAUDE.md from Your Existing AI</h2>
+  <p class="section-desc">Before you do anything else, get yourself a CLAUDE.md file. It&apos;s the single biggest upgrade you can make to how Claude works with you &mdash; and whichever AI you&apos;ve already been using (ChatGPT, Gemini, Claude.ai, Copilot, etc.) will write most of it for you, based on everything it already knows about you.</p>
 
-  <div class="callout callout-info" style="margin-bottom:24px;"><strong>What you&apos;ll end up with</strong>
+  <div class="callout callout-info" style="margin-bottom:24px;"><strong>Which AI should you use?</strong>
+    <p style="margin-top:8px;">Use the AI you&apos;ve had the most conversations with &mdash; it&apos;ll have the most context about you.</p>
+    <ul style="margin-top:8px;">
+      <li><strong>ChatGPT</strong> &mdash; turn Memory on first: Settings &rarr; Personalisation &rarr; Memory</li>
+      <li><strong>Gemini</strong> &mdash; turn on Personalisation and Saved Info in your Google account settings</li>
+      <li><strong>Claude.ai</strong> &mdash; turn on Memory in Settings &rarr; Profile (a little ironic, but works)</li>
+      <li><strong>Microsoft Copilot</strong> &mdash; works fine, less memory than the others though</li>
+      <li><strong>Perplexity, Grok, etc.</strong> &mdash; any AI that holds a long conversation will do the job</li>
+    </ul>
+    <p style="margin-top:8px;">If you&apos;re starting fresh with no AI history, that&apos;s fine too &mdash; just answer the questions thoroughly when it interviews you.</p>
+  </div>
+
+  <div class="callout callout-tip" style="margin-bottom:24px;"><strong>What you&apos;ll end up with</strong>
     <ul style="margin-top:8px;">
       <li>A <strong>CLAUDE.md</strong> file &mdash; your permanent instruction sheet for Claude (who you are, how you work, your rules)</li>
       <li>A <strong>Context.md</strong> file &mdash; for the stuff that changes (current goals, targets, focus areas)</li>
@@ -949,7 +961,7 @@
   <h3>How it works</h3>
   <div class="table-wrap"><table>
     <tr><th>#</th><th>What You Do</th><th>How Long</th></tr>
-    <tr><td><strong>1</strong></td><td>Open ChatGPT in a fresh chat. Make sure Memory is on (Settings &rarr; Personalisation &rarr; Memory).</td><td>1 min</td></tr>
+    <tr><td><strong>1</strong></td><td>Open your existing AI in a fresh chat. If it has a memory feature (see the box above), make sure it&apos;s switched on.</td><td>1 min</td></tr>
     <tr><td><strong>2</strong></td><td>Paste the interview prompt below. Answer its questions one at a time &mdash; be specific.</td><td>15 mins</td></tr>
     <tr><td><strong>3</strong></td><td>Copy the CLAUDE.md it produces. Save it as a plain text file called <code>CLAUDE.md</code>.</td><td>2 mins</td></tr>
     <tr><td><strong>4</strong></td><td>Paste the &ldquo;split file&rdquo; prompt to separate stable info from changing info into two files.</td><td>2 mins</td></tr>
@@ -957,10 +969,10 @@
   </table></div>
 
   <h3>The interview prompt</h3>
-  <p style="color:var(--muted);font-size:13px;margin-bottom:12px;">Paste this into ChatGPT. Edit the &ldquo;Who I am&rdquo; section first so it matches you.</p>
+  <p style="color:var(--muted);font-size:13px;margin-bottom:12px;">Paste this into whichever AI you&apos;re using. Edit the &ldquo;Who I am&rdquo; section first so it matches you.</p>
 
   <div class="prompt-card" style="border-color:var(--primary);">
-    <div class="prompt-card-header"><h4>Interview Me and Write My CLAUDE.md</h4><span class="when">paste into ChatGPT</span></div>
+    <div class="prompt-card-header"><h4>Interview Me and Write My CLAUDE.md</h4><span class="when">paste into your AI</span></div>
     <div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>I&apos;d like you to create me a CLAUDE.md file. Before you write it, I want you to interview me to fill in gaps that you can&apos;t answer from memory alone.
 
 WHO I AM (edit this section so it matches you, then keep the rest as-is):
@@ -1046,7 +1058,7 @@ Start with Step 1 now &mdash; just the first question, then wait for my answer.<
   </div>
 
   <h3 style="margin-top:32px;">Split it into stable vs changing info</h3>
-  <p style="color:var(--muted);font-size:13px;margin-bottom:12px;">Once ChatGPT gives you the CLAUDE.md, paste this next prompt so it separates the permanent stuff from the stuff that&apos;ll change in a few months.</p>
+  <p style="color:var(--muted);font-size:13px;margin-bottom:12px;">Once your AI gives you the CLAUDE.md, paste this next prompt so it separates the permanent stuff from the stuff that&apos;ll change in a few months.</p>
 
   <div class="callout callout-tip" style="margin-bottom:16px;"><strong>Why split it?</strong><p>CLAUDE.md is for things that stay true (your role, your style, your standards). Context.md is for things that change (current targets, this quarter&apos;s focus, active campaigns). Splitting them means you only have to edit one file when something changes &mdash; not your whole profile.</p></div>
 
