@@ -108,6 +108,103 @@
       background: rgba(217,145,120,0.06);
     }
 
+    /* Search */
+    .nav-search {
+      position: relative;
+      flex: 0 1 280px;
+      max-width: 280px;
+      margin: 0 16px;
+    }
+    .nav-search-input {
+      width: 100%;
+      box-sizing: border-box;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 6px 12px 6px 28px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .nav-search-input::placeholder { color: var(--muted); }
+    .nav-search-input:focus { border-color: var(--primary-dim); }
+    .nav-search-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--green);
+      font-family: var(--mono);
+      font-size: 12px;
+      pointer-events: none;
+    }
+    .search-results {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      right: 0;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      max-height: 70vh;
+      overflow-y: auto;
+      z-index: 100;
+      display: none;
+    }
+    .search-results.open { display: block; }
+    .search-result-item {
+      display: block;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 12px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .search-result-item:last-child { border-bottom: none; }
+    .search-result-item:hover, .search-result-item.active {
+      background: rgba(217,145,120,0.08);
+    }
+    .search-result-num {
+      color: var(--primary);
+      margin-right: 8px;
+      font-weight: 600;
+    }
+    .search-result-title {
+      color: var(--text);
+      font-weight: 500;
+    }
+    .search-result-snippet {
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 4px;
+      line-height: 1.4;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .search-result-snippet mark {
+      background: rgba(217,145,120,0.25);
+      color: var(--text);
+      padding: 0 2px;
+      border-radius: 2px;
+    }
+    .search-no-results {
+      padding: 14px;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 12px;
+      text-align: center;
+    }
+    @media (max-width: 720px) {
+      .nav-search { display: none; }
+    }
+
     /* Container */
     .container {
       max-width: 1216px;
@@ -797,6 +894,11 @@
 <nav class="nav" id="top">
   <div class="nav-inner">
     <a href="#" onclick="showHome();return false" class="nav-logo">claude setup<span class="cursor"></span></a>
+    <div class="nav-search">
+      <span class="nav-search-icon">$</span>
+      <input type="search" id="search-input" class="nav-search-input" placeholder="search the guide..." autocomplete="off" />
+      <div id="search-results" class="search-results" role="listbox"></div>
+    </div>
     <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"><span class="dollar" style="color:var(--green)">$</span> menu</button>
     <ul class="nav-links">
       <li><a href="/bootstrap" onclick="showSection('bootstrap');return false"><span class="dollar">$</span> new starter</a></li>
@@ -1417,17 +1519,102 @@ Output both as separate markdown code blocks so I can save them as two separate 
   <div class="callout callout-warning"><strong>Heads up</strong><p>GitHub repos can move or rename. If an install command fails, search GitHub.com for the repo name to find the current address.</p></div>
 </div>
 
-<!-- Part 4: Folder Map -->
+<!-- Part 09: Where things live and where settings apply -->
 <div class="section" id="folder-map">
   <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 09</div>
-  <h2><span class="prompt">&gt;</span> Where Everything Lives</h2>
-  <p class="section-desc">The ~ symbol means your home folder (/Users/[yourname]/).</p>
+  <h2><span class="prompt">&gt;</span> Where Things Live (and Who Sees Them)</h2>
+  <p class="section-desc">Two different things to understand: where your settings <strong>apply</strong> (who can see them and when), and where files actually <strong>sit</strong> on your computer. The first one matters for everyone. The second one only matters if you&apos;re using Claude Code with project folders.</p>
 
-  <h4>Global settings and skills (shared across all projects):</h4>
-  <div class="tree">~/.claude/<br>&nbsp;&nbsp;├── skills/<span class="cm">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;-- All installed add-ons</span><br>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── superpowers/<span class="cm">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;-- Example add-on</span><br>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── ...<br>&nbsp;&nbsp;└── projects/<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [project-name]/<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── memory/<span class="cm">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;-- Claude's memory for this project</span></div>
+  <h3 style="margin-top:32px;">Where settings apply &mdash; the three levels</h3>
+  <p>This is the bit that confuses most people. When you set something up in Claude, it lives at one of three levels &mdash; and which level you pick controls who sees it.</p>
 
-  <h4>Your project folder (one per project):</h4>
+  <div class="card-grid" style="grid-template-columns:repeat(3,1fr);margin-top:16px;margin-bottom:24px;">
+    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>Organisation</div><div class="card-body">
+      <h4>Organisation / Team</h4>
+      <p>Set up by your admin (or IT person). Applied to <strong>everyone</strong> in your company automatically.</p>
+      <p><strong>Examples:</strong></p>
+      <ul>
+        <li>Connectors your admin pushes out to the whole team (e.g. shared Trello, Monday)</li>
+        <li>Skills enabled at organisation level in Cowork</li>
+        <li>Team plan-wide settings managed via the Anthropic admin console</li>
+      </ul>
+      <p><strong>You&apos;d notice this as:</strong> things that appear already enabled when you log in, that you didn&apos;t set up yourself.</p>
+    </div></div>
+
+    <div class="card" style="border-color:var(--primary);"><div class="card-bar" style="background:rgba(217,145,120,0.1);"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>Personal</div><div class="card-body">
+      <h4 style="color:var(--primary);">Personal / Account</h4>
+      <p>Only on <strong>your account</strong>. Colleagues don&apos;t see them, even if you&apos;re on the same Team plan.</p>
+      <p><strong>Examples:</strong></p>
+      <ul>
+        <li>Your <code>CLAUDE.md</code> pasted in Settings &rarr; Profile</li>
+        <li>Connectors you add yourself in Settings &rarr; Connectors</li>
+        <li>Skills you toggle on in Settings &rarr; Customize &rarr; Skills</li>
+        <li>Memory toggled on for your account</li>
+      </ul>
+      <p><strong>This is the level you&apos;ll use most of the time.</strong></p>
+    </div></div>
+
+    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>Project</div><div class="card-body">
+      <h4>Project</h4>
+      <p>Only applies <strong>inside that one Project</strong> in Claude Desktop. The moment you start a chat outside it, the rules don&apos;t apply.</p>
+      <p><strong>Examples:</strong></p>
+      <ul>
+        <li>Your <code>Context.md</code> pasted into Project Knowledge</li>
+        <li>Project-specific instructions on top of your CLAUDE.md</li>
+        <li>Reference files you uploaded just for that Project</li>
+        <li>Any KEEP items you brought across from your old AI</li>
+      </ul>
+      <p><strong>Use this for:</strong> anything that&apos;s specific to one piece of work and shouldn&apos;t bleed into other chats.</p>
+    </div></div>
+  </div>
+
+  <h3>Quick lookup &mdash; what goes where?</h3>
+  <div class="table-wrap"><table>
+    <tr><th>Thing</th><th>Level</th><th>Where You Set It</th></tr>
+    <tr><td>Your permanent profile (CLAUDE.md)</td><td>Personal</td><td>Settings &rarr; Profile &rarr; preferences box</td></tr>
+    <tr><td>This quarter&apos;s targets / current focus (Context.md)</td><td>Project</td><td>Inside a Project &rarr; Project Knowledge</td></tr>
+    <tr><td>Memory on/off</td><td>Personal</td><td>Settings &rarr; Profile</td></tr>
+    <tr><td>Google Calendar / Gmail / Drive connector</td><td>Personal</td><td>Settings &rarr; Connectors</td></tr>
+    <tr><td>Trello / Monday (shared by the whole agency)</td><td>Organisation</td><td>Pushed by admin via Anthropic console</td></tr>
+    <tr><td>Skill (e.g. paid-ads, copywriting)</td><td>Personal</td><td>Settings &rarr; Customize &rarr; Skills</td></tr>
+    <tr><td>Skill for the whole team</td><td>Organisation</td><td>Pushed by admin via Cowork org settings</td></tr>
+    <tr><td>Reference docs for one client</td><td>Project</td><td>Inside that client&apos;s Project &rarr; Project Knowledge</td></tr>
+    <tr><td>Project-specific tone of voice rule</td><td>Project</td><td>Inside the Project &rarr; Custom Instructions</td></tr>
+  </table></div>
+
+  <div class="callout callout-tip" style="margin-top:24px;"><strong>Rules of thumb</strong>
+    <ul style="margin-top:8px;">
+      <li>If you&apos;d say &ldquo;I want this for me, not the team&rdquo; &rarr; <strong>Personal</strong></li>
+      <li>If you&apos;d say &ldquo;I want this for one specific job or client&rdquo; &rarr; <strong>Project</strong></li>
+      <li>If you&apos;d say &ldquo;I want everyone in the business to have this&rdquo; &rarr; <strong>Organisation</strong> (and you&apos;ll need admin access or to ask your IT person)</li>
+    </ul>
+  </div>
+
+  <div class="callout callout-info" style="margin-top:16px;"><strong>Why this matters</strong>
+    <p style="margin-top:8px;">A common confusion: you install something and a colleague can&apos;t find it. Or you can&apos;t find something a colleague set up. Almost always, it&apos;s because that thing was set at a <strong>Personal</strong> level on one of your accounts &mdash; not pushed to the whole organisation.</p>
+    <p style="margin-top:8px;">The other common one: people set things at <strong>Personal</strong> level when they really want it at <strong>Project</strong> level, then their instructions for one client bleed into chats about a completely different client. Project level keeps things tidy.</p>
+  </div>
+
+  <hr style="margin: 48px 0 32px;">
+
+  <h3>Where files actually live on disk</h3>
+  <p class="section-desc" style="margin-bottom:16px;">Only relevant if you&apos;re using <strong>Claude Code</strong> with project folders. If you&apos;re mainly using Chat and Cowork, you can skip this bit &mdash; everything you need to know is above.</p>
+
+  <h4>Global settings and skills (shared across all your Code projects)</h4>
+  <div class="tree">~/.claude/<br>&nbsp;&nbsp;├── skills/<span class="cm">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;-- All installed add-ons</span><br>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── superpowers/<span class="cm">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;-- Example add-on</span><br>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── ...<br>&nbsp;&nbsp;└── projects/<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [project-name]/<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── memory/<span class="cm">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;-- Claude&apos;s memory for this project</span></div>
+  <p style="color:var(--muted);font-size:13px;margin-top:8px;">The <code>~</code> symbol means your home folder &mdash; on Mac that&apos;s <code>/Users/yourname/</code>.</p>
+
+  <h4 style="margin-top:24px;">Your project folder (one per Code project)</h4>
   <div class="tree">~/Sites/my-project/<span class="cm">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;-- Your project folder</span><br>&nbsp;&nbsp;├── CLAUDE.md<span class="cm">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;-- House rules for THIS project</span><br>&nbsp;&nbsp;├── Context.md<span class="cm">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;-- Background info</span><br>&nbsp;&nbsp;└── [your files...]</div>
+
+  <div class="callout callout-warning" style="margin-top:24px;"><strong>Heads up &mdash; Desktop and Code use different homes</strong>
+    <p style="margin-top:8px;">Your <strong>Desktop</strong> CLAUDE.md (the one in Settings &rarr; Profile) is separate from the <strong>file-based</strong> CLAUDE.md that lives in a Code project folder. They&apos;re both called CLAUDE.md but they apply differently:</p>
+    <ul style="margin-top:8px;">
+      <li><strong>Desktop / Settings CLAUDE.md</strong> &rarr; reads on every chat across the whole app</li>
+      <li><strong>Project folder CLAUDE.md</strong> &rarr; only reads when Code is opened against that folder</li>
+    </ul>
+    <p style="margin-top:8px;">For most people, you&apos;ll only ever set the first one (in Settings). Only developers using Code on a per-project basis need the second.</p>
+  </div>
 </div>
 
 <!-- Part 5: Glossary -->
@@ -1790,148 +1977,143 @@ Have them coordinate and share progress with each other.</pre></div>
   </table></div>
 </div>
 
-<!-- Part 14: Code vs Chat -->
+<!-- Part 02: Chat vs Code vs Cowork -->
 <div class="section" id="code-vs-chat">
   <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 02</div>
-  <h2><span class="prompt">&gt;</span> Claude Chat vs Code vs Cowork</h2>
-  <p class="section-desc">Three tools, three different jobs. Using the right one saves time and money.</p>
+  <h2><span class="prompt">&gt;</span> Chat vs Code vs Cowork</h2>
+  <p class="section-desc">Three flavours of Claude, all reachable from Claude Desktop. They do different jobs, and picking the right one saves you time, money, and confusion.</p>
 
-  <p style="color:var(--muted);font-size:14px;margin-bottom:24px;">Claude comes in three flavours. Think of them like this: <strong style="color:var(--text)">Chat</strong> is like texting a smart friend. <strong style="color:var(--text)">Code</strong> is like hiring a developer who sits at your computer. <strong style="color:var(--text)">Cowork</strong> is like hiring an assistant who works on your desktop while you watch.</p>
-
-  <div class="card-grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:24px;">
-    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>claude-chat</div><div class="card-body"><h4>Claude Chat</h4><p>The regular chat at claude.ai. You type, it responds. Good for questions, writing, brainstorming, and one-off tasks that don't need your files.</p><p><strong style="color:var(--text)">Where:</strong> claude.ai (browser) or Claude app</p><p><strong style="color:var(--text)">For:</strong> Everyone</p></div></div>
-    <div class="card" style="border-color:var(--primary);"><div class="card-bar" style="background:rgba(217,145,120,0.1);"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>claude-code</div><div class="card-body"><h4 style="color:var(--primary);">Claude Code</h4><p>Lives in your Terminal. Can read, edit, and create files on your computer. Runs commands, builds websites, fixes bugs, manages projects. This guide is about this one.</p><p><strong style="color:var(--text)">Where:</strong> Terminal, VS Code, Desktop app, or browser</p><p><strong style="color:var(--text)">For:</strong> Anyone working on projects with files</p></div></div>
-    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>claude-cowork</div><div class="card-body"><h4>Claude Cowork</h4><p>Lives inside the Claude Desktop app. Handles multi-step tasks on your desktop — organising files, creating spreadsheets, building presentations, running research. No coding needed.</p><p><strong style="color:var(--text)">Where:</strong> Claude Desktop app (Mac or Windows)</p><p><strong style="color:var(--text)">For:</strong> Non-technical teams who need desktop automation</p></div></div>
+  <div class="callout callout-info" style="margin-bottom:24px;"><strong>The one-line summary</strong>
+    <p style="margin-top:8px;">&bull; <strong>Chat</strong> helps you <em>think and write</em><br>
+    &bull; <strong>Code</strong> is the developer&apos;s <em>power tool</em><br>
+    &bull; <strong>Cowork</strong> helps you <em>get the job done</em></p>
   </div>
 
-  <h3>When to Use Which</h3>
-  <div class="table-wrap"><table>
-    <tr><th>Task</th><th>Chat</th><th>Code</th><th>Cowork</th></tr>
-    <tr><td>Ask a general question</td><td style="color:var(--green)">Best</td><td></td><td></td></tr>
-    <tr><td>Write a one-off email or document</td><td style="color:var(--green)">Best</td><td></td><td></td></tr>
-    <tr><td>Brainstorm ideas (not project-specific)</td><td style="color:var(--green)">Best</td><td></td><td></td></tr>
-    <tr><td>Strategy conversation</td><td style="color:var(--green)">Best</td><td></td><td></td></tr>
-    <tr><td>Build or edit a website</td><td></td><td style="color:var(--green)">Best</td><td></td></tr>
-    <tr><td>Fix a bug in your code</td><td></td><td style="color:var(--green)">Best</td><td></td></tr>
-    <tr><td>Set up a project with config files</td><td></td><td style="color:var(--green)">Best</td><td></td></tr>
-    <tr><td>Run commands on your computer</td><td></td><td style="color:var(--green)">Best</td><td></td></tr>
-    <tr><td>Work on an ongoing project with memory</td><td></td><td style="color:var(--green)">Best</td><td></td></tr>
-    <tr><td>Organise files on your computer</td><td></td><td></td><td style="color:var(--green)">Best</td></tr>
-    <tr><td>Create a PowerPoint from notes</td><td></td><td></td><td style="color:var(--green)">Best</td></tr>
-    <tr><td>Build an Excel spreadsheet with formulas</td><td></td><td></td><td style="color:var(--green)">Best</td></tr>
-    <tr><td>Batch rename or sort files</td><td></td><td></td><td style="color:var(--green)">Best</td></tr>
-    <tr><td>Research and compile a report</td><td></td><td></td><td style="color:var(--green)">Best</td></tr>
-    <tr><td>Analyse data and create charts</td><td></td><td></td><td style="color:var(--green)">Best</td></tr>
-  </table></div>
+  <h3>Plain English explanations</h3>
 
-  <h3>Key Differences at a Glance</h3>
+  <div class="card-grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:24px;">
+    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>Chat</div><div class="card-body">
+      <h4>Claude Chat</h4>
+      <p><strong>Think of it as:</strong> a smart assistant you talk to.</p>
+      <p>You ask, it answers. You give it a doc, it summarises. You brief it, it drafts. It&apos;s your everyday thinking and writing partner. Connectors let it peek at your Calendar, Gmail, Drive, Trello when you ask &mdash; but it doesn&apos;t go off and do multi-step work on its own.</p>
+      <p><strong>Where:</strong> just open Claude Desktop. This is the default mode.</p>
+      <p><strong>Who&apos;s it for:</strong> everyone.</p>
+    </div></div>
+
+    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>Cowork</div><div class="card-body">
+      <h4>Claude Cowork</h4>
+      <p><strong>Think of it as:</strong> a virtual coworker who actually does the work.</p>
+      <p>Same conversational feel as Chat, but with real hands. It can log into your tools, pull data, run a multi-step process, draft the output, log the result, post to Slack &mdash; all in one go. You&apos;re not just chatting; you&apos;re delegating a workflow.</p>
+      <p><strong>Where:</strong> in Claude Desktop, switch to Cowork mode. Same app, just a different tab.</p>
+      <p><strong>Who&apos;s it for:</strong> anyone who wants to delegate real multi-step work without writing code.</p>
+    </div></div>
+
+    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>Code</div><div class="card-body">
+      <h4>Claude Code</h4>
+      <p><strong>Think of it as:</strong> a developer&apos;s power tool.</p>
+      <p>Built for people writing software &mdash; editing files, running commands, building apps, fixing bugs. Extremely powerful, but you need a project folder full of code for it to be useful. Originally a terminal tool, now available right inside Claude Desktop too &mdash; you don&apos;t need a terminal to use it.</p>
+      <p><strong>Where:</strong> in Claude Desktop, point it at a project folder. Code mode kicks in automatically.</p>
+      <p><strong>Who&apos;s it for:</strong> developers, or non-developers building something technical with Claude&apos;s help.</p>
+    </div></div>
+  </div>
+
+  <h3>One-glance comparison</h3>
   <div class="table-wrap"><table>
-    <tr><th></th><th>Chat</th><th>Code</th><th>Cowork</th></tr>
-    <tr><td><strong>Access</strong></td><td>Browser or app</td><td>Terminal, IDE, Desktop, or browser</td><td>Desktop app only</td></tr>
-    <tr><td><strong>Can edit your files?</strong></td><td>No</td><td>Yes — full access</td><td>Yes — sandboxed (safer)</td></tr>
-    <tr><td><strong>Needs technical skill?</strong></td><td>No</td><td>Some (this guide helps)</td><td>No</td></tr>
-    <tr><td><strong>Customisable?</strong></td><td>Minimal</td><td>Highly (CLAUDE.md, skills, MCP, hooks)</td><td>Somewhat (plugins, skills)</td></tr>
-    <tr><td><strong>Runs commands?</strong></td><td>No</td><td>Yes</td><td>Limited</td></tr>
-    <tr><td><strong>Safety</strong></td><td>Can't touch your files</td><td>Full access — you approve actions</td><td>Sandboxed virtual environment</td></tr>
-    <tr><td><strong>Best for</strong></td><td>Thinking, writing, questions</td><td>Building, coding, project work</td><td>Desktop tasks, file work, reports</td></tr>
+    <tr><th></th><th>Chat</th><th>Cowork</th><th>Code</th></tr>
+    <tr><td><strong>Built for</strong></td><td>Anyone</td><td>Business work, teams</td><td>Developers</td></tr>
+    <tr><td><strong>How you use it</strong></td><td>Talk to it</td><td>Talk to it, it does work</td><td>Talk to it, it edits files and runs commands</td></tr>
+    <tr><td><strong>Where it lives</strong></td><td>Claude Desktop &mdash; default mode</td><td>Claude Desktop &mdash; Cowork tab</td><td>Claude Desktop &mdash; opens when you point it at a project folder</td></tr>
+    <tr><td><strong>Can it touch your files?</strong></td><td>No, but it can read uploads or connected Drive folders</td><td>Yes &mdash; sandboxed (safer)</td><td>Yes &mdash; full access (you approve actions)</td></tr>
+    <tr><td><strong>Technical skill needed</strong></td><td>None</td><td>None</td><td>Helpful (this guide bridges most gaps)</td></tr>
+    <tr><td><strong>Typical job</strong></td><td>Draft, summarise, brainstorm, get advice</td><td>Pull data, analyse, produce reports, run workflows</td><td>Build websites, automate technical work, fix bugs</td></tr>
     <tr><td><strong>Plan needed</strong></td><td>Free or paid</td><td>Paid (Pro, Max, Team, Enterprise)</td><td>Paid (Pro, Max, Team, Enterprise)</td></tr>
   </table></div>
 
-  <div class="callout callout-info"><strong>The Simple Rules</strong>
-    <p><strong style="color:var(--text)">Chat:</strong> One-off questions and writing that don't need your files.<br>
-    <strong style="color:var(--text)">Code:</strong> Ongoing projects where you need Claude to build, edit, and manage files. <em>(This guide covers this one.)</em><br>
-    <strong style="color:var(--text)">Cowork:</strong> Multi-step desktop tasks — especially for non-technical team members who need reports, spreadsheets, or file organisation.</p>
-  </div>
+  <h3 style="margin-top:32px;">When to use which</h3>
+  <div class="table-wrap"><table>
+    <tr><th>What You Want To Do</th><th>Best Tool</th></tr>
+    <tr><td>Ask a general question</td><td style="color:var(--green)">Chat</td></tr>
+    <tr><td>Write or polish an email, document, post</td><td style="color:var(--green)">Chat</td></tr>
+    <tr><td>Brainstorm ideas or talk through strategy</td><td style="color:var(--green)">Chat</td></tr>
+    <tr><td>Summarise a long document you uploaded</td><td style="color:var(--green)">Chat</td></tr>
+    <tr><td>Pull data from Google Ads/Meta/etc. and analyse it</td><td style="color:var(--green)">Cowork</td></tr>
+    <tr><td>Build a client report from multiple sources</td><td style="color:var(--green)">Cowork</td></tr>
+    <tr><td>Turn meeting notes into a PowerPoint or doc</td><td style="color:var(--green)">Cowork</td></tr>
+    <tr><td>Run a recurring weekly task automatically</td><td style="color:var(--green)">Cowork</td></tr>
+    <tr><td>Organise files or batch-rename folders</td><td style="color:var(--green)">Cowork</td></tr>
+    <tr><td>Build or edit a website</td><td style="color:var(--green)">Code</td></tr>
+    <tr><td>Automate a technical workflow that involves code</td><td style="color:var(--green)">Code</td></tr>
+    <tr><td>Fix a bug or refactor a piece of software</td><td style="color:var(--green)">Code</td></tr>
+    <tr><td>Work on an ongoing project with config files (CLAUDE.md, etc.)</td><td style="color:var(--green)">Code</td></tr>
+  </table></div>
 
-  <div class="callout callout-tip"><strong>Which Should Your Teams Use?</strong>
-    <p><strong style="color:var(--text)">Web Dev, Technical Director:</strong> Claude Code<br>
-    <strong style="color:var(--text)">SEO, PPC, Web Design:</strong> Claude Code (with skills installed) + Cowork for report generation<br>
-    <strong style="color:var(--text)">Client Services, PM, Sales:</strong> Cowork for daily tasks + Chat for quick questions<br>
-    <strong style="color:var(--text)">Finance, Operations, Managing Director:</strong> Cowork for spreadsheets and reports + Chat for strategy</p>
+  <div class="callout callout-tip" style="margin-top:24px;"><strong>Which should your team use?</strong>
+    <p style="margin-top:8px;">&bull; <strong>Anyone non-technical:</strong> Chat for thinking/writing, Cowork for actual workflows.<br>
+    &bull; <strong>Marketing, ops, finance, sales, project managers:</strong> mostly Chat + Cowork.<br>
+    &bull; <strong>Web Dev, Technical Director:</strong> Code is the main tool. Chat for one-off questions.<br>
+    &bull; <strong>SEO, PPC, Web Design:</strong> Chat day-to-day, Cowork for reports, occasionally Code for technical SEO or page builds.</p>
   </div>
 
   <hr style="margin: 48px 0 32px;">
 
-  <h3>Setting Up Claude Chat</h3>
-  <p style="color:var(--muted);font-size:14px;margin-bottom:20px;">The simplest and most accessible version. Used for one-off questions, writing, brainstorming, and strategy conversations. This is what most of your team will use day-to-day for general AI help.</p>
-
-  <h4>Getting Started</h4>
-  <ul>
-    <li><strong>Go to claude.ai</strong> — works in any modern browser (Chrome, Safari, Firefox, Edge)</li>
-    <li><strong>Also available as apps:</strong> iOS, Android, Mac, and Windows desktop</li>
-    <li><strong>Sign up with Google, Apple, or email</strong> — no credit card needed for the Free plan</li>
-  </ul>
-
-  <h4>Plans &amp; What You Get</h4>
+  <h3>Plans &amp; what you get</h3>
+  <p style="color:var(--muted);font-size:14px;margin-bottom:12px;">Same plan unlocks all three modes &mdash; you don&apos;t pay separately for Chat, Cowork or Code.</p>
   <div class="table-wrap"><table>
-    <tr><th>Plan</th><th>Cost</th><th>What's Included</th></tr>
-    <tr><td><strong>Free</strong></td><td>£0</td><td>Daily usage limits, Claude Sonnet only, no file uploads for analysis</td></tr>
-    <tr><td><strong>Pro</strong></td><td>~£18/month</td><td>5x more usage, access to Opus, projects, file uploads, Cowork access</td></tr>
-    <tr><td><strong>Max</strong></td><td>~£90–180/month</td><td>20x more usage, priority access, early features</td></tr>
-    <tr><td><strong>Team</strong></td><td>~£25/user/month (min 5)</td><td>Shared projects, admin console, centralised billing</td></tr>
+    <tr><th>Plan</th><th>Rough Cost</th><th>What&apos;s Included</th></tr>
+    <tr><td><strong>Free</strong></td><td>&pound;0</td><td>Daily usage limits, Chat only, no file uploads for analysis, no Cowork, no Code</td></tr>
+    <tr><td><strong>Pro</strong></td><td>~&pound;18/month</td><td>5x more usage, all three modes (Chat, Cowork, Code), Projects, file uploads</td></tr>
+    <tr><td><strong>Max</strong></td><td>~&pound;90&ndash;180/month</td><td>20x more usage, priority access, early features</td></tr>
+    <tr><td><strong>Team</strong></td><td>~&pound;25/user/month (min 5)</td><td>Shared Projects, admin console, centralised billing, org-level settings</td></tr>
     <tr><td><strong>Enterprise</strong></td><td>Custom</td><td>SSO, audit logs, custom data retention, dedicated support</td></tr>
   </table></div>
 
-  <h4>Best Practices</h4>
-  <div class="card-grid">
-    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>projects</div><div class="card-body"><h4>Use Projects</h4><p>Projects let Claude remember context across conversations. Upload reference documents (brand guidelines, writing style guides) once and every chat in that project uses them automatically. Essential for ongoing work.</p></div></div>
-    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>system-prompts</div><div class="card-body"><h4>Set a System Prompt</h4><p>In each project, add "instructions" that tell Claude how to behave — tone, style, role, what to avoid. Like setting rules before the conversation starts. Saves repeating yourself every chat.</p></div></div>
-    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>file-uploads</div><div class="card-body"><h4>Upload Files</h4><p>Drag in PDFs, Word docs, spreadsheets, images. Claude reads them directly. Free plan has limits — Pro and above handle more and larger files. Useful for analysing reports, contracts, or data.</p></div></div>
-    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>start-fresh</div><div class="card-body"><h4>Start New Chats Often</h4><p>Long conversations get slower and less accurate. Start a new chat for each new task. Your Project context carries over automatically — you don't lose anything important.</p></div></div>
-  </div>
+  <hr style="margin: 48px 0 32px;">
 
-  <div class="callout callout-tip"><strong>Best Setup for Your Teams</strong>
-    <p>Create one <strong style="color:var(--text)">Project per team</strong> (e.g., "SEO Team", "Client Services"). In each project's system prompt, include your brand voice, tone guidelines, and any do's and don'ts. Upload brand assets, style guides, and past work as reference documents. Anyone on Pro/Team can share projects with colleagues.</p>
-  </div>
+  <h3>Setting up Chat (the default)</h3>
+  <p style="color:var(--muted);font-size:14px;margin-bottom:12px;">If you&apos;ve already done the New Starter walkthrough (Part 01), your Chat is already set up. Quick reminder of what to know.</p>
+  <ul>
+    <li><strong>Open Claude Desktop.</strong> Chat is the default screen.</li>
+    <li><strong>Your CLAUDE.md</strong> lives in Settings &rarr; Profile &mdash; reads at the start of every chat.</li>
+    <li><strong>Memory</strong> toggled on means Claude remembers things across chats.</li>
+    <li><strong>Projects</strong> (left sidebar) are folders for related chats. Each Project can have its own knowledge files and instructions on top of your CLAUDE.md.</li>
+    <li><strong>Connectors</strong> (Settings &rarr; Connectors) let Claude reach into Calendar, Gmail, Drive, Trello, etc.</li>
+  </ul>
+
+  <h3 style="margin-top:32px;">Setting up Cowork</h3>
+  <p style="color:var(--muted);font-size:14px;margin-bottom:12px;">Cowork lives inside Claude Desktop &mdash; you don&apos;t install anything separately.</p>
+  <ol>
+    <li>Open Claude Desktop.</li>
+    <li>Switch to <strong>Cowork</strong> in the mode selector at the top.</li>
+    <li>The first time, Cowork will ask which folders or tools it can touch. Approve only what you need.</li>
+    <li>Describe your task in plain language &mdash; e.g. &ldquo;pull last week&apos;s Google Ads spend from these three accounts, flag anything over budget, draft a Slack message summarising it.&rdquo;</li>
+    <li>Cowork plans the steps, asks before doing anything significant, and shows you the result.</li>
+  </ol>
+  <div class="callout callout-info" style="margin-top:16px;"><strong>Safer than it looks</strong><p style="margin-top:8px;">Cowork runs in a sandboxed virtual environment. It can only access folders and tools you&apos;ve explicitly approved. If something goes wrong, the damage stays inside that container &mdash; your wider computer is untouched.</p></div>
+
+  <h3 style="margin-top:32px;">Setting up Code</h3>
+  <p style="color:var(--muted);font-size:14px;margin-bottom:12px;">If you&apos;re working on a website, app, or any kind of project with files, Code mode is what you want. It used to be terminal-only &mdash; now it&apos;s built into Claude Desktop.</p>
+  <ol>
+    <li>Open Claude Desktop.</li>
+    <li>Click <strong>Open Project</strong> (or drag a project folder onto the app).</li>
+    <li>Claude reads your CLAUDE.md and any project-specific files automatically.</li>
+    <li>Describe what you want done. Claude shows you the changes before making them.</li>
+    <li>You approve each significant action &mdash; nothing gets edited without your say-so.</li>
+  </ol>
+  <div class="callout callout-warning" style="margin-top:16px;"><strong>More powerful, more responsibility</strong><p style="margin-top:8px;">Code has full access to the project folder you opened. Always work in a project that&apos;s under version control (Git) so you can undo anything Claude does. If you&apos;re not technical, start with small isolated projects rather than letting Code loose on something important.</p></div>
 
   <hr style="margin: 48px 0 32px;">
 
-  <h3>Setting Up Claude Cowork</h3>
-  <p style="color:var(--muted);font-size:14px;margin-bottom:20px;">Cowork is Claude working autonomously on your desktop. Ideal for non-technical teams who need multi-step tasks handled — organising files, building reports, creating presentations, running research.</p>
-
-  <h4>Requirements</h4>
-  <ul>
-    <li><strong>Desktop app only:</strong> Mac or Windows (not available on browser or mobile)</li>
-    <li><strong>Paid plan required:</strong> Pro, Max, Team, or Enterprise</li>
-    <li><strong>Internet connection</strong> — Cowork runs in a cloud-managed virtual environment</li>
-    <li><strong>Computer must stay on and awake</strong> during tasks</li>
-  </ul>
-
-  <h4>Getting Started</h4>
-  <ol>
-    <li><strong>Install the Claude Desktop app</strong> — download from claude.com</li>
-    <li><strong>Sign in with your paid account</strong></li>
-    <li><strong>Switch to the "Cowork" tab</strong> in the mode selector (top of the app)</li>
-    <li><strong>Grant folder access</strong> — when Cowork asks, allow access to the folder(s) you want it to work in. It can only touch folders you've explicitly approved</li>
-    <li><strong>Describe your task</strong> in plain language — Cowork plans and executes automatically</li>
-  </ol>
-
-  <h4>Safety &amp; Security</h4>
-  <div class="callout callout-info"><strong>Sandboxed by design</strong><p>Cowork runs inside an isolated virtual machine. It can only access folders and apps you've explicitly approved. If something goes wrong, the damage stays inside that contained environment — your broader operating system is untouched. This is much safer than Claude Code, which has full access to your computer.</p></div>
-
-  <h4>Best Practices</h4>
+  <h3>Best practices that apply to all three</h3>
   <div class="card-grid">
-    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>clear-tasks</div><div class="card-body"><h4>Give Clear Deliverables</h4><p>Cowork works best with well-defined outputs. Instead of "help with the report," say "build a 10-slide PowerPoint from these meeting notes covering the 3 key findings with charts." Specific tasks get better results.</p></div></div>
-    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>start-small</div><div class="card-body"><h4>Start Small</h4><p>Try simple file-organising tasks first — rename files, sort receipts, build a quick spreadsheet. Get comfortable with how Cowork works before handing it complex multi-hour projects.</p></div></div>
-    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>review-approvals</div><div class="card-body"><h4>Review Every Approval</h4><p>Cowork asks before making significant changes. Read what it wants to do before clicking approve. Pay particular attention to file deletions or modifications to important documents.</p></div></div>
-    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>persistent-projects</div><div class="card-body"><h4>Use Persistent Projects</h4><p>Cowork supports projects with their own files and memory — like Chat's projects but with file-system access. Useful for recurring work where you want the same context each time (e.g., monthly client reports).</p></div></div>
-    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>schedule-tasks</div><div class="card-body"><h4>Schedule Recurring Tasks</h4><p>Cowork can run scheduled tasks — e.g., "every Monday morning, compile last week's sales data into a summary report." Set it up once and let it run weekly without you needing to start the task manually.</p></div></div>
-    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>cost-aware</div><div class="card-body"><h4>Mind the Token Usage</h4><p>Cowork uses significantly more credits than Chat because it takes screenshots and reasons about what it sees. For simple tasks Chat can handle, use Chat instead. Save Cowork for things that genuinely need file access.</p></div></div>
+    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>your CLAUDE.md</div><div class="card-body"><h4>One CLAUDE.md for all of them</h4><p>The CLAUDE.md you set up in Part 01 reads across all three modes. Update it once and Claude knows you everywhere.</p></div></div>
+    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>start small</div><div class="card-body"><h4>Try simple tasks first</h4><p>Especially with Cowork and Code. Get comfortable with how they ask for approval and what they can do before handing them a big project.</p></div></div>
+    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>review approvals</div><div class="card-body"><h4>Read before you approve</h4><p>Cowork and Code ask before doing anything significant. Skim what they want to do &mdash; especially file deletions or sending messages &mdash; before clicking yes.</p></div></div>
+    <div class="card"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>new chats</div><div class="card-body"><h4>Start new chats for new tasks</h4><p>Long conversations get slower and lose focus. Each task in its own chat. Your CLAUDE.md and Projects carry context across, you don&apos;t lose anything important.</p></div></div>
   </div>
 
-  <h4>Great Cowork Use Cases for Your Teams</h4>
-  <div class="table-wrap"><table>
-    <tr><th>Team</th><th>Task</th></tr>
-    <tr><td><strong>Client Services</strong></td><td>Turn meeting notes into client-ready reports and PowerPoints</td></tr>
-    <tr><td><strong>Finance</strong></td><td>Organise invoices and receipts, build Excel models with formulas, reconcile data</td></tr>
-    <tr><td><strong>Operations Director</strong></td><td>Audit folders and organise files, generate weekly ops reports, standardise file naming</td></tr>
-    <tr><td><strong>Managing Director</strong></td><td>Compile data from multiple sources into board decks, run competitor research</td></tr>
-    <tr><td><strong>SEO / PPC</strong></td><td>Generate monthly client reports pulling data from GA, GSC, and ad platforms</td></tr>
-    <tr><td><strong>Internal Brand Marketing</strong></td><td>Create social media content batches, build content calendars in spreadsheets</td></tr>
-    <tr><td><strong>Project Management</strong></td><td>Generate status reports, convert meeting transcripts into action items</td></tr>
-  </table></div>
-
-  <div class="callout callout-warning"><strong>Still a Research Preview</strong><p>Cowork is an experimental feature from Anthropic. Expect occasional quirks, and always keep backups of important files before letting Cowork modify them in bulk.</p></div>
+  <div class="callout callout-tip" style="margin-top:24px;"><strong>The honest rule of thumb</strong>
+    <p style="margin-top:8px;">If you can finish the task in a single back-and-forth, use <strong>Chat</strong>. If the task is &ldquo;go and do this multi-step thing for me,&rdquo; use <strong>Cowork</strong>. If the task involves editing files in a project folder, use <strong>Code</strong>. Most people will live in Chat + Cowork and rarely touch Code.</p>
+  </div>
 </div>
 
 <!-- Part 15: Project Structure -->
@@ -2276,6 +2458,164 @@ function routeFromUrl() {
 
 window.addEventListener('popstate', routeFromUrl);
 document.addEventListener('DOMContentLoaded', routeFromUrl);
+
+// ===== Search =====
+// Builds an index of all sections on load. Then filters on every keystroke.
+var SEARCH_INDEX = [];
+
+function buildSearchIndex() {
+  var sections = document.querySelectorAll('.section');
+  sections.forEach(function(sec) {
+    var id = sec.id;
+    var titleEl = sec.querySelector('h2');
+    var headEl = sec.querySelector('.section-head');
+    var descEl = sec.querySelector('.section-desc');
+    var title = titleEl ? titleEl.textContent.replace(/^>\s*/, '').trim() : id;
+    var partLabel = headEl ? headEl.textContent.trim() : '';
+    var desc = descEl ? descEl.textContent.trim() : '';
+    // Body text (strip script/style; collapse whitespace)
+    var clone = sec.cloneNode(true);
+    clone.querySelectorAll('script,style,.back-to-menu,.section-head').forEach(function(n){ n.remove(); });
+    var body = clone.textContent.replace(/\s+/g, ' ').trim();
+    SEARCH_INDEX.push({
+      id: id,
+      title: title,
+      partLabel: partLabel,
+      desc: desc,
+      body: body,
+      bodyLower: body.toLowerCase(),
+      titleLower: title.toLowerCase(),
+    });
+  });
+}
+
+function escapeHtml(s) {
+  return s.replace(/[&<>"']/g, function(c){
+    return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];
+  });
+}
+
+function getSnippet(text, queryLower) {
+  var idx = text.toLowerCase().indexOf(queryLower);
+  if (idx === -1) return text.slice(0, 100);
+  var start = Math.max(0, idx - 40);
+  var end = Math.min(text.length, idx + queryLower.length + 80);
+  var snippet = (start > 0 ? '... ' : '') + text.slice(start, end) + (end < text.length ? ' ...' : '');
+  // Highlight matches
+  var re = new RegExp('(' + queryLower.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+  return escapeHtml(snippet).replace(re, '<mark>$1</mark>');
+}
+
+function runSearch(query) {
+  var resultsEl = document.getElementById('search-results');
+  if (!query || query.length < 2) {
+    resultsEl.classList.remove('open');
+    resultsEl.innerHTML = '';
+    return;
+  }
+  var q = query.toLowerCase().trim();
+  var matches = [];
+  SEARCH_INDEX.forEach(function(item) {
+    var score = 0;
+    if (item.titleLower.indexOf(q) !== -1) score += 100;
+    if (item.titleLower.indexOf(q) === 0) score += 50; // bonus if title starts with query
+    var bodyIdx = item.bodyLower.indexOf(q);
+    if (bodyIdx !== -1) score += 10;
+    if (score > 0) {
+      matches.push({ item: item, score: score, bodyIdx: bodyIdx });
+    }
+  });
+  matches.sort(function(a, b){ return b.score - a.score; });
+  matches = matches.slice(0, 8);
+
+  if (matches.length === 0) {
+    resultsEl.innerHTML = '<div class="search-no-results">no matches for &ldquo;' + escapeHtml(query) + '&rdquo;</div>';
+    resultsEl.classList.add('open');
+    return;
+  }
+
+  var html = matches.map(function(m){
+    var partNum = (m.item.partLabel || '').replace(/^Part\s*/, '');
+    var snippetSrc = m.item.titleLower.indexOf(q) !== -1 ? m.item.desc || m.item.body : m.item.body;
+    var snippet = getSnippet(snippetSrc, q);
+    return '<a class="search-result-item" data-id="' + escapeHtml(m.item.id) + '" href="/' + encodeURIComponent(m.item.id) + '">' +
+      '<div><span class="search-result-num">' + escapeHtml(partNum || '·') + '</span>' +
+      '<span class="search-result-title">' + escapeHtml(m.item.title) + '</span></div>' +
+      '<div class="search-result-snippet">' + snippet + '</div>' +
+      '</a>';
+  }).join('');
+  resultsEl.innerHTML = html;
+  resultsEl.classList.add('open');
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  buildSearchIndex();
+  var input = document.getElementById('search-input');
+  var resultsEl = document.getElementById('search-results');
+  if (!input || !resultsEl) return;
+
+  input.addEventListener('input', function(){ runSearch(input.value); });
+  input.addEventListener('focus', function(){ if (input.value.length >= 2) runSearch(input.value); });
+
+  // Click on a result
+  resultsEl.addEventListener('click', function(e){
+    var item = e.target.closest('.search-result-item');
+    if (!item) return;
+    e.preventDefault();
+    var id = item.getAttribute('data-id');
+    showSection(id);
+    input.value = '';
+    resultsEl.classList.remove('open');
+    resultsEl.innerHTML = '';
+  });
+
+  // Close on outside click
+  document.addEventListener('click', function(e){
+    if (!e.target.closest('.nav-search')) {
+      resultsEl.classList.remove('open');
+    }
+  });
+
+  // Keyboard: Escape closes, arrows move, Enter selects
+  input.addEventListener('keydown', function(e){
+    var items = resultsEl.querySelectorAll('.search-result-item');
+    var activeIdx = -1;
+    items.forEach(function(it, i){ if (it.classList.contains('active')) activeIdx = i; });
+    if (e.key === 'Escape') {
+      input.value = '';
+      resultsEl.classList.remove('open');
+      resultsEl.innerHTML = '';
+      input.blur();
+    } else if (e.key === 'ArrowDown' && items.length) {
+      e.preventDefault();
+      if (activeIdx >= 0) items[activeIdx].classList.remove('active');
+      var next = (activeIdx + 1) % items.length;
+      items[next].classList.add('active');
+      items[next].scrollIntoView({ block: 'nearest' });
+    } else if (e.key === 'ArrowUp' && items.length) {
+      e.preventDefault();
+      if (activeIdx >= 0) items[activeIdx].classList.remove('active');
+      var prev = (activeIdx - 1 + items.length) % items.length;
+      items[prev].classList.add('active');
+      items[prev].scrollIntoView({ block: 'nearest' });
+    } else if (e.key === 'Enter') {
+      var chosen = activeIdx >= 0 ? items[activeIdx] : items[0];
+      if (chosen) {
+        e.preventDefault();
+        chosen.click();
+      }
+    }
+  });
+
+  // Cmd/Ctrl+K to focus search
+  document.addEventListener('keydown', function(e){
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+  });
+});
 </script>
 
 </body>
