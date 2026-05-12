@@ -796,13 +796,13 @@
 <!-- Nav -->
 <nav class="nav" id="top">
   <div class="nav-inner">
-    <a href="#" onclick="showHome();return false" class="nav-logo"><span class="tilde">~/</span>claude-setup<span class="cursor"></span></a>
+    <a href="#" onclick="showHome();return false" class="nav-logo">claude setup<span class="cursor"></span></a>
     <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"><span class="dollar" style="color:var(--green)">$</span> menu</button>
     <ul class="nav-links">
-      <li><a href="/bootstrap" onclick="showSection('bootstrap');return false"><span class="dollar">$</span> start-here</a></li>
+      <li><a href="/bootstrap" onclick="showSection('bootstrap');return false"><span class="dollar">$</span> start here</a></li>
       <li><a href="/setup-files" onclick="showSection('setup-files');return false"><span class="dollar">$</span> setup</a></li>
-      <li><a href="/repos" onclick="showSection('repos');return false"><span class="dollar">$</span> add-power</a></li>
-      <li><a href="/mistakes" onclick="showSection('mistakes');return false"><span class="dollar">$</span> use-well</a></li>
+      <li><a href="/repos" onclick="showSection('repos');return false"><span class="dollar">$</span> add power</a></li>
+      <li><a href="/mistakes" onclick="showSection('mistakes');return false"><span class="dollar">$</span> use well</a></li>
       <li><a href="/faq" onclick="showSection('faq');return false"><span class="dollar">$</span> troubleshoot</a></li>
       <li><a href="/resources" onclick="showSection('resources');return false"><span class="dollar">$</span> reference</a></li>
     </ul>
@@ -816,16 +816,18 @@
   <div class="hero-terminal">
     <div class="terminal-bar">
       <div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
-      <span class="filename">setup.guide</span>
+      <span class="filename">welcome</span>
       <span class="status">ready</span>
     </div>
     <div class="hero-body">
       <h1><span class="prompt">&gt;</span> Set Up Claude Properly<span class="cursor-block"></span></h1>
       <div class="subtitle"><span class="prompt">&gt;</span> a friendly walkthrough for non-developers</div>
       <div class="stats">
-        <span class="kw">const</span> <span class="var">sections</span> <span class="punc">=</span> <span class="val">20</span><span class="punc">;</span>
-        <span class="kw">const</span> <span class="var">prompts</span> <span class="punc">=</span> <span class="val">15</span><span class="punc">;</span>
-        <span class="kw">const</span> <span class="var">read_time</span> <span class="punc">=</span> <span class="val">'30 mins'</span><span class="punc">;</span>
+        <span class="val">20</span> <span class="var">sections</span>
+        <span class="punc">&middot;</span>
+        <span class="val">15</span> <span class="var">copy-paste prompts</span>
+        <span class="punc">&middot;</span>
+        <span class="val">30 min</span> <span class="var">read</span>
       </div>
       <div class="comment">
         Everything you need to get Claude working properly for you, in plain English.<br>
@@ -840,7 +842,7 @@
 <div class="terminal quick-nav" id="quick-nav" style="margin-bottom:60px;">
   <div class="terminal-bar">
     <div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
-    <span class="filename">ls ./sections/</span>
+    <span class="filename">all sections</span>
     <span class="status">20 items</span>
   </div>
   <div class="terminal-body" style="padding:18px 20px;">
@@ -848,7 +850,7 @@
     <!-- Cluster 1: Start here -->
     <div class="nav-cluster">
       <div class="nav-cluster-header">
-        <span class="nav-cluster-label"><span class="dollar">$</span> start-here/</span>
+        <span class="nav-cluster-label"><span class="dollar">$</span> start here</span>
         <span class="nav-cluster-desc">brand new to Claude? begin here</span>
       </div>
       <div class="card-grid card-grid-3" style="gap:8px;">
@@ -861,7 +863,7 @@
     <!-- Cluster 2: Set up Claude -->
     <div class="nav-cluster">
       <div class="nav-cluster-header">
-        <span class="nav-cluster-label"><span class="dollar">$</span> setup/</span>
+        <span class="nav-cluster-label"><span class="dollar">$</span> setup</span>
         <span class="nav-cluster-desc">get Claude configured properly</span>
       </div>
       <div class="card-grid card-grid-4" style="gap:8px;">
@@ -875,7 +877,7 @@
     <!-- Cluster 3: Add power -->
     <div class="nav-cluster">
       <div class="nav-cluster-header">
-        <span class="nav-cluster-label"><span class="dollar">$</span> add-power/</span>
+        <span class="nav-cluster-label"><span class="dollar">$</span> add power</span>
         <span class="nav-cluster-desc">extend what Claude can do</span>
       </div>
       <div class="card-grid card-grid-3" style="gap:8px;">
@@ -888,7 +890,7 @@
     <!-- Cluster 4: Use it well -->
     <div class="nav-cluster">
       <div class="nav-cluster-header">
-        <span class="nav-cluster-label"><span class="dollar">$</span> use-well/</span>
+        <span class="nav-cluster-label"><span class="dollar">$</span> use well</span>
         <span class="nav-cluster-desc">habits and safeguards</span>
       </div>
       <div class="card-grid card-grid-4" style="gap:8px;">
@@ -905,7 +907,7 @@
     <!-- Cluster 5: When things go wrong -->
     <div class="nav-cluster">
       <div class="nav-cluster-header">
-        <span class="nav-cluster-label"><span class="dollar">$</span> troubleshoot/</span>
+        <span class="nav-cluster-label"><span class="dollar">$</span> troubleshoot</span>
         <span class="nav-cluster-desc">help when Claude goes sideways</span>
       </div>
       <div class="card-grid card-grid-3" style="gap:8px;">
@@ -917,7 +919,7 @@
     <!-- Cluster 6: Reference -->
     <div class="nav-cluster">
       <div class="nav-cluster-header">
-        <span class="nav-cluster-label"><span class="dollar">$</span> reference/</span>
+        <span class="nav-cluster-label"><span class="dollar">$</span> reference</span>
         <span class="nav-cluster-desc">browse, discover, follow</span>
       </div>
       <div class="card-grid card-grid-3" style="gap:8px;">
@@ -1598,13 +1600,13 @@ Have them coordinate and share progress with each other.</pre></div>
   <h2><span class="prompt">&gt;</span> Common Mistakes</h2>
   <p class="section-desc">Learn from others so you don't make these yourself.</p>
 
-  <div class="card" style="margin-bottom:12px;"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>mistake_01.log</div><div class="card-body"><h4>Letting Claude Run Wild Without a Plan</h4><p class="lbl lbl-bad">THE MISTAKE</p><p>Asking Claude to "build me a website" without reviewing along the way.</p><p class="lbl lbl-fix">THE FIX</p><p>Say: "Before you build anything, let's talk through what I need. Ask me questions first."</p></div></div>
+  <div class="card" style="margin-bottom:12px;"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>Mistake 1</div><div class="card-body"><h4>Letting Claude Run Wild Without a Plan</h4><p class="lbl lbl-bad">THE MISTAKE</p><p>Asking Claude to "build me a website" without reviewing along the way.</p><p class="lbl lbl-fix">THE FIX</p><p>Say: "Before you build anything, let's talk through what I need. Ask me questions first."</p></div></div>
 
-  <div class="card" style="margin-bottom:12px;"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>mistake_02.log</div><div class="card-body"><h4>Not Reviewing Before Approving</h4><p class="lbl lbl-bad">THE MISTAKE</p><p>Clicking "approve" without reading what Claude is about to do.</p><p class="lbl lbl-fix">THE FIX</p><p>Ask: "Explain what this will do before I approve it."</p></div></div>
+  <div class="card" style="margin-bottom:12px;"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>Mistake 2</div><div class="card-body"><h4>Not Reviewing Before Approving</h4><p class="lbl lbl-bad">THE MISTAKE</p><p>Clicking "approve" without reading what Claude is about to do.</p><p class="lbl lbl-fix">THE FIX</p><p>Ask: "Explain what this will do before I approve it."</p></div></div>
 
-  <div class="card" style="margin-bottom:12px;"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>mistake_03.log</div><div class="card-body"><h4>Not Setting Up Config Files</h4><p class="lbl lbl-bad">THE MISTAKE</p><p>Jumping into work without CLAUDE.md or Context.md.</p><p class="lbl lbl-fix">THE FIX</p><p>Spend 10 minutes using the "First Message" prompt from Part 7.</p></div></div>
+  <div class="card" style="margin-bottom:12px;"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>Mistake 3</div><div class="card-body"><h4>Not Setting Up Config Files</h4><p class="lbl lbl-bad">THE MISTAKE</p><p>Jumping into work without CLAUDE.md or Context.md.</p><p class="lbl lbl-fix">THE FIX</p><p>Spend 10 minutes using the "First Message" prompt from Part 7.</p></div></div>
 
-  <div class="card" style="margin-bottom:12px;"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>mistake_04.log</div><div class="card-body"><h4>Asking for Too Much at Once</h4><p class="lbl lbl-bad">THE MISTAKE</p><p>"Build me a complete e-commerce site with accounts, payments, blog, and admin dashboard."</p><p class="lbl lbl-fix">THE FIX</p><p>Break it into phases. Start with the most important thing. Get that right, then move on.</p></div></div>
+  <div class="card" style="margin-bottom:12px;"><div class="card-bar"><div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>Mistake 4</div><div class="card-body"><h4>Asking for Too Much at Once</h4><p class="lbl lbl-bad">THE MISTAKE</p><p>"Build me a complete e-commerce site with accounts, payments, blog, and admin dashboard."</p><p class="lbl lbl-fix">THE FIX</p><p>Break it into phases. Start with the most important thing. Get that right, then move on.</p></div></div>
 </div>
 
 <!-- Part 10: When Stuck -->
