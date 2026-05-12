@@ -539,6 +539,7 @@
 
     /* Prompt cards */
     .prompt-card {
+      position: relative;
       border: 1px solid var(--border);
       border-radius: var(--radius);
       overflow: hidden;
@@ -552,7 +553,7 @@
     }
 
     .prompt-card-header {
-      padding: 14px 20px;
+      padding: 14px 90px 14px 20px;  /* extra right padding leaves room for copy button */
       border-bottom: 1px solid rgba(96,96,104,0.3);
       display: flex;
       align-items: center;
@@ -569,7 +570,19 @@
       margin-left: auto;
     }
 
-    .prompt-card .code-block { margin: 0; border: none; border-radius: 0; }
+    .prompt-card .code-block {
+      margin: 0;
+      border: none;
+      border-radius: 0;
+      position: static;  /* let copy button position relative to prompt-card instead */
+    }
+
+    /* Copy button inside a prompt card sits in the header bar, not on top of the pre */
+    .prompt-card .copy-btn {
+      top: 10px;
+      right: 12px;
+      z-index: 2;
+    }
 
     /* Callouts */
     .callout {
@@ -2449,30 +2462,30 @@ Have them coordinate and share progress with each other.</pre></div>
 
   <div class="team-item" onclick="this.classList.toggle('open')"><div class="team-head">SEO Team <span class="arrow">&#9654;</span></div><div class="team-body">
     <h4>Skills to Install</h4>
-    <div class="team-tool"><span class="t-type">Skill</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">claude-seo</a></span><span class="t-desc">19 SEO sub-skills — audits, E-E-A-T, schema, backlinks</span></div>
-    <div class="team-tool"><span class="t-type">Skill</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Marketing Skills Library</a></span><span class="t-desc">5 SEO skills plus content strategy and CRO</span></div>
+    <div class="team-tool"><span class="t-type">Skill</span><span class="t-name"><a href="/repos" onclick="event.stopPropagation(); showSection('repos'); return false;">claude-seo</a></span><span class="t-desc">19 SEO sub-skills — audits, E-E-A-T, schema, backlinks</span></div>
+    <div class="team-tool"><span class="t-type">Skill</span><span class="t-name"><a href="/repos" onclick="event.stopPropagation(); showSection('repos'); return false;">Marketing Skills Library</a></span><span class="t-desc">5 SEO skills plus content strategy and CRO</span></div>
     <h4>MCP Servers to Connect</h4>
-    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Google Search Console</a></span><span class="t-desc">Search performance, indexing, crawl stats</span></div>
-    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Google Analytics 4</a></span><span class="t-desc">Traffic, behaviour, conversions</span></div>
-    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Ahrefs</a></span><span class="t-desc">Backlinks, keyword metrics</span></div>
-    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Semrush</a></span><span class="t-desc">SEO data, traffic analysis</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="/repos" onclick="event.stopPropagation(); showSection('repos'); return false;">Google Search Console</a></span><span class="t-desc">Search performance, indexing, crawl stats</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="/repos" onclick="event.stopPropagation(); showSection('repos'); return false;">Google Analytics 4</a></span><span class="t-desc">Traffic, behaviour, conversions</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="/repos" onclick="event.stopPropagation(); showSection('repos'); return false;">Ahrefs</a></span><span class="t-desc">Backlinks, keyword metrics</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="/repos" onclick="event.stopPropagation(); showSection('repos'); return false;">Semrush</a></span><span class="t-desc">SEO data, traffic analysis</span></div>
     <div class="team-installed"><strong>Already installed:</strong> seo-audit, programmatic-seo, ai-seo, content-strategy, audit-website</div>
   </div></div>
 
   <div class="team-item" onclick="this.classList.toggle('open')"><div class="team-head">PPC Team <span class="arrow">&#9654;</span></div><div class="team-body">
     <h4>Skills to Install</h4>
-    <div class="team-tool"><span class="t-type">Skill</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">claude-ads</a></span><span class="t-desc">186 audit checks — Google, Meta, YouTube, LinkedIn, TikTok</span></div>
+    <div class="team-tool"><span class="t-type">Skill</span><span class="t-name"><a href="/repos" onclick="event.stopPropagation(); showSection('repos'); return false;">claude-ads</a></span><span class="t-desc">186 audit checks — Google, Meta, YouTube, LinkedIn, TikTok</span></div>
     <h4>MCP Servers to Connect</h4>
-    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Cross-Platform Ads</a></span><span class="t-desc">Google, Meta, LinkedIn, TikTok — 100+ tools</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="/repos" onclick="event.stopPropagation(); showSection('repos'); return false;">Cross-Platform Ads</a></span><span class="t-desc">Google, Meta, LinkedIn, TikTok — 100+ tools</span></div>
     <div class="team-installed"><strong>Already installed:</strong> paid-ads, ad-creative</div>
   </div></div>
 
   <div class="team-item" onclick="this.classList.toggle('open')"><div class="team-head">Developers <span class="arrow">&#9654;</span></div><div class="team-body">
     <h4>Skills to Install</h4>
-    <div class="team-tool"><span class="t-type">Skill</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Trail of Bits Security</a></span><span class="t-desc">Security audits, vulnerability detection</span></div>
+    <div class="team-tool"><span class="t-type">Skill</span><span class="t-name"><a href="/repos" onclick="event.stopPropagation(); showSection('repos'); return false;">Trail of Bits Security</a></span><span class="t-desc">Security audits, vulnerability detection</span></div>
     <h4>MCP Servers to Connect</h4>
-    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">GitHub</a></span><span class="t-desc">Repos, PRs, issues, CI/CD</span></div>
-    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Sentry</a></span><span class="t-desc">Error tracking, performance</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="/repos" onclick="event.stopPropagation(); showSection('repos'); return false;">GitHub</a></span><span class="t-desc">Repos, PRs, issues, CI/CD</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="/repos" onclick="event.stopPropagation(); showSection('repos'); return false;">Sentry</a></span><span class="t-desc">Error tracking, performance</span></div>
     <div class="team-installed"><strong>Already connected:</strong> Vercel, PostHog</div>
     <div class="team-installed"><strong>Already installed:</strong> test-driven-development, systematic-debugging, verification-before-completion</div>
   </div></div>
@@ -2484,60 +2497,60 @@ Have them coordinate and share progress with each other.</pre></div>
 
   <div class="team-item" onclick="this.classList.toggle('open')"><div class="team-head">Client Services <span class="arrow">&#9654;</span></div><div class="team-body">
     <h4>MCP Servers to Connect</h4>
-    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Granola</a></span><span class="t-desc">Meeting notes, action items</span></div>
-    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Notion</a></span><span class="t-desc">Client wikis, project pages</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="/repos" onclick="event.stopPropagation(); showSection('repos'); return false;">Granola</a></span><span class="t-desc">Meeting notes, action items</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="/repos" onclick="event.stopPropagation(); showSection('repos'); return false;">Notion</a></span><span class="t-desc">Client wikis, project pages</span></div>
     <div class="team-installed"><strong>Already connected:</strong> Slack, Gmail, Calendar, Drive, Canva, Monday.com</div>
   </div></div>
 
   <div class="team-item" onclick="this.classList.toggle('open')"><div class="team-head">Project Management <span class="arrow">&#9654;</span></div><div class="team-body">
     <h4>MCP Servers to Connect</h4>
-    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Linear</a></span><span class="t-desc">Issue tracking</span></div>
-    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Asana</a></span><span class="t-desc">Tasks, projects, progress</span></div>
-    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">ClickUp</a></span><span class="t-desc">Task management</span></div>
-    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Notion</a></span><span class="t-desc">Project docs, wikis</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="/repos" onclick="event.stopPropagation(); showSection('repos'); return false;">Linear</a></span><span class="t-desc">Issue tracking</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="/repos" onclick="event.stopPropagation(); showSection('repos'); return false;">Asana</a></span><span class="t-desc">Tasks, projects, progress</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="/repos" onclick="event.stopPropagation(); showSection('repos'); return false;">ClickUp</a></span><span class="t-desc">Task management</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="/repos" onclick="event.stopPropagation(); showSection('repos'); return false;">Notion</a></span><span class="t-desc">Project docs, wikis</span></div>
     <div class="team-installed"><strong>Already connected:</strong> Monday.com, Slack, Calendar</div>
   </div></div>
 
   <div class="team-item" onclick="this.classList.toggle('open')"><div class="team-head">Sales <span class="arrow">&#9654;</span></div><div class="team-body">
     <h4>MCP Servers to Connect</h4>
-    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">HubSpot</a></span><span class="t-desc">Contacts, deals, pipeline</span></div>
-    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Salesforce</a></span><span class="t-desc">CRM data — 60+ tools</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="/repos" onclick="event.stopPropagation(); showSection('repos'); return false;">HubSpot</a></span><span class="t-desc">Contacts, deals, pipeline</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="/repos" onclick="event.stopPropagation(); showSection('repos'); return false;">Salesforce</a></span><span class="t-desc">CRM data — 60+ tools</span></div>
     <div class="team-installed"><strong>Already connected:</strong> Monday.com, Gmail, Calendar, Slack</div>
   </div></div>
 
   <div class="team-item" onclick="this.classList.toggle('open')"><div class="team-head">Finance <span class="arrow">&#9654;</span></div><div class="team-body">
     <h4>MCP Servers to Connect</h4>
-    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Xero</a></span><span class="t-desc">Invoicing, bookkeeping, reporting</span></div>
-    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">QuickBooks</a></span><span class="t-desc">Customers, invoices, expenses</span></div>
-    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Stripe</a></span><span class="t-desc">Payments, subscriptions, refunds</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="/repos" onclick="event.stopPropagation(); showSection('repos'); return false;">Xero</a></span><span class="t-desc">Invoicing, bookkeeping, reporting</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="/repos" onclick="event.stopPropagation(); showSection('repos'); return false;">QuickBooks</a></span><span class="t-desc">Customers, invoices, expenses</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="/repos" onclick="event.stopPropagation(); showSection('repos'); return false;">Stripe</a></span><span class="t-desc">Payments, subscriptions, refunds</span></div>
   </div></div>
 
   <div class="team-item" onclick="this.classList.toggle('open')"><div class="team-head">Operations leadership <span class="arrow">&#9654;</span></div><div class="team-body">
     <h4>Skills to Install</h4>
-    <div class="team-tool"><span class="t-type">Skill</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">SOP Creator</a></span><span class="t-desc">Turns brain dumps into clean SOPs</span></div>
+    <div class="team-tool"><span class="t-type">Skill</span><span class="t-name"><a href="/repos" onclick="event.stopPropagation(); showSection('repos'); return false;">SOP Creator</a></span><span class="t-desc">Turns brain dumps into clean SOPs</span></div>
     <h4>MCP Servers to Connect</h4>
-    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Notion</a></span><span class="t-desc">Process docs, wikis</span></div>
-    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Databox</a></span><span class="t-desc">KPI dashboards from 100+ sources</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="/repos" onclick="event.stopPropagation(); showSection('repos'); return false;">Notion</a></span><span class="t-desc">Process docs, wikis</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="/repos" onclick="event.stopPropagation(); showSection('repos'); return false;">Databox</a></span><span class="t-desc">KPI dashboards from 100+ sources</span></div>
     <div class="team-installed"><strong>Already connected:</strong> Monday.com, Slack, Calendar, Drive</div>
   </div></div>
 
   <div class="team-item" onclick="this.classList.toggle('open')"><div class="team-head">Senior leadership <span class="arrow">&#9654;</span></div><div class="team-body">
     <h4>Skills to Install</h4>
-    <div class="team-tool"><span class="t-type">Skill</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Business Strategy</a></span><span class="t-desc">Porter's 5 Forces, SWOT, BCG, Blue Ocean</span></div>
-    <div class="team-tool"><span class="t-type">Skill</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">CEO Advisor + 220 skills</a></span><span class="t-desc">Strategic decisions, board decks, competitive intel</span></div>
-    <div class="team-tool"><span class="t-type">Skill</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Deep Research</a></span><span class="t-desc">Multi-phase investigation with sources</span></div>
+    <div class="team-tool"><span class="t-type">Skill</span><span class="t-name"><a href="/repos" onclick="event.stopPropagation(); showSection('repos'); return false;">Business Strategy</a></span><span class="t-desc">Porter's 5 Forces, SWOT, BCG, Blue Ocean</span></div>
+    <div class="team-tool"><span class="t-type">Skill</span><span class="t-name"><a href="/repos" onclick="event.stopPropagation(); showSection('repos'); return false;">CEO Advisor + 220 skills</a></span><span class="t-desc">Strategic decisions, board decks, competitive intel</span></div>
+    <div class="team-tool"><span class="t-type">Skill</span><span class="t-name"><a href="/repos" onclick="event.stopPropagation(); showSection('repos'); return false;">Deep Research</a></span><span class="t-desc">Multi-phase investigation with sources</span></div>
     <h4>MCP Servers to Connect</h4>
-    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">HubSpot</a></span><span class="t-desc">Pipeline, revenue reporting</span></div>
-    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Databox</a></span><span class="t-desc">Cross-platform KPIs</span></div>
-    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Stripe</a></span><span class="t-desc">Revenue, payment metrics</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="/repos" onclick="event.stopPropagation(); showSection('repos'); return false;">HubSpot</a></span><span class="t-desc">Pipeline, revenue reporting</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="/repos" onclick="event.stopPropagation(); showSection('repos'); return false;">Databox</a></span><span class="t-desc">Cross-platform KPIs</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="/repos" onclick="event.stopPropagation(); showSection('repos'); return false;">Stripe</a></span><span class="t-desc">Revenue, payment metrics</span></div>
   </div></div>
 
   <div class="team-item" onclick="this.classList.toggle('open')"><div class="team-head">Tech leadership <span class="arrow">&#9654;</span></div><div class="team-body">
     <h4>Skills to Install</h4>
-    <div class="team-tool"><span class="t-type">Skill</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Trail of Bits Security</a></span><span class="t-desc">Vulnerability detection, audit workflows</span></div>
+    <div class="team-tool"><span class="t-type">Skill</span><span class="t-name"><a href="/repos" onclick="event.stopPropagation(); showSection('repos'); return false;">Trail of Bits Security</a></span><span class="t-desc">Vulnerability detection, audit workflows</span></div>
     <h4>MCP Servers to Connect</h4>
-    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">Sentry</a></span><span class="t-desc">Error tracking</span></div>
-    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="#status" onclick="event.stopPropagation()">GitHub</a></span><span class="t-desc">Repos, PRs, code review</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="/repos" onclick="event.stopPropagation(); showSection('repos'); return false;">Sentry</a></span><span class="t-desc">Error tracking</span></div>
+    <div class="team-tool"><span class="t-type">MCP</span><span class="t-name"><a href="/repos" onclick="event.stopPropagation(); showSection('repos'); return false;">GitHub</a></span><span class="t-desc">Repos, PRs, code review</span></div>
     <div class="team-installed"><strong>Already connected:</strong> Vercel, PostHog</div>
     <div class="team-installed"><strong>Already installed:</strong> test-driven-development, systematic-debugging, verification-before-completion</div>
   </div></div>
