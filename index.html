@@ -799,7 +799,7 @@
     <a href="#" onclick="showHome();return false" class="nav-logo">claude setup<span class="cursor"></span></a>
     <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"><span class="dollar" style="color:var(--green)">$</span> menu</button>
     <ul class="nav-links">
-      <li><a href="/bootstrap" onclick="showSection('bootstrap');return false"><span class="dollar">$</span> start here</a></li>
+      <li><a href="/bootstrap" onclick="showSection('bootstrap');return false"><span class="dollar">$</span> new starter</a></li>
       <li><a href="/setup-files" onclick="showSection('setup-files');return false"><span class="dollar">$</span> setup</a></li>
       <li><a href="/repos" onclick="showSection('repos');return false"><span class="dollar">$</span> add power</a></li>
       <li><a href="/mistakes" onclick="showSection('mistakes');return false"><span class="dollar">$</span> use well</a></li>
@@ -847,14 +847,14 @@
   </div>
   <div class="terminal-body" style="padding:18px 20px;">
 
-    <!-- Cluster 1: Start here -->
+    <!-- Cluster 1: New starter -->
     <div class="nav-cluster">
       <div class="nav-cluster-header">
-        <span class="nav-cluster-label"><span class="dollar">$</span> start here</span>
-        <span class="nav-cluster-desc">brand new to Claude? begin here</span>
+        <span class="nav-cluster-label"><span class="dollar">$</span> new starter</span>
+        <span class="nav-cluster-desc">never set up Claude before? start here</span>
       </div>
       <div class="card-grid card-grid-3" style="gap:8px;">
-        <a href="/bootstrap" onclick="showSection('bootstrap');return false" class="nav-tile"><span style="color:var(--primary)">01</span> Generate Your CLAUDE.md</a>
+        <a href="/bootstrap" onclick="showSection('bootstrap');return false" class="nav-tile"><span style="color:var(--primary)">01</span> Setting Up Claude for the First Time</a>
         <a href="/code-vs-chat" onclick="showSection('code-vs-chat');return false" class="nav-tile"><span style="color:var(--primary)">02</span> Chat vs Code vs Cowork</a>
         <a href="/glossary" onclick="showSection('glossary');return false" class="nav-tile"><span style="color:var(--primary)">03</span> Jargon Buster</a>
       </div>
@@ -932,44 +932,111 @@
   </div>
 </div>
 
-<!-- Part 01: Generate your CLAUDE.md from your existing AI -->
+<!-- Part 01: New Starter walkthrough -->
 <div class="section" id="bootstrap">
   <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 01</div>
-  <h2><span class="prompt">&gt;</span> Start Here &mdash; Generate Your CLAUDE.md from Your Existing AI</h2>
-  <p class="section-desc">Before you do anything else, get yourself a CLAUDE.md file. It&apos;s the single biggest upgrade you can make to how Claude works with you &mdash; and whichever AI you&apos;ve already been using (ChatGPT, Gemini, Claude.ai, Copilot, etc.) will write most of it for you, based on everything it already knows about you.</p>
+  <h2><span class="prompt">&gt;</span> New Starter &mdash; Setting Up Claude for the First Time</h2>
+  <p class="section-desc">A complete, hand-holding walkthrough for setting up Claude properly. Designed for someone who&apos;s never used Claude before but has probably been using ChatGPT, Gemini or similar. Follow the steps in order. Takes about 30 to 40 minutes. You only do this once.</p>
 
-  <div class="callout callout-info" style="margin-bottom:24px;"><strong>Which AI should you use?</strong>
-    <p style="margin-top:8px;">Use the AI you&apos;ve had the most conversations with &mdash; it&apos;ll have the most context about you.</p>
+  <div class="callout callout-info" style="margin-bottom:24px;"><strong>What you&apos;ll end up with at the end of this section</strong>
     <ul style="margin-top:8px;">
-      <li><strong>ChatGPT</strong> &mdash; turn Memory on first: Settings &rarr; Personalisation &rarr; Memory</li>
-      <li><strong>Gemini</strong> &mdash; turn on Personalisation and Saved Info in your Google account settings</li>
-      <li><strong>Claude.ai</strong> &mdash; turn on Memory in Settings &rarr; Profile (a little ironic, but works)</li>
-      <li><strong>Microsoft Copilot</strong> &mdash; works fine, less memory than the others though</li>
-      <li><strong>Perplexity, Grok, etc.</strong> &mdash; any AI that holds a long conversation will do the job</li>
+      <li>Claude Desktop installed, signed in, and configured</li>
+      <li>A <strong>CLAUDE.md</strong> file that tells Claude who you are and how you work (its permanent instructions)</li>
+      <li>A <strong>Context.md</strong> file for the stuff that changes (current goals, targets, focus areas)</li>
+      <li>Any genuinely useful info from your old AI (ChatGPT, Gemini etc.) brought across</li>
+      <li>Memory turned on so Claude remembers you between chats</li>
     </ul>
-    <p style="margin-top:8px;">If you&apos;re starting fresh with no AI history, that&apos;s fine too &mdash; just answer the questions thoroughly when it interviews you.</p>
   </div>
 
-  <div class="callout callout-tip" style="margin-bottom:24px;"><strong>What you&apos;ll end up with</strong>
+  <div class="callout callout-tip" style="margin-bottom:24px;"><strong>Before you start, have these ready</strong>
     <ul style="margin-top:8px;">
-      <li>A <strong>CLAUDE.md</strong> file &mdash; your permanent instruction sheet for Claude (who you are, how you work, your rules)</li>
-      <li>A <strong>Context.md</strong> file &mdash; for the stuff that changes (current goals, targets, focus areas)</li>
+      <li>30 to 40 minutes (you don&apos;t want to pause halfway through)</li>
+      <li>Your existing AI tool open in another tab (ChatGPT, Gemini, Claude.ai, Microsoft Copilot, etc.)</li>
+      <li>Your work email and sign-in details</li>
+      <li>A text editor &mdash; TextEdit on Mac or Notepad on Windows. Both come free with your computer.</li>
     </ul>
-    <p style="margin-top:8px;">Takes about 20 minutes. You only do this once.</p>
   </div>
 
-  <h3>How it works</h3>
+  <h3 style="margin-top:36px;">Step 1 &mdash; Download Claude Desktop and sign in</h3>
   <div class="table-wrap"><table>
-    <tr><th>#</th><th>What You Do</th><th>How Long</th></tr>
-    <tr><td><strong>1</strong></td><td>Open your existing AI in a fresh chat. If it has a memory feature (see the box above), make sure it&apos;s switched on.</td><td>1 min</td></tr>
-    <tr><td><strong>2</strong></td><td>Paste the interview prompt below. Answer its questions one at a time &mdash; be specific.</td><td>15 mins</td></tr>
-    <tr><td><strong>3</strong></td><td>Copy the CLAUDE.md it produces. Save it as a plain text file called <code>CLAUDE.md</code>.</td><td>2 mins</td></tr>
-    <tr><td><strong>4</strong></td><td>Paste the &ldquo;split file&rdquo; prompt to separate stable info from changing info into two files.</td><td>2 mins</td></tr>
-    <tr><td><strong>5</strong></td><td>Paste your CLAUDE.md into Claude Desktop: <strong>Settings &rarr; Profile &rarr; Personal preferences</strong> box. Done.</td><td>1 min</td></tr>
+    <tr><th>#</th><th>What To Do</th></tr>
+    <tr><td><strong>1</strong></td><td>Open your web browser and go to <strong>claude.ai/download</strong></td></tr>
+    <tr><td><strong>2</strong></td><td>Click the button for your computer (Mac or Windows). The app will download.</td></tr>
+    <tr><td><strong>3</strong></td><td>Install the app the same way you would any other &mdash; double-click the file, follow the prompts.</td></tr>
+    <tr><td><strong>4</strong></td><td>Open Claude Desktop. Sign in with your work email.</td></tr>
+    <tr><td><strong>5</strong></td><td>If asked about a plan, ask whoever runs IT at your business. Claude has a free version but you&apos;ll usually want Pro or Team for proper work.</td></tr>
+  </table></div>
+  <p style="color:var(--muted);font-size:13px;margin-top:8px;">Once you&apos;re signed in and looking at the home screen of Claude Desktop, you&apos;re ready for Step 2. Leave the app open in the background.</p>
+
+  <h3 style="margin-top:36px;">Step 2 &mdash; Decide which existing AI to mine</h3>
+  <p>You&apos;ve probably been using another AI before this &mdash; ChatGPT, Gemini, or one of the others. We&apos;re going to use it to do most of the heavy lifting. It already knows things about you, and we can pull that knowledge into Claude rather than starting from scratch.</p>
+  <p><strong>Pick the AI you&apos;ve had the most conversations with.</strong> That&apos;s the one with the most useful memory of you.</p>
+  <div class="callout callout-info" style="margin-bottom:0;"><strong>Never used an AI before?</strong><p>That&apos;s fine. Skip straight to Step 6 &mdash; you won&apos;t have anything to mine, but the interview prompt still works, you&apos;ll just need to be a bit more thorough with your answers.</p></div>
+
+  <h3 style="margin-top:36px;">Step 3 &mdash; Turn Memory on in that AI</h3>
+  <p>Memory is what makes the whole exercise work. Without it, your AI has nothing to share about you. Here&apos;s how to enable it on each of the main ones &mdash; find yours below.</p>
+  <div class="table-wrap"><table>
+    <tr><th>If You&apos;re Using</th><th>How To Turn Memory On</th></tr>
+    <tr><td><strong>ChatGPT</strong></td><td>Click your profile (bottom-left or top-right) &rarr; Settings &rarr; Personalisation &rarr; toggle <strong>Memory</strong> on.</td></tr>
+    <tr><td><strong>Gemini</strong></td><td>Click your profile (top-right) &rarr; Settings &rarr; Personalisation. Turn on <strong>Personalisation</strong> and check <strong>Saved Info</strong> is enabled in your Google account.</td></tr>
+    <tr><td><strong>Claude.ai</strong></td><td>Settings &rarr; Profile &rarr; toggle <strong>Memory</strong> on. (Yes, you&apos;re using Claude to set up Claude. It works.)</td></tr>
+    <tr><td><strong>Microsoft Copilot</strong></td><td>Settings &rarr; Personalisation &rarr; toggle <strong>Memory</strong> on. (Copilot remembers less than the others, but still worth doing.)</td></tr>
+    <tr><td><strong>Perplexity, Grok, others</strong></td><td>Look for a "Memory" or "Personalisation" toggle in Settings. If there isn&apos;t one, just move to Step 4 anyway.</td></tr>
   </table></div>
 
-  <h3>The interview prompt</h3>
-  <p style="color:var(--muted);font-size:13px;margin-bottom:12px;">Paste this into whichever AI you&apos;re using. Edit the &ldquo;Who I am&rdquo; section first so it matches you.</p>
+  <h3 style="margin-top:36px;">Step 4 &mdash; Find the gold in your chat history</h3>
+  <p>Most old chats are throwaway &mdash; one-off questions, things you asked once and never came back to. But some have genuine value: frameworks you built, decisions you made, voice docs, ongoing strategy notes. This prompt asks your AI to find them.</p>
+  <p style="color:var(--muted);font-size:13px;margin-bottom:12px;">Paste this into a <strong>fresh chat</strong> in your existing AI.</p>
+
+  <div class="prompt-card">
+    <div class="prompt-card-header"><h4>Find What&apos;s Worth Bringing Across</h4><span class="when">paste into your AI</span></div>
+    <div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>I&apos;m moving from you to a different AI assistant. Before I do, help me work out which of our past conversations are actually worth bringing across vs leaving behind. Most of our history is probably throwaway. I want the gold.
+
+Go through everything you remember from our chat history and saved memory, and produce a triaged list using three categories:
+
+## KEEP &mdash; Worth bringing across in full
+Chats or threads that contain reference material I&apos;ll keep using:
+- Frameworks or templates we built together
+- Brand voice docs, style guides, tone work
+- Strategy docs or plans I keep coming back to
+- Decision logs or rationale for important calls
+- Reusable prompts or workflows we developed
+- Anything I&apos;ve explicitly called useful
+
+For each, give me: a short title, 1-2 lines on what it covers, why it&apos;s worth keeping, and a rough date.
+
+## SUMMARISE &mdash; Capture the lesson, leave the chat
+Things that aren&apos;t worth bringing in full but have a useful pattern, preference or lesson inside them:
+- Times I corrected you on style or approach
+- Recurring pet peeves I&apos;ve expressed
+- Tools or methods I&apos;ve said I prefer or avoid
+- Working-style insights about me
+
+For each, give me: the lesson in one line, and where it came from roughly.
+
+## BIN &mdash; Not worth bringing
+Don&apos;t list these individually. Just tell me roughly how many chats fall in this pile and what kind of stuff is in it.
+
+RULES:
+1. Be honest. If only 3 things are worth keeping, say 3. Don&apos;t pad the KEEP list.
+2. British English throughout.
+3. Don&apos;t make up chats you don&apos;t remember &mdash; if your memory is thin, say so.
+4. At the end, give me a recommended action plan: what to do with each KEEP item.
+
+Output as a single markdown document I can save.</pre></div>
+  </div>
+
+  <h3 style="margin-top:36px;">Step 5 &mdash; Bring across the keepers</h3>
+  <p>Look at the KEEP list your AI produced. For each item, open the original chat, copy the useful content, and save it somewhere. Couple of options:</p>
+  <ul>
+    <li><strong>Easiest:</strong> save each KEEP item as a plain text file in a folder on your Mac called something like &ldquo;Claude reference&rdquo;.</li>
+    <li><strong>Tidier:</strong> later in this guide we&apos;ll create a Project in Claude &mdash; you can drop these into the Project Knowledge so Claude can read them whenever you&apos;re inside that Project.</li>
+  </ul>
+  <div class="callout callout-info" style="margin-bottom:0;"><strong>Don&apos;t overthink it</strong><p>If the KEEP list is long, just bring across the top 5 or so. You can always go back for more later. The aim is to capture the actually-useful stuff, not to archive everything.</p></div>
+
+  <h3 style="margin-top:36px;">Step 6 &mdash; Generate your CLAUDE.md (the big one)</h3>
+  <p>This is the main event. Paste the prompt below into the <strong>same chat</strong> you&apos;ve been using. The AI will interview you and produce a full CLAUDE.md file at the end.</p>
+  <p style="color:var(--muted);font-size:13px;margin-bottom:12px;"><strong>Important:</strong> edit the "Who I am" section at the top of the prompt before you paste, so it matches you. Then answer each question one at a time &mdash; be specific. Vague answers in, vague file out.</p>
 
   <div class="prompt-card" style="border-color:var(--primary);">
     <div class="prompt-card-header"><h4>Interview Me and Write My CLAUDE.md</h4><span class="when">paste into your AI</span></div>
@@ -1057,10 +1124,13 @@ RULES FOR THE FINAL OUTPUT:
 Start with Step 1 now &mdash; just the first question, then wait for my answer.</pre></div>
   </div>
 
-  <h3 style="margin-top:32px;">Split it into stable vs changing info</h3>
-  <p style="color:var(--muted);font-size:13px;margin-bottom:12px;">Once your AI gives you the CLAUDE.md, paste this next prompt so it separates the permanent stuff from the stuff that&apos;ll change in a few months.</p>
+  <p style="margin-top:16px;">When the AI gives you the final CLAUDE.md (it&apos;ll be in a grey code box), <strong>copy everything in that code box</strong>. Then in TextEdit or Notepad, paste it in and save the file as <code>CLAUDE.md</code> &mdash; somewhere easy to find like your Desktop.</p>
 
-  <div class="callout callout-tip" style="margin-bottom:16px;"><strong>Why split it?</strong><p>CLAUDE.md is for things that stay true (your role, your style, your standards). Context.md is for things that change (current targets, this quarter&apos;s focus, active campaigns). Splitting them means you only have to edit one file when something changes &mdash; not your whole profile.</p></div>
+  <div class="callout callout-tip" style="margin-bottom:0;"><strong>Make sure it&apos;s a plain text file</strong><p>On Mac TextEdit: <strong>Format &rarr; Make Plain Text</strong> before saving. On Windows Notepad it&apos;s already plain text. If it&apos;s saved as Rich Text or .docx, Claude won&apos;t read it properly.</p></div>
+
+  <h3 style="margin-top:36px;">Step 7 &mdash; Split it into CLAUDE.md and Context.md</h3>
+  <p>Your CLAUDE.md now has a mix of permanent stuff (your role, your style, your standards) and changing stuff (this quarter&apos;s targets, current focus, active accounts). We want those in two separate files so you only edit the changing stuff when something changes &mdash; not your whole profile.</p>
+  <p style="color:var(--muted);font-size:13px;margin-bottom:12px;">Paste this into the <strong>same chat</strong>, right after it gave you the CLAUDE.md.</p>
 
   <div class="prompt-card">
     <div class="prompt-card-header"><h4>Split My File into CLAUDE.md and Context.md</h4><span class="when">follow-up prompt</span></div>
@@ -1085,20 +1155,58 @@ Start with Step 1 now &mdash; just the first question, then wait for my answer.<
 Output both as separate markdown code blocks so I can save them as two separate files. After the code blocks, give me a one-line rule of thumb for deciding where new info should go in future.</pre></div>
   </div>
 
-  <h3 style="margin-top:32px;">Plug it into Claude Desktop</h3>
+  <p style="margin-top:16px;">Save the second file as <code>Context.md</code> alongside your CLAUDE.md.</p>
+
+  <div class="callout callout-tip" style="margin-bottom:0;"><strong>The rule of thumb going forward</strong><p>If it&apos;ll still be true in 6 months, it goes in <strong>CLAUDE.md</strong>. If it might change before then, it goes in <strong>Context.md</strong>.</p></div>
+
+  <h3 style="margin-top:36px;">Step 8 &mdash; Paste your CLAUDE.md into Claude Desktop</h3>
+  <p>This is where Claude actually starts using your file.</p>
   <div class="table-wrap"><table>
-    <tr><th>Step</th><th>What to Do</th></tr>
-    <tr><td><strong>1</strong></td><td>Open Claude Desktop. Click your name (bottom-left) &rarr; <strong>Settings</strong>.</td></tr>
-    <tr><td><strong>2</strong></td><td>Go to <strong>Profile</strong>.</td></tr>
-    <tr><td><strong>3</strong></td><td>Find the box labelled &ldquo;What personal preferences should Claude consider in responses?&rdquo;</td></tr>
-    <tr><td><strong>4</strong></td><td>Open your <code>CLAUDE.md</code> file in any text editor. Select all, copy, paste into that box.</td></tr>
-    <tr><td><strong>5</strong></td><td>Click <strong>Save</strong>. Toggle <strong>Memory</strong> on while you&apos;re there.</td></tr>
-    <tr><td><strong>6</strong></td><td>For <code>Context.md</code>: create a Project in Claude (left sidebar &rarr; <strong>Projects</strong> &rarr; <strong>New Project</strong>) and paste its contents into <strong>Project Knowledge</strong>.</td></tr>
+    <tr><th>#</th><th>What To Do</th></tr>
+    <tr><td><strong>1</strong></td><td>Open Claude Desktop.</td></tr>
+    <tr><td><strong>2</strong></td><td>Click your name in the bottom-left corner.</td></tr>
+    <tr><td><strong>3</strong></td><td>Click <strong>Settings</strong>.</td></tr>
+    <tr><td><strong>4</strong></td><td>Click <strong>Profile</strong> on the left.</td></tr>
+    <tr><td><strong>5</strong></td><td>Scroll to the box labelled <strong>&ldquo;What personal preferences should Claude consider in responses?&rdquo;</strong></td></tr>
+    <tr><td><strong>6</strong></td><td>Open your <code>CLAUDE.md</code> file (the one you saved in Step 6). Click inside it, select all (Cmd+A on Mac, Ctrl+A on Windows), copy (Cmd+C / Ctrl+C).</td></tr>
+    <tr><td><strong>7</strong></td><td>Click into the Claude box and paste (Cmd+V / Ctrl+V).</td></tr>
+    <tr><td><strong>8</strong></td><td>Click <strong>Save</strong>.</td></tr>
+    <tr><td><strong>9</strong></td><td>While you&apos;re here: toggle <strong>Memory</strong> on. It&apos;s a switch on the same page.</td></tr>
+  </table></div>
+  <p style="color:var(--muted);font-size:13px;margin-top:8px;">Claude now reads your profile at the start of every chat. You don&apos;t have to re-explain yourself ever again.</p>
+
+  <h3 style="margin-top:36px;">Step 9 &mdash; Set up a Project for your Context.md</h3>
+  <p>Your <code>Context.md</code> goes somewhere different. Projects in Claude are like folders for related chats &mdash; you can give each Project its own knowledge base. Drop your Context.md in there, plus any KEEP items from Step 5, and Claude reads it all whenever you&apos;re working inside that Project.</p>
+  <div class="table-wrap"><table>
+    <tr><th>#</th><th>What To Do</th></tr>
+    <tr><td><strong>1</strong></td><td>In Claude Desktop, click <strong>Projects</strong> in the left sidebar.</td></tr>
+    <tr><td><strong>2</strong></td><td>Click <strong>New Project</strong>.</td></tr>
+    <tr><td><strong>3</strong></td><td>Name it something like &ldquo;My Current Context&rdquo; or &ldquo;[your role] &mdash; This Quarter&rdquo;.</td></tr>
+    <tr><td><strong>4</strong></td><td>Find the <strong>Project Knowledge</strong> section (or &ldquo;Add to knowledge&rdquo; button).</td></tr>
+    <tr><td><strong>5</strong></td><td>Open your <code>Context.md</code> file, select all, copy, paste it into the Project Knowledge box. Save.</td></tr>
+    <tr><td><strong>6</strong></td><td><em>Optional:</em> add any KEEP items from Step 5 to the same Project Knowledge.</td></tr>
   </table></div>
 
-  <div class="callout callout-tip" style="margin-top:20px;"><strong>The rule of thumb going forward</strong><p>If it&apos;ll still be true in 6 months, it goes in <strong>CLAUDE.md</strong>. If it might change before then, it goes in <strong>Context.md</strong> (or a Project).</p></div>
+  <h3 style="margin-top:36px;">Step 10 &mdash; Quick test it&apos;s working</h3>
+  <p>Final check.</p>
+  <ol>
+    <li>Start a brand new chat in Claude Desktop (not inside a Project &mdash; the main chat).</li>
+    <li>Type: <em>&ldquo;What do you know about me and how I like to work?&rdquo;</em></li>
+    <li>Press send.</li>
+  </ol>
+  <p><strong>If Claude plays back your role, your style and your preferences accurately</strong> &mdash; you&apos;re done. Set up complete.</p>
+  <p><strong>If Claude is vague or generic</strong> &mdash; your CLAUDE.md needs more detail. Go back to your AI and either redo the interview with more specific answers, or ask it to expand the file.</p>
 
-  <div class="callout callout-info" style="margin-top:16px;"><strong>Quick check it&apos;s working</strong><p>Start a new chat in Claude Desktop and ask: <em>&ldquo;What do you know about me and how I like to work?&rdquo;</em> If Claude plays back your role, style and preferences &mdash; you&apos;re sorted. If it&apos;s vague, your CLAUDE.md needs more detail.</p></div>
+  <div class="callout callout-info" style="margin-top:24px;"><strong>What now?</strong>
+    <p style="margin-top:8px;">You&apos;ve done the heavy lifting. Claude knows who you are, you don&apos;t have to repeat yourself, and the useful bits of your old AI history are in the right places.</p>
+    <p style="margin-top:8px;">When you&apos;re ready to go deeper, the next sections worth reading are:</p>
+    <ul style="margin-top:8px;">
+      <li><a href="/code-vs-chat" onclick="showSection('code-vs-chat');return false" style="color:var(--primary);">Part 02 &mdash; Chat vs Code vs Cowork</a> (which version of Claude does what)</li>
+      <li><a href="/glossary" onclick="showSection('glossary');return false" style="color:var(--primary);">Part 03 &mdash; Jargon Buster</a> (plain English for the terms you&apos;ll see)</li>
+      <li><a href="/talking" onclick="showSection('talking');return false" style="color:var(--primary);">Part 06 &mdash; Talking to Claude</a> (how to get the best out of it)</li>
+      <li><a href="/mistakes" onclick="showSection('mistakes');return false" style="color:var(--primary);">Part 11 &mdash; Common Mistakes</a> (and how to avoid them)</li>
+    </ul>
+  </div>
 </div>
 
 <!-- Part 03: Setup Files -->
