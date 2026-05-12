@@ -765,6 +765,30 @@
       display: block;
     }
     .nav-tile:hover { border-color: rgba(217,145,120,0.4); color: #ededed; }
+    .nav-cluster {
+      margin-bottom: 22px;
+    }
+    .nav-cluster:last-child { margin-bottom: 0; }
+    .nav-cluster-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed var(--border);
+    }
+    .nav-cluster-label {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--primary);
+      font-weight: 600;
+    }
+    .nav-cluster-label .dollar { color: var(--green); margin-right: 4px; }
+    .nav-cluster-desc {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+    }
   </style>
 </head>
 <body>
@@ -775,11 +799,12 @@
     <a href="#" onclick="showHome();return false" class="nav-logo"><span class="tilde">~/</span>claude-setup<span class="cursor"></span></a>
     <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"><span class="dollar" style="color:var(--green)">$</span> menu</button>
     <ul class="nav-links">
-      <li><a href="#" onclick="showSection('code-vs-chat');return false"><span class="dollar">$</span> getting-started</a></li>
-      <li><a href="#" onclick="showSection('prompts');return false"><span class="dollar">$</span> prompts</a></li>
-      <li><a href="#" onclick="showSection('repos');return false"><span class="dollar">$</span> install</a></li>
-      <li><a href="#" onclick="showSection('mistakes');return false"><span class="dollar">$</span> best-practices</a></li>
-      <li><a href="#" onclick="showSection('teams');return false"><span class="dollar">$</span> teams</a></li>
+      <li><a href="/bootstrap" onclick="showSection('bootstrap');return false"><span class="dollar">$</span> start-here</a></li>
+      <li><a href="/setup-files" onclick="showSection('setup-files');return false"><span class="dollar">$</span> setup</a></li>
+      <li><a href="/repos" onclick="showSection('repos');return false"><span class="dollar">$</span> add-power</a></li>
+      <li><a href="/mistakes" onclick="showSection('mistakes');return false"><span class="dollar">$</span> use-well</a></li>
+      <li><a href="/faq" onclick="showSection('faq');return false"><span class="dollar">$</span> troubleshoot</a></li>
+      <li><a href="/resources" onclick="showSection('resources');return false"><span class="dollar">$</span> reference</a></li>
     </ul>
   </div>
 </nav>
@@ -795,17 +820,17 @@
       <span class="status">ready</span>
     </div>
     <div class="hero-body">
-      <h1><span class="prompt">&gt;</span> Claude Code Setup Guide<span class="cursor-block"></span></h1>
-      <div class="subtitle"><span class="prompt">&gt;</span> for business decision makers, not developers</div>
+      <h1><span class="prompt">&gt;</span> Set Up Claude Properly<span class="cursor-block"></span></h1>
+      <div class="subtitle"><span class="prompt">&gt;</span> a friendly walkthrough for non-developers</div>
       <div class="stats">
-        <span class="kw">const</span> <span class="var">sections</span> <span class="punc">=</span> <span class="val">18</span><span class="punc">;</span>
+        <span class="kw">const</span> <span class="var">sections</span> <span class="punc">=</span> <span class="val">20</span><span class="punc">;</span>
         <span class="kw">const</span> <span class="var">prompts</span> <span class="punc">=</span> <span class="val">15</span><span class="punc">;</span>
-        <span class="kw">const</span> <span class="var">teams</span> <span class="punc">=</span> <span class="val">12</span><span class="punc">;</span>
+        <span class="kw">const</span> <span class="var">read_time</span> <span class="punc">=</span> <span class="val">'30 mins'</span><span class="punc">;</span>
       </div>
       <div class="comment">
-        Everything you need to set up Claude so it works smarter on your projects.<br>
-        Written in plain language. No coding experience needed.<br>
-        Copy-paste prompts, team-by-team tool recommendations, people to follow, and more.
+        Everything you need to get Claude working properly for you, in plain English.<br>
+        No coding experience required. Copy-paste prompts, jargon decoded, common mistakes avoided.<br>
+        New here? Start with <a href="/bootstrap" onclick="showSection('bootstrap');return false" style="color:var(--primary);text-decoration:underline;text-underline-offset:3px;">Part 01 &mdash; Generate Your CLAUDE.md</a>.
       </div>
     </div>
   </div>
@@ -816,38 +841,255 @@
   <div class="terminal-bar">
     <div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
     <span class="filename">ls ./sections/</span>
-    <span class="status">18 items</span>
+    <span class="status">20 items</span>
   </div>
-  <div class="terminal-body" style="padding:16px 20px;">
-    <div class="card-grid card-grid-4" style="gap:8px;">
-      <a href="#" onclick="showSection('code-vs-chat');return false" class="nav-tile"><span style="color:var(--primary)">01</span> Code vs Chat vs Cowork</a>
-      <a href="#" onclick="showSection('glossary');return false" class="nav-tile"><span style="color:var(--primary)">02</span> Jargon Buster</a>
-      <a href="#" onclick="showSection('setup-files');return false" class="nav-tile"><span style="color:var(--primary)">03</span> Setup Files</a>
-      <a href="#" onclick="showSection('structure');return false" class="nav-tile"><span style="color:var(--primary)">04</span> Project Structure</a>
-      <a href="#" onclick="showSection('talking');return false" class="nav-tile"><span style="color:var(--primary)">05</span> Talking to Claude</a>
-      <a href="#" onclick="showSection('prompts');return false" class="nav-tile"><span style="color:var(--primary)">06</span> Copy-Paste Prompts</a>
-      <a href="#" onclick="showSection('repos');return false" class="nav-tile"><span style="color:var(--primary)">07</span> Repos, Skills &amp; MCPs</a>
-      <a href="#" onclick="showSection('folder-map');return false" class="nav-tile"><span style="color:var(--primary)">08</span> Where Things Live</a>
-      <a href="#" onclick="showSection('agents');return false" class="nav-tile"><span style="color:var(--primary)">09</span> Agents &amp; Teams</a>
-      <a href="#" onclick="showSection('mistakes');return false" class="nav-tile"><span style="color:var(--primary)">10</span> Common Mistakes</a>
-      <a href="#" onclick="showSection('review');return false" class="nav-tile"><span style="color:var(--primary)">11</span> Reviewing Work</a>
-      <a href="#" onclick="showSection('security');return false" class="nav-tile"><span style="color:var(--primary)">12</span> Security</a>
-      <a href="#" onclick="showSection('costs');return false" class="nav-tile"><span style="color:var(--primary)">13</span> Costs</a>
-      <a href="#" onclick="showSection('backups');return false" class="nav-tile"><span style="color:var(--primary)">14</span> Backups</a>
-      <a href="#" onclick="showSection('stuck');return false" class="nav-tile"><span style="color:var(--primary)">15</span> When Stuck</a>
-      <a href="#" onclick="showSection('faq');return false" class="nav-tile"><span style="color:var(--primary)">16</span> FAQ</a>
-      <a href="#" onclick="showSection('teams');return false" class="nav-tile"><span style="color:var(--primary)">17</span> Tools by Team</a>
-      <a href="#" onclick="showSection('resources');return false" class="nav-tile"><span style="color:var(--primary)">18</span> Resources &amp; People</a>
+  <div class="terminal-body" style="padding:18px 20px;">
+
+    <!-- Cluster 1: Start here -->
+    <div class="nav-cluster">
+      <div class="nav-cluster-header">
+        <span class="nav-cluster-label"><span class="dollar">$</span> start-here/</span>
+        <span class="nav-cluster-desc">brand new to Claude? begin here</span>
+      </div>
+      <div class="card-grid card-grid-3" style="gap:8px;">
+        <a href="/bootstrap" onclick="showSection('bootstrap');return false" class="nav-tile"><span style="color:var(--primary)">01</span> Generate Your CLAUDE.md</a>
+        <a href="/code-vs-chat" onclick="showSection('code-vs-chat');return false" class="nav-tile"><span style="color:var(--primary)">02</span> Chat vs Code vs Cowork</a>
+        <a href="/glossary" onclick="showSection('glossary');return false" class="nav-tile"><span style="color:var(--primary)">03</span> Jargon Buster</a>
+      </div>
     </div>
+
+    <!-- Cluster 2: Set up Claude -->
+    <div class="nav-cluster">
+      <div class="nav-cluster-header">
+        <span class="nav-cluster-label"><span class="dollar">$</span> setup/</span>
+        <span class="nav-cluster-desc">get Claude configured properly</span>
+      </div>
+      <div class="card-grid card-grid-4" style="gap:8px;">
+        <a href="/setup-files" onclick="showSection('setup-files');return false" class="nav-tile"><span style="color:var(--primary)">04</span> Setup Files</a>
+        <a href="/structure" onclick="showSection('structure');return false" class="nav-tile"><span style="color:var(--primary)">05</span> Project Structure</a>
+        <a href="/talking" onclick="showSection('talking');return false" class="nav-tile"><span style="color:var(--primary)">06</span> Talking to Claude</a>
+        <a href="/prompts" onclick="showSection('prompts');return false" class="nav-tile"><span style="color:var(--primary)">07</span> Copy-Paste Prompts</a>
+      </div>
+    </div>
+
+    <!-- Cluster 3: Add power -->
+    <div class="nav-cluster">
+      <div class="nav-cluster-header">
+        <span class="nav-cluster-label"><span class="dollar">$</span> add-power/</span>
+        <span class="nav-cluster-desc">extend what Claude can do</span>
+      </div>
+      <div class="card-grid card-grid-3" style="gap:8px;">
+        <a href="/repos" onclick="showSection('repos');return false" class="nav-tile"><span style="color:var(--primary)">08</span> Repos, Skills &amp; MCPs</a>
+        <a href="/folder-map" onclick="showSection('folder-map');return false" class="nav-tile"><span style="color:var(--primary)">09</span> Where Things Live</a>
+        <a href="/agents" onclick="showSection('agents');return false" class="nav-tile"><span style="color:var(--primary)">10</span> Agents &amp; Teams</a>
+      </div>
+    </div>
+
+    <!-- Cluster 4: Use it well -->
+    <div class="nav-cluster">
+      <div class="nav-cluster-header">
+        <span class="nav-cluster-label"><span class="dollar">$</span> use-well/</span>
+        <span class="nav-cluster-desc">habits and safeguards</span>
+      </div>
+      <div class="card-grid card-grid-4" style="gap:8px;">
+        <a href="/mistakes" onclick="showSection('mistakes');return false" class="nav-tile"><span style="color:var(--primary)">11</span> Common Mistakes</a>
+        <a href="/review" onclick="showSection('review');return false" class="nav-tile"><span style="color:var(--primary)">12</span> Reviewing Work</a>
+        <a href="/security" onclick="showSection('security');return false" class="nav-tile"><span style="color:var(--primary)">13</span> Security</a>
+        <a href="/costs" onclick="showSection('costs');return false" class="nav-tile"><span style="color:var(--primary)">14</span> Costs</a>
+      </div>
+      <div class="card-grid card-grid-4" style="gap:8px;margin-top:8px;">
+        <a href="/backups" onclick="showSection('backups');return false" class="nav-tile"><span style="color:var(--primary)">15</span> Backups</a>
+      </div>
+    </div>
+
+    <!-- Cluster 5: When things go wrong -->
+    <div class="nav-cluster">
+      <div class="nav-cluster-header">
+        <span class="nav-cluster-label"><span class="dollar">$</span> troubleshoot/</span>
+        <span class="nav-cluster-desc">help when Claude goes sideways</span>
+      </div>
+      <div class="card-grid card-grid-3" style="gap:8px;">
+        <a href="/stuck" onclick="showSection('stuck');return false" class="nav-tile"><span style="color:var(--primary)">16</span> When Claude Gets Stuck</a>
+        <a href="/faq" onclick="showSection('faq');return false" class="nav-tile"><span style="color:var(--primary)">17</span> FAQ</a>
+      </div>
+    </div>
+
+    <!-- Cluster 6: Reference -->
+    <div class="nav-cluster">
+      <div class="nav-cluster-header">
+        <span class="nav-cluster-label"><span class="dollar">$</span> reference/</span>
+        <span class="nav-cluster-desc">browse, discover, follow</span>
+      </div>
+      <div class="card-grid card-grid-3" style="gap:8px;">
+        <a href="/teams" onclick="showSection('teams');return false" class="nav-tile"><span style="color:var(--primary)">18</span> Tools by Team</a>
+        <a href="/resources" onclick="showSection('resources');return false" class="nav-tile"><span style="color:var(--primary)">19</span> Resources &amp; People</a>
+        <a href="/find-more" onclick="showSection('find-more');return false" class="nav-tile"><span style="color:var(--primary)">20</span> Where to Find More</a>
+      </div>
+    </div>
+
   </div>
 </div>
 
-<!-- This is a shell page with the new design system. The full content will be loaded from the markdown guide. -->
-<!-- For now, showing a "content loading" message to confirm the design works. -->
+<!-- Part 01: Generate your CLAUDE.md with ChatGPT -->
+<div class="section" id="bootstrap">
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 01</div>
+  <h2><span class="prompt">&gt;</span> Start Here &mdash; Generate Your CLAUDE.md with ChatGPT</h2>
+  <p class="section-desc">Before you do anything else, get yourself a CLAUDE.md file. It&apos;s the single biggest upgrade you can make to how Claude works with you &mdash; and ChatGPT will write most of it for you.</p>
 
-<!-- Part 1: Setup Files -->
+  <div class="callout callout-info" style="margin-bottom:24px;"><strong>What you&apos;ll end up with</strong>
+    <ul style="margin-top:8px;">
+      <li>A <strong>CLAUDE.md</strong> file &mdash; your permanent instruction sheet for Claude (who you are, how you work, your rules)</li>
+      <li>A <strong>Context.md</strong> file &mdash; for the stuff that changes (current goals, targets, focus areas)</li>
+    </ul>
+    <p style="margin-top:8px;">Takes about 20 minutes. You only do this once.</p>
+  </div>
+
+  <h3>How it works</h3>
+  <div class="table-wrap"><table>
+    <tr><th>#</th><th>What You Do</th><th>How Long</th></tr>
+    <tr><td><strong>1</strong></td><td>Open ChatGPT in a fresh chat. Make sure Memory is on (Settings &rarr; Personalisation &rarr; Memory).</td><td>1 min</td></tr>
+    <tr><td><strong>2</strong></td><td>Paste the interview prompt below. Answer its questions one at a time &mdash; be specific.</td><td>15 mins</td></tr>
+    <tr><td><strong>3</strong></td><td>Copy the CLAUDE.md it produces. Save it as a plain text file called <code>CLAUDE.md</code>.</td><td>2 mins</td></tr>
+    <tr><td><strong>4</strong></td><td>Paste the &ldquo;split file&rdquo; prompt to separate stable info from changing info into two files.</td><td>2 mins</td></tr>
+    <tr><td><strong>5</strong></td><td>Paste your CLAUDE.md into Claude Desktop: <strong>Settings &rarr; Profile &rarr; Personal preferences</strong> box. Done.</td><td>1 min</td></tr>
+  </table></div>
+
+  <h3>The interview prompt</h3>
+  <p style="color:var(--muted);font-size:13px;margin-bottom:12px;">Paste this into ChatGPT. Edit the &ldquo;Who I am&rdquo; section first so it matches you.</p>
+
+  <div class="prompt-card" style="border-color:var(--primary);">
+    <div class="prompt-card-header"><h4>Interview Me and Write My CLAUDE.md</h4><span class="when">paste into ChatGPT</span></div>
+    <div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>I&apos;d like you to create me a CLAUDE.md file. Before you write it, I want you to interview me to fill in gaps that you can&apos;t answer from memory alone.
+
+WHO I AM (edit this section so it matches you, then keep the rest as-is):
+- My name is [your name]
+- I work at [company name], a [size] [industry] company
+- My role is [your job title]
+- My background is [a sentence about your experience]
+- I am / am not a developer
+- I prefer British / American English
+
+WHAT A CLAUDE.md IS:
+CLAUDE.md is a plain-text instruction file Claude reads automatically every time I start a chat or open a project. It tells Claude who I am, how I like to be spoken to, my preferences, standards, no-gos, and anything else that would normally take 20 minutes to re-explain. Think of it as an employee handbook for an AI assistant.
+
+HOW THIS WORKS &mdash; TWO STEPS:
+
+STEP 1 &mdash; INTERVIEW ME
+Ask the questions below one at a time. Don&apos;t dump them all at once. Wait for my answer before moving on. Ask short follow-ups if my answer is vague.
+
+A. Role and responsibilities
+   - What does a typical week look like for me?
+   - What am I actually responsible for, beyond the job title?
+   - How big is my team, and who reports to me?
+   - What&apos;s on my plate that I wish wasn&apos;t, and what do I love doing most?
+
+B. Who I work with
+   - What kind of clients or customers do we serve?
+   - Any names, accounts, or types I should treat as sensitive?
+   - Key colleagues or stakeholders I mention often?
+
+C. Tools I use day-to-day
+   - Main software, platforms, or systems?
+   - Reporting tools? Project management? Comms?
+   - Anything I rely on that&apos;s niche to my role?
+
+D. How I like to work
+   - Detail or short summaries?
+   - Bullets or prose?
+   - More of a numbers person or strategy person?
+   - When I ask for &ldquo;a quick look&rdquo;, what does that mean to me?
+
+E. Communication style
+   - How formal or informal am I in writing?
+   - Any phrases I always use, or hate?
+   - How do I sign off emails?
+   - Anything Claude should never say?
+
+F. Pet peeves and no-gos
+   - What annoys me when AI assistants help me?
+   - Anything I&apos;ve been burned by before that Claude should avoid?
+   - What should I never paste in for confidentiality?
+
+G. Current priorities
+   - What&apos;s my biggest focus this quarter?
+   - What would make Claude genuinely useful vs just a novelty?
+
+Ask follow-ups if useful. Dig deeper on interesting answers.
+
+STEP 2 &mdash; WRITE THE FILE
+Once the interview is done AND you&apos;ve mined memory for anything else useful, write me the CLAUDE.md using these headings (drop any that don&apos;t apply):
+
+## About Me
+## Communication Style
+## How I Work
+## My Role and Responsibilities
+## My Team and Key People
+## Tools I Use
+## Client and Account Context
+## Project Standards
+## Rules and No-Gos
+## Writing Style
+## Current Priorities
+
+RULES FOR THE FINAL OUTPUT:
+1. Match my English variant (British or American).
+2. Plain English. No jargon unless I use it.
+3. Specific not generic. &ldquo;Likes concise&rdquo; is rubbish; &ldquo;Wants a 3-bullet summary at the top, then detail below if needed&rdquo; is useful.
+4. Pull paraphrases from my answers where they capture my voice.
+5. Don&apos;t make things up. If you don&apos;t know, leave it out.
+6. Output the whole CLAUDE.md as a single markdown code block so I can copy it straight to a file.
+7. After the code block, give me a short list of things to review or expand manually.
+
+Start with Step 1 now &mdash; just the first question, then wait for my answer.</pre></div>
+  </div>
+
+  <h3 style="margin-top:32px;">Split it into stable vs changing info</h3>
+  <p style="color:var(--muted);font-size:13px;margin-bottom:12px;">Once ChatGPT gives you the CLAUDE.md, paste this next prompt so it separates the permanent stuff from the stuff that&apos;ll change in a few months.</p>
+
+  <div class="callout callout-tip" style="margin-bottom:16px;"><strong>Why split it?</strong><p>CLAUDE.md is for things that stay true (your role, your style, your standards). Context.md is for things that change (current targets, this quarter&apos;s focus, active campaigns). Splitting them means you only have to edit one file when something changes &mdash; not your whole profile.</p></div>
+
+  <div class="prompt-card">
+    <div class="prompt-card-header"><h4>Split My File into CLAUDE.md and Context.md</h4><span class="when">follow-up prompt</span></div>
+    <div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>Take the CLAUDE.md you just wrote me and split it into two separate documents:
+
+1. CLAUDE.md &mdash; only the permanent, stable stuff:
+   - Who I am, role, team
+   - How I communicate and how I like to be spoken to
+   - My working style and preferences
+   - My standards and rules
+   - Pet peeves and no-gos
+   - Tools I use day-to-day (these are stable)
+   - Key people I work with regularly
+
+2. Context.md &mdash; anything that will change within 3 to 6 months:
+   - Current quarter&apos;s priorities and goals
+   - Specific revenue or performance targets
+   - Current accounts or projects I&apos;m focused on
+   - Active initiatives
+   - Anything time-bound or KPI-bound
+
+Output both as separate markdown code blocks so I can save them as two separate files. After the code blocks, give me a one-line rule of thumb for deciding where new info should go in future.</pre></div>
+  </div>
+
+  <h3 style="margin-top:32px;">Plug it into Claude Desktop</h3>
+  <div class="table-wrap"><table>
+    <tr><th>Step</th><th>What to Do</th></tr>
+    <tr><td><strong>1</strong></td><td>Open Claude Desktop. Click your name (bottom-left) &rarr; <strong>Settings</strong>.</td></tr>
+    <tr><td><strong>2</strong></td><td>Go to <strong>Profile</strong>.</td></tr>
+    <tr><td><strong>3</strong></td><td>Find the box labelled &ldquo;What personal preferences should Claude consider in responses?&rdquo;</td></tr>
+    <tr><td><strong>4</strong></td><td>Open your <code>CLAUDE.md</code> file in any text editor. Select all, copy, paste into that box.</td></tr>
+    <tr><td><strong>5</strong></td><td>Click <strong>Save</strong>. Toggle <strong>Memory</strong> on while you&apos;re there.</td></tr>
+    <tr><td><strong>6</strong></td><td>For <code>Context.md</code>: create a Project in Claude (left sidebar &rarr; <strong>Projects</strong> &rarr; <strong>New Project</strong>) and paste its contents into <strong>Project Knowledge</strong>.</td></tr>
+  </table></div>
+
+  <div class="callout callout-tip" style="margin-top:20px;"><strong>The rule of thumb going forward</strong><p>If it&apos;ll still be true in 6 months, it goes in <strong>CLAUDE.md</strong>. If it might change before then, it goes in <strong>Context.md</strong> (or a Project).</p></div>
+
+  <div class="callout callout-info" style="margin-top:16px;"><strong>Quick check it&apos;s working</strong><p>Start a new chat in Claude Desktop and ask: <em>&ldquo;What do you know about me and how I like to work?&rdquo;</em> If Claude plays back your role, style and preferences &mdash; you&apos;re sorted. If it&apos;s vague, your CLAUDE.md needs more detail.</p></div>
+</div>
+
+<!-- Part 03: Setup Files -->
 <div class="section" id="setup-files">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 03</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 04</div>
   <h2><span class="prompt">&gt;</span> The 4 Setup Files</h2>
   <p class="section-desc">Set these up to make Claude work smarter. None are compulsory, but the more you do, the better it gets.</p>
 
@@ -869,7 +1111,7 @@
 
 <!-- Part 2+3: Combined Repos, Skills & MCPs -->
 <div class="section" id="repos">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 07</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 08</div>
   <h2><span class="prompt">&gt;</span> Repos, Skills &amp; MCP Servers</h2>
   <p class="section-desc">Your one-stop shop. Click any item to see what it does. Copy the install command.</p>
 
@@ -1053,17 +1295,9 @@
   <div class="callout callout-warning"><strong>Heads up</strong><p>GitHub repos can move or rename. If an install command fails, search GitHub.com for the repo name to find the current address.</p></div>
 </div>
 
-<!-- Skills section now redirects to repos -->
-<div class="section" id="skills">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 08</div>
-  <h2><span class="prompt">&gt;</span> Skills to Install</h2>
-  <p class="section-desc">Skills are now part of the combined Repos, Skills &amp; MCP section.</p>
-  <div class="callout callout-info"><strong>Looking for skills?</strong><p>All repos, skills, and MCP servers are now in one place. <a href="#" onclick="showSection('repos');return false" style="color:var(--primary)">Go to Repos, Skills &amp; MCP Servers</a></p></div>
-</div>
-
 <!-- Part 4: Folder Map -->
 <div class="section" id="folder-map">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 08</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 09</div>
   <h2><span class="prompt">&gt;</span> Where Everything Lives</h2>
   <p class="section-desc">The ~ symbol means your home folder (/Users/[yourname]/).</p>
 
@@ -1076,7 +1310,7 @@
 
 <!-- Part 5: Glossary -->
 <div class="section" id="glossary">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 02</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 03</div>
   <h2><span class="prompt">&gt;</span> Jargon Buster</h2>
   <p class="section-desc">Plain English translations of terms you'll see.</p>
 
@@ -1137,7 +1371,7 @@
 
 <!-- Part 6: Find More -->
 <div class="section" id="find-more">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 18</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 20</div>
   <h2><span class="prompt">&gt;</span> Where to Find More Stuff</h2>
   <p class="section-desc">The best places to browse for skills, MCP servers, and plugins.</p>
 
@@ -1163,7 +1397,7 @@
 
 <!-- Part 7: Prompts -->
 <div class="section" id="prompts">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 06</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 07</div>
   <h2><span class="prompt">&gt;</span> Copy-Paste Prompts</h2>
   <p class="section-desc">Ready-to-use messages. Copy, paste into Claude Code, press Enter.</p>
 
@@ -1255,7 +1489,7 @@ Format it like a business report, not a technical changelog. I'm a decision make
 
 <!-- Part 8: Talking to Claude -->
 <div class="section" id="talking">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 05</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 06</div>
   <h2><span class="prompt">&gt;</span> How to Talk to Claude</h2>
   <p class="section-desc">The quality of output depends on how you ask. Brief Claude like a freelancer.</p>
 
@@ -1278,7 +1512,7 @@ Format it like a business report, not a technical changelog. I'm a decision make
 
 <!-- Part 9: Agents & Agent Teams -->
 <div class="section" id="agents">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 09</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 10</div>
   <h2><span class="prompt">&gt;</span> Agents &amp; Agent Teams</h2>
   <p class="section-desc">How Claude works autonomously, and how to run multiple Claudes in parallel.</p>
 
@@ -1360,7 +1594,7 @@ Have them coordinate and share progress with each other.</pre></div>
 
 <!-- Part 10: Mistakes -->
 <div class="section" id="mistakes">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 10</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 11</div>
   <h2><span class="prompt">&gt;</span> Common Mistakes</h2>
   <p class="section-desc">Learn from others so you don't make these yourself.</p>
 
@@ -1375,7 +1609,7 @@ Have them coordinate and share progress with each other.</pre></div>
 
 <!-- Part 10: When Stuck -->
 <div class="section" id="stuck">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 15</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 16</div>
   <h2><span class="prompt">&gt;</span> When Claude Gets Stuck</h2>
   <p class="section-desc">Signs: repeating itself, apologising without fixing, suggesting increasingly complex solutions.</p>
 
@@ -1390,7 +1624,7 @@ Have them coordinate and share progress with each other.</pre></div>
 
 <!-- Part 11: Reviewing Work -->
 <div class="section" id="review">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 11</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 12</div>
   <h2><span class="prompt">&gt;</span> How to Review Claude's Work</h2>
   <p class="section-desc">You don't need to understand code to be a good reviewer.</p>
 
@@ -1404,7 +1638,7 @@ Have them coordinate and share progress with each other.</pre></div>
 
 <!-- Part 12: Security -->
 <div class="section" id="security">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 12</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 13</div>
   <h2><span class="prompt">&gt;</span> Security Basics</h2>
   <p class="section-desc">Claude has access to your files. Be smart about what you share.</p>
 
@@ -1421,7 +1655,7 @@ Have them coordinate and share progress with each other.</pre></div>
 
 <!-- Part 13: Costs -->
 <div class="section" id="costs">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 13</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 14</div>
   <h2><span class="prompt">&gt;</span> Cost &amp; Usage Awareness</h2>
   <p class="section-desc">Claude uses credits every interaction. Here's how to avoid waste.</p>
 
@@ -1436,7 +1670,7 @@ Have them coordinate and share progress with each other.</pre></div>
 
 <!-- Part 14: Code vs Chat -->
 <div class="section" id="code-vs-chat">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 01</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 02</div>
   <h2><span class="prompt">&gt;</span> Claude Chat vs Code vs Cowork</h2>
   <p class="section-desc">Three tools, three different jobs. Using the right one saves time and money.</p>
 
@@ -1580,7 +1814,7 @@ Have them coordinate and share progress with each other.</pre></div>
 
 <!-- Part 15: Project Structure -->
 <div class="section" id="structure">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 04</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 05</div>
   <h2><span class="prompt">&gt;</span> How to Structure Projects</h2>
   <p class="section-desc">Good organisation helps both you and Claude.</p>
 
@@ -1599,7 +1833,7 @@ Have them coordinate and share progress with each other.</pre></div>
 
 <!-- Part 16: Backups -->
 <div class="section" id="backups">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 14</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 15</div>
   <h2><span class="prompt">&gt;</span> Backup Basics</h2>
   <p class="section-desc">Version control (git) = unlimited undo button for your entire project.</p>
 
@@ -1617,7 +1851,7 @@ Have them coordinate and share progress with each other.</pre></div>
 
 <!-- Part 17: FAQ -->
 <div class="section" id="faq">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 16</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 17</div>
   <h2><span class="prompt">&gt;</span> Troubleshooting FAQ</h2>
   <p class="section-desc">Common problems and how to fix them. Click to expand.</p>
 
@@ -1632,7 +1866,7 @@ Have them coordinate and share progress with each other.</pre></div>
 
 <!-- Part 18: Teams -->
 <div class="section" id="teams">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 17</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 18</div>
   <h2><span class="prompt">&gt;</span> Recommended Tools by Team</h2>
   <p class="section-desc">Click any team to see recommended skills and MCP servers.</p>
 
@@ -1759,7 +1993,7 @@ Have them coordinate and share progress with each other.</pre></div>
 
 <!-- Part 19: Resources -->
 <div class="section" id="resources">
-  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">$</span> cd ../</button><div class="section-head">Part 18</div>
+  <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to menu</button><div class="section-head">Part 19</div>
   <h2><span class="prompt">&gt;</span> Resources &amp; People to Follow</h2>
   <p class="section-desc">The best places to learn and the people sharing the most useful content.</p>
 
@@ -1843,23 +2077,37 @@ Have them coordinate and share progress with each other.</pre></div>
 </div>
 
 <script>
-// Menu-driven navigation
-function showSection(id) {
+// Menu-driven navigation with clean URL paths
+function showSection(id, opts) {
+  opts = opts || {};
+  var el = document.getElementById(id);
+  if (!el) { showHome(opts); return; }
   // Hide all sections and quick nav
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.getElementById('quick-nav').classList.add('hidden');
   // Show target section
-  document.getElementById(id).classList.add('active');
+  el.classList.add('active');
+  // Update URL unless we arrived here from a popstate or initial load
+  if (!opts.skipPushState) {
+    var newPath = '/' + id;
+    if (location.pathname !== newPath) {
+      history.pushState({ section: id }, '', newPath);
+    }
+  }
   // Scroll to top
   window.scrollTo({ top: 0, behavior: 'instant' });
   // Close mobile menu if open
   document.querySelector('.nav-links').classList.remove('open');
 }
 
-function showHome() {
+function showHome(opts) {
+  opts = opts || {};
   // Hide all sections, show quick nav
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.getElementById('quick-nav').classList.remove('hidden');
+  if (!opts.skipPushState && location.pathname !== '/') {
+    history.pushState({ section: null }, '', '/');
+  }
   window.scrollTo({ top: 0, behavior: 'instant' });
   document.querySelector('.nav-links').classList.remove('open');
 }
@@ -1891,12 +2139,21 @@ document.addEventListener('click', e => {
   if (q) q.parentElement.classList.toggle('open');
 });
 
-// Handle browser back/forward
-window.addEventListener('popstate', () => {
-  const hash = location.hash.replace('#', '');
-  if (hash && document.getElementById(hash)) showSection(hash);
-  else showHome();
-});
+// Handle browser back/forward and initial page load
+function routeFromUrl() {
+  // Try clean path first (e.g. /setup-files), then fall back to hash (e.g. #setup-files)
+  var path = location.pathname.replace(/^\//, '').replace(/\/$/, '');
+  var hash = location.hash.replace('#', '');
+  var target = path || hash;
+  if (target && document.getElementById(target)) {
+    showSection(target, { skipPushState: true });
+  } else {
+    showHome({ skipPushState: true });
+  }
+}
+
+window.addEventListener('popstate', routeFromUrl);
+document.addEventListener('DOMContentLoaded', routeFromUrl);
 </script>
 
 </body>
