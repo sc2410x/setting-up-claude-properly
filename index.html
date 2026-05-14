@@ -1120,7 +1120,6 @@
         <div class="mode-card-tag">For delegating real workflows. Pulls data from your tools, runs multi-step jobs, produces outputs.</div>
         <div class="mode-card-sections">
           <span>Setting Up Cowork &mdash; Your First Project</span>
-          <span>(more coming)</span>
         </div>
         <div class="mode-card-cta">enter Cowork &rarr;</div>
         <div class="mode-card-meta">1 section</div>
@@ -1132,7 +1131,6 @@
         <div class="mode-card-sections">
           <span>Agents &amp; Teams</span>
           <span>Backups</span>
-          <span>(more coming)</span>
         </div>
         <div class="mode-card-cta">enter Code &rarr;</div>
         <div class="mode-card-meta">2 sections</div>
@@ -1222,11 +1220,15 @@
   <h2><span class="prompt">&gt;</span> Cowork &mdash; Delegate Real Workflows</h2>
   <p class="section-desc">Cowork is for when you want to delegate actual multi-step work to Claude. It can reach into your tools (Gmail, Drive, Slack, etc.), pull data, run multi-step processes, and produce outputs. Less &ldquo;ask and answer&rdquo;, more &ldquo;go do this and bring me the result.&rdquo;</p>
 
-  <div class="callout callout-info" style="margin-bottom:24px;"><strong>Heads up</strong>
-    <p style="margin-top:8px;">Cowork is the newest mode and more content is coming. For now, the one section below gets you set up properly.</p>
+  <div class="callout callout-warning" style="margin-bottom:24px;"><strong>Read these first</strong>
+    <p style="margin-top:8px;">Cowork builds on the foundation set up in two earlier sections. Do these before you set up your first Cowork Project, or it won&apos;t work properly:</p>
+    <ul style="margin-top:8px;">
+      <li><a href="/bootstrap" onclick="showSection('bootstrap');return false" style="color:var(--primary);">Part 01: Setting Up Claude for the First Time</a> &mdash; sets up your CLAUDE.md (your account profile). Cowork uses this too.</li>
+      <li><a href="/structure" onclick="showSection('structure');return false" style="color:var(--primary);">Part 06: How to Use Projects</a> &mdash; the concept of a Project applies to Cowork as well as Chat.</li>
+    </ul>
   </div>
 
-  <h3 style="margin-top:24px;">In this mini-site</h3>
+  <h3 style="margin-top:24px;">Cowork-specific content</h3>
   <div class="card-grid" style="grid-template-columns:1fr;gap:10px;">
     <a href="/setup-cowork" onclick="showSection('setup-cowork');return false" class="mini-site-card">
       <span class="num">PART 02</span>
@@ -1238,6 +1240,7 @@
   <h3 style="margin-top:32px;">Also worth reading</h3>
   <p style="color:var(--muted);font-size:13px;">These universal sections apply across all modes including Cowork:</p>
   <div class="card-grid card-grid-3" style="gap:8px;">
+    <a href="/setup-files" onclick="showSection('setup-files');return false" class="nav-tile">Setup Files</a>
     <a href="/folder-map" onclick="showSection('folder-map');return false" class="nav-tile">Where Things Live</a>
     <a href="/connectors" onclick="showSection('connectors');return false" class="nav-tile">Connectors</a>
     <a href="/security" onclick="showSection('security');return false" class="nav-tile">Security</a>
@@ -1254,11 +1257,16 @@
   <h2><span class="prompt">&gt;</span> Code &mdash; The Developer&apos;s Mode</h2>
   <p class="section-desc">Code is for building and editing software. It used to be terminal-only; now it lives inside Claude Desktop. Open a project folder and Claude can read, write and edit files directly. Mostly for developers, but increasingly useful for anyone building something technical with AI&apos;s help.</p>
 
-  <div class="callout callout-info" style="margin-bottom:24px;"><strong>Heads up</strong>
-    <p style="margin-top:8px;">Code-specific content is growing. The two sections below are the ones most tied to Code mode. The universal sections (especially &ldquo;Where Things Live&rdquo; for the folder map) are also relevant.</p>
+  <div class="callout callout-warning" style="margin-bottom:24px;"><strong>Read these first</strong>
+    <p style="margin-top:8px;">Code builds on the foundation set up in two earlier sections. Do these before you start using Code, or it won&apos;t know enough about you:</p>
+    <ul style="margin-top:8px;">
+      <li><a href="/bootstrap" onclick="showSection('bootstrap');return false" style="color:var(--primary);">Part 01: Setting Up Claude for the First Time</a> &mdash; sets up your CLAUDE.md (your account profile). Code uses this too.</li>
+      <li><a href="/setup-files" onclick="showSection('setup-files');return false" style="color:var(--primary);">Part 05: Setup Files</a> &mdash; CLAUDE.md, Context.md and Skills. The files Code reads from every project folder.</li>
+      <li><a href="/folder-map" onclick="showSection('folder-map');return false" style="color:var(--primary);">Part 10: Where Things Live</a> &mdash; the folder map showing where Code looks for skills and settings.</li>
+    </ul>
   </div>
 
-  <h3 style="margin-top:24px;">In this mini-site</h3>
+  <h3 style="margin-top:24px;">Code-specific content</h3>
   <div class="card-grid" style="grid-template-columns:1fr;gap:10px;">
     <a href="/agents" onclick="showSection('agents');return false" class="mini-site-card">
       <span class="num">PART 12</span>
@@ -3207,9 +3215,11 @@ function showSection(id, opts) {
   opts = opts || {};
   var el = document.getElementById(id);
   if (!el) { showHome(opts); return; }
-  // Hide all sections and quick nav
+  // Hide all sections and all homepage blocks
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.getElementById('quick-nav').classList.add('hidden');
+  var allModesQuickNav = document.getElementById('all-modes-quicknav');
+  if (allModesQuickNav) allModesQuickNav.classList.add('hidden');
   // Show target section
   el.classList.add('active');
   // Update URL unless we arrived here from a popstate or initial load
@@ -3227,9 +3237,11 @@ function showSection(id, opts) {
 
 function showHome(opts) {
   opts = opts || {};
-  // Hide all sections, show quick nav
+  // Hide all sections, show all homepage blocks
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.getElementById('quick-nav').classList.remove('hidden');
+  var allModesQuickNav = document.getElementById('all-modes-quicknav');
+  if (allModesQuickNav) allModesQuickNav.classList.remove('hidden');
   if (!opts.skipPushState && location.pathname !== '/') {
     history.pushState({ section: null }, '', '/');
   }
