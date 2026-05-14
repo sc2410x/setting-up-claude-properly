@@ -1104,16 +1104,13 @@
       <a href="/chat" onclick="showSection('chat');return false" class="mode-card">
         <div class="mode-card-num">$ Mode 01</div>
         <h3>Chat</h3>
-        <div class="mode-card-tag">For thinking, writing, asking questions. The mode you'll use most day to day.</div>
+        <div class="mode-card-tag">For thinking, writing, asking questions. The mode you'll use most day to day. Most universal content lives in All modes.</div>
         <div class="mode-card-sections">
           <span>Setting Up Claude</span>
           <span>How to Use Projects</span>
-          <span>Talking to Claude</span>
-          <span>Copy-Paste Prompts</span>
-          <span>Reviewing Work</span>
         </div>
         <div class="mode-card-cta">enter Chat &rarr;</div>
-        <div class="mode-card-meta">5 sections</div>
+        <div class="mode-card-meta">2 sections + universal</div>
       </a>
       <a href="/cowork" onclick="showSection('cowork');return false" class="mode-card">
         <div class="mode-card-num">$ Mode 02</div>
@@ -1145,7 +1142,7 @@
   <div class="terminal-bar">
     <div class="dots"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
     <span class="filename">all modes &middot; shared reference</span>
-    <span class="status">13 sections</span>
+    <span class="status">16 sections</span>
   </div>
   <div class="terminal-body" style="padding:18px 20px;">
     <p style="color:var(--muted);font-size:13px;margin-bottom:14px;font-family:var(--mono);">Universal sections that apply across Chat, Cowork and Code. <a href="/all-modes" onclick="showSection('all-modes');return false" style="color:var(--primary);">See all on one page &rarr;</a></p>
@@ -1153,10 +1150,13 @@
       <a href="/code-vs-chat" onclick="showSection('code-vs-chat');return false" class="nav-tile"><span style="color:var(--primary)">&middot;</span> Chat vs Code vs Cowork</a>
       <a href="/glossary" onclick="showSection('glossary');return false" class="nav-tile"><span style="color:var(--primary)">&middot;</span> Jargon Buster</a>
       <a href="/setup-files" onclick="showSection('setup-files');return false" class="nav-tile"><span style="color:var(--primary)">&middot;</span> Setup Files</a>
+      <a href="/talking" onclick="showSection('talking');return false" class="nav-tile"><span style="color:var(--primary)">&middot;</span> Talking to Claude</a>
+      <a href="/prompts" onclick="showSection('prompts');return false" class="nav-tile"><span style="color:var(--primary)">&middot;</span> Copy-Paste Prompts</a>
       <a href="/repos" onclick="showSection('repos');return false" class="nav-tile"><span style="color:var(--primary)">&middot;</span> Repos, Skills &amp; MCPs</a>
       <a href="/folder-map" onclick="showSection('folder-map');return false" class="nav-tile"><span style="color:var(--primary)">&middot;</span> Where Things Live</a>
       <a href="/connectors" onclick="showSection('connectors');return false" class="nav-tile"><span style="color:var(--primary)">&middot;</span> Connectors</a>
       <a href="/mistakes" onclick="showSection('mistakes');return false" class="nav-tile"><span style="color:var(--primary)">&middot;</span> Common Mistakes</a>
+      <a href="/review" onclick="showSection('review');return false" class="nav-tile"><span style="color:var(--primary)">&middot;</span> Reviewing Work</a>
       <a href="/security" onclick="showSection('security');return false" class="nav-tile"><span style="color:var(--primary)">&middot;</span> Security</a>
       <a href="/costs" onclick="showSection('costs');return false" class="nav-tile"><span style="color:var(--primary)">&middot;</span> Costs</a>
       <a href="/troubleshooting" onclick="showSection('troubleshooting');return false" class="nav-tile"><span style="color:var(--primary)">&middot;</span> Troubleshooting &amp; FAQ</a>
@@ -1171,9 +1171,9 @@
 <div class="section" id="chat">
   <button class="back-to-menu" onclick="showHome()"><span style="color:var(--green)">&larr;</span> back to home</button>
   <h2><span class="prompt">&gt;</span> Chat &mdash; Your Default Mode</h2>
-  <p class="section-desc">Chat is the conversational mode you&apos;ll use most. Ask questions, draft documents, brainstorm, think through problems. The five sections below cover everything you need to use Chat well.</p>
+  <p class="section-desc">Chat is the conversational mode you&apos;ll use most. Ask questions, draft documents, brainstorm, think through problems. The two sections below are the Chat-specific foundations. Most of what you need (how to prompt, how to review work, the copy-paste prompt library) lives in All modes because it applies equally everywhere.</p>
 
-  <h3 style="margin-top:24px;">In this mini-site</h3>
+  <h3 style="margin-top:24px;">Chat-specific content</h3>
   <div class="card-grid" style="grid-template-columns:1fr;gap:10px;">
     <a href="/bootstrap" onclick="showSection('bootstrap');return false" class="mini-site-card">
       <span class="num">PART 01</span>
@@ -1185,26 +1185,14 @@
       <h4>How to Use Projects</h4>
       <p>Projects are how you give Claude its own knowledge base for a specific piece of work. When to use one, how to set one up, when to share with colleagues.</p>
     </a>
-    <a href="/talking" onclick="showSection('talking');return false" class="mini-site-card">
-      <span class="num">PART 07</span>
-      <h4>Talking to Claude</h4>
-      <p>How to ask better questions and get better answers. Concrete patterns that lift the quality of every response.</p>
-    </a>
-    <a href="/prompts" onclick="showSection('prompts');return false" class="mini-site-card">
-      <span class="num">PART 08</span>
-      <h4>Copy-Paste Prompts</h4>
-      <p>Ready-made prompts for the things you&apos;ll do most. Start of a new project, health check, end of session, get up to speed.</p>
-    </a>
-    <a href="/review" onclick="showSection('review');return false" class="mini-site-card">
-      <span class="num">PART 14</span>
-      <h4>Reviewing Work</h4>
-      <p>How to check what Claude has produced. Trust but verify, especially for facts, stats and anything client-facing.</p>
-    </a>
   </div>
 
-  <h3 style="margin-top:32px;">Also worth reading</h3>
-  <p style="color:var(--muted);font-size:13px;">These universal sections apply across all modes including Chat:</p>
+  <h3 style="margin-top:32px;">Also worth reading (universal)</h3>
+  <p style="color:var(--muted);font-size:13px;">These sections apply across all modes including Chat:</p>
   <div class="card-grid card-grid-3" style="gap:8px;">
+    <a href="/talking" onclick="showSection('talking');return false" class="nav-tile">Talking to Claude</a>
+    <a href="/prompts" onclick="showSection('prompts');return false" class="nav-tile">Copy-Paste Prompts</a>
+    <a href="/review" onclick="showSection('review');return false" class="nav-tile">Reviewing Work</a>
     <a href="/setup-files" onclick="showSection('setup-files');return false" class="nav-tile">Setup Files</a>
     <a href="/folder-map" onclick="showSection('folder-map');return false" class="nav-tile">Where Things Live</a>
     <a href="/connectors" onclick="showSection('connectors');return false" class="nav-tile">Connectors</a>
@@ -1222,10 +1210,12 @@
   <p class="section-desc">Cowork is for when you want to delegate actual multi-step work to Claude. It can reach into your tools (Gmail, Drive, Slack, etc.), pull data, run multi-step processes, and produce outputs. Less &ldquo;ask and answer&rdquo;, more &ldquo;go do this and bring me the result.&rdquo;</p>
 
   <div class="callout callout-warning" style="margin-bottom:24px;"><strong>Read these first</strong>
-    <p style="margin-top:8px;">Cowork builds on the foundation set up in two earlier sections. Do these before you set up your first Cowork Project, or it won&apos;t work properly:</p>
+    <p style="margin-top:8px;">Cowork builds on the foundation set up in these sections. Do them before you set up your first Cowork Project, or it won&apos;t work properly:</p>
     <ul style="margin-top:8px;">
       <li><a href="/bootstrap" onclick="showSection('bootstrap');return false" style="color:var(--primary);">Part 01: Setting Up Claude for the First Time</a> &mdash; sets up your CLAUDE.md (your account profile). Cowork uses this too.</li>
       <li><a href="/structure" onclick="showSection('structure');return false" style="color:var(--primary);">Part 06: How to Use Projects</a> &mdash; the concept of a Project applies to Cowork as well as Chat.</li>
+      <li><a href="/talking" onclick="showSection('talking');return false" style="color:var(--primary);">Part 07: Talking to Claude</a> &mdash; how to prompt well. Applies to Cowork tasks just as much as Chat conversations.</li>
+      <li><a href="/review" onclick="showSection('review');return false" style="color:var(--primary);">Part 14: Reviewing Work</a> &mdash; Cowork produces outputs across multiple tools. Knowing how to check them matters.</li>
     </ul>
   </div>
 
@@ -1259,11 +1249,12 @@
   <p class="section-desc">Code is for building and editing software. It used to be terminal-only; now it lives inside Claude Desktop. Open a project folder and Claude can read, write and edit files directly. Mostly for developers, but increasingly useful for anyone building something technical with AI&apos;s help.</p>
 
   <div class="callout callout-warning" style="margin-bottom:24px;"><strong>Read these first</strong>
-    <p style="margin-top:8px;">Code builds on the foundation set up in two earlier sections. Do these before you start using Code, or it won&apos;t know enough about you:</p>
+    <p style="margin-top:8px;">Code builds on the foundation set up in these sections. Do them before you start letting Code edit your projects:</p>
     <ul style="margin-top:8px;">
-      <li><a href="/bootstrap" onclick="showSection('bootstrap');return false" style="color:var(--primary);">Part 01: Setting Up Claude for the First Time</a> &mdash; sets up your CLAUDE.md (your account profile). Code uses this too.</li>
-      <li><a href="/setup-files" onclick="showSection('setup-files');return false" style="color:var(--primary);">Part 05: Setup Files</a> &mdash; CLAUDE.md, Context.md and Skills. The files Code reads from every project folder.</li>
+      <li><a href="/bootstrap" onclick="showSection('bootstrap');return false" style="color:var(--primary);">Part 01: Setting Up Claude for the First Time</a> &mdash; sets up your CLAUDE.md. Code uses this too.</li>
+      <li><a href="/setup-files" onclick="showSection('setup-files');return false" style="color:var(--primary);">Part 05: Setup Files</a> &mdash; CLAUDE.md, Context.md, Skills. The files Code reads from every project folder.</li>
       <li><a href="/folder-map" onclick="showSection('folder-map');return false" style="color:var(--primary);">Part 10: Where Things Live</a> &mdash; the folder map showing where Code looks for skills and settings.</li>
+      <li><a href="/review" onclick="showSection('review');return false" style="color:var(--primary);">Part 14: Reviewing Work</a> &mdash; arguably the most important. Code edits real files. You need to know how to check what it did.</li>
     </ul>
   </div>
 
@@ -1316,6 +1307,25 @@
       <span class="num">PART 05</span>
       <h4>Setup Files</h4>
       <p>CLAUDE.md, Context.md, Memory, and Skills. The four config files that make Claude work properly with you. Includes a Memory deep dive.</p>
+    </a>
+  </div>
+
+  <h3 style="margin-top:32px;">Day-to-day use</h3>
+  <div class="card-grid" style="grid-template-columns:1fr;gap:10px;">
+    <a href="/talking" onclick="showSection('talking');return false" class="mini-site-card">
+      <span class="num">PART 07</span>
+      <h4>Talking to Claude</h4>
+      <p>How to ask better questions and get better answers. Concrete patterns that lift the quality of every response, in every mode.</p>
+    </a>
+    <a href="/prompts" onclick="showSection('prompts');return false" class="mini-site-card">
+      <span class="num">PART 08</span>
+      <h4>Copy-Paste Prompts</h4>
+      <p>Ready-made prompts for the things you&apos;ll do most. Start of a new project, health check, end of session, get up to speed.</p>
+    </a>
+    <a href="/review" onclick="showSection('review');return false" class="mini-site-card">
+      <span class="num">PART 14</span>
+      <h4>Reviewing Work</h4>
+      <p>How to check what Claude has produced. Trust but verify, especially for facts, stats and anything client-facing.</p>
     </a>
   </div>
 
@@ -1391,6 +1401,10 @@
   <div class="section-breadcrumb"><a href="/chat" onclick="showSection('chat');return false">&larr; Chat</a> <span class="crumb-sep">/</span> <span>Part 01</span></div><div class="section-head">Part 01</div>
   <h2><span class="prompt">&gt;</span> New Starter &mdash; Setting Up Claude for the First Time</h2>
   <p class="section-desc">A complete, hand-holding walkthrough for setting up Claude properly. Designed for someone who&apos;s never used Claude before but has probably been using ChatGPT, Gemini or similar. Follow the steps in order. Takes about 30 to 40 minutes. You only do this once.</p>
+
+  <div class="callout callout-tip" style="margin-bottom:24px;"><strong>Applies to every mode</strong>
+    <p style="margin-top:8px;">The CLAUDE.md you set up in this section is account-level. It applies across <strong>Chat</strong>, <strong>Cowork</strong> and <strong>Code</strong> automatically. Doesn&apos;t matter which mini-site you came from to get here. This is the universal foundation for all of them.</p>
+  </div>
 
   <div class="callout callout-info" style="margin-bottom:24px;"><strong>What you&apos;ll end up with at the end of this section</strong>
     <ul style="margin-top:8px;">
@@ -2330,7 +2344,7 @@ Keep each file focused and specific to this project. Start with the first questi
 
 <!-- Part 7: Prompts -->
 <div class="section" id="prompts">
-  <div class="section-breadcrumb"><a href="/chat" onclick="showSection('chat');return false">&larr; Chat</a> <span class="crumb-sep">/</span> <span>Part 08</span></div><div class="section-head">Part 08</div>
+  <div class="section-breadcrumb"><a href="/all-modes" onclick="showSection('all-modes');return false">&larr; All modes</a> <span class="crumb-sep">/</span> <span>Part 08</span></div><div class="section-head">Part 08</div>
   <h2><span class="prompt">&gt;</span> Copy-Paste Prompts</h2>
   <p class="section-desc">Ready-to-use messages. Copy, paste into Claude Code, press Enter.</p>
 
@@ -2422,7 +2436,7 @@ Format it like a business report, not a technical changelog. I'm a decision make
 
 <!-- Part 8: Talking to Claude -->
 <div class="section" id="talking">
-  <div class="section-breadcrumb"><a href="/chat" onclick="showSection('chat');return false">&larr; Chat</a> <span class="crumb-sep">/</span> <span>Part 07</span></div><div class="section-head">Part 07</div>
+  <div class="section-breadcrumb"><a href="/all-modes" onclick="showSection('all-modes');return false">&larr; All modes</a> <span class="crumb-sep">/</span> <span>Part 07</span></div><div class="section-head">Part 07</div>
   <h2><span class="prompt">&gt;</span> How to Talk to Claude</h2>
   <p class="section-desc">The quality of output depends on how you ask. Brief Claude like a freelancer.</p>
 
@@ -2676,7 +2690,7 @@ Have them coordinate and share progress with each other.</pre></div>
 
 <!-- Part 11: Reviewing Work -->
 <div class="section" id="review">
-  <div class="section-breadcrumb"><a href="/chat" onclick="showSection('chat');return false">&larr; Chat</a> <span class="crumb-sep">/</span> <span>Part 14</span></div><div class="section-head">Part 14</div>
+  <div class="section-breadcrumb"><a href="/all-modes" onclick="showSection('all-modes');return false">&larr; All modes</a> <span class="crumb-sep">/</span> <span>Part 14</span></div><div class="section-head">Part 14</div>
   <h2><span class="prompt">&gt;</span> How to Review Claude's Work</h2>
   <p class="section-desc">You don't need to understand code to be a good reviewer.</p>
 
