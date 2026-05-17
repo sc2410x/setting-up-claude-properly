@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8" />
+<title>Welcome to Claude — A New Starter's Workbook for The Digital Maze</title>
+<link rel="preconnect" href="https://use.typekit.net">
+<link rel="stylesheet" href="https://use.typekit.net/bbc0nrp.css">
+<style>
+  :root {
+    --pink: #FF618B;
+    --deep: #1F004B;
+    --mid: #380089;
+    --white: #FFFFFF;
+    --tint: #FBF4F7;
+    --tint-deep: #F4ECF0;
+    --body: #2A2138;
+    --muted: #6B5F7A;
+    --rule: #E8E1EB;
+    --claude-coral: #D97757;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  a { color: inherit; text-decoration: none; }
+
+  html, body {
+    font-family: 'canada-type-gibson', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--body);
+    background: #ddd;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    font-size: 10.5pt;
+    line-height: 1.5;
+  }
+
+  @page { size: A4 portrait; margin: 0; }
+
+  .page {
+    width: 210mm;
+    height: 297mm;
+    background: var(--white);
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto 8mm;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* ===================== COVER ===================== */
+  .cover { background: var(--deep); color: var(--white); padding: 24mm 22mm 22mm; justify-content: space-between; }
+  .cover::before {
+    content: ''; position: absolute; top: -160px; right: -140px;
+    width: 520px; height: 520px; background: var(--pink); border-radius: 50%;
+    opacity: 0.22; filter: blur(110px); z-index: 0;
+  }
+  .cover::after {
+    content: ''; position: absolute; bottom: -180px; left: -140px;
+    width: 460px; height: 460px; background: var(--mid); border-radius: 50%;
+    opacity: 0.55; filter: blur(110px); z-index: 0;
+  }
+  .cover-top { position: relative; z-index: 2; }
+  .brand-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 36px; }
+  .brand-tdm img { width: 56px; height: 56px; display: block; border-radius: 12px; }
+  .brand-claude img { width: auto; height: 26px; display: block; }
+  .brand-divider { height: 1px; background: rgba(255,255,255,0.16); margin: 0 0 26px; position: relative; z-index: 2; }
+  .cover-eyebrow {
+    text-transform: uppercase; letter-spacing: 4px;
+    font-family: 'niveau-grotesk', sans-serif; font-weight: 700;
+    font-size: 9pt; color: var(--pink); margin-bottom: 14px;
+  }
+  .cover-title {
+    font-family: 'niveau-grotesk', sans-serif; font-weight: 900;
+    font-size: 60pt; line-height: 0.98; letter-spacing: -0.02em;
+    margin: 0 0 22px; max-width: 14ch; color: var(--white);
+  }
+  .cover-title .accent { color: var(--pink); }
+  .cover-sub {
+    font-family: 'canada-type-gibson', sans-serif; font-weight: 400;
+    font-size: 12.5pt; line-height: 1.5;
+    color: rgba(255,255,255,0.85); max-width: 62ch;
+  }
+  .cover-meta {
+    position: relative; z-index: 2; border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 20px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px;
+  }
+  .cover-meta .cell { display: flex; flex-direction: column; gap: 5px; }
+  .cover-meta strong {
+    text-transform: uppercase; letter-spacing: 2.5px; font-size: 7.5pt;
+    font-weight: 700; color: var(--pink);
+  }
+  .cover-meta span { font-weight: 500; font-size: 10.5pt; color: var(--white); }
+
+  /* ===================== BODY PAGES ===================== */
+  .body-page { padding: 16mm 18mm 14mm; }
+  .body-content { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+
+  .running-head {
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'niveau-grotesk', sans-serif; font-size: 8pt; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 2px; margin-bottom: 9mm;
+  }
+  .running-head .left { color: var(--mid); }
+  .running-head .right { color: var(--pink); }
+
+  .page-title-row { display: flex; align-items: baseline; gap: 14px; margin-bottom: 3mm; }
+  .page-num-big {
+    font-family: 'niveau-grotesk', sans-serif; font-weight: 900;
+    font-size: 28pt; color: var(--pink); line-height: 1; letter-spacing: -0.02em;
+  }
+  h1.page-h1 {
+    font-family: 'niveau-grotesk', sans-serif; font-weight: 700;
+    font-size: 26pt; line-height: 1.05; letter-spacing: -0.01em;
+    color: var(--deep); margin: 0;
+  }
+
+  .lead {
+    font-size: 11pt; line-height: 1.5; color: var(--body);
+    border-left: 3px solid var(--pink); padding: 1mm 0 1mm 14px;
+    margin: 5mm 0 5mm; max-width: 75ch;
+  }
+
+  .site-pointer {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--tint-deep); padding: 5px 12px; border-radius: 30px;
+    font-family: 'canada-type-gibson', sans-serif; font-size: 9pt; font-weight: 500;
+    color: var(--mid); margin-bottom: 5mm; align-self: flex-start;
+  }
+  .site-pointer::before { content: '>'; font-size: 11pt; color: var(--pink); font-weight: 700; }
+  .site-pointer .url { color: var(--deep); font-weight: 700; }
+
+  .callout {
+    background: var(--tint); border-left: 4px solid var(--pink);
+    padding: 4mm 5mm; border-radius: 0 6px 6px 0; margin: 0 0 6mm;
+  }
+  .callout h3 {
+    font-family: 'niveau-grotesk', sans-serif; font-weight: 700;
+    font-size: 11pt; color: var(--deep); margin: 0 0 2mm;
+  }
+  .callout p { font-size: 10pt; line-height: 1.5; color: var(--body); margin: 0; }
+
+  h2.subhead {
+    font-family: 'niveau-grotesk', sans-serif; font-weight: 700;
+    font-size: 13pt; color: var(--deep); margin: 6mm 0 3mm;
+    padding-left: 12px; border-left: 4px solid var(--pink); line-height: 1.2;
+  }
+  h2.subhead .letter { color: var(--pink); font-weight: 700; margin-right: 5px; }
+
+  ol.steps { list-style: none; padding: 0; margin: 2mm 0 0; counter-reset: stepcount; }
+  ol.steps li {
+    counter-increment: stepcount;
+    display: grid; grid-template-columns: 28px 1fr; gap: 12px;
+    align-items: start; font-size: 10.5pt; line-height: 1.5;
+    color: var(--body); padding: 2.5px 0;
+  }
+  ol.steps li::before {
+    content: counter(stepcount, decimal-leading-zero);
+    font-family: 'niveau-grotesk', sans-serif; font-weight: 700;
+    color: var(--pink); font-size: 11pt; padding-top: 0.5px; letter-spacing: 0.04em;
+  }
+  ol.steps li strong { color: var(--deep); font-weight: 700; }
+  ol.steps li em { color: var(--mid); font-style: italic; }
+  ol.steps li .ui {
+    display: inline-block; background: var(--tint-deep); color: var(--mid);
+    padding: 0 7px; border-radius: 4px; font-size: 9.5pt; font-weight: 700;
+  }
+
+  .prompt-card { margin: 4mm 0 0; background: var(--white); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; }
+  .prompt-head { background: var(--deep); color: var(--white); padding: 9px 14px; display: flex; justify-content: space-between; align-items: center; }
+  .prompt-head h4 { font-family: 'niveau-grotesk', sans-serif; font-weight: 700; font-size: 10.5pt; color: var(--white); }
+  .prompt-head .pill {
+    font-family: 'niveau-grotesk', sans-serif; font-weight: 700; font-size: 7.5pt;
+    text-transform: uppercase; letter-spacing: 1.5px; background: var(--pink);
+    color: var(--white); padding: 3px 9px; border-radius: 12px;
+  }
+  .prompt-body {
+    padding: 4.5mm 5mm 5mm; background: var(--tint);
+    font-family: 'canada-type-gibson', sans-serif; font-weight: 500;
+    font-size: 9pt; line-height: 1.55; color: var(--body); white-space: pre-wrap;
+  }
+  .prompt-body strong { color: var(--deep); font-weight: 700; }
+
+  .post-note {
+    font-size: 9.5pt; line-height: 1.5; color: var(--muted);
+    margin-top: 5mm; font-style: italic;
+  }
+  .post-note .filename {
+    background: var(--tint-deep); padding: 0 7px; border-radius: 4px;
+    color: var(--mid); font-style: normal; font-weight: 700;
+  }
+
+  /* Card grids */
+  .card-grid { display: grid; gap: 4mm; margin: 4mm 0 5mm; }
+  .card-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+  .card-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+
+  .feature-card {
+    background: var(--tint); border-radius: 10px; padding: 4mm 5mm;
+    border-top: 3px solid var(--pink);
+  }
+  .feature-card .ftag {
+    font-family: 'niveau-grotesk', sans-serif; font-weight: 700; font-size: 8pt;
+    text-transform: uppercase; letter-spacing: 1.5px; color: var(--pink);
+    margin-bottom: 1.5mm; display: block;
+  }
+  .feature-card h4 {
+    font-family: 'niveau-grotesk', sans-serif; font-weight: 700;
+    font-size: 11pt; color: var(--deep); margin: 0 0 2mm; line-height: 1.2;
+  }
+  .feature-card p { font-size: 9.5pt; line-height: 1.45; color: var(--body); margin: 0; }
+
+  .mode-card {
+    background: var(--white); border: 1px solid var(--rule); border-radius: 12px;
+    padding: 5mm 5mm 5mm; display: flex; flex-direction: column;
+  }
+  .mode-card .pill-mode {
+    display: inline-block; background: var(--pink); color: var(--white);
+    font-family: 'niveau-grotesk', sans-serif; font-weight: 700; font-size: 8pt;
+    text-transform: uppercase; letter-spacing: 1.5px; padding: 2px 9px;
+    border-radius: 12px; margin-bottom: 3mm; align-self: flex-start;
+  }
+  .mode-card h3 {
+    font-family: 'niveau-grotesk', sans-serif; font-weight: 900;
+    font-size: 22pt; color: var(--deep); margin: 0 0 1mm; line-height: 1;
+  }
+  .mode-card .tagline {
+    font-family: 'niveau-grotesk', sans-serif; font-weight: 500;
+    font-size: 9.5pt; color: var(--mid); margin-bottom: 3mm;
+    text-transform: lowercase; font-style: italic;
+  }
+  .mode-card .desc { font-size: 9.5pt; color: var(--body); margin-bottom: 4mm; line-height: 1.5; flex: 1; }
+  .mode-card .when-label {
+    font-family: 'niveau-grotesk', sans-serif; font-weight: 700; font-size: 7.5pt;
+    text-transform: uppercase; letter-spacing: 1.5px; color: var(--pink);
+    margin-bottom: 1.5mm;
+  }
+  .mode-card .when { font-size: 9pt; color: var(--muted); line-height: 1.45; }
+
+  ol.tickbox-list { list-style: none; padding: 0; margin: 3mm 0 0; counter-reset: none; }
+  ol.tickbox-list li {
+    display: grid; grid-template-columns: 24px 1fr; gap: 14px;
+    align-items: start; padding: 3.5px 0; font-size: 10.5pt;
+    color: var(--body); line-height: 1.5;
+  }
+  ol.tickbox-list li::before {
+    content: ''; display: block; width: 16px; height: 16px;
+    border: 2px solid var(--pink); border-radius: 4px; margin-top: 2.5px;
+  }
+  ol.tickbox-list li strong { color: var(--deep); font-weight: 700; }
+
+  .golden-rule {
+    display: grid; grid-template-columns: 40px 1fr; gap: 14px;
+    align-items: start; margin-bottom: 5mm;
+  }
+  .golden-rule .gnum {
+    font-family: 'niveau-grotesk', sans-serif; font-weight: 900;
+    font-size: 26pt; color: var(--pink); line-height: 0.95;
+  }
+  .golden-rule .gtext { font-size: 10.5pt; color: var(--body); line-height: 1.5; padding-top: 2mm; }
+  .golden-rule .gtext strong {
+    color: var(--deep); font-weight: 700;
+    font-family: 'niveau-grotesk', sans-serif; font-size: 11pt;
+    display: block; margin-bottom: 1mm;
+  }
+
+  .layer-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3mm; margin: 3mm 0 5mm; }
+  .layer-card {
+    background: var(--white); border: 1px solid var(--rule); border-radius: 10px;
+    padding: 4mm 4mm 4mm; display: flex; flex-direction: column;
+  }
+  .layer-card.l1 { border-top: 4px solid var(--pink); }
+  .layer-card.l2 { border-top: 4px solid var(--mid); }
+  .layer-card.l3 { border-top: 4px solid var(--claude-coral); }
+  .layer-card .llabel {
+    font-family: 'niveau-grotesk', sans-serif; font-weight: 700; font-size: 7.5pt;
+    text-transform: uppercase; letter-spacing: 1.5px; color: var(--pink); margin-bottom: 1.5mm;
+  }
+  .layer-card.l2 .llabel { color: var(--mid); }
+  .layer-card.l3 .llabel { color: var(--claude-coral); }
+  .layer-card h4 {
+    font-family: 'niveau-grotesk', sans-serif; font-weight: 700;
+    font-size: 11pt; color: var(--deep); margin: 0 0 2mm; line-height: 1.2;
+  }
+  .layer-card p { font-size: 9pt; color: var(--body); line-height: 1.45; margin: 0; }
+
+  .person-row {
+    display: grid; grid-template-columns: 1.2fr 2fr; gap: 8mm;
+    padding: 3mm 0; border-bottom: 1px dotted var(--rule);
+    align-items: baseline;
+  }
+  .person-row:last-of-type { border-bottom: none; }
+  .person-row .who {
+    font-family: 'niveau-grotesk', sans-serif; font-weight: 700;
+    font-size: 11pt; color: var(--deep);
+  }
+  .person-row .what { font-size: 9.5pt; color: var(--muted); line-height: 1.4; }
+
+  .destination-panel {
+    background: var(--deep); color: var(--white); border-radius: 12px;
+    padding: 7mm 8mm 8mm; margin-top: 5mm; position: relative; overflow: hidden;
+  }
+  .destination-panel::before {
+    content: ''; position: absolute; top: -60px; right: -60px;
+    width: 200px; height: 200px; background: var(--pink); border-radius: 50%;
+    opacity: 0.20; filter: blur(60px);
+  }
+  .destination-panel .dlabel {
+    font-family: 'niveau-grotesk', sans-serif; font-weight: 700; font-size: 8pt;
+    text-transform: uppercase; letter-spacing: 2px; color: var(--pink);
+    margin-bottom: 2mm; position: relative; z-index: 2;
+  }
+  .destination-panel h3 {
+    font-family: 'niveau-grotesk', sans-serif; font-weight: 900;
+    font-size: 22pt; color: var(--white); margin: 0 0 3mm; line-height: 1;
+    position: relative; z-index: 2;
+  }
+  .destination-panel p {
+    font-size: 10pt; opacity: 0.85; margin: 0 0 5mm; line-height: 1.5;
+    position: relative; z-index: 2;
+  }
+  .destination-panel .url-pill {
+    display: inline-block; background: var(--pink); color: var(--white);
+    padding: 3mm 6mm; border-radius: 30px;
+    font-family: 'niveau-grotesk', sans-serif; font-weight: 700; font-size: 10pt;
+    position: relative; z-index: 2;
+  }
+
+  .footer-bar {
+    margin-top: auto; padding-top: 5mm; border-top: 1px solid var(--rule);
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'niveau-grotesk', sans-serif; font-size: 8pt; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase;
+  }
+  .footer-bar .left { color: var(--mid); display: flex; align-items: center; gap: 8px; }
+  .footer-bar .left img { width: 14px; height: 14px; border-radius: 3px; display: block; }
+  .footer-bar .page-num { color: var(--deep); font-weight: 700; }
+  .footer-bar .right { color: var(--muted); }
+
+  /* Back cover */
+  .back-cover {
+    background: var(--deep); color: var(--white); padding: 26mm 22mm 22mm;
+    justify-content: space-between;
+  }
+  .back-cover::before {
+    content: ''; position: absolute; top: -120px; right: -100px;
+    width: 380px; height: 380px; background: var(--pink); border-radius: 50%;
+    opacity: 0.22; filter: blur(100px); z-index: 0;
+  }
+  .back-cover::after {
+    content: ''; position: absolute; bottom: -160px; left: -120px;
+    width: 420px; height: 420px; background: var(--mid); border-radius: 50%;
+    opacity: 0.5; filter: blur(110px); z-index: 0;
+  }
+  .back-cover-content { position: relative; z-index: 2; }
+  .back-end-mark {
+    font-family: 'niveau-grotesk', sans-serif; font-weight: 700; font-size: 9pt;
+    text-transform: uppercase; letter-spacing: 4px; color: var(--pink);
+    margin-bottom: 16px;
+  }
+  .back-cover h2 {
+    font-family: 'niveau-grotesk', sans-serif; font-weight: 900;
+    font-size: 44pt; line-height: 1.0; letter-spacing: -0.02em;
+    color: var(--white); margin-bottom: 22px; max-width: 14ch;
+  }
+  .back-cover h2 .accent { color: var(--pink); }
+  .back-cover-sub {
+    font-size: 12pt; line-height: 1.5; color: rgba(255,255,255,0.85);
+    max-width: 56ch; margin-bottom: 24px;
+  }
+  .back-bottom {
+    position: relative; z-index: 2; border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 20px; display: flex; justify-content: space-between; align-items: center;
+  }
+  .back-bottom .brand-tdm img { width: 44px; height: 44px; border-radius: 10px; }
+  .back-bottom .meta {
+    font-family: 'niveau-grotesk', sans-serif; font-size: 8pt; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.6);
+    text-align: right;
+  }
+
+  @media print {
+    body { background: var(--white); }
+    .page { margin: 0; box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== PAGE 1: COVER ===================== -->
+<div class="page cover">
+  <div class="cover-top">
+    <div class="brand-row">
+      <div class="brand-tdm"><img src="tdm-solid-pink.png" alt="The Digital Maze" /></div>
+      <div class="brand-claude"><img src="claude-wordmark.png" alt="Claude" /></div>
+    </div>
+    <div class="brand-divider"></div>
+    <div class="cover-eyebrow">A New Starter's Workbook · v1.0</div>
+    <h1 class="cover-title">Welcome<br/>to <span class="accent">Claude.</span></h1>
+    <p class="cover-sub">A friendly, do-it-with-me walkthrough for getting Claude properly set up at The Digital Maze. Install the app, write your Instructions for Claude, and stand up your first Cowork Project the way we did Emlyn's. About forty minutes from start to finish.</p>
+  </div>
+  <div class="cover-meta">
+    <div class="cell"><strong>Version</strong><span>1.0</span></div>
+    <div class="cell"><strong>For</strong><span>TDM staff</span></div>
+    <div class="cell"><strong>Time</strong><span>40 minutes</span></div>
+    <div class="cell"><strong>From</strong><span>Scott Clarke</span></div>
+  </div>
+</div>
+
+<!-- ===================== PAGE 2: HELLO ===================== -->
+<div class="page body-page">
+  <div class="body-content">
+    <div class="running-head">
+      <span class="left">The Digital Maze · Welcome to Claude</span>
+      <span class="right">Part 01 / Hello</span>
+    </div>
+    <div class="page-title-row">
+      <span class="page-num-big">01</span>
+      <h1 class="page-h1">Hello.</h1>
+    </div>
+    <p class="lead">Claude is, in plain terms, a brilliant new colleague who happens to live inside your laptop. You can ask it to draft a client email, sense-check a campaign brief, or summarise a forty-page report and it will have a proper go at it within seconds. The trick is learning how to talk to it. That is what this little book is for.</p>
+
+    <h2 class="subhead">By the end of this workbook</h2>
+    <div class="card-grid cols-2">
+      <div class="feature-card"><span class="ftag">Outcome 01</span><h4>Claude Desktop installed.</h4><p>Downloaded, signed in with your TDM email, set up the right way.</p></div>
+      <div class="feature-card"><span class="ftag">Outcome 02</span><h4>Your Instructions for Claude written.</h4><p>A one-page profile telling Claude who you are. Used in every chat.</p></div>
+      <div class="feature-card"><span class="ftag">Outcome 03</span><h4>First Cowork Project live.</h4><p>One real Project set up properly, the same way we did Emlyn's.</p></div>
+      <div class="feature-card"><span class="ftag">Outcome 04</span><h4>Five golden rules in your head.</h4><p>Plus a tick-box list for your first week so you actually use it.</p></div>
+    </div>
+
+    <h2 class="subhead">How to read this</h2>
+    <p style="font-size: 10.5pt; line-height: 1.55; color: var(--body); max-width: 75ch;">In order, from page 1 to page 12. Skip nothing. Each page builds on the one before it. If you only have ten minutes today, read up to page 6 and come back later. If you have the full forty, do the lot in one sitting. Have your laptop open while you read. Most pages ask you to actually do something.</p>
+
+    <div class="callout">
+      <h3>One reading rule</h3>
+      <p>If something does not make sense, stop and ask Scott or your team lead. This workbook is meant to feel obvious. If a step feels muddled, that is a workbook problem, not a you problem.</p>
+    </div>
+
+  </div>
+  <div class="footer-bar">
+    <span class="left"><img src="tdm-solid-pink.png" alt="" />The Digital Maze</span>
+    <span class="page-num">02 / 12</span>
+    <span class="right">Welcome to Claude · v1.0</span>
+  </div>
+</div>
+
+<!-- ===================== PAGE 3: WHAT CLAUDE IS ===================== -->
+<div class="page body-page">
+  <div class="body-content">
+    <div class="running-head">
+      <span class="left">The Digital Maze · Welcome to Claude</span>
+      <span class="right">Part 01 / Hello</span>
+    </div>
+    <div class="page-title-row">
+      <span class="page-num-big">02</span>
+      <h1 class="page-h1">What Claude does for us.</h1>
+    </div>
+    <p class="lead">The best way to understand what Claude is for is to see what TDM staff already use it for day-to-day. Six honest examples. None of them are theoretical. Every team has someone doing this kind of work right now.</p>
+
+    <div class="card-grid cols-2">
+      <div class="feature-card"><span class="ftag">Comms</span><h4>Draft a client email in your voice.</h4><p>Paste the latest call notes, ask Claude to draft the follow-up. Sounds like you, not like a robot.</p></div>
+      <div class="feature-card"><span class="ftag">Strategy</span><h4>Sense-check a campaign brief.</h4><p>Before you send a brief to a client, ask Claude what is unclear, what is missing, what would push back.</p></div>
+      <div class="feature-card"><span class="ftag">Operations</span><h4>Summarise a 1-2-1 call into actions.</h4><p>Drop the Otter transcript in. Get a clean summary, decisions, and owner-tagged actions in seconds.</p></div>
+      <div class="feature-card"><span class="ftag">Reporting</span><h4>Pull a QBR together from raw notes.</h4><p>Throw your raw monthly notes at Claude. Ask for the QBR structure, the headlines, the asks.</p></div>
+      <div class="feature-card"><span class="ftag">Voice</span><h4>Build a tone-of-voice doc from sent emails.</h4><p>Claude reads a hundred of your sent emails and produces a tone profile you can reuse across everything.</p></div>
+      <div class="feature-card"><span class="ftag">Pitches</span><h4>Sense-check a pitch deck story.</h4><p>Paste the deck outline. Ask Claude where the argument is weak and what the client will push back on.</p></div>
+    </div>
+
+    <div class="callout">
+      <h3>The rule of thumb</h3>
+      <p>If you are about to spend more than fifteen minutes on something that involves writing, summarising, sense-checking, or structuring, try Claude first. Worst case you save ten minutes. Best case you save an hour.</p>
+    </div>
+
+  </div>
+  <div class="footer-bar">
+    <span class="left"><img src="tdm-solid-pink.png" alt="" />The Digital Maze</span>
+    <span class="page-num">03 / 12</span>
+    <span class="right">Welcome to Claude · v1.0</span>
+  </div>
+</div>
+
+<!-- ===================== PAGE 4: THE THREE MODES ===================== -->
+<div class="page body-page">
+  <div class="body-content">
+    <div class="running-head">
+      <span class="left">The Digital Maze · Welcome to Claude</span>
+      <span class="right">Part 01 / Hello</span>
+    </div>
+    <div class="page-title-row">
+      <span class="page-num-big">03</span>
+      <h1 class="page-h1">The three modes.</h1>
+    </div>
+    <p class="lead">Claude Desktop has three modes along the top of the window: <strong>Chat</strong>, <strong>Cowork</strong>, and <strong>Code</strong>. Knowing which one to reach for matters. Most TDM staff live in Chat. Cowork is for delegated work. Code is mostly for the dev team.</p>
+
+    <div class="card-grid cols-3">
+      <div class="mode-card">
+        <span class="pill-mode">Mode 01</span>
+        <h3>Chat.</h3>
+        <div class="tagline">the conversation</div>
+        <div class="desc">A normal back-and-forth. You ask, Claude answers. Quick questions, drafting, brainstorming, thinking out loud.</div>
+        <div class="when-label">When to use</div>
+        <div class="when">Most of your day-to-day. Email drafts, brief sense-checks, summaries, anything you would normally type into ChatGPT.</div>
+      </div>
+      <div class="mode-card">
+        <span class="pill-mode">Mode 02</span>
+        <h3>Cowork.</h3>
+        <div class="tagline">the delegator</div>
+        <div class="desc">Multi-step jobs that touch your tools (Gmail, Drive, Slack, Calendar). Less ask-and-answer, more "go and do this for me".</div>
+        <div class="when-label">When to use</div>
+        <div class="when">Recurring workflows. Pulling reports from Drive, drafting from emails, monthly board prep, anything you do repeatedly.</div>
+      </div>
+      <div class="mode-card">
+        <span class="pill-mode">Mode 03</span>
+        <h3>Code.</h3>
+        <div class="tagline">the developer's tool</div>
+        <div class="desc">For building and editing software. Claude reads, writes and edits files in a project folder on your machine.</div>
+        <div class="when-label">When to use</div>
+        <div class="when">Mostly the dev team (Liam, Aaron, Calum, Oakley). If you are not building software, you can ignore this one.</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <h3>For TDM staff: Chat and Cowork</h3>
+      <p>If you are in SEO, PPC, Projects, Client Services, Sales or Marketing, you will live in Chat and dip into Cowork for the repetitive work. We will set up both in the next few pages.</p>
+    </div>
+
+  </div>
+  <div class="footer-bar">
+    <span class="left"><img src="tdm-solid-pink.png" alt="" />The Digital Maze</span>
+    <span class="page-num">04 / 12</span>
+    <span class="right">Welcome to Claude · v1.0</span>
+  </div>
+</div>
+
+<!-- ===================== PAGE 5: STEP 1 INSTALL ===================== -->
+<div class="page body-page">
+  <div class="body-content">
+    <div class="running-head">
+      <span class="left">The Digital Maze · Welcome to Claude</span>
+      <span class="right">Part 02 / All modes</span>
+    </div>
+    <div class="page-title-row">
+      <span class="page-num-big">01</span>
+      <h1 class="page-h1">Install Claude Desktop.</h1>
+    </div>
+    <p class="lead">First job. Get the app on your machine and signed in. Five minutes. The rest of the workbook assumes you have Claude Desktop open in front of you.</p>
+
+    <h2 class="subhead"><span class="letter">A.</span> Download and install</h2>
+    <ol class="steps">
+      <li><span>Open your web browser and go to <strong><a href="https://claude.ai/download">claude.ai/download</a></strong>.</span></li>
+      <li><span>Click the button for your computer. Mac or Windows. The installer will download.</span></li>
+      <li><span>Open the installer and follow the prompts. Same as installing any other app.</span></li>
+    </ol>
+
+    <h2 class="subhead"><span class="letter">B.</span> Sign in</h2>
+    <ol class="steps">
+      <li><span>Open <strong>Claude Desktop</strong>. Click <strong>Sign in</strong>.</span></li>
+      <li><span>Use your TDM email address: <em>yourname@thedigitalmaze.com</em>. Claude will email you a code to confirm.</span></li>
+      <li><span>If you are asked which plan to choose, stop. Ask <strong>Scott</strong> or <strong>Liam</strong>. Your seat is on the TDM Team plan and they will sort it.</span></li>
+    </ol>
+
+    <h2 class="subhead"><span class="letter">C.</span> Find your way around</h2>
+    <ol class="steps">
+      <li><span>Look at the top of the window. You should see three tabs: <span class="ui">Chat</span>, <span class="ui">Cowork</span>, <span class="ui">Code</span>. Stay on <span class="ui">Chat</span> for now.</span></li>
+      <li><span>Bottom-left of the window, you will see your name. Click it. This is where <strong>Settings</strong> live. We will come back here on the next page.</span></li>
+    </ol>
+
+    <div class="callout">
+      <h3>If something does not work</h3>
+      <p>Ask <strong>Liam</strong>. Sign-in problems, plan issues, anything technical. Faster than wrestling with it on your own.</p>
+    </div>
+
+  </div>
+  <div class="footer-bar">
+    <span class="left"><img src="tdm-solid-pink.png" alt="" />The Digital Maze</span>
+    <span class="page-num">05 / 12</span>
+    <span class="right">Welcome to Claude · v1.0</span>
+  </div>
+</div>
+
+<!-- ===================== PAGE 6: INSTRUCTIONS FOR CLAUDE ===================== -->
+<div class="page body-page">
+  <div class="body-content">
+    <div class="running-head">
+      <span class="left">The Digital Maze · Welcome to Claude</span>
+      <span class="right">Part 02 / All modes</span>
+    </div>
+    <div class="page-title-row">
+      <span class="page-num-big">02</span>
+      <h1 class="page-h1">Your Instructions for Claude.</h1>
+    </div>
+    <p class="lead">This is the bit that makes Claude actually useful. You write a one-page profile that tells Claude who you are and how you like to work. Claude reads it at the start of every chat. You only do this once. About twenty-five minutes.</p>
+
+    <a class="site-pointer" href="https://setting-up-claude-properly.vercel.app/bootstrap"><span>Full prompt on the site:</span> <span class="url">setting-up-claude-properly.vercel.app/bootstrap</span></a>
+
+    <div class="callout">
+      <h3>Two files, two homes</h3>
+      <p>Your profile splits into two files. <strong>CLAUDE.md</strong> holds the permanent stuff (your role, your style, your rules). <strong>Context.md</strong> holds the changing stuff (this quarter's priorities). If it will still be true in six months, it goes in CLAUDE.md.</p>
+    </div>
+
+    <h2 class="subhead"><span class="letter">A.</span> Let an AI write it for you</h2>
+    <ol class="steps">
+      <li><span>Open ChatGPT, Gemini, or whichever AI you have used most. Make sure <strong>Memory</strong> is turned on in its settings so it knows things about you.</span></li>
+      <li><span>Start a fresh chat. Paste the <strong>"Interview Me and Write My CLAUDE.md"</strong> prompt from the site. Edit the "Who I am" section so it matches you.</span></li>
+      <li><span>Answer the questions one at a time. Be specific. It will produce your CLAUDE.md as a code block.</span></li>
+      <li><span>Ask the AI to split that file into <strong>CLAUDE.md</strong> (permanent) and <strong>Context.md</strong> (changing). You will get two code blocks.</span></li>
+    </ol>
+
+    <h2 class="subhead"><span class="letter">B.</span> Paste your CLAUDE.md into Claude Desktop</h2>
+    <ol class="steps">
+      <li><span>In <strong>Claude Desktop</strong>, click your name (bottom-left) → <span class="ui">Settings</span> → <span class="ui">Profile</span>.</span></li>
+      <li><span>Find the box labelled <strong>Instructions for Claude</strong>. Paste your CLAUDE.md in. Click <strong>Save</strong>.</span></li>
+      <li><span>While you are there, toggle <strong>Memory</strong> on (same page). Lets Claude remember small things across chats.</span></li>
+    </ol>
+
+    <h2 class="subhead"><span class="letter">C.</span> Test it works</h2>
+    <ol class="steps">
+      <li><span>Start a brand-new chat. Type: <em>"What do you know about me and how I like to work?"</em></span></li>
+      <li><span>If Claude plays back your role and preferences accurately, you are sorted. If it is vague, the file needs more detail.</span></li>
+    </ol>
+
+    <p class="post-note">Your <span class="filename">Context.md</span> gets a different home. You will drop it into a Cowork Project on page 8.</p>
+
+  </div>
+  <div class="footer-bar">
+    <span class="left"><img src="tdm-solid-pink.png" alt="" />The Digital Maze</span>
+    <span class="page-num">06 / 12</span>
+    <span class="right">Welcome to Claude · v1.0</span>
+  </div>
+</div>
+
+<!-- ===================== PAGE 7: FIRST CHAT ===================== -->
+<div class="page body-page">
+  <div class="body-content">
+    <div class="running-head">
+      <span class="left">The Digital Maze · Welcome to Claude</span>
+      <span class="right">Part 03 / Chat</span>
+    </div>
+    <div class="page-title-row">
+      <span class="page-num-big">03</span>
+      <h1 class="page-h1">Your first Chat.</h1>
+    </div>
+    <p class="lead">Now you have Claude installed and your profile in place, let us actually use it. The point of this page is to feel Claude actually working before you do anything more involved. Five minutes.</p>
+
+    <h2 class="subhead"><span class="letter">A.</span> Open a fresh chat</h2>
+    <ol class="steps">
+      <li><span>In <strong>Claude Desktop</strong>, click the <span class="ui">Chat</span> tab at the top.</span></li>
+      <li><span>Click <strong>New chat</strong> (or the + icon, depending on your version). You should see an empty chat box.</span></li>
+    </ol>
+
+    <h2 class="subhead"><span class="letter">B.</span> Try this first message</h2>
+    <p style="font-size: 10.5pt; line-height: 1.55; color: var(--body); margin: 2mm 0 0; max-width: 75ch;">Paste the prompt below. It checks your Instructions for Claude are actually loaded and gives you a feel for how Claude responds.</p>
+
+    <div class="prompt-card">
+      <div class="prompt-head">
+        <h4>Prompt — First chat sanity check</h4>
+        <span class="pill">paste into Claude Chat</span>
+      </div>
+      <div class="prompt-body">Hi. Before we work on anything, do a quick sanity check for me.
+
+<strong>STEP 1:</strong> Tell me what you know about me from my Instructions for Claude. Cover my role, the kind of work I do, and any preferences I have shared with you.
+
+<strong>STEP 2:</strong> Tell me one realistic thing you could help me with this week, based on what you know.
+
+Be specific. If anything in my profile is unclear or contradictory, flag it.</div>
+    </div>
+
+    <h2 class="subhead"><span class="letter">C.</span> What "working" looks like</h2>
+    <ol class="steps">
+      <li><span>Claude should play back your role and the kind of work you do. If it is vague, your CLAUDE.md needs more detail. Go back to page 6.</span></li>
+      <li><span>Claude should suggest something realistic to your week. If the suggestion feels generic, that is also a clue your profile is too thin.</span></li>
+      <li><span>Reply to the suggestion. Have a proper back-and-forth for a few minutes. Get used to the rhythm of asking, reviewing, refining.</span></li>
+    </ol>
+
+    <div class="callout">
+      <h3>You are now using Claude</h3>
+      <p>That is the whole point. From here on, the only difference is the type of work you give it. The next pages set up <strong>Cowork</strong>, which is where you delegate the bigger, repetitive jobs.</p>
+    </div>
+
+  </div>
+  <div class="footer-bar">
+    <span class="left"><img src="tdm-solid-pink.png" alt="" />The Digital Maze</span>
+    <span class="page-num">07 / 12</span>
+    <span class="right">Welcome to Claude · v1.0</span>
+  </div>
+</div>
+
+<!-- ===================== PAGE 8: COWORK PROJECT PT 1 ===================== -->
+<div class="page body-page">
+  <div class="body-content">
+    <div class="running-head">
+      <span class="left">The Digital Maze · Welcome to Claude</span>
+      <span class="right">Part 04 / Cowork</span>
+    </div>
+    <div class="page-title-row">
+      <span class="page-num-big">04</span>
+      <h1 class="page-h1">Your first Cowork Project.</h1>
+    </div>
+    <p class="lead">Cowork is where you let Claude take on real, multi-step work that touches your tools (email, Drive, Slack, calendar). The first project always feels like the trickiest one, so we will do it together. Let Claude do the writing. You just answer a few quick questions.</p>
+
+    <a class="site-pointer" href="https://setting-up-claude-properly.vercel.app/setup-cowork"><span>Full walkthrough on the site:</span> <span class="url">setting-up-claude-properly.vercel.app/setup-cowork</span></a>
+
+    <h2 class="subhead"><span class="letter">A.</span> Open Cowork and get the basics right</h2>
+    <ol class="steps">
+      <li><span>Open <strong>Claude Desktop</strong> and sign in. At the top of the window, click the <span class="ui">Cowork</span> tab.</span></li>
+      <li><span>Bottom-right of the chat input, click the model selector and pick <span class="ui">Sonnet</span>. Cheaper, plenty good for day-to-day.</span></li>
+      <li><span>Left sidebar → <span class="ui">Customize</span> → turn on the connectors you actually use: <strong>Gmail</strong>, <strong>Google Drive</strong>, <strong>Slack</strong>, <strong>Google Calendar</strong>.</span></li>
+    </ol>
+
+    <h2 class="subhead"><span class="letter">B.</span> Build your reusable template</h2>
+    <ol class="steps">
+      <li><span>Open <strong>Finder</strong>, go to <strong>Documents</strong>, and create a folder called <span class="ui">cowork-projects</span>. Inside it, create another folder called <span class="ui">_template</span>.</span></li>
+      <li><span>Switch back to Claude Desktop and click the <span class="ui">Chat</span> tab. Start a new chat. Paste the prompt below. Answer Claude's questions briefly. You will get three template files back.</span></li>
+    </ol>
+
+    <div class="prompt-card">
+      <div class="prompt-head">
+        <h4>Prompt 1 — Build my Cowork template</h4>
+        <span class="pill">paste into Claude Chat</span>
+      </div>
+      <div class="prompt-body">I'm setting up Cowork to help me with recurring work. Each piece of recurring work will get its own Cowork Project, and I need a reusable template I can copy whenever I start a new one.
+
+Please do this in two steps.
+
+<strong>STEP 1:</strong> Ask me 4 or 5 quick questions about how I work, one at a time. Cover what kind of work I do, what recurring things I want to use Cowork for, what tools I use, and how I communicate with people. Wait for my answer after each question.
+
+<strong>STEP 2:</strong> Produce three blank template markdown files: PROJECT.md, CONTEXT.md, CURRENT-STATE.md. Each in a separate code block.
+
+Start with the first question.</div>
+    </div>
+
+  </div>
+  <div class="footer-bar">
+    <span class="left"><img src="tdm-solid-pink.png" alt="" />The Digital Maze</span>
+    <span class="page-num">08 / 12</span>
+    <span class="right">Welcome to Claude · v1.0</span>
+  </div>
+</div>
+
+<!-- ===================== PAGE 9: COWORK PROJECT PT 2 ===================== -->
+<div class="page body-page">
+  <div class="body-content">
+    <div class="running-head">
+      <span class="left">The Digital Maze · Welcome to Claude</span>
+      <span class="right">Part 04 / Cowork (continued)</span>
+    </div>
+    <div class="page-title-row">
+      <span class="page-num-big">04</span>
+      <h1 class="page-h1">Save, fill, and load it in.</h1>
+    </div>
+    <p class="lead">Now you have three template files in Claude Chat. Time to save them to your Mac, fill them in for a specific piece of work, and load that work into a real Cowork Project.</p>
+
+    <h2 class="subhead"><span class="letter">C.</span> Save the three template files</h2>
+    <ol class="steps">
+      <li><span>Open <span class="ui">TextEdit</span> (press Cmd+Space, type TextEdit, hit Enter). Click <strong>Format</strong> → <strong>Make Plain Text</strong>. Important.</span></li>
+      <li><span>In Claude, click inside the first code block. Cmd+A to select all, Cmd+C to copy. Switch to TextEdit, Cmd+V to paste, Cmd+S to save.</span></li>
+      <li><span>Name it exactly <span class="ui">PROJECT.md</span>. Save it into your <span class="ui">_template</span> folder. If asked about file extension, choose <strong>Use .md</strong>.</span></li>
+      <li><span>Repeat for <span class="ui">CONTEXT.md</span> and <span class="ui">CURRENT-STATE.md</span>. Same folder.</span></li>
+    </ol>
+
+    <h2 class="subhead"><span class="letter">D.</span> Create your first real project folder</h2>
+    <ol class="steps">
+      <li><span>In Finder, go to <span class="ui">cowork-projects</span>. Right-click <span class="ui">_template</span> → <strong>Duplicate</strong>.</span></li>
+      <li><span>Rename the copy to your first project (lowercase, hyphens, no spaces). For Emlyn this was <span class="ui">monthly-ppc-review</span>. Pick one piece of recurring work you actually do.</span></li>
+    </ol>
+
+    <h2 class="subhead"><span class="letter">E.</span> Get Claude to fill in the files</h2>
+    <ol class="steps">
+      <li><span>Back in Claude Chat, start a new chat. Paste the prompt below. Replace <strong>[PROJECT NAME]</strong> with the name of your project.</span></li>
+    </ol>
+
+    <div class="prompt-card">
+      <div class="prompt-head">
+        <h4>Prompt 2 — Fill in files for my first project</h4>
+        <span class="pill">paste into Claude Chat</span>
+      </div>
+      <div class="prompt-body">Interview me about one of my projects and produce three filled-in markdown files.
+
+The project is: <strong>[PROJECT NAME]</strong>
+
+Ask me one question at a time. Cover what this project is, who is involved, what I am trying to achieve, how I am currently doing it, and any quirks specific to this project.
+
+After the interview, produce three separate markdown code blocks: PROJECT.md, CONTEXT.md, CURRENT-STATE.md, specific to this project.
+
+Start with the first question.</div>
+    </div>
+
+    <h2 class="subhead"><span class="letter">F.</span> Load it into Cowork</h2>
+    <ol class="steps">
+      <li><span>Save the three files into your new project folder (same TextEdit method as Step C).</span></li>
+      <li><span>In Claude Desktop, switch to <span class="ui">Cowork</span>. Left sidebar → <span class="ui">Projects</span> → <strong>New Project</strong>. Name it the same as the folder.</span></li>
+      <li><span>Find the <span class="ui">Project Knowledge</span> area. Drag all three .md files in. Paste <span class="ui">PROJECT.md</span> into the <span class="ui">Custom Instructions</span> box. Save.</span></li>
+    </ol>
+
+    <div class="callout">
+      <h3>Your first Project is live</h3>
+      <p>Open it. Start a new task inside it. Ask: <em>"What do you know about this project?"</em> If Claude plays back your files accurately, you are sorted. Use this Project for a couple of weeks before adding another.</p>
+    </div>
+
+  </div>
+  <div class="footer-bar">
+    <span class="left"><img src="tdm-solid-pink.png" alt="" />The Digital Maze</span>
+    <span class="page-num">09 / 12</span>
+    <span class="right">Welcome to Claude · v1.0</span>
+  </div>
+</div>
+
+<!-- ===================== PAGE 10: WHAT TDM HAS SET UP ===================== -->
+<div class="page body-page">
+  <div class="body-content">
+    <div class="running-head">
+      <span class="left">The Digital Maze · Welcome to Claude</span>
+      <span class="right">Part 05 / Org level</span>
+    </div>
+    <div class="page-title-row">
+      <span class="page-num-big">05</span>
+      <h1 class="page-h1">What TDM has set up for you.</h1>
+    </div>
+    <p class="lead">You are not on your own. TDM has Claude organised in three layers, so when you sit down to work Claude already knows the company, your team, and you. Here is what is already in place and who keeps it up to date.</p>
+
+    <div class="layer-row">
+      <div class="layer-card l1">
+        <span class="llabel">Layer 01</span>
+        <h4>Your account.</h4>
+        <p>The paid Claude seat. Owned by TDM, billed centrally by Rob. Suspended the day you leave. Includes Chat and Cowork. Code is added for the dev team.</p>
+      </div>
+      <div class="layer-card l2">
+        <span class="llabel">Layer 02</span>
+        <h4>Your team.</h4>
+        <p>A shared library of skills, connectors, and reference docs specific to your team (SEO, PPC, Projects, Tech, etc.). Maintained by your team lead. Pulled when you start a session.</p>
+      </div>
+      <div class="layer-card l3">
+        <span class="llabel">Layer 03</span>
+        <h4>You.</h4>
+        <p>Your CLAUDE.md, Context.md, your tone of voice, your Cowork Projects. Lives on your Mac. Yours. Set up across pages 6 and 8 of this workbook.</p>
+      </div>
+    </div>
+
+    <h2 class="subhead">Connectors you already have</h2>
+    <p style="font-size: 10.5pt; line-height: 1.55; color: var(--body); margin: 1mm 0 3mm; max-width: 75ch;">Each connector lets Cowork reach into a tool you already use. Turn on the ones you actually use, not everything. Each one adds context to every Cowork task.</p>
+
+    <div class="card-grid cols-3">
+      <div class="feature-card"><span class="ftag">Everyone</span><h4>Gmail · Drive · Slack · Calendar</h4><p>The core four. Turn these on first. They cover most day-to-day work across every team.</p></div>
+      <div class="feature-card"><span class="ftag">SEO &amp; PPC</span><h4>GA4 · Search Console · SEMrush</h4><p>Available on request. Ask Liam to enable them on your account if your team uses them.</p></div>
+      <div class="feature-card"><span class="ftag">Projects &amp; CS</span><h4>Monday · Trello · MarketingIQ</h4><p>If your team coordinates in one of these, add it. Cowork can read tasks and update boards.</p></div>
+    </div>
+
+    <div class="callout">
+      <h3>If something is missing</h3>
+      <p>The Layer 02 skills and connectors are still being rolled out team by team (SEO first). If your team has not had its kit set up yet, ask <strong>Scott</strong>. You can still use Chat and your personal Cowork Projects in the meantime.</p>
+    </div>
+
+  </div>
+  <div class="footer-bar">
+    <span class="left"><img src="tdm-solid-pink.png" alt="" />The Digital Maze</span>
+    <span class="page-num">10 / 12</span>
+    <span class="right">Welcome to Claude · v1.0</span>
+  </div>
+</div>
+
+<!-- ===================== PAGE 11: GOLDEN RULES + WEEK ONE ===================== -->
+<div class="page body-page">
+  <div class="body-content">
+    <div class="running-head">
+      <span class="left">The Digital Maze · Welcome to Claude</span>
+      <span class="right">Part 06 / Best practice</span>
+    </div>
+    <div class="page-title-row">
+      <span class="page-num-big">06</span>
+      <h1 class="page-h1">Five rules &amp; your first week.</h1>
+    </div>
+    <p class="lead">Five rules to keep in your head from day one, then a tick-box list for your first week so the workbook does not just sit on your desk.</p>
+
+    <h2 class="subhead">The five golden rules</h2>
+
+    <div class="golden-rule">
+      <div class="gnum">01</div>
+      <div class="gtext"><strong>Be specific.</strong>Vague in, vague out. "Write me an email" gets you nothing. "Draft a friendly reply to Acme rejecting their counter-offer but keeping the door open" gets you something usable.</div>
+    </div>
+    <div class="golden-rule">
+      <div class="gnum">02</div>
+      <div class="gtext"><strong>Tell Claude your role and audience.</strong>"I am a PPC account manager writing to a non-technical client" changes the whole reply. Your Instructions for Claude already cover most of this. Top it up per task.</div>
+    </div>
+    <div class="golden-rule">
+      <div class="gnum">03</div>
+      <div class="gtext"><strong>Ask Claude to ask you questions first.</strong>Before you brief Claude on a big task, tell it: "Before you do this, ask me 3 questions you need answered to do it well." Catches missing info early.</div>
+    </div>
+    <div class="golden-rule">
+      <div class="gnum">04</div>
+      <div class="gtext"><strong>Review before you approve.</strong>Especially in Cowork, when Claude is about to send an email, post in Slack, or update a board. Read every action before you confirm it. No exceptions.</div>
+    </div>
+    <div class="golden-rule">
+      <div class="gnum">05</div>
+      <div class="gtext"><strong>Never paste passwords or proper secrets.</strong>Client logins, payment details, API keys, anything sensitive. Claude does not need them and TDM does not want them in a chat history.</div>
+    </div>
+
+    <h2 class="subhead">Your first-week tick-box</h2>
+    <ol class="tickbox-list">
+      <li><span>Profile set up. <strong>Instructions for Claude</strong> filled in. Memory toggled on.</span></li>
+      <li><span>First real Chat done. Got Claude to play back what it knows about you.</span></li>
+      <li><span>One Cowork Project created. Tested. Used for at least one real task.</span></li>
+      <li><span>Tried Chat AND Cowork. Both have a place in your week.</span></li>
+      <li><span>Read the <strong>Talking to Claude</strong> page on the site.</span></li>
+      <li><span>Pulled an existing task into Claude. Saved at least twenty minutes.</span></li>
+    </ol>
+
+  </div>
+  <div class="footer-bar">
+    <span class="left"><img src="tdm-solid-pink.png" alt="" />The Digital Maze</span>
+    <span class="page-num">11 / 12</span>
+    <span class="right">Welcome to Claude · v1.0</span>
+  </div>
+</div>
+
+<!-- ===================== PAGE 12: WHERE TO GO NEXT + BACK COVER ===================== -->
+<div class="page body-page">
+  <div class="body-content">
+    <div class="running-head">
+      <span class="left">The Digital Maze · Welcome to Claude</span>
+      <span class="right">Part 07 / Next</span>
+    </div>
+    <div class="page-title-row">
+      <span class="page-num-big">07</span>
+      <h1 class="page-h1">Where to go next.</h1>
+    </div>
+    <p class="lead">You have done the foundation. The site is where you go deeper when you want to. It has prompts, a glossary, deep-dives on connectors, a troubleshooting page, and recommended tools by team.</p>
+
+    <a href="https://setting-up-claude-properly.vercel.app" class="destination-panel" style="display:block;">
+      <div class="dlabel">The full guide lives here</div>
+      <h3>setting-up-claude-properly</h3>
+      <p>Twenty-five sections. Searchable. Updated regularly. Save it to your bookmarks bar.</p>
+      <span class="url-pill">.vercel.app</span>
+    </a>
+
+    <h2 class="subhead">Read these next</h2>
+    <div class="card-grid cols-2">
+      <div class="feature-card"><span class="ftag">All modes</span><h4>Talking to Claude.</h4><p>How to get the best out of any chat. Specifics over generalities, examples, structure.</p></div>
+      <div class="feature-card"><span class="ftag">All modes</span><h4>Reviewing Work.</h4><p>How to check what Claude has done, especially in Cowork where actions touch real tools.</p></div>
+      <div class="feature-card"><span class="ftag">All modes</span><h4>Common Mistakes.</h4><p>The handful of patterns that consistently waste time. Read it before you make them.</p></div>
+      <div class="feature-card"><span class="ftag">All modes</span><h4>Security.</h4><p>What never to share, where things get stored, what to do if you slip up.</p></div>
+    </div>
+
+    <h2 class="subhead">Who to ask at TDM</h2>
+    <div class="person-row"><div class="who">Scott Clarke</div><div class="what">Anything Claude, the workbook itself, where to find things, what skills are coming for your team.</div></div>
+    <div class="person-row"><div class="who">Liam Nelson</div><div class="what">Anything technical. Sign-in problems, connector issues, MCP setups, plan and seat questions.</div></div>
+    <div class="person-row"><div class="who">Your team lead</div><div class="what">Team-specific workflows, the skills already built for your team, who else on the team is using what.</div></div>
+
+  </div>
+  <div class="footer-bar">
+    <span class="left"><img src="tdm-solid-pink.png" alt="" />The Digital Maze</span>
+    <span class="page-num">12 / 12</span>
+    <span class="right">Welcome to Claude · v1.0 · END</span>
+  </div>
+</div>
+
+</body>
+</html>
