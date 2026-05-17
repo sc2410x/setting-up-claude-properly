@@ -2352,39 +2352,47 @@ Keep each file focused and specific to this project. Start with the first questi
 
   <div class="prompt-card" style="border-color:var(--primary);">
     <div class="prompt-card-header"><h4>The Recommended First Message</h4><span class="when">new project</span></div>
-    <div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>Hi Claude. I've just created this project folder and I need your help setting it up properly and building it out.
+    <div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>Hi Claude. I've just opened this project and I need your help setting it up properly and building it out.
 
 Before we do anything, here's what you need to know about me:
 - I'm a business decision maker, not a developer
 - Always talk to me in plain, non-technical language
-- When you make changes, explain what you did and why in terms I can understand
+- When you make changes, explain what you did and why
 - Don't build anything until we've talked through what I need first
 - Ask me questions before making assumptions
 
-Let's start by getting this project set up:
+Let's start by getting set up:
 
-1. Ask me about the project — what it is, who it's for, what I want it to achieve, and any preferences I have. Use these answers to create the CLAUDE.md and Context.md files.
+1. AUDIT THE PROJECT FIRST. Tell me what's already here. Is there a CLAUDE.md? A Context.md? A README.md? A knowledge/ folder? A .gitignore? Any broken file paths referenced inside the existing docs? Give me a simple status table with three columns: Item, Status, What to Do.
 
-2. Set up your memory system for this project so you remember our conversations.
+2. INTERVIEW ME ABOUT THE PROJECT. What it is, who it's for, what I want it to achieve, and any preferences I have. Use my answers to create the CLAUDE.md and Context.md files.
 
-3. Check that global skills (like Superpowers) are installed and available.
+3. SET UP YOUR MEMORY for this project so you remember our conversations.
 
-4. Once setup is done, give me a status report and then ask me what I'd like to work on first.
+4. GIVE ME A STATUS REPORT and then ask me what I'd like to work on first.
 
 Let's go.</pre></div>
   </div>
 
-  <div class="prompt-card"><div class="prompt-card-header"><h4>Health Check</h4><span class="when">any project</span></div><div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>Check if this project has the following configuration files set up properly. For each one, tell me: does it exist, where is it, and is it empty or does it have content? Give me a simple status report.
+  <div class="prompt-card"><div class="prompt-card-header"><h4>Health Check</h4><span class="when">any project</span></div><div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>Audit this project's setup. Check the following and report in plain language:
 
-1. CLAUDE.md (or AGENTS.md) — the "house rules" file in the project root
-2. Context.md — background info file in the project root
-3. Memory system — look for ~/.claude/projects/ folder that matches this project, and check for MEMORY.md inside it
-4. Skills — check if ~/.claude/skills/ exists and what's installed there
+1. CLAUDE.md — does it exist, is it filled in?
+2. Context.md — exists, current?
+3. README.md — explains what this project is?
+4. Folders — knowledge/, skills/, stored-files/ for organising reference docs?
+5. .gitignore — does it cover .env, .DS_Store, node_modules?
+6. Memory — is there a memory folder for this project?
+7. Broken paths — does CLAUDE.md or Context.md reference any files that don't actually exist?
 
-For anything that's missing or empty, tell me what it should contain in plain, non-technical language. I'm not a developer — I'm a business decision maker.
+For anything missing or broken, tell me what should be there and why. I'm not a developer. Format as a table with three columns: Item, Status, What to Do.</pre></div></div>
 
-Format your answer as a simple table:
-| File | Status | What to Do |</pre></div></div>
+  <div class="prompt-card"><div class="prompt-card-header"><h4>First Chat Sanity Check</h4><span class="when">after profile setup</span></div><div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>Quick sanity check before we work on anything.
+
+1. Tell me what you know about me from my Instructions for Claude. Cover my role, the kind of work I do, and any preferences I have shared with you.
+
+2. Suggest one realistic thing you could help me with this week, based on what you know.
+
+If anything in my profile is vague or contradictory, flag it.</pre></div></div>
 
   <div class="prompt-card"><div class="prompt-card-header"><h4>Get Up to Speed</h4><span class="when">start of session</span></div><div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>Read the CLAUDE.md, Context.md, and your memory for this project. Then give me a brief summary of:
 1. What this project is
@@ -2393,17 +2401,21 @@ Format your answer as a simple table:
 
 Keep it to a few sentences. I'll tell you what I want to work on today.</pre></div></div>
 
-  <div class="prompt-card"><div class="prompt-card-header"><h4>End of Session</h4><span class="when">wrapping up</span></div><div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>Before we wrap up, please do the following:
+  <div class="prompt-card"><div class="prompt-card-header"><h4>End of Session</h4><span class="when">wrapping up</span></div><div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>Before we wrap up, walk me through this:
 
-1. Update CLAUDE.md — Add any new rules, preferences, or decisions we made during this session that should apply going forward. Don't remove existing content, just add what's new.
+1. PRE-FLIGHT CHECK. What branch am I on? What files have I changed? Any uncommitted changes I should know about, in this repo or any other I've touched this session? Where would git push send this. If I'm deploying via Vercel, which project and team. Anything risky.
 
-2. Update Context.md — Add any new context about the project, business, audience, or strategy that came up during this session.
+2. UPDATE CLAUDE.md with new rules, preferences, or decisions made today. Don't remove existing content, just add what's new.
 
-3. Update Memory — Save anything important about me, my preferences, or project status that you should remember for next time.
+3. UPDATE Context.md with new context about the project, business, audience, or strategy that came up.
 
-4. Give me a short summary of what was added to each file so I know what changed.
+4. UPDATE Memory with anything worth remembering for next time.
 
-Talk to me in plain language — I'm not a developer.</pre></div></div>
+5. GIVE ME A SHORT SUMMARY of what was added to each file.
+
+6. ASK ME ABOUT COMMITS. Should you stage and commit anything? Push? Don't push without my explicit OK.
+
+Talk to me in plain language. I'm not a developer.</pre></div></div>
 
   <div class="prompt-card"><div class="prompt-card-header"><h4>End of Day Debrief</h4><span class="when">full day wrap-up</span></div><div class="code-block" style="border:none;border-radius:0;margin:0;"><button class="copy-btn" onclick="copyCode(this)">$ copy</button><pre>End of day debrief. Please do the following:
 
